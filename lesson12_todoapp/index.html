@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Todo app</title>
+        <link href="style.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <nav>
+            <div class="nav-left">
+                <h1>Best <span>ToDo</span> App</h1>
+            </div>
+            <div class="nav-right">
+                <a href="">
+                    <i class="fa fa-facebook-square"></i>
+                </a>
+                <a href="">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a href="">
+                    <i class="fa fa-linkedin"></i>
+                </a>
+            </div>
+        </nav>
+        <main>
+            <div class="tasks">
+                <div class="tasks-header">
+                    <h1>Your Tasks</h1>
+                    <div class="tasks-input">
+                        <input type="text" placeholder="e.g wash dishes" id="name" name="name" required="4" maxlength="8" size="50">
+                        <div class="btn btn-add" type="button">Add</div>                       
+                    </div>
+                    <div class="tasks-warning">
+                        <p>There was an error</p>
+                    </div>
+                </div>
+                <div class="tasks-themselves">
+                    <div class="single-task">
+                        <div class="task-status">
+                            <i style="color:white;" class="fa fa-check"></i>
+                            <h2>Take out trashes</h2>
+                        </div>
+                        <div class="task-icons">
+                            <a href="">
+                                <i class="fa fa-edit"></i>                            
+                            </a>
+                            <a href="">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="single-task">
+                        <div class="task-status">
+                            <i class="fa fa-check"></i>
+                            <h2 class="crossed">Walk the dog</h2>
+                        </div>
+                        <div class="task-icons">
+                            <a href="">
+                                <i class="fa fa-edit"></i>                            
+                            </a>
+                            <a href="">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </body>
+</html>
