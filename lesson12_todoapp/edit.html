@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Todo app</title>
+        <link href="style.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <nav>
+            <div class="nav-left">
+                <a href="index.html">
+                    <h1>Best <span>ToDo</span> App</h1>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="">
+                    <i class="fa fa-facebook-square"></i>
+                </a>
+                <a href="">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a href="">
+                    <i class="fa fa-linkedin"></i>
+                </a>
+            </div>
+        </nav>
+        <main>
+            <div class="tasks-edit-wrapper">
+                <div class="tasks-header">
+                        <h1>Edit Task</h1>
+                        <div class="tasks-edit">
+                            <div class="task-edit task-edit-id">
+                                <h2 class="task-header">Task ID</h2>
+                                <h3 class="task-data">1234567</h3>
+                            </div>
+                            <div class="task-edit task-edit-name">
+                                <h2 class="task-header">Name</h2>
+                                <input class="task-data type="text" placeholder="Dynamic text here" id="name" name="name" required="4" maxlength="8" size="30">                                
+                            </div>
+                            <div class="task-edit task-edit-completed">
+                                <h2 class="task-header">Completed</h2>
+                                <input type="checkbox">
+                            </div>
+                    </div>
+                    <div class="task-button">
+                        <div class="btn btn-edit" type="button">Edit</div>                                         </div>
+                    <div class="tasks-warning-edit">
+                        <p>There was an error</p>
+                    </div>
+                </div>
+                <div class="btn">
+                    <a href="index.html">Back to tasks</a>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
