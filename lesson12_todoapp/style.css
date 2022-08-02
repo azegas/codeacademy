@@ -44,7 +44,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 67px); /*question how to center this div*/
+    height: calc(100vh - 69px); /*question how to center this div*/
 }
 
 .tasks-edit-wrapper {
