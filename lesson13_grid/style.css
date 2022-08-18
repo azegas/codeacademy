@@ -1,0 +1,63 @@
+/* flex stuff */
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.item {
+  background-color: tomato;
+  margin: 10px;
+  flex: 1;
+  text-align: center;
+  color: white;
+  padding: 10vh 0;
+}
+
+/* /\* Su Flexbox *\/ */
+
+.flex {
+  display: flex;
+  min-height: 50vh;
+}
+
+.puse {
+  width: 50%;
+}
+
+.right-side {
+  display: flex;
+  flex-wrap: wrap;
+}
+.right-side > * {
+  width: 100%;
+}
+
+.left-side, .right-bottom, .right-top {
+  display: flex;
+}
+
+/* grid stuff */
+/* be mozillos inspect tool neimanoma suprasti */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  padding: 10px;
+}
+
+.grid-item {
+    background-color: skyblue;
+    padding: 10vh 0;
+    text-align: center;
+}
+
+.grid-item:nth-child(1) {
+    grid-row: 1/3;
+    grid-column: 1/3;
+}
+
+.grid-item:nth-child(2) {
+    grid-column: 3/5;
+}
