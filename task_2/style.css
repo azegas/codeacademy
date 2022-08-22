@@ -1,0 +1,166 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Roboto Serif', serif;
+    line-height: 2;
+}
+
+.container {
+    margin: auto;
+    text-align: justify;
+}
+
+nav {
+    background: rgb(179, 179, 179);
+    padding: 5px 0px;
+}
+
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    height: 80px;
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li a {
+    padding: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.user-info {
+    margin: 40px 0px;
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+
+.user-img img {
+    border-radius: 50%;
+    height: 90px;
+    width: 90px;
+}
+
+.banner {
+    margin-top: 40px;
+    width: 100%;
+    height: 200px;
+    background-image: url(./images/flower-banner.jpg);
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+.gallery {
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px
+}
+
+.card {
+    position: relative;
+}
+
+.card-image img {
+    position: relative;
+    object-fit: cover;
+    height: 150px;
+    width: 250px;
+}
+
+.card-title p {
+    position: absolute;
+    bottom: 10px;
+    right: 0px;
+    color: white;
+    font-size: 18px;
+    font-weight: 900;
+    width: 150px;
+    text-align: center;
+}
+
+/* RESPONSIVENESS */
+
+
+@media only screen and (min-width: 1400px) {
+    body {
+        /* background: orange; */
+    }
+    .container {
+        width: 1200px;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    body {
+        /* background: purple; */
+    }
+    .container {
+        width: 992px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    body {
+        /* background: blue; */
+    }
+    .container {
+        width: 768px;
+    }
+    .gallery {
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    body {
+        /* background: green; */
+    }
+    .container {
+        width: 576px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+        /* background: pink; */
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    nav .container {
+        justify-content: center;
+    }
+
+    .user-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0px
+    }
+
+}
+
+@media only screen and (max-width: 636px) {
+    body {
+        /* background: yellow; */
+    }
+
+    .container p {
+        padding: 0px 20px;
+    }
+
+    .container {
+        width: 100%;
+    }
+}
