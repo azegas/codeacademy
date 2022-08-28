@@ -1,0 +1,108 @@
+* {
+}
+
+body {
+    background-color: rgb(238, 238, 238) ;
+}
+
+.container {
+    margin: auto;
+    padding: 0px 100px;
+}
+
+nav {
+    margin-bottom: 10px;
+}
+
+nav ul {
+    padding: 0px;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+}
+
+.dezute {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.75);p
+}
+
+header img {
+    height: 50px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+nav li {
+    display: inline;
+    padding-right: 20px;
+}
+
+footer {
+    text-align: center;
+}
+
+section {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    grid-template-areas: 
+            "login content content"
+            "help content content";
+}
+
+.login {
+    grid-area: login;
+}
+
+.help {
+    grid-area: help;
+}
+
+.content {
+    grid-area: content;
+}
+
+
+@media only screen and (max-width: 600px) {
+  
+  .container {
+      padding: 0px 5px;
+      width: 90%;
+  }
+  
+  nav li {
+      display: block;
+      border-bottom: 1px solid lightgrey;
+      padding: 10px 0px;
+      text-decoration: underline;
+  }
+
+  .dezute {
+      padding: 10px;
+  }
+
+  .help {
+      display: none;
+  }
+
+  section {
+    display: grid; 
+    grid-template-columns: 100%; 
+    grid-template-rows: 1fr;
+    gap: 10px;
+    grid-template-areas: 
+            "login"
+            "content";
+  }
+
+}
