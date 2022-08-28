@@ -1,56 +1,56 @@
-* {
-    padding: 0px;
-    margin: 0px;
+body {
+    background: lightgrey;
 }
 
-.image-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
+.container {
+    width: 1200px;
+    margin: auto;
 }
 
-.image-gallery > li {
-  flex-basis: 350px; /* width: 350px; */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: green;
+    box-sizing: border-box;
 }
 
-.image-gallery li img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  vertical-align: middle;
-  border-radius: 5px;
+header img {
+    height: 50px;
 }
 
-.image-gallery::after {
-  content: "";
-  flex-basis: 350px;
+header li {
+    display: inline;
+    padding-left: 30px;
 }
 
-.image-gallery > li {
-  /* ... */
-  position: relative;
-  cursor: pointer;
+header a {
+    color: white;
+    text-decoration: none;
 }
 
-.overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(57, 57, 57, 0.502);
-  top: 0;
-  left: 0;
-  transform: scale(0);
-  transition: all 0.2s 0.1s ease-in-out;
-  color: #fff;
-  border-radius: 5px;
-  /* center overlay text */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+section {
+    display: flex;
+    background: white;
 }
 
-/* hover */
-.image-gallery li:hover .overlay {
-  transform: scale(1);
+button {
+    float: right;
+}
+
+.left, .right {
+    padding: 20px;
+}
+
+.right img {
+    height: 150px;
+    float: left;
+    margin: 10px;
+}
+
+button {
+    color: white;
+    background: green;
+    height: 30px;
 }
