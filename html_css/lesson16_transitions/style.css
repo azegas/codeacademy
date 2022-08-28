@@ -1,0 +1,100 @@
+.container {
+    padding: 50px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.example {
+    text-align: center;
+    padding: 10px;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: none;
+    background: blue;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1;
+    will-change: transform;
+    transition: 1000ms cubic-bezier(0.1, 0.2, 0.3, 0.4);
+}
+
+/* TRANSFORM */
+
+.btn1:hover {
+    transform: translateY(-50px);
+}
+
+.btn2:hover {
+    transform: translateX(-50px);
+}
+
+/* ANIMATIONS */
+
+.color-change1:hover {
+    animation-duration: 4s;
+    animation-name: example1;
+}
+
+.color-change2:hover {
+    animation-duration: 4s;
+    animation-name: example2;
+}
+
+.color-change3:hover {
+    animation-duration: 4s;
+    animation-name: example3;
+    position: relative;
+}
+
+@keyframes example1 {
+  from {background-color: red;}
+  to {background-color: yellow;}
+}
+
+@keyframes example2 {
+  0%   {background-color: red;}
+  25%  {background-color: yellow;}
+  50%  {background-color: pink;}
+  100% {background-color: green;}
+}
+
+@keyframes example3 {
+  0%   {background-color:red; left:0px; top:0px;}
+  25%  {background-color:yellow; left:200px; top:0px;}
+  50%  {background-color:blue; left:200px; top:200px;}
+  75%  {background-color:green; left:0px; top:200px;}
+  100% {background-color:red; left:0px; top:0px;}
+}
+
+/*  MORE TRANSFORM */
+
+.transform1:hover {
+    transform: rotate(0.5turn);
+}
+
+.transform2:hover {
+    transform: translate(30px, 20px) rotate(20deg);
+    width: 140px;
+    height: 60px;
+}
+
+.transform3:hover {
+    transform: translateX(50%) rotate(30deg) scale(2);
+}
+
+
+/* MEDIA */
+
+@media only screen and (max-width: 600px) {
+    .container {
+        justify-content: center;
+    }
+}
