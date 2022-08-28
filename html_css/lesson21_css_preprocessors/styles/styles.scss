@@ -1,0 +1,89 @@
+@import "./colors/colors.scss";
+@import "./breakpoints/breakpoints.scss";
+
+/*
+VARIABLES!
+useful for color, height, screen size values, etc.
+*/
+
+/* 
+MIXINS 
+allows to reuse particular piece of code.
+@include when want to use it
+*/
+
+h2{
+    padding: 20px;
+}
+
+@mixin dezute {
+    width: 500px;
+    height: 200px;
+    background: $mainColor;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 20px solid $secondaryColor;
+}
+
+@mixin dezuteSpecial($spalvyte, $plotis) {
+    width: $plotis;
+    height: 200px;
+    background: $spalvyte;
+    margin-bottom: 20px;
+    border: 20px solid $secondaryColor;
+}
+
+.square {
+    @include dezute();
+    
+    /* 
+       NESTING! 
+       I guess its more simple than typing .square .white
+   */
+    .white {
+        color: white;
+    }
+}
+
+.title {
+    color: $mainColor;
+}
+
+.paragraph {
+    color: $mainColor;
+}
+
+.figure {
+    @include dezute();
+}
+
+.special-wrapper {
+    display: flex;
+    gap: 20px;
+}
+
+.special{
+    @include dezuteSpecial($accentColor, 80px);
+}
+
+
+.first {
+    width: 200px;
+    height: 200px;
+    background: $cubeColor;
+    margin-bottom: 30px;
+    display: inline-block;
+}
+
+.second {
+    @extend .first;
+    background: $secondaryColor;
+}
+
+/* MEDIA */
+
+@media only screen and (max-width: $maxPhoneSize) {
+    body {
+        background-color: lightblue;
+    }
+}

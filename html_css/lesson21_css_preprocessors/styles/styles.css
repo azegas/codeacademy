@@ -1,0 +1,67 @@
+/*
+VARIABLES!
+useful for color, height, screen size values, etc.
+*/
+/* 
+MIXINS 
+allows to reuse particular piece of code.
+@include when want to use it
+*/
+h2 {
+  padding: 20px; }
+
+.square {
+  width: 500px;
+  height: 200px;
+  background: lightyellow;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 20px solid purple;
+ /* 
+    NESTING! 
+    I guess its more simple than typing .square .white
+*/ }
+  .square .white {
+    color: white; }
+
+.title {
+  color: lightyellow; }
+
+.paragraph {
+  color: lightyellow; }
+
+.figure {
+  width: 500px;
+  height: 200px;
+  background: lightyellow;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 20px solid purple; }
+
+.special-wrapper {
+  display: flex;
+  gap: 20px; }
+
+.special {
+  width: 80px;
+  height: 200px;
+  background: orange;
+  margin-bottom: 20px;
+  border: 20px solid purple; }
+
+.first, .second {
+  width: 200px;
+  height: 200px;
+  background: lightblue;
+  margin-bottom: 30px;
+  display: inline-block; }
+
+.second {
+  background: purple; }
+
+/* MEDIA */
+@media only screen and (max-width: 700px) {
+  body {
+    background-color: lightblue; } }
+
+/*# sourceMappingURL=styles.css.map */
