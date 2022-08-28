@@ -1,0 +1,47 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+main {
+    display: grid;
+    grid-template-areas:
+        "topbar topbar topbar"
+        "sidebar content ads"
+        "footer footer footer";
+    /* grid-template-rows: 100px auto 100px; */
+    gap: 30px 30px;
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+header {
+    background: orange;
+    grid-area: topbar;
+}
+
+aside {
+    background: pink;
+    grid-area: ads;
+}
+
+article {
+    grid-area: content;
+    background: green;
+}
+
+nav {
+    grid-area: sidebar;
+    background: brown;
+}
+
+footer {
+    grid-area: footer;
+    background: yellow;
+}
+
+
+blet {
+    background: red;
+    grid-area: topbar;
+}
