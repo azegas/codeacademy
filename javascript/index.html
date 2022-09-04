@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JS mastery</title>
+        
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic" />
+        <!-- CSS Reset -->
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"/> -->
+        <!-- Milligram CSS -->
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"/> -->
+        <!-- Tailwind -->
+        <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="p-3 mb-2 bg-warning text-black">JavaScript little projects </h1>
+            <p>Below you can see all the little projects I have done during CodeAcademy course, JavaScript part.</p>
+            <h2 class="p-3 mb-2 bg-info text-black">Some ideas </h2>
+            <ul>
+                <li>story about you generator from chosen words</li>
+                <li>calculator thingy sum sub mul etc kaip pavizdyje</li>
+                <li></li>
+            </ul>
+            <div class="d-flex flex-column p-3">
+                <div class="card bg-ligth p-3 mb-3 en09">
+                    <div class="p-3 mb-2 bg-dark text-white">
+                        <h2>Example numero 9</h2>
+                        <h5>Will you be recrouted to the army?</h5>
+                    </div>
+                    <strong>Criteria:</strong>
+                    <ul>
+                        <li>Must be between 18-30 years of age</li>
+                    </ul>
+                    <div class="container-fluid p-0">
+                        <form id="armyForm">
+                            <input id="armyAgeInput" type="number" placeholder="Please enter your age">
+                            <button class="btn btn-primary" type="submit">Moment of truth</button>
+                        </form>
+                        <h3 id="armyAgeResult"></h3>
+                    </div>
+                </div>
+                <div class="card bg-ligth p-3 mb-3 en08">
+                    <div class="p-3 mb-2 bg-dark text-white">
+                        <h2>Example numero 8</h2>
+                        <h5>Ticket price calculator</h5>
+                    </div>
+                    <strong>Ticket price list:</strong>
+                    <ul>
+                        <li>Regular ticket price - $6</li>
+                        <li>Until 16 years old - 50% discount</li>
+                        <li>Between 16 and 60 - Full price</li>
+                        <li>Between 65 and 100 - 1/3 of Full price</li>
+                        <li>Above 100 - Free</li>
+                    </ul>
+                    <div class="container-fluid p-0">
+                        <form id="form2">
+                            <input id="ticketAge" type="number" placeholder="Please enter your age">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </form>
+                        <h3 id="ticketPrice">Ticket price: </h3>
+                    </div>
+                </div>
+                <div class="card bg-ligth p-3 mb-3 en07">
+                    <div class="p-3 mb-2 bg-dark text-white">
+                        <h2>Example numero 7</h2>
+                        <h5>JS Form valdymas</h5>
+                    </div>
+                    <div class="container-fluid p-0">
+                        <form id="form1">
+                            <input name="abc" type="text" placeholder ="enter your name"/>
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </form>
+                        <h3 id="firstforma"></h3>
+                    </div>
+                </div>
+                <div class="card bg-ligth p-3 mb-3 en06">
+                    <div class="p-3 mb-2 bg-dark text-white">
+                        <h2>Example numero 6</h2>
+                        <h5>Generate random number 1-100</h5>
+                    </div>
+                    <div class="container-fluid p-0">
+                        <button id="btnrandom" class="btn btn-primary">Generate random number</button>
+                        <h3 id="randomnumber"></h3>
+                    </div>
+                </div>
+                <div class="card bg-light p-3 mb-3 en05">
+                    <div class="p-3 mb-2 bg-dark text-white">
+                        <H2>Example numero 5</h2>
+                        <h5>Don't copy this piece of text</h5>
+                    </div>
+                    <p id="dontcopy">Ac turpis egestas maecenas pharetra convallis posuere morbi leo. Quam nulla porttitor massa id neque aliquam vestibulum morbi blandit cursus risus, at ultrices mi tempus imperdiet nulla malesuada pellentesque elit.</p>
+                </div>
+                <div class="card bg-light p-3 mb-3 en04">
+                    <div class="p-3 mb-2 bg-dark text-white">
+                        <h2>Example numero 4</h2>
+                        <h5>JS eventai</h5>
+                    </div>
+                    <div class="container-fluid d-flex p-0">
+                        <h3 class ="align-self-center" id="plusone">Increasing by one: 0</h3>
+                        <button id="btnplusone" class="btn btn-primary ml-4">+1</button>
+                    </div>
+                </div>
+                <div class="card bg-light p-3 mb-3 en02">
+                    <div class="p-3 mb-2 bg-dark text-white">
+                        <h2>Example numero 2</h2>
+                        <h5>and_or - SO FAR EMPTY</h5>
+                    </div>
+                    <div class="d-flex">
+                        <input type="text" id="en2" value=""/>
+                    </div>
+                </div>
+                <div class="card bg-light p-3 mb-3 en01">
+                    <div class="p-3 mb-2 bg-dark text-white">
+                        <h2>Example numero 1</h2>
+                        <h5>Input button manipulation</h5>
+                    </div>
+                    <p>Change the background color when an Input field is Empty. Try to write something in the input field and then delete it. See what happens.</p>
+                    <div class="d-flex">
+                        <input type="text" id="en1" value=""/>
+                        <button id="btn1" class="btn btn-primary">Button</button>
+                    </div>
+                </div>
+                <div class="card bg-light p-3 mb-3 en00">
+                    <div class="p-3 mb-2 bg-dark text-white">
+                        <h2>Example numero 0</h2>
+                        <h5>Button - function</h5>
+                    </div>
+                    <div class="container-fluid p-0">
+                        <h3 id="greeting">Click button bellow and text will appear here</h3>
+                        <button onclick="sayHello()" class="btn btn-primary">Hello</button>
+                        <button id="btn0" class="btn btn-primary">Good Bye</button>
+                        <br/>
+                        <hr/>
+                        <button id="btnabout" class="btn mt-2 btn-primary">Click to know about me</button>
+                        <p id="aboutme"></p>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </body>
+    <script src="en09.js"></script>
+    <script src="en08.js"></script>
+    <script src="en07.js"></script>
+    <script src="en06.js"></script>
+    <script src="en05.js"></script>
+    <script src="en04.js"></script>
+    <script src="en02.js"></script>
+    <script src="en01.js"></script>
+    <script src="en00.js"></script>
+    <script>
+    </script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Comparison 1</h2>
+
+<p>Assign 5 to x, and display the value of the comparison (x == 8):</p>
+
+<p id="demo"></p>
+
+<h2>JavaScript Comparison 2</h2>
+
+<p>Input your age and click the button:</p>
+
+<input id="age" value="18" />
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo2"></p>
+
+<h2>JavaScript Comparisons 3</h2>
+
+<p>Input your age and click the button:</p>
+
+<input id="metai" value="18" />
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo3"></p>
+
+<script>
+ let x = 8;
+ document.getElementById("demo").innerHTML = (x <= 8);
+
+ function myFunction() {
+     let age = document.getElementById("age").value;
+     let voteable = (age < 18) ? "Too young":"Old enough";
+     document.getElementById("demo2").innerHTML = voteable + " to vote.";
+ }
+
+ function myFunction() {
+     let balsuojama;
+     let metai = Number(document.getElementById("metai").value);
+     if (isNaN(metai)) {
+         balsuojama = "Input is not a number";
+     } else {
+         balsuojama = (metai < 18) ? "Too young" : "Old enough";
+     }
+     document.getElementById("demo3").innerHTML = balsuojama + " to vote";
+ }
+</script>
+
+</body>
+</html>
