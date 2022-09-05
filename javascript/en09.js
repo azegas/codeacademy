@@ -5,6 +5,7 @@ const armyForm = document.getElementById("armyForm");
 function armyCalculator(e) {
     e.preventDefault()
     const receivedAge = Number(armyAgeInput.value);
+    // console.log(receivedAge)
     
     if (receivedAge >= 18 && receivedAge <= 30){
         armyAgeResult.textContent = "Welcome to army."
@@ -18,9 +19,8 @@ function armyCalculator(e) {
 armyForm.addEventListener("submit", armyCalculator);
 
 
-// // just a color check..
+// // // just a color check..
 // const btnz = document.getElementById('armyForm');
-
 // btnz.addEventListener('click', function onClick() {
 //   btnz.style.backgroundColor = 'lime';
 //   btnz.style.color = 'white';
