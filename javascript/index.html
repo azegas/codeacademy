@@ -30,6 +30,21 @@
                 <li></li>
             </ul>
             <div class="d-flex flex-column p-3">
+                <div class="card bg-ligth p-3 mb-3 en11">
+                    <div class="p-3 mb-2 bg-dark text-white">
+                        <h2>Example numero 11</h2>
+                        <h5>Guess random number</h5>
+                    </div>
+                    <strong>Guess number from 1 to 5</strong>
+                    <div class="container-fluid p-0">
+                        <form id="guessForm">
+	                    <input type="number" id="guess" min="1" max="5" required>
+                            <button class="btn btn-primary" type="submit">Guess</button>
+                        </form>
+                        <h3 id="guessResult"></h3>
+                        <h3 class="text-white" id="guessSecret">random value hint</h3>
+                    </div>
+                </div>
                 <div class="card bg-ligth p-3 mb-3 en10">
                     <div class="p-3 mb-2 bg-dark text-white">
                         <h2>Example numero 10</h2>
@@ -173,6 +188,7 @@
             </div>            
         </div>
     </body>
+    <script src="en11.js"></script>
     <script src="en10.js"></script>
     <script src="en09.js"></script>
     <script src="en08.js"></script>
