@@ -1,18 +1,20 @@
 const armyAgeInput = document.getElementById("armyAgeInput");
 const armyAgeResult = document.getElementById("armyAgeResult");
+const tInput = document.querySelector("input[type=checkbox]");
 const armyForm = document.getElementById("armyForm");
 
 function armyCalculator(e) {
     e.preventDefault()
     const receivedAge = Number(armyAgeInput.value);
+    const isConvicted = tInput.checked;
     // console.log(receivedAge)
     
-    if (receivedAge >= 18 && receivedAge <= 30){
+    if (receivedAge >= 18 && receivedAge <= 30 && !isConvicted){
         armyAgeResult.textContent = "Welcome to army."
-    } else if (receivedAge < 18) {
+    } else if (receivedAge < 18 && !isConvicted) {
         armyAgeResult.textContent = "Army does not need you (too young)."
     } else {
-        armyAgeResult.textContent = "Army does not need you (too old)."
+        armyAgeResult.textContent = "Army does not need you (too convicted or too old)."
     }
 }
 

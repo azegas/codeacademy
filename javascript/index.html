@@ -63,8 +63,12 @@
                         <li>Must be between 18-30 years of age</li>
                     </ul>
                     <div class="container-fluid p-0">
-                        <form id="armyForm">
+                        <form class="d-flex flex-column" id="armyForm">
                             <input id="armyAgeInput" type="number" placeholder="Please enter your age">
+                            <div class="checkbox">
+                                <label for="convicted">Have you been convicted?</label>
+                                <input id="convicted"type="checkbox">
+                            </div>
                             <button class="btn btn-primary" type="submit">Moment of truth</button>
                         </form>
                         <h3 id="armyAgeResult"></h3>
