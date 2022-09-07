@@ -1,3 +1,5 @@
+// Example numero 11
+
 const guessInput = document.getElementById("guessInput");
 const guessResult = document.getElementById("guessResult");
 const guessSecret = document.getElementById("guessSecret");

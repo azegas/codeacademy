@@ -1,3 +1,5 @@
+// Example numero 09
+
 const armyAgeInput = document.getElementById("armyAgeInput");
 const armyAgeResult = document.getElementById("armyAgeResult");
 const tInput = document.querySelector("input[type=checkbox]");

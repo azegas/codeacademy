@@ -1,3 +1,5 @@
+// Example numero 04
+
 let counter = 0;
 
 document.getElementById('btnplusone').addEventListener('click', () => {

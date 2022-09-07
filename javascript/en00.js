@@ -1,3 +1,5 @@
+// Example numero 00
+
 document.getElementById("btn0").addEventListener("click", sayBye);
 document.getElementById("btnabout").addEventListener("click", sayAboutMe);
 

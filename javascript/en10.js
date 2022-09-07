@@ -1,3 +1,5 @@
+// Example numero 10
+
 const celsiusForm = document.getElementById("celsiusForm");
 const celsiusInput = document.getElementById("celsiusInput");
 const celsiusResult = document.getElementById("celsiusResult");

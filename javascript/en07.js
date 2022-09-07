@@ -1,3 +1,5 @@
+// Example numero 07
+
 document.getElementById("form1").addEventListener("submit", myFunction);
 
 function myFunction(event){

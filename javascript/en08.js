@@ -1,3 +1,5 @@
+// Example numero 08
+
 const ageInput = document.getElementById("ticketAge"); // input laukelis
 const form = document.getElementById("form2");   // pasirenkame forma, del submit mygtuko
 const priceDisplay = document.getElementById("ticketPrice"); // place i kuria outputinsim

@@ -1,3 +1,5 @@
+// Example numero 06
+
 function generateRandomNumber() {
     return Math.floor(Math.random() * 100) + 1;
 }

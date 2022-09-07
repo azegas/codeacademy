@@ -1,3 +1,5 @@
+// Example numero 02
+
 const manoAmzius = 28
 
 if(manoAmzius > 100 || manoAmzius < 0){

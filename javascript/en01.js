@@ -1,3 +1,5 @@
+// Example numero 01
+
 const input = document.getElementById('en1');
 
 input.addEventListener('input', event => {
