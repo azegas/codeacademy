@@ -11,4 +11,5 @@ function addCube() {
     cube.style.color = "white"
     cube.style.fontWeight = "900"
     cube.style.textAlign = "center"
+    cube.style.background = "orange"
 }

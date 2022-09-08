@@ -11,6 +11,7 @@ whereToAppend.append(element);
 element.style.color = "white"
 element.style.fontWeight = "900"
 element.style.textAlign = "center"
+element.style.background = "orange"
 
 
 element.textContent = "Cube created with JavaScipt";
