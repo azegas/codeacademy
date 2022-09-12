@@ -23,17 +23,23 @@ const marker = L.marker([0, 0], { icon: issIcon}).addTo(map);
 
 const api_url = 'https://api.wheretheiss.at/v1/satellites/25544'
 
+let firstTime = true;
+
 async function getISS() {
     const response = await fetch(api_url);
     const data = await response.json();
     const { latitude, longitude } = data;
     // console.log(data);
 
-
     document.getElementById('iss_lat').textContent = latitude.toFixed(2);
     document.getElementById('iss_lon').textContent = longitude.toFixed(2);
     marker.setLatLng([latitude, longitude]);
-    mymap.setView([latitude, longitude], 2)
+    
+    // no more repositioning upon every sync
+    if (firstTime) {
+        map.setView([latitude, longitude], 1)
+        firstTime = false;
+    }
     
     console.log(data.latitude);
     console.log(data.longitude);
@@ -41,4 +47,5 @@ async function getISS() {
 
 getISS();
 
-setInterval(getISS, 1000);
+// setInterval(getISS, 1000);      // can return every one second, but I choose not to
+
