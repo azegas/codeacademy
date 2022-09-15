@@ -1,3 +1,5 @@
+// Example numero 24
+
 const numbersArray = [1, -1, 4, 6];
 
 // let sum = 0;
