@@ -37,6 +37,144 @@
                 <li>calculator thingy sum sub mul etc kaip pavyzdyje</li>
             </ul>
             <div class="d-flex flex-column p-3">
+                <div class="card bg-ligth p-3 mb-3 en26">
+                    <div class="p-3 mb-2 bg-dark text-white">
+                        <h2>Example numero 26</h2>
+                        <h5>Classes</h5>
+                        <ul>
+                            <strong><a href="en26.js" target=”_blank”>Stack:</a></strong>
+                            <li>Class</li>
+                            <li>JSON.stringify</li>
+                        </ul>
+                    </div>
+                    <div id="classAudi"></div>
+                    <div id="classBmw"></div>
+                    <div id="classAudiPrice"></div>
+                    <div id="classBmwPrice"></div>
+                </div>
+                <div class="card bg-ligth p-3 mb-3 en25">
+                    <div class="p-3 mb-2 bg-dark text-white">
+                        <h2>Example numero 25</h2>
+                        <h5>Massive example</h5>
+                        <ul>
+                            <strong><a href="en25.js" target=”_blank”>Stack:</a></strong>
+                            <li>Map</li>
+                            <li>Reduce</li>
+                            <li>Filter</li>
+                            <li>Sort</li>
+                            <li>Every</li>
+                            <li>Some</li>
+                            <li>JSON.stringify</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Array that I will be working with:</h3>
+                        <pre class="p-3">
+const characters = [
+    {
+        name: 'Luke Skywalker',
+        height: '172',
+        mass: '77',
+        eye_color: 'blue',
+        gender: 'male',
+    },
+    {
+        name: 'Darth Vader',
+        height: '202',
+        mass: '136',
+        eye_color: 'yellow',
+        gender: 'male',
+    },
+    {
+        name: 'Leia Organa',
+        height: '150',
+        mass: '49',
+        eye_color: 'brown',
+        gender: 'female',
+    },
+    {
+        name: 'Anakin Skywalker',
+        height: '188',
+        mass: '84',
+        eye_color: 'blue',
+        gender: 'male',
+    },
+];
+                        </pre>                            
+                        <div class="starMap">
+                            <h2>Map</h2>
+                            <strong>1. Get array of all names</strong>
+                            <div id="starMap1"></div>
+                            <strong>2. Get array of all heights</strong>
+                            <div id="starMap2"></div>
+                            <strong>3. Get array of objects with just name and height properties</strong>
+                            <div id="starMap3"></div>
+                            <strong>4. Get array of all first names</strong>
+                            <div id="starMap4"></div>                            
+                        </div>
+                        <div class="starReduce">
+                            <hr/>
+                            <h2>Reduce</h2>
+                            <strong>1. Get total mass of all characters</strong>
+                            <div id="starReduce1"></div>
+                            <strong>2. Get total height of all characters</strong>
+                            <div id="starReduce2"></div>
+                            <strong>3. Get total number of characters by eye color</strong>
+                            <div id="starReduce3"></div>
+                            <strong>4. Get total number of characters in all the character names</strong>
+                            <div id="starReduce4"></div>                            
+                        </div>
+                        <div class="starFilter">
+                            <hr/>
+                            <h2>Filter</h2>
+                            <strong>1. Get characters with mass greater than 100</strong>
+                            <div id="starFilter1"></div>
+                            <strong>2. Get characters with height less than 170</strong>
+                            <div id="starFilter2"></div>
+                            <strong>3. Get all male characters</strong>
+                            <div id="starFilter3"></div>
+                            <strong>4. Get all female characters</strong>
+                            <div id="starFilter4"></div>
+                        </div>
+                        <div class="starSort">
+                            <hr/>
+                            <h2>Sort</h2>
+                            <strong>1. Sort by mass</strong>
+                            <div id="starSort1"></div>
+                            <strong>2. Sort by height</strong>
+                            <div id="starSort2"></div>
+                            <strong>3. Sort by name</strong>
+                            <div id="starSort3"></div>
+                            <strong>4. Sort by gender</strong>
+                            <div id="starSort4"></div>
+                        </div>
+                        <div class="starEvery">
+                            <hr/>
+                            <h2>Every</h2>
+                            <strong>1. Does every character have blue eyes?</strong>
+                            <div id="starEvery1"></div>
+                            <strong>2. Does every character have mass more than 40?</strong>
+                            <div id="starEvery2"></div>
+                            <strong>3. Is every character shorter than 200?</strong>
+                            <div id="starEvery3"></div>
+                            <strong>4. Is every character male?</strong>
+                            <div id="starEvery4"></div>
+                        </div>
+                        <hr/>
+                        <h2>Some</h2>
+                        <div class="startSome">
+                            <strong>1. Is there at least one male character?</strong>
+                            <div id="starSome1"></div>
+                            <strong>2. Is there at least one character with blue eyes?</strong>
+                            <div id="starSome2"></div>
+                            <strong>3. Is there at least one character taller than 210?</strong>
+                            <div id="starSome3"></div>
+                            <strong>4. Is there at least one character that has mass less than 50?</strong>
+                            <div id="starSome4"></div>
+                        </div>
+                        
+                    </div>
+                </div>
                 <div class="card bg-ligth p-3 mb-3 en24">
                     <div class="p-3 mb-2 bg-dark text-white">
                         <h2>Example numero 24</h2>
@@ -536,6 +674,8 @@
             </div>            
         </div>
     </body>
+    <script src="en26.js"></script>
+    <script src="en25.js"></script>
     <script src="en24.js"></script>
     <script src="en23.js"></script>
     <script src="en22.js"></script>
@@ -560,6 +700,7 @@
     <script src="en02.js"></script>
     <script src="en01.js"></script>
     <script src="en00.js"></script>
+    <script src="http://localhost:8080/skewer"></script>
     <script>
     </script>
 </html>
