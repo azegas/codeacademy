@@ -1,6 +1,6 @@
 // Example numero 24
 
-const numbersArray = [1, -1, 4, 6];
+const numbersArray = [1, -1, 4, 8];
 
 // let sum = 0;
 // for (let n of numbersArray)
