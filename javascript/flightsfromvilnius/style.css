@@ -1,0 +1,13 @@
+body {
+  margin: 10px;
+}
+
+.child {
+  height: 200px;
+  width: 200px;
+  background-color: rgb(127, 115, 115);
+  display: inline-block;
+  margin: 20px;
+  text-align: center;
+  font-size: 2em;
+}
