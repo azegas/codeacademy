@@ -1,5 +1,12 @@
 // Example numero 33
 
+// 1. Jums paskambino pažinčių portalas – jiems reikia greitai sukurti
+// front-endą, kuris pasiimtų duomenis iš https://randomuser.me/api/
+// ir juos atvaizduotų juos puslapyje. Duomenys galėtų būti
+// atvaizduoti panašioje kortelėje. Svarbu atvaizduoti nuotrauką,
+// vardą, amžių ir el. pašto adresą.
+
+
 // define where I want to place this card
 const storeHere = document.getElementById("en33_1");
 
