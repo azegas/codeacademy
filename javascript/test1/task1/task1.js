@@ -5,18 +5,26 @@
 // d. Išsaugotus sprendimus išsaugoti į JS failą, sunumeruoti.
 
 // 1.1 Parašyti komandą kuri gražins automobilius, kurie turi parametrą "Miles_per_Gallon" ;
-console.log(cars.filter(car => {return car.Miles_per_Gallon !== null}));
+console.log(cars.filter(car => {
+    return car.Miles_per_Gallon !== null;
+}));
 
 // 1.2. Parašyti komandą kuri gražins automobilius, kurie neturi "Miles_per_Gallon" ;
-console.log(cars.filter(car => {return car.Miles_per_Gallon == null}));
+console.log(cars.filter(car => {
+    return car.Miles_per_Gallon == null;
+}));
 
 // 1.3  Parašyti komandą kuri gražins automobilius, kurie turi parametrą 8 "Cylinders" ir "Miles_per_Gallon" parametras didesnis arba lygus 15.
-console.log(cars.filter(car => {return car.Cylinders == 8 & car.Miles_per_Gallon >= 15}));
+console.log(cars.filter(car => {
+    return car.Cylinders == 8 & car.Miles_per_Gallon >= 15;
+}));
 
 // 1.4  Parašyti komandą kuri gražins automobilius su pridėtu papildomu laiku ojekte, kuris vadinasi "Kilowatts", kuris yra lygus "Horsepower" * 0.7457;
 
 // attempt 1. prisideda string i kiekviena object
-const cars2 = cars.map(v => ({...v, blyn: "labas"}))
+const cars2 = cars.map(v => ({
+    ...v, blyn: "labas"
+}));
 
 // attempt 2. prisideda string i kiekviena object
 const add2 = cars.map((name) => {
@@ -45,5 +53,5 @@ cars.sort((a, b) => {
 
 // 1.6 Parašyti komandą kuri gražins true arba false reikšmę tikrinant ar visi automobiliai yra pagaminti "USA".
 cars.every((car) => {
-    return car.Origin === "USA"
+    return car.Origin === "USA";
 });
