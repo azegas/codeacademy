@@ -6,8 +6,8 @@ function addCube() {
     
     // styling
     // cube.textContent = "Cube created with JavaScipt";
-    cube.style.color = "white"
-    cube.style.fontWeight = "900"
-    cube.style.textAlign = "center"
-    cube.style.background = "orange"
+    cube.style.color = "white";
+    cube.style.fontWeight = "900";
+    cube.style.textAlign = "center";
+    cube.style.background = "orange";
 }
