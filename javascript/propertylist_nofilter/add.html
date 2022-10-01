@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Add property</title>
+        
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <header class="bg-success pt-4 pb-4">
+            <div class="container">
+                <h1>Property list</h1>
+                <h3>See all the stuff yourself</h3>
+            </div>
+        </header>
+        <div class="container">
+            <section class="mt-4" id="input-form">
+                <form class="d-flex flex-column">
+                    <input id="property-image" type="text" placeholder="Enter property image url" />
+                    <input id="property-city" type="text" placeholder="Enter property city" />
+                    <input id="property-price" type="number" placeholder="Enter property price(number)" />
+                    <input id="property-description" type="text" placeholder="Enter property desription" />
+                    <button id="submit-btn" type="submit">Save property in DB</button>
+                </form>
+                <p id="alert"></p>
+            </section>
+            <section class="footer">
+                <hr />
+                <a href="index.html">Back</a>
+            </section>
+        </div>
+        <script src="add.js"></script>
+    </body>
+</html>

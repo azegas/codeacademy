@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>NT portalas</title>
+  </head>
+  <body>
+    <section class="header">
+      <div class="heading-wrapper">
+        <h1>Add your property for sale</h1>
+        <h5>Yes you can sell where you live and get cash!</h5>
+      </div>
+    </section>
+    <section class="main">
+      <p>Add property</p>
+      <form id="property-form">
+        <div id="image-block">
+          <label for="image">Img</label>
+          <input
+            id="property-image"
+            type="text"
+            name="image"
+            placeholder="https://google.com/logo.png"
+          />
+          <span class="validation-error">Error</span>
+        </div>
+        <div id="price-block">
+          <label for="price">Price, EUR</label>
+          <input
+            id="poperty-price"
+            type="number"
+            name="price"
+            placeholder="50000"
+          />
+          <span class="validation-error">Error</span>
+        </div>
+
+        <div id="description-block">
+          <label for="description">Description</label>
+          <textarea
+            id="property-description"
+            name="description"
+            placeholder="anything you would like to say?"
+          ></textarea>
+          <span class="validation-error">Error</span>
+        </div>
+        <label for="cities">City</label>
+        <select id="cities" name="cities">
+          <option value="vilnius">Vilnius</option>
+          <option value="kaunas">Kaunas</option>
+          <option value="klaipeda">Klaipėda</option>
+          <option value="siauliai">Šiauliai</option>
+          <option value="panevezys">Panevėžys</option>
+        </select>
+        <button id="submit-btn" class="nav-button-secondary" type="submit">
+          Add property
+        </button>
+        <span id="status-msg"></span>
+      </form>
+      <div>
+        <button class="nav-button-secondary" onclick="clickToHome()">
+          Home
+        </button>
+      </div>
+    </section>
+    <script src="./add.js"></script>
+  </body>
+</html>

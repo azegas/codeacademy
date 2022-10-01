@@ -1,0 +1,27 @@
+.property-card {
+    height: 350px;
+    width: 200px;
+    background: orange;
+    padding: 20px;
+}
+
+#properties {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+input {
+    margin-bottom: 20px;
+}
+
+#alert {
+    color: green;
+    margin-left: 10px;
+}
+
+.img {
+    height: 120px;
+    width: 150px;
+}

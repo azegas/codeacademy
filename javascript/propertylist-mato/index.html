@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>NT portalas</title>
+  </head>
+  <body>
+    <section class="header">
+      <div class="heading-wrapper">
+        <h1>Property list</h1>
+        <h5>See all the houses you want!</h5>
+      </div>
+    </section>
+    <section class="main">
+      <p>Filter:</p>
+      <div class="navigation-buttons">
+        <div class="filter-buttons">
+          <input
+            type="checkbox"
+            id="button-vilnius"
+            name="button-vilnius"
+            value="vilnius"
+          />
+          <label class="filter-label" for="button-vilnius">Vilnius</label>
+          <input
+            type="checkbox"
+            id="button-kaunas"
+            name="button-kaunas"
+            value="kaunas"
+          />
+          <label class="filter-label" for="button-kaunas">Kaunas</label>
+          <input
+            type="checkbox"
+            id="button-klaipeda"
+            name="button-klaipeda"
+            value="klaipeda"
+          />
+          <label class="filter-label" for="button-klaipeda">Klaipėda</label>
+        </div>
+        <button
+          id="button-4"
+          class="nav-button-secondary"
+          onclick="clickToAdd()"
+        >
+          Add property+
+        </button>
+      </div>
+      <form class="search">
+        <input id="city-search" type="text" placeholder="enter city name" />
+        <button class="nav-button-secondary">..or search city</button>
+      </form>
+      <div class="ads"></div>
+    </section>
+    <script src="./index.js"></script>
+    <script src="./removeDiacritics.js"></script>
+  </body>
+</html>
