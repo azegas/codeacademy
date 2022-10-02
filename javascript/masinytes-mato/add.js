@@ -35,6 +35,7 @@ const postData = async (car) => {
     }
 };
 
+
 const addCar = (event) => {
     event.preventDefault();
     const carBrandInput = document.getElementById("car-brand");
