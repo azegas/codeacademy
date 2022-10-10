@@ -37,6 +37,8 @@ const createCard = (object) => {
     const cardImage = document.createElement("img");
     const cardBody = document.createElement("div")
     const cardTitle = document.createElement("h5");
+    const cardDescription = document.createElement("p");
+    const cardCity = document.createElement("p");
     const cardButton = document.createElement("button")
     const cardText = document.createElement("p");
     const cardDelete = document.createElement("button")
@@ -65,15 +67,17 @@ const createCard = (object) => {
     cardButton.innerHTML = "Go somewhere"
 
     // adding content
-    cardTitle.innerHTML = "title: " + object.pavadinimas
-    cardText.innerText = "text: " + object.kaina
+    cardTitle.innerHTML = "Pavadinimas: " + object.pavadinimas
+    cardDescription.innerHTML = "Aprasymas: " + object.aprasymas
+    cardText.innerText = "Kaina: " + object.kaina
+    cardCity.innerText = "Miestas: " + object.miestas
     cardDelete.innerText = "x"
-    cardButton.innerHTML = "button";
+    cardButton.innerHTML = "pirkti";
 
     // appending
     cardWrapper.append(card);
     card.append(cardImage, cardBody);
-    cardBody.append(cardText, cardTitle, cardButton, cardDelete);
+    cardBody.append(cardText, cardTitle, cardDescription, cardCity, cardButton, cardDelete);
 
     // on button click - remove element
     cardDelete.addEventListener("click", () => {
