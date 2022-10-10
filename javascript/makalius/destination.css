@@ -1,0 +1,38 @@
+.destinationTitle {
+  font-size: 30px;
+  text-align: center;
+}
+
+.flyWithTitile {
+  font-size: 30px;
+  text-align: center;
+}
+
+.destinationLink {
+  text-align: center;
+  margin: auto;
+}
+
+.linkWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.destinationPhoto {
+  width: 60%;
+  margin: auto;
+  height: 500px;
+  object-fit: cover;
+}
+
+.photoWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.updateField {
+  text-align: center;
+  margin-top: 40px;
+}

@@ -1,0 +1,96 @@
+body {
+  margin: 0;
+}
+
+header {
+  height: 120px;
+  background-color: rgb(86, 135, 177);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  height: 80px;
+}
+
+.trips {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.trip {
+  width: 80%;
+  background-color: rgb(234, 234, 234);
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.trip-image-section {
+  height: 300px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.title-section {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  height: 140px;
+  margin-top: 30px;
+}
+
+.title {
+  font-size: 24px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.button-section {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  width: 70%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 30px;
+  height: 80px;
+  background-color: rgb(32, 110, 201);
+  color: aliceblue;
+  border: none;
+  cursor: pointer;
+}
+
+.trip-price {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  height: 60px;
+  width: 170px;
+  border-radius: 40px;
+  background-color: rgb(61, 61, 223);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: white;
+}
+
+.remove-item {
+  position: absolute;
+  background-color: brown;
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: aliceblue;
+  border-radius: 30px;
+  right: 20px;
+  top: 20px;
+}
