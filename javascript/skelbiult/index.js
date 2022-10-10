@@ -44,7 +44,7 @@ const createCard = (object) => {
     // adding content
     cardTitle.innerHTML = object.pavadinimas
     cardPrice.innerText = object.kaina + " $"
-    cardButton.innerHTML = "blet";
+    cardButton.innerHTML = "button";
     cardButton.href = "item.html";
 
     // appending

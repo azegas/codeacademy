@@ -42,7 +42,7 @@ const createCard = (object) => {
     // adding content
     cardTitle.innerHTML = "title: " + object.pavadinimas
     cardText.innerText = "text: " + object.kaina
-    cardButton.innerHTML = "blet";
+    cardButton.innerHTML = "button";
 
     // appending
     cardWrapper.append(card);
