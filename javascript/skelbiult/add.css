@@ -1,0 +1,7 @@
+.validation-error {
+  display: inline-block;
+  color: crimson;
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+  visibility: hidden;
+}
