@@ -6,6 +6,28 @@ const setId = (id) => {
     localStorage.setItem("itemId", id);
 };
 
+const clickToHome = () => {
+  window.location = "./index.html";
+};
+
+const deleteItem = (id) => {
+    fetch(`https://63443d16dcae733e8fdaf088.mockapi.io/produktai/${itemId}`,
+        {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+        }
+    )
+        .then((res) => {
+            console.log("Trip was deleted successfully");
+        })
+        .catch((err) => {
+            console.log("err", err);
+        });
+};
+
 const createCard = (object) => {
     // defining wrappers
     const cardWrapper = document.getElementById("cardWrapper");
@@ -17,11 +39,14 @@ const createCard = (object) => {
     const cardTitle = document.createElement("h5");
     const cardButton = document.createElement("button")
     const cardText = document.createElement("p");
+    const cardDelete = document.createElement("button")
 
     // adding styles to the elements
     card.classList.add("card");
     card.style.width = "18rem"
 
+    cardDelete.classList.add("delete")
+    
     cardButton.classList.add("btn")
     cardButton.classList.add("btn-primary")
     
@@ -42,12 +67,20 @@ const createCard = (object) => {
     // adding content
     cardTitle.innerHTML = "title: " + object.pavadinimas
     cardText.innerText = "text: " + object.kaina
+    cardDelete.innerText = "x"
     cardButton.innerHTML = "button";
 
     // appending
     cardWrapper.append(card);
     card.append(cardImage, cardBody);
-    cardBody.append(cardText, cardTitle, cardButton);
+    cardBody.append(cardText, cardTitle, cardButton, cardDelete);
+
+    // on button click - remove element
+    cardDelete.addEventListener("click", () => {
+        deleteItem(object.id);
+        alert("PREKE Istrinta, mldc")
+        setTimeout(clickToHome, 2000)
+    });
 
     // on button click add its id to localstorage
     cardButton.addEventListener("click", () => {
