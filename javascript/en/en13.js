@@ -4,8 +4,8 @@ const whereToAppend = document.getElementById("appendToMe");
 
 const element = document.createElement("div");
 
-element.setAttribute("class", "child");
-element.setAttribute("id", "someId");
+element.setAttribute("class", "child"); // must define by yourself in css
+element.setAttribute("id", "someId"); // must define by yourself in css
 
 whereToAppend.append(element);
 element.style.color = "white"

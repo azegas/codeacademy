@@ -34,6 +34,7 @@ const characters = [
 
 // using JSON.stringify to display objects in HTML. Otherwise the output is [object object]
 
+
 //***MAP***
 //1. Get array of all names
 document.getElementById("starMap1").textContent = characters.map(character => character.name);
@@ -68,6 +69,7 @@ document.getElementById("starReduce3").textContent = JSON.stringify(characters.r
 //4. Get total number of characters in all the character names
 document.getElementById("starReduce4").textContent = characters.reduce((acc, cur) => acc + cur.name.length, 0);
 
+
 //***FILTER***
 //1. Get characters with mass greater than 100
 document.getElementById("starFilter1").textContent = JSON.stringify(characters.filter( character => {
@@ -84,6 +86,7 @@ document.getElementById("starFilter3").textContent = JSON.stringify(characters.f
 //4. Get all female characters
 document.getElementById("starFilter4").textContent = JSON.stringify(characters.filter(
     character => character.gender === "female"));
+
 
 //***SORT***
 //1. Sort by mass - COMPARE FUNCTION
@@ -102,6 +105,7 @@ document.getElementById("starSort4").textContent = JSON.stringify(characters.sor
     if(a.gender === "female") return -1;
     return 1;
 }));
+
 
 //***EVERY***
 //1. Does every character have blue eyes?

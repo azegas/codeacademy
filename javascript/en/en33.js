@@ -56,6 +56,6 @@ fetch("https://randomuser.me/api/")
         return res.json();
     })
     .then((data) => {
-        console.log(data.results[0]);
+        // console.log(data.results[0]);
         renderUserCard(data.results[0]);
     });

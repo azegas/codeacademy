@@ -1,6 +1,12 @@
 // Example numero 30
 // code too difficult to look into now, copying it and keeping as a reference
 
+// "Sukurkite puslapį, kuriame būtų forma su vienu input - fullName.
+// Įvedus vardą ir pavardę, juos padalina į dvi dalis (name ir
+// surname). Vardą ir pavardę įdeda į objektą, o objektą - į array. Šį
+// array išsaugo localStorage. Po forma sukurkite lentelę joje
+// atvaizduokite informaciją iš localStorage.".
+
 const LOCAL_STORAGE_ITEM_KEY = 'users';
 
 const renderUsersTable = () => {

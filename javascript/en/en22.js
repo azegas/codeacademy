@@ -34,7 +34,7 @@ async function getISS() {
     document.getElementById('iss_lat').textContent = latitude.toFixed(2);
     document.getElementById('iss_lon').textContent = longitude.toFixed(2);
     marker.setLatLng([latitude, longitude]);
-    
+
     // no more repositioning upon every sync
     if (firstTime) {
         map.setView([latitude, longitude], 1)
