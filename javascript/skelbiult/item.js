@@ -1,5 +1,5 @@
-const END_POINT = "https://63443d16dcae733e8fdaf088.mockapi.io/produktai"
-
+const itemId = localStorage.getItem("itemId");
+const END_POINT = `https://63443d16dcae733e8fdaf088.mockapi.io/produktai/${itemId}`
 const dataArr = {};
 
 const setId = (id) => {
@@ -15,8 +15,8 @@ const createCard = (object) => {
     const cardImage = document.createElement("img");
     const cardBody = document.createElement("div")
     const cardTitle = document.createElement("h5");
-    const cardButton = document.createElement("a")
-    const cardPrice = document.createElement("p");
+    const cardButton = document.createElement("button")
+    const cardText = document.createElement("p");
 
     // adding styles to the elements
     card.classList.add("card");
@@ -35,22 +35,19 @@ const createCard = (object) => {
     cardTitle.style.color = "red"
     cardTitle.style.fontWeight = "800"
     
-    cardPrice.classList.add("card-text")
-    
     cardButton.classList.add("btn")
     cardButton.classList.add("btn-primary")
     cardButton.innerHTML = "Go somewhere"
 
     // adding content
-    cardTitle.innerHTML = object.pavadinimas
-    cardPrice.innerText = object.kaina + " $"
+    cardTitle.innerHTML = "title: " + object.pavadinimas
+    cardText.innerText = "text: " + object.kaina
     cardButton.innerHTML = "blet";
-    cardButton.href = "item.html";
 
     // appending
     cardWrapper.append(card);
     card.append(cardImage, cardBody);
-    cardBody.append(cardPrice, cardTitle, cardButton);
+    cardBody.append(cardText, cardTitle, cardButton);
 
     // on button click add its id to localstorage
     cardButton.addEventListener("click", () => {
@@ -58,14 +55,13 @@ const createCard = (object) => {
     });
 };    
 
-
 const fetchData = async () => {
     try {
         const response = await fetch(END_POINT);
         if (response.ok) {
             dataArr.anything = await response.json();
             console.log(dataArr)
-            dataArr.anything.forEach((x) => createCard(x));
+            createCard(dataArr.anything)
         }
     } catch (error) {
         console.error(error);
