@@ -64,7 +64,11 @@ const fetchData = async () => {
         const response = await fetch(END_POINT);
         if (response.ok) {
             dataArr.anything = await response.json();
-            console.log(dataArr)
+            const filterLowtoHigh = dataArr.anything.sort(function (a,b){
+                return a.kaina - b.kaina
+            })
+            console.log(filterLowtoHigh)
+
             dataArr.anything.forEach((x) => createCard(x));
         }
     } catch (error) {
