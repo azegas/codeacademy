@@ -1,0 +1,23 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.card {
+    width: 200px;
+    /* flex: 1 0 21%; /\* explanation below *\/ */
+    margin: 5px;
+}
+.test{
+    background: red;
+    height: 200px;
+    width: 200px;
+}
+
+.validation-error {
+  display: inline-block;
+  color: crimson;
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+  visibility: hidden;
+}
