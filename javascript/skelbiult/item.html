@@ -6,33 +6,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>skelbiu.lt - item</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet" />
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./item.css" />
 </head>
 
 <body>
-    <button><a href="./index.html">Index</a></button>
-    <button><a href="./add.html">Add</a></button>
-    <button><a href="./item.html">Item</a></button>
-    <section>
-        <div class="container">
-            <h3 class="text-center">Dalykai</h3>
-            <div id="cardWrapper" class="card-wrapper d-flex flex-wrap">
-                <!-- <div class="card" style="width: 18rem;">
-                                            <img id="cardImg" class="card-img-top"
-                                                src="https://pagrindinis.barbora.lt/api/images/GetInventoryImage?id=d0fb9982-06e1-469d-ae79-e7efd69c59a1"
-                                                alt="Card image cap">
-                                            <div id="cardBody" class="card-body">
-                                                <h5 id="title" class="card-title">Card title</h5>
-                                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                                    card's content.</p>
-                                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                                            </div>
-                                        </div> -->
+    <div class="container">
+        <nav>
+            <div id="left">
+                <a href="./index.html">
+
+                    <img alt="" src="https://static.skelbiu.lt/static/images/svg/logotipas_ua.svg?v=4" />
+                    <p>Lankomiausias<br> skelbimų portalas</p>
+                </a>
+
             </div>
+            <!-- <div id="right">
+                                                <p>Lankomiausias skelbimų portalas</p>
+                                            </div> -->
+        </nav>
+        <section id="search">
+            <button id="add">
+                <p id="plus">+</p>
+                <p><a href="./add.html">Įdėkite Skelbimą</a></p>
+            </button>
+            <div id="right">
+                <input name="" type="text" value="" placeholder="Ieškok tarp 819745 skelbimų" />
+                <button> <i class="fa fa-search"></i></button>
+            </div>
+        </section>
+        <div class="bread-wrapper">
+            <img alt="" src="./references/bread.png" />
         </div>
-    </section>
+
+        <div id="content" class="content">
+            <!-- <div id="left-content" class="left-content">
+                            <img class="product-image" alt=""
+                                src="https://skelbiu-img.dgn.lt/1_22_3073047863/originalus-airpods-1-2-pro-garantija.jpg" />
+                            <p class="product-title"></p>
+                        </div> -->
+            <!-- <div class="right-content">x</div> -->
+        </div>
+        <div class="big-bank magnific-popup" style="width: 67%">
+            <img alt="" src="./references/bigbank.png" />
+        </div>
+        <footer>
+            <img alt="" src="./references/footer.png" />
+        </footer>
+    </div>
+
     <!-- my scripts -->
     <script src="./item.js"></script>
 </body>

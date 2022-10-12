@@ -5,6 +5,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>skelbiu.lt - add</title>
 
     <!-- Custom CSS -->
@@ -12,42 +16,72 @@
 </head>
 
 <body>
-    <h1>Hello, does this thing work?</h1>
-        <div class="container">
-            <button><a href="./index.html">Index</a></button>
-            <button><a href="./add.html">Add</a></button>
-            <button><a href="./item.html">Item</a></button>
-            <form>
-                <div class="form-group" id="name-block">
-                    <label class="font-weight-bold" for="name">Pavadinimas</label>
-                    <input class="form-control" id="name" name="name" type="text" placeholder="Enter name" />
-                    <span class="validation-error">Error</span>
-                </div>
-                <div class="form-group" id="price-block">
-                    <label class="font-weight-bold" for="price">Kaina</label>
-                    <input class="form-control" id="price" name="price" type="text" placeholder="Enter price" />
-                    <span class="validation-error">Error</span>
-                </div>
-                <div class="form-group" id="image-block">
-                    <label class="font-weight-bold" for="image">Image</label>
-                    <input class="form-control" id="image" type="text" placeholder="https://google.com/logo.png" />
-                    <small id="emailHelp" class="form-text text-muted">Please enter a proper image url.</small>
-                    <span class="validation-error">Error</span>
-                </div>
-                <div class="form-group" id="description-block">
-                    <label class="font-weight-bold" for="description">Aprasymas</label>
-                    <input class="form-control" id="description" name="description" type="text" placeholder="Enter description" />
-                    <span class="validation-error">Error</span>
-                </div>
-                <div class="form-group" id="city-block">
-                    <label class="font-weight-bold" for="city">Miestas</label>
-                    <input class="form-control" id="city" name="city" type="text" placeholder="Enter city" />
-                    <span class="validation-error">Error</span>
-                </div>
-                <button id="submit-btn" type="submit">Save to DB</button>
-            </form>
+    <div class="container">
+        <nav>
+            <div id="left">
+                <a href="./index.html">
+
+                    <img alt="" src="https://static.skelbiu.lt/static/images/svg/logotipas_ua.svg?v=4" />
+                    <p>Lankomiausias<br> skelbimų portalas</p>
+                </a>
+
+            </div>
+            <!-- <div id="right">
+                                                                    <p>Lankomiausias skelbimų portalas</p>
+                                                                </div> -->
+        </nav>
+        <div class="yellowLine"></div>
+        <div class="pagalba">
+            <i class="fa fa-phone"></i>
+            Skelbiu.lt pagalba:
+            <span><a style="color:#707070" href="tel:++37068055000">+370 680 55000</a></span>
+        </div>
+        <form>
+            <div class="form-group" id="name-block">
+                <label class="font-weight-bold" for="name">Pavadinimas:</label>
+                <input class="form-control" id="name" name="name" type="text" placeholder="Įrašykite pavadinimą" />
+                <span class="validation-error">Error</span>
+            </div>
+            <div class="form-group" id="price-block">
+                <label class="font-weight-bold" for="price">Kaina:</label>
+                <input class="form-control" id="price" name="price" type="text" placeholder="Įrašykite kainą" />
+                <span class="validation-error">Error</span>
+            </div>
+            <div class="form-group" id="image-block">
+                <label class="font-weight-bold" for="image">Nuotrauka:</label>
+                <input class="form-control" id="image" type="text" placeholder="https://google.com/logo.png" />
+                <small id="emailHelp" class="form-text text-muted">Įrašykite nuotraukos URL kuris prasideda su
+                    https://</small>
+                <span class="validation-error">Error</span>
+            </div>
+            <div class="form-group" id="description-block">
+                <label class="font-weight-bold" for="description">Aprašymas:</label>
+                <input class="form-control" id="description" name="description" type="text"
+                    placeholder="Įrašykite aprašymą" />
+                <span class="validation-error">Error</span>
+            </div>
+            <div class="form-group" id="city-block">
+                <label class="font-weight-bold" for="city">Miestas:</label>
+                <input class="form-control" id="city" name="city" type="text" placeholder="Įrašykite miestą" />
+                <span class="validation-error">Error</span>
+            </div>
+            <div class="formBottom">
+                <div id="agreeRules">Įvesdami skelbimą, sutinkate su portalo <a
+                        href="https://www.skelbiu.lt/pagalba.html" target="_blank">taisyklėmis</a> (atnaujinta
+                    2022-02-17) ir <a href="https://www.skelbiu.lt/privatumo-politika.html" target="_blank">privatumo
+                        politika</a> (atnaujinta
+                    2022-02-18).</div>
+                <button id="submit-btn" type="submit"><b>Skelbti</b></button>
+            </div>
+        </form>
+        <div class="status-wrapper">
             <span id="status-msg"></span>
         </div>
+
+        <footer>
+            <img alt="" src="./references/footer.png" />
+        </footer>
+    </div>
     <!-- my scripts -->
     <script src="./add.js"></script>
 </body>

@@ -7,34 +7,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>skelbiu.lt</title>
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet" />
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./index.css" />
 </head>
 
 <body>
-    <button><a href="./index.html">Index</a></button>
-    <button><a href="./add.html">Add</a></button>
-    <button><a href="./item.html">Item</a></button>
+    <div class="container">
+        <nav>
+            <div id="left">
+                <a href="./index.html">
 
-    <section>
-        <div class="container">
-            <h3 class="text-center">Dalykai</h3>
-            <div id="cardWrapper" class="card-wrapper d-flex flex-wrap">
-                <div class="card" style="width: 18rem;">
-                    <img id="cardImg" class="card-img-top"
-                        src="https://pagrindinis.barbora.lt/api/images/GetInventoryImage?id=d0fb9982-06e1-469d-ae79-e7efd69c59a1"
-                        alt="Card image cap">
-                    <div id="cardBody" class="card-body">
-                        <h5 id="title" class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
+                    <img alt="" src="https://static.skelbiu.lt/static/images/svg/logotipas_ua.svg?v=4" />
+                    <p>Lankomiausias<br> skelbimų portalas</p>
+                </a>
+
             </div>
+            <!-- <div id="right">
+                            <p>Lankomiausias skelbimų portalas</p>
+                        </div> -->
+        </nav>
+        <section id="search">
+            <button id="add">
+                <p id="plus">+</p>
+                <p><a href="./add.html">Įdėkite Skelbimą</a></p>
+            </button>
+            <div id="right">
+                <input name="" type="text" value="" placeholder="Ieškok tarp 819745 skelbimų" />
+                <button> <i class="fa fa-search"></i></button>
+            </div>
+        </section>
+        <section id="suggestions">
+            <div class="heading-block">
+                <div class="title">Jus gali sudominti</div>
+            </div>
+            <div id="items">
+                <!-- <div class="card">
+                                                <div class="card-body">
+                                                    <div class="card-img-top">
+                                                        <img alt=""
+                                                            src="https://topshoplt.azureedge.net/media/catalog/product/cache/10/image/040ec09b1e35df139433887a97daa66f/r/o/rovus_nano_slippers_02.jpg" />
+                                                    </div>
+                            
+                                                    <div class="overlay"></div>
+                                                    <p class="card-title">Labukas</p>
+                                                </div>
+                                            </div> -->
+            </div>
+        </section>
+        <section id="banner">
+            <img alt="" src="./references/banner.png" />
+        </section>
+
+        <div id="items2">
+            <!-- <div class="card2">
+                            <div class="itemInfo">Miefstas</div>
+                            <a href="./item.html">
+                                <div class="itemImage"><img alt="" src="https://skelbiu-img.dgn.lt/1_19_3488789812/jabra-elite-85t-belaides-bluetooth-ausines.jpg" /></div>
+                            </a>
+                            <div class="itemReview">
+                                <h3 class="title2">Title</>
+                                <p class="description">Desciption long aaaaaaaaaaaaaaaaaaaaaaaa</p>
+                                <p class="price">35$</p>
+                            </div>
+                        </div> -->
         </div>
-    </section>
+
+        <footer>
+            <img alt="" src="./references/footer.png" />
+        </footer>
+
+    </div>
 
     <!-- my scripts -->
     <script src="./index.js"></script>

@@ -1,11 +1,235 @@
-.cardBody {
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: 'Open Sans', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+.container {
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 7px;
+    padding: 10px;
+}
+
+nav #left a {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+nav #left img {
+    height: 30px;
+    margin-right: 7px;
+}
+
+nav #left p {
+    font-size: 11px;
+    color: #359901;
+    margin-top: 7px;
+}
+
+/* search from here */
+
+#search {
+    background-color: #ffcc01;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#search #add {
+    background-image: linear-gradient(rgb(54, 154, 4) 0%, rgb(70, 170, 36) 50%, rgb(53, 155, 7) 100%);
+    color: white;
+    display: flex;
+    height: 32px;
+    cursor: pointer;
+    align-items: center;
+    border-radius: 3px;
+    font-size: 14px;
+    border: none;
+    padding: 0 12px 0 10px;
+}
+
+#search a {
+    text-decoration: none;
+    color: white;
+}
+
+#search #plus {
+    padding-right: 5px;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+#search input {
+    width: 400px;
+    border: 1px solid #fff;
+    margin-left: 4px;
+    padding-top: 6px;
+    padding-left: 10px;
+    height: 24px;
+    color: #727274;
+    font-size: 16px;
+} 
+
+#search #right button {
+    background-image: linear-gradient(rgb(54, 154, 4) 0%, rgb(70, 170, 36) 50%, rgb(53, 155, 7) 100%);
+    float: right;
+    border: none;
+    color: #fff;
+    height: 32px;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+    width: 32px;
+    margin-right: -2px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.bread-wrapper img {
+    width: 100%;
+}
+
+/* content from here */
+
+.content {
+    display: flex;
+}
+
+.left-content {
+    width: 70%;
+    /* background-color: antiquewhite; */
+    margin-right: 20px;
+    margin-bottom: 20px;
     position: relative;
+}
+
+.right-content {
+    width: 300px;
+    /* background-color: antiquewhite; */
+}
+
+.container .big-bank img {
+    width: 100%;
+}
+
+.right-content img {
+    width: 100%;
+}
+
+.product-image {
+    border: 1px solid #e3e3e3;
+    border-bottom: 3px solid #fff;
+    border-radius: 3px 3px 0 0;
+    box-sizing: border-box;
+    /* cursor: pointer; */
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    position: relative;
+}
+
+.card-title-block {
+    border-left: 0.994318px solid  #e3e3e3;
+    border-right: 0.994318px solid  #e3e3e3;
+    font-family: "Open Sans", Tahoma, Arial, sans-serif;
+    font-size: 12px;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 20px;
+    width: 100%;
+    border: 1px solid #e3e3e3;
+    border-bottom: none;
+    border-top: none;
+    padding-top: 15px;
+}
+
+.card-title-block-left {
+    /* background-color: khaki; */
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title-block-right {
+    /* background-color: fuchsia; */
+    margin: 0 20px 0 0;
+    width: 195px;
+}
+
+.product-title {
+    color:  #333333;
+    font-family: "Open Sans", Tahoma, Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+}
+
+.product-city {
+    color:  #666666;
+    font-family: "Open Sans", Tahoma, Arial, sans-serif;
+    font-size: 14px;
+    text-align: left;
+}
+
+.product-price {
+    color:  #419422;
+    font-family: "Open Sans", Tahoma, Arial, sans-serif;
+    font-size: 36px;
+    line-height: 36px;
+    text-align: right;
+}
+
+.product-description {
+    border: 1px solid #e3e3e3;
+    border-top: none;
+    padding: 15px 15px 0;
+    position: relative;
+    word-wrap: break-word;
+    color: #333;
+    font-size: 16px;
+    line-height: 200%;
+    padding: 0 20px;
+    padding-top: 15px;
+    
 }
 
 .delete {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 2rem;
-    color: orange;
+    background-color: rgba(0,0,0,.3);
+    border-radius: 0 0 3px 3px;
+    border: 1px solid red;
+    cursor: pointer;
+    height: 60px;
+    left: 0px;
+    position: absolute;
+    top: 1px;
+    width: 80px;
+    z-index: 1;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 900;
+}
+
+.big-bank {
+    margin-bottom: 20px;
+}
+
+/* footer */
+
+footer img {
+    width: 100%;
 }

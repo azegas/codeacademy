@@ -1,7 +1,122 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: 'Open Sans', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+.container {
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+nav #left a {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+nav #left img {
+    height: 30px;
+    margin-right: 7px;
+}
+
+nav #left p {
+    font-size: 11px;
+    color: #359901;
+    /* margin-top: 7px; */
+    /* padding-top: 10px; */
+    margin-bottom: 0px;
+}
+
+/* pagalba + yellow line */
+
+.pagalba {
+    color: #707070;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: right;
+    margin-top: 20px;
+}
+
+.pagalba i {
+    font-size: 28px;
+    margin-right: 10px;
+    vertical-align: -18%;
+}
+
+.pagalba span {
+    font-size: 18px;
+}
+
+.yellowLine {
+    height: 2px;
+    font-size: 1px;
+    background-color: #ffcf0d;
+}
+
+/* form stuff */
+
 .validation-error {
   display: inline-block;
   color: crimson;
   font-size: 0.75rem;
   margin-top: 0.3rem;
   visibility: hidden;
+}
+
+#submit-btn {
+    background: linear-gradient(to bottom, #369a04 0%, #46aa24 50%, #359b07 100%);
+    cursor: pointer;
+    color: #fff;
+    height: 32px;
+    padding: 0 20px 0 20px;
+    border-radius: 3px;
+    font-size: 16px;
+    border: none;
+    width: 140px;
+    text-decoration: none;
+}
+
+.formBottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#agreeRules {
+    width: 260px;
+    float: left;
+    font-size: 11px;
+    color: #656565;
+    margin-top: 14px;
+}
+
+.status-wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+#status-msg {
+    color: red;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+
+/* footer */
+
+footer img {
+    margin-top: 20px;
+    width: 100%;
 }
