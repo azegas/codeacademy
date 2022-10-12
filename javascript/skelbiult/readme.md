@@ -1,5 +1,7 @@
 ![skelbiu.lt](./references/prezentacinis.png)
 
+Link to live site - [skelbiu.lt](https://arvydas.dev/codeacademy/javascript/skelbiult/index.html).
+
 # The plan
 
 - research skelbiu.lt page, paziurek kiek yra imanoma atkopijuoti
