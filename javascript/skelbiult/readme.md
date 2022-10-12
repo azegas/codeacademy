@@ -1,3 +1,5 @@
+![skelbiu.lt](./references/prezentacinis.png)
+
 # The plan
 
 - research skelbiu.lt page, paziurek kiek yra imanoma atkopijuoti
