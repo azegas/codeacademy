@@ -18,7 +18,7 @@
   padaryti
 
 
-## After 
+## Thoughts after 
 - fetch, post, delete, localstorage javascript functionality turint
   pavyzdzius pasidare itin greitai.
 - Daugiausiai laiko uzime layouto sudeliojimas su javascriptu ir visi
