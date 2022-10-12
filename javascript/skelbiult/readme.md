@@ -15,3 +15,12 @@
 - JEIGU bus laiko ar noro - paziurek kokias dar funkcijas su JS gali
   padaryti
 
+
+## After 
+- fetch, post, delete, localstorage javascript functionality turint
+  pavyzdzius pasidare itin greitai.
+- Daugiausiai laiko uzime layouto sudeliojimas su javascriptu ir visi
+  stiliai. Norejau tureti +- isbaigta pavyzduka ateiciai.
+- reikia tureti best practice kaip uzvadinti visas klases,
+  kintamuojus, divus. Labai padrikai viska dariau, jauciu.. bet darbe
+  esu tikras jog ismoksiu :)
