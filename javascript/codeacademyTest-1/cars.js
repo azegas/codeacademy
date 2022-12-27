@@ -35,3 +35,7 @@ const cars = [
     Origin: "USA",
   },
 ];    
+
+
+const blet = document.getElementById(${1:elementId})$0(elementId)
+

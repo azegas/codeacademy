@@ -1,264 +1,406 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>JS mastery</title>
-        
-        <!-- Google Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic" />
-        <!-- CSS Reset -->
-        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"/> -->
-        <!-- Milligram CSS -->
-        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"/> -->
-        <!-- Tailwind -->
-        <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="style.css" />
-        <!-- for en22.js -->
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
-              integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
-              crossorigin=""/>
-        <!-- for en22.js -->
-        <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
-                integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
-                crossorigin=""></script>
-    </head>
-    <body>
-        <div class="container">
-            <h1 class="p-3 mb-2 bg-warning text-black">JavaScript little projects </h1>
-            <h3>Below you can see all the little projects I have done during CodeAcademy course, <strong>JavaScript part only.</strong> <br/>For HTML - head <a href="https://arvydas.dev/codeacademy/">here.</a></h3>
-            <h3>To preview the <strong>JavaScript</strong> code, click on a link with text "Stack" for each individual example.</h3>
-            <div class="d-flex flex-column p-3">
-                <div class="card bg-ligth p-3 mb-3 en37">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 37</h2>
-                        <h5>Skelbiu.lt <a href="./skelbiult/index.html">Website</a> </h5>
-                        <ul>
-                            <strong><a href="./skelbiult/index.js" target=”_blank”>Stack:</a></strong>
-                            <li>Final CodeAcademy Javascript part task </li>
-                            <li>Main idea was to present the knowledge of Fetch, Post, Delete requests as well as the use of localstorage. </li>
-                            <li>skelbiu.lt website was supposed to be used for inspiration. </li>
-                        </ul>
-                    </div>
-                    <img alt="" src="./skelbiult/references/prezentacinis.png"/>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en36">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 36</h2>
-                        <h5>Coingecko <a href="./coingecko-localstorage/index.html">Website</a> </h5>
-                        <ul>
-                            <strong><a href="./coingecko/main.js" target=”_blank”>Stack:</a></strong>
-                            <li>#</li>
-                        </ul>
-                    </div>
-                    <img alt="" src="./coingecko-localstorage/prezentacinis.png"/>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en35">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 35</h2>
-                        <h5>Storing API data in table. Example <a href="./robotTable/index.html">website</a>.</h5>
-                        <ul>
-                            <strong><a href="./robotTable/main.js" target=”_blank”>Stack:</a></strong>
-                            <li>the most confusing example ever</li>
-                        </ul>
-                    </div>
-                    <img alt="" src="./robotTable/img.png"/>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en34">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 34</h2>
-                        <h5>Storing API data in table. Example <a href="./StoringAPIDataInTable/index.html">website</a>.</h5>
-                        <ul>
-                            <strong><a href="./StoringAPIDataInTable/script.js" target=”_blank”>Stack:</a></strong>
-                            <li>fetch</li>
-                            <li>.then</li>
-                            <li>return</li>
-                            <li>tables</li>
-                            <li>+ sign</li>
-                            <li>catch</li>
-                            <li>map</li>
-                        </ul>
-                    </div>
-                    <img alt="" src="./StoringAPIDataInTable/img.png"/>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en33">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 33</h2>
-                        <h5>Dating portal - <a href="https://randomuser.me/api/">Randomuser api</a> </h5>
-                        <ul>
-                            <strong><a href="./en/en33.js" target=”_blank”>Stack:</a></strong>
-                            <li>fetch</li>
-                            <li>.then</li>
-                            <li>return</li>
-                        </ul>
-                    </div>
-                    <div id="en33_1"></div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en32">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 32</h2>
-                        <h5>Refresh this page, each time get a new cocktail and a most suitable glass for it from - <a href="https://www.thecocktaildb.com/api.php">Thecocktaildb api</a> </h5>
-                        <ul>
-                            <strong><a href="./en/en32.js" target=”_blank”>Stack:</a></strong>
-                            <li>fetch</li>
-                            <li>.then</li>
-                            <li>return</li>
-                        </ul>
-                    </div>
-                    <div id="en32_1"></div>
-                    <div id="en32_2"></div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en31">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 31</h2>
-                        <h5>Async examples</h5>
-                        <ul>
-                            <strong><a href="./en/en31.js" target=”_blank”>Stack:</a></strong>
-                            <li>Localstorage</li>
-                            <li>promise</li>
-                            <li>.then</li>
-                            <li>.catch</li>
-                            <li>.resolve</li>
-                            <li>.reject</li>
-                            <li>fetch</li>
-                            <li>setTimeout</li>
-                            <li>return</li>
-                            <li>math</li>
-                        </ul>
-                    </div>
-                    <p>In a few seconds a few divs below should populate with text. Async stuff. Refresh page to see how it works. Check the code in "stack" under this example.</p>
-                    <div id="noHtmlWrapper3"></div>
-                    <div id="noHtmlWrapper4"></div>
-                    <div id="noHtmlWrapper5"></div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en30">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 30</h2>
-                        <h5>"Sukurkite puslapį, kuriame būtų forma su vienu input - fullName. Įvedus vardą ir pavardę, juos padalina į dvi dalis (name ir surname). Vardą ir pavardę įdeda į objektą, o objektą - į array. Šį array išsaugo localStorage. Po forma sukurkite lentelę joje atvaizduokite informaciją iš localStorage.".</>
-                        <ul>
-                            <strong><a href="./en/en30.js" target=”_blank”>Stack:</a></strong>
-                            <li>Localstorage expert level example</li>
-                        </ul>
-                    </div>
-                    <div id="noHtmlWrapper3">
-                        <form id="form30">
-                            <input type="text" name="name" placeholder="Enter your full name">
-                            <button type="submit">Submit</button>
-                        </form>
-                        <table>
-	                    <thead>
-		                <tr>
-			            <th>Name</th>
-			            <th>Surname</th>
-		                </tr>
-	                    </thead>
-	                    <tbody>
-	                    </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en29">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 29</h2>
-                        <h5>Localstorage experiment, getting data from localstorage and projecting it on in html document.</h5>
-                        <ul>
-                            <strong><a href="./en/en29.js" target=”_blank”>Stack:</a></strong>
-                            <li>Localstorage</li>
-                            <li>setItem</li>
-                            <li>createElement</li>
-                            <li>append</li>
-                            <li>json.stringify</li>
-                            <li>json.parse</li>
-                            <li>getItem</li>
-                        </ul>
-                    </div>
-                    <div id="noHtmlWrapper2">
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en28">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 28</h2>
-                        <h5>Localstorage experiment</h5>
-                        <ul>
-                            <strong><a href="./en/en28.js" target=”_blank”>Stack:</a></strong>
-                            <li>Localstorage</li>
-                            <li>setItem</li>
-                        </ul>
-                    </div>
-                    <form id="form28">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Name:</label>
-                            <input type="text" class="form-control" id="form28input" aria-describedby="emailHelp" placeholder="Enter name">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your name with anyone else.</small>
-                        </div>
-                        <button id="form28submit" type="submit" class="btn btn-primary">Submit</button>
-                        <button id="form28reset" class="btn btn-primary">Reset</button>
-                        <h2 onclick="" id="form28h2"></h2>
-                    </form>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en27">
-                    <div id="27" class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 27</h2>
-                        <h5>My first ever JavaScript <strong>TEST</strong>.</h5>
-                        <ul>
-                            <!-- <strong><a href="en27.js" target=”_blank”>Stack:</a></strong> -->
-                            <li>Task 1 and my solution:</li>
-                            <ul>
-                                <li><strong><a href="test1/task1/task1.js" target=”_blank”>task1.js</a></strong></li>
-                            </ul>
-                            <li>Task 2 and my solution:</li>
-                            <ul>
-                                <li><strong><a href="test1/task2/index.html" target=”_blank”>index.html</a></strong></li>
-                                <li><strong><a href="test1/task2/style.css" target=”_blank”>style.css</a></strong></li>
-                                <li><strong><a href="test1/task2/js.js" target=”_blank”>js.js</a></strong></li>
-                            </ul>
-                            <li>Task 3 and my solution:</li>
-                            <ul>
-                                <li><strong><a href="test1/task3/index.html" target=”_blank”>index.html</a></strong></li>
-                                <li><strong><a href="test1/task3/style.css" target=”_blank”>style.css</a></strong></li>
-                                <li><strong><a href="test1/task3/js.js" target=”_blank”>js.js</a></strong></li>
-                            </ul>
-                        </ul>
-                    </div>
-                    <div id="bla"></div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en26">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 26</h2>
-                        <h5>Classes</h5>
-                        <ul>
-                            <strong><a href="./en/en26.js" target=”_blank”>Stack:</a></strong>
-                            <li>Class</li>
-                            <li>JSON.stringify</li>
-                        </ul>
-                    </div>
-                    <div id="classAudi"></div>
-                    <div id="classBmw"></div>
-                    <div id="classAudiPrice"></div>
-                    <div id="classBmwPrice"></div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en25">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 25</h2>
-                        <h5>Massive example</h5>
-                        <ul>
-                            <strong><a href="./en/en25.js" target=”_blank”>Stack:</a></strong>
-                            <li>Map</li>
-                            <li>Reduce</li>
-                            <li>Filter</li>
-                            <li>Sort</li>
-                            <li>Every</li>
-                            <li>Some</li>
-                            <li>JSON.stringify</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3>Array that I will be working with:</h3>
-                        <pre class="p-3">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS mastery</title>
+
+    <!-- Google Fonts -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
+    />
+    <!-- CSS Reset -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"/> -->
+    <!-- Milligram CSS -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"/> -->
+    <!-- Tailwind -->
+    <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- for en22.js -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+      integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+      crossorigin=""
+    />
+    <!-- for en22.js -->
+    <script
+      src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+      integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+      crossorigin=""
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="p-3 mb-2 bg-warning text-black">JavaScript little projects</h1>
+      <h3>
+        Below you can see all the little projects I have done during CodeAcademy
+        course, <strong>JavaScript part only.</strong> <br />For HTML - head
+        <a href="https://arvydas.dev/codeacademy/">here.</a>
+      </h3>
+      <h3>
+        To preview the <strong>JavaScript</strong> code, click on a link with
+        text "Stack" for each individual example.
+      </h3>
+      <div class="d-flex flex-column p-3">
+        <div class="card bg-ligth p-3 mb-3 en37">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 37</h2>
+            <h5>Skelbiu.lt <a href="./skelbiult/index.html">Website</a></h5>
+            <ul>
+              <strong
+                ><a href="./skelbiult/index.js" target="”_blank”"
+                  >Stack:</a
+                ></strong
+              >
+              <li>Final CodeAcademy Javascript part task</li>
+              <li>
+                Main idea was to present the knowledge of Fetch, Post, Delete
+                requests as well as the use of localstorage.
+              </li>
+              <li>
+                skelbiu.lt website was supposed to be used for inspiration.
+              </li>
+            </ul>
+          </div>
+          <img alt="" src="./skelbiult/references/prezentacinis.png" />
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en36">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 36</h2>
+            <h5>
+              Coingecko
+              <a href="./coingecko-localstorage/index.html">Website</a>
+            </h5>
+            <ul>
+              <strong
+                ><a href="./coingecko/main.js" target="”_blank”"
+                  >Stack:</a
+                ></strong
+              >
+              <li>#</li>
+            </ul>
+          </div>
+          <img alt="" src="./coingecko-localstorage/prezentacinis.png" />
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en35">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 35</h2>
+            <h5>
+              Storing API data in table. Example
+              <a href="./robotTable/index.html">website</a>.
+            </h5>
+            <ul>
+              <strong
+                ><a href="./robotTable/main.js" target="”_blank”"
+                  >Stack:</a
+                ></strong
+              >
+              <li>the most confusing example ever</li>
+            </ul>
+          </div>
+          <img alt="" src="./robotTable/img.png" />
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en34">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 34</h2>
+            <h5>
+              Storing API data in table. Example
+              <a href="./StoringAPIDataInTable/index.html">website</a>.
+            </h5>
+            <ul>
+              <strong
+                ><a href="./StoringAPIDataInTable/script.js" target="”_blank”"
+                  >Stack:</a
+                ></strong
+              >
+              <li>fetch</li>
+              <li>.then</li>
+              <li>return</li>
+              <li>tables</li>
+              <li>+ sign</li>
+              <li>catch</li>
+              <li>map</li>
+            </ul>
+          </div>
+          <img alt="" src="./StoringAPIDataInTable/img.png" />
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en33">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 33</h2>
+            <h5>
+              Dating portal -
+              <a href="https://randomuser.me/api/">Randomuser api</a>
+            </h5>
+            <ul>
+              <strong
+                ><a href="./en/en33.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>fetch</li>
+              <li>.then</li>
+              <li>return</li>
+            </ul>
+          </div>
+          <div id="en33_1"></div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en32">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 32</h2>
+            <h5>
+              Refresh this page, each time get a new cocktail and a most
+              suitable glass for it from -
+              <a href="https://www.thecocktaildb.com/api.php"
+                >Thecocktaildb api</a
+              >
+            </h5>
+            <ul>
+              <strong
+                ><a href="./en/en32.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>fetch</li>
+              <li>.then</li>
+              <li>return</li>
+            </ul>
+          </div>
+          <div id="en32_1"></div>
+          <div id="en32_2"></div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en31">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 31</h2>
+            <h5>Async examples</h5>
+            <ul>
+              <strong
+                ><a href="./en/en31.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>Localstorage</li>
+              <li>promise</li>
+              <li>.then</li>
+              <li>.catch</li>
+              <li>.resolve</li>
+              <li>.reject</li>
+              <li>fetch</li>
+              <li>setTimeout</li>
+              <li>return</li>
+              <li>math</li>
+            </ul>
+          </div>
+          <p>
+            In a few seconds a few divs below should populate with text. Async
+            stuff. Refresh page to see how it works. Check the code in "stack"
+            under this example.
+          </p>
+          <div id="noHtmlWrapper3"></div>
+          <div id="noHtmlWrapper4"></div>
+          <div id="noHtmlWrapper5"></div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en30">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 30</h2>
+            <h5>
+              "Sukurkite puslapį, kuriame būtų forma su vienu input - fullName.
+              Įvedus vardą ir pavardę, juos padalina į dvi dalis (name ir
+              surname). Vardą ir pavardę įdeda į objektą, o objektą - į array.
+              Šį array išsaugo localStorage. Po forma sukurkite lentelę joje
+              atvaizduokite informaciją iš localStorage.".
+            </h5>
+            <ul>
+              <strong
+                ><a href="./en/en30.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>Localstorage expert level example</li>
+            </ul>
+          </div>
+          <div id="noHtmlWrapper3">
+            <form id="form30">
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter your full name"
+              />
+              <button type="submit">Submit</button>
+            </form>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Surname</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en29">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 29</h2>
+            <h5>
+              Localstorage experiment, getting data from localstorage and
+              projecting it on in html document.
+            </h5>
+            <ul>
+              <strong
+                ><a href="./en/en29.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>Localstorage</li>
+              <li>setItem</li>
+              <li>createElement</li>
+              <li>append</li>
+              <li>json.stringify</li>
+              <li>json.parse</li>
+              <li>getItem</li>
+            </ul>
+          </div>
+          <div id="noHtmlWrapper2"></div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en28">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 28</h2>
+            <h5>Localstorage experiment</h5>
+            <ul>
+              <strong
+                ><a href="./en/en28.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>Localstorage</li>
+              <li>setItem</li>
+            </ul>
+          </div>
+          <form id="form28">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="form28input"
+                aria-describedby="emailHelp"
+                placeholder="Enter name"
+              />
+              <small id="emailHelp" class="form-text text-muted"
+                >We'll never share your name with anyone else.</small
+              >
+            </div>
+            <button id="form28submit" type="submit" class="btn btn-primary">
+              Submit
+            </button>
+            <button id="form28reset" class="btn btn-primary">Reset</button>
+            <h2 onclick="" id="form28h2"></h2>
+          </form>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en27">
+          <div id="27" class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 27</h2>
+            <h5>My first ever JavaScript <strong>TEST</strong>.</h5>
+            <ul>
+              <!-- <strong><a href="en27.js" target=”_blank”>Stack:</a></strong> -->
+              <li>Task 1 and my solution:</li>
+              <ul>
+                <li>
+                  <strong
+                    ><a href="test1/task1/task1.js" target="”_blank”"
+                      >task1.js</a
+                    ></strong
+                  >
+                </li>
+              </ul>
+              <li>Task 2 and my solution:</li>
+              <ul>
+                <li>
+                  <strong
+                    ><a href="test1/task2/index.html" target="”_blank”"
+                      >index.html</a
+                    ></strong
+                  >
+                </li>
+                <li>
+                  <strong
+                    ><a href="test1/task2/style.css" target="”_blank”"
+                      >style.css</a
+                    ></strong
+                  >
+                </li>
+                <li>
+                  <strong
+                    ><a href="test1/task2/js.js" target="”_blank”"
+                      >js.js</a
+                    ></strong
+                  >
+                </li>
+              </ul>
+              <li>Task 3 and my solution:</li>
+              <ul>
+                <li>
+                  <strong
+                    ><a href="test1/task3/index.html" target="”_blank”"
+                      >index.html</a
+                    ></strong
+                  >
+                </li>
+                <li>
+                  <strong
+                    ><a href="test1/task3/style.css" target="”_blank”"
+                      >style.css</a
+                    ></strong
+                  >
+                </li>
+                <li>
+                  <strong
+                    ><a href="test1/task3/js.js" target="”_blank”"
+                      >js.js</a
+                    ></strong
+                  >
+                </li>
+              </ul>
+            </ul>
+          </div>
+          <div id="bla"></div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en26">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 26</h2>
+            <h5>Classes</h5>
+            <ul>
+              <strong
+                ><a href="./en/en26.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>Class</li>
+              <li>JSON.stringify</li>
+            </ul>
+          </div>
+          <div id="classAudi"></div>
+          <div id="classBmw"></div>
+          <div id="classAudiPrice"></div>
+          <div id="classBmwPrice"></div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en25">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 25</h2>
+            <h5>Massive example</h5>
+            <ul>
+              <strong
+                ><a href="./en/en25.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>Map</li>
+              <li>Reduce</li>
+              <li>Filter</li>
+              <li>Sort</li>
+              <li>Every</li>
+              <li>Some</li>
+              <li>JSON.stringify</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Array that I will be working with:</h3>
+            <pre class="p-3">
 const characters = [
     {
         name: 'Luke Skywalker',
@@ -289,615 +431,756 @@ const characters = [
         gender: 'male',
     },
 ];
-                        </pre>                            
-                        <div class="starMap">
-                            <h2>Map</h2>
-                            <strong>1. Get array of all names</strong>
-                            <div id="starMap1"></div>
-                            <strong>2. Get array of all heights</strong>
-                            <div id="starMap2"></div>
-                            <strong>3. Get array of objects with just name and height properties</strong>
-                            <div id="starMap3"></div>
-                            <strong>4. Get array of all first names</strong>
-                            <div id="starMap4"></div>                            
-                        </div>
-                        <div class="starReduce">
-                            <hr/>
-                            <h2>Reduce</h2>
-                            <strong>1. Get total mass of all characters</strong>
-                            <div id="starReduce1"></div>
-                            <strong>2. Get total height of all characters</strong>
-                            <div id="starReduce2"></div>
-                            <strong>3. Get total number of characters by eye color</strong>
-                            <div id="starReduce3"></div>
-                            <strong>4. Get total number of characters in all the character names</strong>
-                            <div id="starReduce4"></div>                            
-                        </div>
-                        <div class="starFilter">
-                            <hr/>
-                            <h2>Filter</h2>
-                            <strong>1. Get characters with mass greater than 100</strong>
-                            <div id="starFilter1"></div>
-                            <strong>2. Get characters with height less than 170</strong>
-                            <div id="starFilter2"></div>
-                            <strong>3. Get all male characters</strong>
-                            <div id="starFilter3"></div>
-                            <strong>4. Get all female characters</strong>
-                            <div id="starFilter4"></div>
-                        </div>
-                        <div class="starSort">
-                            <hr/>
-                            <h2>Sort</h2>
-                            <strong>1. Sort by mass</strong>
-                            <div id="starSort1"></div>
-                            <strong>2. Sort by height</strong>
-                            <div id="starSort2"></div>
-                            <strong>3. Sort by name</strong>
-                            <div id="starSort3"></div>
-                            <strong>4. Sort by gender</strong>
-                            <div id="starSort4"></div>
-                        </div>
-                        <div class="starEvery">
-                            <hr/>
-                            <h2>Every</h2>
-                            <strong>1. Does every character have blue eyes?</strong>
-                            <div id="starEvery1"></div>
-                            <strong>2. Does every character have mass more than 40?</strong>
-                            <div id="starEvery2"></div>
-                            <strong>3. Is every character shorter than 200?</strong>
-                            <div id="starEvery3"></div>
-                            <strong>4. Is every character male?</strong>
-                            <div id="starEvery4"></div>
-                        </div>
-                        <hr/>
-                        <h2>Some</h2>
-                        <div class="startSome">
-                            <strong>1. Is there at least one male character?</strong>
-                            <div id="starSome1"></div>
-                            <strong>2. Is there at least one character with blue eyes?</strong>
-                            <div id="starSome2"></div>
-                            <strong>3. Is there at least one character taller than 210?</strong>
-                            <div id="starSome3"></div>
-                            <strong>4. Is there at least one character that has mass less than 50?</strong>
-                            <div id="starSome4"></div>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en24">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 24</h2>
-                        <h5>Reduce</h5>
-                        <ul>
-                            <strong><a href="./en/en24.js" target=”_blank”>Stack:</a></strong>
-                            <li>Reduce</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <strong>Sort array nr.1:</strong>
-                        <div id="numbersArray"></div>
-                        <div id="highestNumbersArray"></div>
-                        <div onClick="highest()" id="sortNumbersArray" class="btn btn-primary">Pick highest of the array</div>
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en23">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 23</h2>
-                        <h5>Sorting an array</h5>
-                        <ul>
-                            <strong><a href="./en/en23.js" target=”_blank”>Stack:</a></strong>
-                            <li>sort</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <strong>Sort array nr.1:</strong>
-                        <div id="arrayExample"></div>
-                        <div id="sortArray1" class="btn btn-primary">Sort Alphabetically</div>
-                    </div>
-                    <br/>
-                    <div>
-                        <strong>Sort array nr.2:</strong>
-                        <div id="arrayExample2"></div>
-                        <div id="sortArray2" class="btn btn-primary">Sort in Ascending Order</div>
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en22">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 22</h2>
-                        <h5>Where is the ISS?</h5>
-                        <ul>
-                            <strong><a href="./en/en22.js" target=”_blank”>Stack:</a></strong>
-                            <li>json formatter extension(browser) </li>
-                            <li>api</li>
-                            <li>leafler.js</li>
-                            <li>fetch</li>
-                            <li>async</li>
-                            <li>await</li>
-                            <li>setInterval</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <div id="issMap"></div>
-                        <p>
-                            latitude: <span id="iss_lat"></span>°<br/>
-                            latitude: <span id="iss_lon"></span>°
-                        </p>
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en21">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 21</h2>
-                        <h5>No HTML USED to create this</h5>
-                        <ul>
-                            <strong><a href="./en/en21.js" target=”_blank”>Stack:</a></strong>
-                            <li>4 ways to toggle a functon(see code)</li>
-                            <li>Anonymous function, arrow function</li>
-                            <li>setTimeout</li>
-                            <li>toggle</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <div id="en21" class="btn btn-primary">Click me</div>
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en20">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 20</h2>
-                        <h5>Calculating gas price</h5>
-                        <ul>
-                            <strong><a href="./en/en20.js" target=”_blank”>Stack:</a></strong>
-                            <li>addEventListener</li>
-                            <li>form</li>
-                            <li>monda funkcija</li>
-                            <li>number</li>
-                            <li>value</li>
-                            <li>createElement</li>
-                            <li>toFixed</li>
-                            <li>append</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <form id="formGas">
-                            <input type="number" id="kaina" step="0.001" placeholder="Price per liter" />
-                            <input type="number" id="quant" step="0.1" placeholder="Quantity in liters" />
-                            <button class = "btn btn-primary" type="submit">Calc</button>
-                            <div id="priceDisplay">
-                                
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en19">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 19</h2>
-                        <h5>simply links to methods</h5>
-                        <ul>
-                            <li><a style="color:white; text-decoration:underline;" href="https://www.w3schools.com/js/js_string_methods.asp">JavaScript String Methods</a></li>
-                            <li><a style="color:white; text-decoration:underline;" href="https://www.w3schools.com/js/js_number_methods.asp">JavaScript Number Methods</a></li>
-                            <li><a style="color:white; text-decoration:underline;" href="https://www.w3schools.com/jsref/jsref_obj_regexp.asp">JavaScript RegExp Reference</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en18">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 18</h2>
-                        <h5>No HTML USED to create this</h5>
-                        <ul>
-                            <strong><a href="./en/en18.js" target=”_blank”>Stack:</a></strong>
-                            <li>style</li>
-                            <li>append</li>
-                        </ul>
-                    </div>
-                    <div id="noHtmlWrapper">
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en17">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 17</h2>
-                        <h5>Move element upon click - repeating pattern</h5>
-                        <ul>
-                            <strong><a href="./en/en17.js" target=”_blank”>Stack:</a></strong>
-                            <li>cssText</li>
-                            <li>++</li>
-                            <li>if/else</li>
-                            <li>length</li>
-                            <li>arrays</li>
-                        </ul>
-                    </div>
-                    <div style="height: 200px;" class="position-relative">
-                        <button id="button100" class="btn btn-primary">Push!</button>
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en16">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 16</h2>
-                        <h5>Charge battery v2 - using single button</h5>
-                        <ul>
-                            <strong><a href="./en/en16.js" target=”_blank”>Stack:</a></strong>
-                            <li>style</li>
-                            <li>setAttribute</li>
-                            <li>True/False</li>
-                            <li>Attributes</li>
-                            <li>Functions</li>
-                            <li>If/else</li>
-                            <li>onClick</li>
-                        </ul>
-                    </div>
-                    <div class="parent">
-                        <div id="childBattery2"></div>
-                    </div>
-                    <div class="div">
-                        <button onclick="toggleBattery()" class="btn btn-primary">Toggle Battery</button>
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en15">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 15</h2>
-                        <h5>Charge battery v1</h5>
-                        <ul>
-                            <strong><a href="./en/en15.js" target=”_blank”>Stack:</a></strong>
-                            <li>style</li>
-                            <li>onClick</li>
-                        </ul>
-                    </div>
-                    <div class="parent">
-                        <div id="childBattery"></div>
-                    </div>
-                    <div class="div">
-                        <button onclick="batteryCharge()" class="btn btn-primary">Charge</button>
-                        <button onclick="batteryUse()" class="btn btn-primary">Use</button>
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en14">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 14</h2>
-                        <h5>Making stuff to appear on click</h5>
-                        <ul>
-                            <strong><a href="./en/en14.js" target=”_blank”>Stack:</a></strong>
-                            <li>createElement</li>
-                            <li>classList</li>
-                            <li>add</li>
-                            <li>append</li>
-                            <li>style</li>
-                        </ul>
-                    </div>
-                    <div class="div">
-                        <button onclick="addCube()" class="btn btn-primary">Add</button>
-                        <br/>
-                        <br/>
-                    </div>
-                    <div id="appendToMe2" class="container-fluid d-flex flex-wrap p-0">
-                        <div id="child1" class="child text-white text-center font-weight-bold align-middle">Cube created with HTML/CSS</div>
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en13">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 13</h2>
-                        <h5>Making stuff to appear</h5>
-                        <ul>
-                            <strong><a href="./en/en13.js" target=”_blank”>Stack:</a></strong>
-                            <li>setAttribute</li>
-                            <li>textContent</li>
-                            <li>append</li>
-                            <li>createElement</li>
-                            <li>style</li>
-                        </ul>
-                    </div>
-                    <div id="appendToMe" class="container-fluid d-flex flex-wrap p-0">
-                        <div id="child1" class="child text-white text-center font-weight-bold align-middle">
-                            <p>Cube created with HTML/CSS</p></div>
-                        <div id="child2" class="child text-white text-center font-weight-bold align-baseline">Cube created with HTML/CSS</div>
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en12">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 12</h2>
-                        <h5>Change background color</h5>
-                        <p>.js file can't see the stylesheet, only inlince css</p>
-                        <ul>
-                            <strong><a href="./en/en12.js" target=”_blank”>Stack:</a></strong>
-                            <li>addEventListener</li>
-                            <li>style</li>
-                        </ul>
-                    </div>
-                    <div class="container-fluid p-0">
-                        <h2 id="colorChange">Hellow, change my color</h2>
-                        <button id="btnColorChange" class="btn btn-primary">Change!</button>
-                        <button id="btnColorRevert" class="btn btn-primary">Revert</button>                       </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en11">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 11</h2>
-                        <h5>Guess random number</h5>
-                        <ul>
-                            <strong><a href="./en/en11.js" target=”_blank”>Stack:</a></strong>
-                            <li>Math.random</li>
-                            <li>preventDefault</li>
-                            <li>value</li>
-                            <li>alert</li>
-                            <li>textContent</li>
-                            <li>addEventListener</li>
-                        </ul>
-                    </div>
-                    <strong>Guess number from 1 to 5</strong>
-                    <div class="container-fluid p-0">
-                        <form id="guessForm">
-	                    <input type="number" id="guess" min="1" max="5" required>
-                            <button class="btn btn-primary" type="submit">Guess</button>
-                        </form>
-                        <h3 id="guessResult"></h3>
-                        <h3 class="text-white" id="guessSecret">random value hint</h3>
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en10">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 10</h2>
-                        <h5>Celsius to Fahrenheit</h5>
-                        <h5>Fahrenheit to Celsius</h5>
-                        <ul>
-                            <strong><a href="./en/en10.js" target=”_blank”>Stack:</a></strong>
-                            <li>preventDefault</li>
-                            <li>number</li>
-                            <li>value</li>
-                            <li>textContent</li>
-                            <li>addEventListener</li>
-                        </ul>
-                    </div>
-                    <strong>Enter a temperature in °C to convert to °F</strong>
-                    <div class="container-fluid p-0">
-                        <form id="celsiusForm">
-                            <input id="celsiusInput" type="number" placeholder="°C">
-                            <button class="btn btn-primary" type="submit">Convert to °F</button>
-                        </form>
-                        <h3 id="celsiusResult"></h3>
-                    </div>
-                    <strong>Enter a temperature in °F to convert to °C</strong>
-                    <div class="container-fluid p-0">
-                        <form id="fahrenheitForm">
-                            <input id="fahrenheitInput" type="number" placeholder="°F">
-                            <button class="btn btn-primary" type="submit">Convert to °C</button>
-                        </form>
-                        <h3 id="fahrenheitResult"></h3>
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en09">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 09</h2>
-                        <h5>Will you be recruited to the army?</h5>
-                        <ul>
-                            <strong><a href="./en/en09.js" target=”_blank”>Stack:</a></strong>
-                            <li>preventDefault</li>
-                            <li>number</li>
-                            <li>checked</li>
-                            <li>textContent</li>
-                            <li>addEventListener</li>
-                        </ul>
-                    </div>
-                    <strong>Criteria:</strong>
-                    <ul>
-                        <li>Must be between 18-30 years of age</li>
-                    </ul>
-                    <div class="container-fluid p-0">
-                        <form class="d-flex flex-column" id="armyForm">
-                            <input id="armyAgeInput" type="number" placeholder="Please enter your age">
-                            <div class="checkbox">
-                                <label for="convicted">Have you been convicted?</label>
-                                <input id="convicted"type="checkbox">
-                            </div>
-                            <button class="btn btn-primary" type="submit">Moment of truth</button>
-                        </form>
-                        <h3 id="armyAgeResult"></h3>
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en08">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 08</h2>
-                        <h5>Ticket price calculator</h5>
-                        <ul>
-                            <strong><a href="./en/en08.js" target=”_blank”>Stack:</a></strong>
-                            <li>preventDefault</li>
-                            <li>number</li>
-                            <li>textContent</li>
-                            <li>toFixed</li>
-                            <li>addEventListener</li>
-                        </ul>
-                    </div>
-                    <strong>Ticket price list:</strong>
-                    <ul>
-                        <li>Regular ticket price - $6</li>
-                        <li>Until 16 years old - 50% discount</li>
-                        <li>Between 16 and 60 - Full price</li>
-                        <li>Between 65 and 100 - 1/3 of Full price</li>
-                        <li>Above 100 - Free</li>
-                    </ul>
-                    <div class="container-fluid p-0">
-                        <form id="form2">
-                            <input id="ticketAge" type="number" placeholder="Please enter your age">
-                            <button class="btn btn-primary" type="submit">Submit</button>
-                        </form>
-                        <h3 id="ticketPrice">Ticket price: </h3>
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en07">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 07</h2>
-                        <h5>JS Form valdymas</h5>
-                        <ul>
-                            <strong><a href="./en/en07.js" target=”_blank”>Stack:</a></strong>
-                            <li>addEventListener</li>
-                            <li>preventDefault</li>
-                            <li>target</li>
-                            <li>input</li>
-                            <li>form</li>
-                            <li>value</li>
-                        </ul>
-                    </div>
-                    <div class="container-fluid p-0">
-                        <form id="form1">
-                            <input name="abc" type="text" placeholder ="enter your name"/>
-                            <button class="btn btn-primary" type="submit">Submit</button>
-                        </form>
-                        <h3 id="firstforma"></h3>
-                    </div>
-                </div>
-                <div class="card bg-ligth p-3 mb-3 en06">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 06</h2>
-                        <h5>Generate random number 1-100</h5>
-                        <ul>
-                            <strong><a href="./en/en06.js" target=”_blank”>Stack:</a></strong>
-                            <li>Math.random</li>
-                            <li>return</li>
-                            <li>addEventListener</li>
-                            <li>innerText</li>
-                        </ul>
-                    </div>
-                    <div class="container-fluid p-0">
-                        <button id="btnrandom" class="btn btn-primary">Generate random number</button>
-                        <h3 id="randomnumber"></h3>
-                    </div>
-                </div>
-                <div class="card bg-light p-3 mb-3 en05">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <H2>Example numero 05</h2>
-                        <h5>Don't copy this piece of text</h5>
-                        <ul>
-                            <strong><a href="./en/en05.js" target=”_blank”>Stack:</a></strong>
-                            <li>alert</li>
-                            <li>new function</li>
-                            <li>addEventListener</li>
-                            <li>preventDefault</li>
-                        </ul>
-                    </div>
-                    <p id="dontcopy">Ac turpis egestas maecenas pharetra convallis posuere morbi leo. Quam nulla porttitor massa id neque aliquam vestibulum morbi blandit cursus risus, at ultrices mi tempus imperdiet nulla malesuada pellentesque elit.</p>
-                </div>
-                <div class="card bg-light p-3 mb-3 en04">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 04</h2>
-                        <h5>JS eventai</h5>
-                        <ul>
-                            <strong><a href="./en/en04.js" target=”_blank”>Stack:</a></strong>
-                            <li>counter++</li>
-                            <li>innerText</li>
-                            <li>addEventListener</li>
-                            <li>getElementById</li>
-                        </ul>
-                    </div>
-                    <div class="container-fluid d-flex p-0">
-                        <h3 class ="align-self-center" id="plusone">Increasing by one: 0</h3>
-                        <button id="btnplusone" class="btn btn-primary ml-4">+1</button>
-                    </div>
-                </div>
-                <div class="card bg-light p-3 mb-3 en03">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 03</h2>
-                        <h5>Moving button to the repeating pattern</h5>
-                        <ul>
-                            <strong><a href="./en/en03.js" target=”_blank”>Stack:</a></strong>
-                            <li>cssText</li>
-                            <li>!</li>
-                            <li>boolean</li>
-                            <li>addEventListener</li>
-                        </ul>
-                    </div>
-                    <div style="height: 100px;" class="d-flex position-relative">
-                        <button id="button99" class="btn btn-primary">Push!</button>
-                    </div>
-                </div>
-                <div class="card bg-light p-3 mb-3 en02">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 02</h2>
-                        <h5>Enlarge element on click</h5>
-                        <ul>
-                            <strong><a href="./en/en02.js" target=”_blank”>Stack:</a></strong>
-                            <li>event</li>
-                            <li>target</li>
-                            <li>style</li>
-                            <li>addEventListener</li>
-                            <li>mondra funkcija</li>
-                        </ul>
-                    </div>
-                    <div class="d-flex">
-                        <div id="john">Click on MEEE</div>
-                    </div>
-                </div>
-                <div class="card bg-light p-3 mb-3 en01">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 01</h2>
-                        <h5>Input button manipulation</h5>
-                        <ul>
-                            <strong><a href="./en/en01.js" target=”_blank”>Stack:</a></strong>
-                            <li>if else</li>
-                            <li>event</li>
-                            <li>addEventListener</li>
-                            <li>getElementById</li>
-                        </ul>
-                    </div>
-                    <p>Change the background color when an Input field is Empty. Try to write something in the input field and then delete it. See what happens.</p>
-                    <div class="d-flex">
-                        <input type="text" id="en1" value=""/>
-                        <button id="btn1" class="btn btn-primary">Button</button>
-                    </div>
-                </div>
-                <div class="card bg-light p-3 mb-3 en00">
-                    <div class="p-3 mb-2 bg-dark text-white">
-                        <h2>Example numero 00</h2>
-                        <h5>Button - function</h5>
-                        <ul>
-                            <strong><a href="./en/en00.js" target=”_blank”>Stack:</a></strong>
-                            <li>addEventListener</li>
-                            <li>getElementById</li>
-                            <li>textContent</li>
-                        </ul>
-                    </div>
-                    <div class="container-fluid p-0">
-                        <h3 id="greeting">Click button bellow and text will appear here</h3>
-                        <button onclick="sayHello()" class="btn btn-primary">Hello</button>
-                        <button id="btn0" class="btn btn-primary">Good Bye</button>
-                        <br/>
-                        <hr/>
-                        <button id="btnabout" class="btn mt-2 btn-primary">Click to know about me</button>
-                        <p id="aboutme"></p>
-                    </div>
-                </div>
-            </div>            
+                        </pre
+            >
+            <div class="starMap">
+              <h2>Map</h2>
+              <strong>1. Get array of all names</strong>
+              <div id="starMap1"></div>
+              <strong>2. Get array of all heights</strong>
+              <div id="starMap2"></div>
+              <strong
+                >3. Get array of objects with just name and height
+                properties</strong
+              >
+              <div id="starMap3"></div>
+              <strong>4. Get array of all first names</strong>
+              <div id="starMap4"></div>
+            </div>
+            <div class="starReduce">
+              <hr />
+              <h2>Reduce</h2>
+              <strong>1. Get total mass of all characters</strong>
+              <div id="starReduce1"></div>
+              <strong>2. Get total height of all characters</strong>
+              <div id="starReduce2"></div>
+              <strong>3. Get total number of characters by eye color</strong>
+              <div id="starReduce3"></div>
+              <strong
+                >4. Get total number of characters in all the character
+                names</strong
+              >
+              <div id="starReduce4"></div>
+            </div>
+            <div class="starFilter">
+              <hr />
+              <h2>Filter</h2>
+              <strong>1. Get characters with mass greater than 100</strong>
+              <div id="starFilter1"></div>
+              <strong>2. Get characters with height less than 170</strong>
+              <div id="starFilter2"></div>
+              <strong>3. Get all male characters</strong>
+              <div id="starFilter3"></div>
+              <strong>4. Get all female characters</strong>
+              <div id="starFilter4"></div>
+            </div>
+            <div class="starSort">
+              <hr />
+              <h2>Sort</h2>
+              <strong>1. Sort by mass</strong>
+              <div id="starSort1"></div>
+              <strong>2. Sort by height</strong>
+              <div id="starSort2"></div>
+              <strong>3. Sort by name</strong>
+              <div id="starSort3"></div>
+              <strong>4. Sort by gender</strong>
+              <div id="starSort4"></div>
+            </div>
+            <div class="starEvery">
+              <hr />
+              <h2>Every</h2>
+              <strong>1. Does every character have blue eyes?</strong>
+              <div id="starEvery1"></div>
+              <strong>2. Does every character have mass more than 40?</strong>
+              <div id="starEvery2"></div>
+              <strong>3. Is every character shorter than 200?</strong>
+              <div id="starEvery3"></div>
+              <strong>4. Is every character male?</strong>
+              <div id="starEvery4"></div>
+            </div>
+            <hr />
+            <h2>Some</h2>
+            <div class="startSome">
+              <strong>1. Is there at least one male character?</strong>
+              <div id="starSome1"></div>
+              <strong
+                >2. Is there at least one character with blue eyes?</strong
+              >
+              <div id="starSome2"></div>
+              <strong
+                >3. Is there at least one character taller than 210?</strong
+              >
+              <div id="starSome3"></div>
+              <strong
+                >4. Is there at least one character that has mass less than
+                50?</strong
+              >
+              <div id="starSome4"></div>
+            </div>
+          </div>
         </div>
-    </body>
-    <script src="./en/en36.js"></script>
-    <script src="./en/en33.js"></script>
-    <script src="./en/en32.js"></script>
-    <script src="./en/en31.js"></script>
-    <script src="./en/en30.js"></script>
-    <script src="./en/en29.js"></script>
-    <script src="./en/en28.js"></script>
-    <script src="./en/en27.js"></script>
-    <script src="./en/en26.js"></script>
-    <script src="./en/en25.js"></script>
-    <script src="./en/en24.js"></script>
-    <script src="./en/en23.js"></script>
-    <script src="./en/en22.js"></script>
-    <script src="./en/en21.js"></script>
-    <script src="./en/en20.js"></script>
-    <script src="./en/en18.js"></script>
-    <script src="./en/en17.js"></script>
-    <script src="./en/en16.js"></script>
-    <script src="./en/en15.js"></script>
-    <script src="./en/en14.js"></script>
-    <script src="./en/en13.js"></script>
-    <script src="./en/en12.js"></script>
-    <script src="./en/en11.js"></script>
-    <script src="./en/en10.js"></script>
-    <script src="./en/en09.js"></script>
-    <script src="./en/en08.js"></script>
-    <script src="./en/en07.js"></script>
-    <script src="./en/en06.js"></script>
-    <script src="./en/en05.js"></script>
-    <script src="./en/en04.js"></script>
-    <script src="./en/en03.js"></script>
-    <script src="./en/en02.js"></script>
-    <script src="./en/en01.js"></script>
-    <script src="./en/en00.js"></script>
-    <script src="http://localhost:8080/skewer"></script>
-    <script>
-    </script>
+        <div class="card bg-ligth p-3 mb-3 en24">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 24</h2>
+            <h5>Reduce</h5>
+            <ul>
+              <strong
+                ><a href="./en/en24.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>Reduce</li>
+            </ul>
+          </div>
+          <div>
+            <strong>Sort array nr.1:</strong>
+            <div id="numbersArray"></div>
+            <div id="highestNumbersArray"></div>
+            <div
+              onClick="highest()"
+              id="sortNumbersArray"
+              class="btn btn-primary"
+            >
+              Pick highest of the array
+            </div>
+          </div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en23">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 23</h2>
+            <h5>Sorting an array</h5>
+            <ul>
+              <strong
+                ><a href="./en/en23.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>sort</li>
+            </ul>
+          </div>
+          <div>
+            <strong>Sort array nr.1:</strong>
+            <div id="arrayExample"></div>
+            <div id="sortArray1" class="btn btn-primary">
+              Sort Alphabetically
+            </div>
+          </div>
+          <br />
+          <div>
+            <strong>Sort array nr.2:</strong>
+            <div id="arrayExample2"></div>
+            <div id="sortArray2" class="btn btn-primary">
+              Sort in Ascending Order
+            </div>
+          </div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en22">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 22</h2>
+            <h5>Where is the ISS?</h5>
+            <ul>
+              <strong
+                ><a href="./en/en22.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>json formatter extension(browser)</li>
+              <li>api</li>
+              <li>leafler.js</li>
+              <li>fetch</li>
+              <li>async</li>
+              <li>await</li>
+              <li>setInterval</li>
+            </ul>
+          </div>
+          <div>
+            <div id="issMap"></div>
+            <p>
+              latitude: <span id="iss_lat"></span>°<br />
+              latitude: <span id="iss_lon"></span>°
+            </p>
+          </div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en21">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 21</h2>
+            <h5>No HTML USED to create this</h5>
+            <ul>
+              <strong
+                ><a href="./en/en21.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>4 ways to toggle a functon(see code)</li>
+              <li>Anonymous function, arrow function</li>
+              <li>setTimeout</li>
+              <li>toggle</li>
+            </ul>
+          </div>
+          <div>
+            <div id="en21" class="btn btn-primary">Click me</div>
+          </div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en20">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 20</h2>
+            <h5>Calculating gas price</h5>
+            <ul>
+              <strong
+                ><a href="./en/en20.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>addEventListener</li>
+              <li>form</li>
+              <li>monda funkcija</li>
+              <li>number</li>
+              <li>value</li>
+              <li>createElement</li>
+              <li>toFixed</li>
+              <li>append</li>
+            </ul>
+          </div>
+          <div>
+            <form id="formGas">
+              <input
+                type="number"
+                id="kaina"
+                step="0.001"
+                placeholder="Price per liter"
+              />
+              <input
+                type="number"
+                id="quant"
+                step="0.1"
+                placeholder="Quantity in liters"
+              />
+              <button class="btn btn-primary" type="submit">Calc</button>
+              <div id="priceDisplay"></div>
+            </form>
+          </div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en19">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 19</h2>
+            <h5>simply links to methods</h5>
+            <ul>
+              <li>
+                <a
+                  style="color: white; text-decoration: underline"
+                  href="https://www.w3schools.com/js/js_string_methods.asp"
+                  >JavaScript String Methods</a
+                >
+              </li>
+              <li>
+                <a
+                  style="color: white; text-decoration: underline"
+                  href="https://www.w3schools.com/js/js_number_methods.asp"
+                  >JavaScript Number Methods</a
+                >
+              </li>
+              <li>
+                <a
+                  style="color: white; text-decoration: underline"
+                  href="https://www.w3schools.com/jsref/jsref_obj_regexp.asp"
+                  >JavaScript RegExp Reference</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en18">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 18</h2>
+            <h5>No HTML USED to create this</h5>
+            <ul>
+              <strong
+                ><a href="./en/en18.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>style</li>
+              <li>append</li>
+            </ul>
+          </div>
+          <div id="noHtmlWrapper"></div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en17">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 17</h2>
+            <h5>Move element upon click - repeating pattern</h5>
+            <ul>
+              <strong
+                ><a href="./en/en17.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>cssText</li>
+              <li>++</li>
+              <li>if/else</li>
+              <li>length</li>
+              <li>arrays</li>
+            </ul>
+          </div>
+          <div style="height: 200px" class="position-relative">
+            <button id="button100" class="btn btn-primary">Push!</button>
+          </div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en16">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 16</h2>
+            <h5>Charge battery v2 - using single button</h5>
+            <ul>
+              <strong
+                ><a href="./en/en16.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>style</li>
+              <li>setAttribute</li>
+              <li>True/False</li>
+              <li>Attributes</li>
+              <li>Functions</li>
+              <li>If/else</li>
+              <li>onClick</li>
+            </ul>
+          </div>
+          <div class="parent">
+            <div id="childBattery2"></div>
+          </div>
+          <div class="div">
+            <button onclick="toggleBattery()" class="btn btn-primary">
+              Toggle Battery
+            </button>
+          </div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en15">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 15</h2>
+            <h5>Charge battery v1</h5>
+            <ul>
+              <strong
+                ><a href="./en/en15.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>style</li>
+              <li>onClick</li>
+            </ul>
+          </div>
+          <div class="parent">
+            <div id="childBattery"></div>
+          </div>
+          <div class="div">
+            <button onclick="batteryCharge()" class="btn btn-primary">
+              Charge
+            </button>
+            <button onclick="batteryUse()" class="btn btn-primary">Use</button>
+          </div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en14">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 14</h2>
+            <h5>Making stuff to appear on click</h5>
+            <ul>
+              <strong
+                ><a href="./en/en14.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>createElement</li>
+              <li>classList</li>
+              <li>add</li>
+              <li>append</li>
+              <li>style</li>
+            </ul>
+          </div>
+          <div class="div">
+            <button onclick="addCube()" class="btn btn-primary">Add</button>
+            <br />
+            <br />
+          </div>
+          <div id="appendToMe2" class="container-fluid d-flex flex-wrap p-0">
+            <div
+              id="child1"
+              class="child text-white text-center font-weight-bold align-middle"
+            >
+              Cube created with HTML/CSS
+            </div>
+          </div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en13">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 13</h2>
+            <h5>Making stuff to appear</h5>
+            <ul>
+              <strong
+                ><a href="./en/en13.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>setAttribute</li>
+              <li>textContent</li>
+              <li>append</li>
+              <li>createElement</li>
+              <li>style</li>
+            </ul>
+          </div>
+          <div id="appendToMe" class="container-fluid d-flex flex-wrap p-0">
+            <div
+              id="child1"
+              class="child text-white text-center font-weight-bold align-middle"
+            >
+              <p>Cube created with HTML/CSS</p>
+            </div>
+            <div
+              id="child2"
+              class="child text-white text-center font-weight-bold align-baseline"
+            >
+              Cube created with HTML/CSS
+            </div>
+          </div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en12">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 12</h2>
+            <h5>Change background color</h5>
+            <p>.js file can't see the stylesheet, only inlince css</p>
+            <ul>
+              <strong
+                ><a href="./en/en12.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>addEventListener</li>
+              <li>style</li>
+            </ul>
+          </div>
+          <div class="container-fluid p-0">
+            <h2 id="colorChange">Hellow, change my color</h2>
+            <button id="btnColorChange" class="btn btn-primary">Change!</button>
+            <button id="btnColorRevert" class="btn btn-primary">Revert</button>
+          </div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en11">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 11</h2>
+            <h5>Guess random number</h5>
+            <ul>
+              <strong
+                ><a href="./en/en11.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>Math.random</li>
+              <li>preventDefault</li>
+              <li>value</li>
+              <li>alert</li>
+              <li>textContent</li>
+              <li>addEventListener</li>
+            </ul>
+          </div>
+          <strong>Guess number from 1 to 5</strong>
+          <div class="container-fluid p-0">
+            <form id="guessForm">
+              <input type="number" id="guess" min="1" max="5" required />
+              <button class="btn btn-primary" type="submit">Guess</button>
+            </form>
+            <h3 id="guessResult"></h3>
+            <h3 class="text-white" id="guessSecret">random value hint</h3>
+          </div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en10">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 10</h2>
+            <h5>Celsius to Fahrenheit</h5>
+            <h5>Fahrenheit to Celsius</h5>
+            <ul>
+              <strong
+                ><a href="./en/en10.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>preventDefault</li>
+              <li>number</li>
+              <li>value</li>
+              <li>textContent</li>
+              <li>addEventListener</li>
+            </ul>
+          </div>
+          <strong>Enter a temperature in °C to convert to °F</strong>
+          <div class="container-fluid p-0">
+            <form id="celsiusForm">
+              <input id="celsiusInput" type="number" placeholder="°C" />
+              <button class="btn btn-primary" type="submit">
+                Convert to °F
+              </button>
+            </form>
+            <h3 id="celsiusResult"></h3>
+          </div>
+          <strong>Enter a temperature in °F to convert to °C</strong>
+          <div class="container-fluid p-0">
+            <form id="fahrenheitForm">
+              <input id="fahrenheitInput" type="number" placeholder="°F" />
+              <button class="btn btn-primary" type="submit">
+                Convert to °C
+              </button>
+            </form>
+            <h3 id="fahrenheitResult"></h3>
+          </div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en09">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 09</h2>
+            <h5>Will you be recruited to the army?</h5>
+            <ul>
+              <strong
+                ><a href="./en/en09.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>preventDefault</li>
+              <li>number</li>
+              <li>checked</li>
+              <li>textContent</li>
+              <li>addEventListener</li>
+            </ul>
+          </div>
+          <strong>Criteria:</strong>
+          <ul>
+            <li>Must be between 18-30 years of age</li>
+          </ul>
+          <div class="container-fluid p-0">
+            <form class="d-flex flex-column" id="armyForm">
+              <input
+                id="armyAgeInput"
+                type="number"
+                placeholder="Please enter your age"
+              />
+              <div class="checkbox">
+                <label for="convicted">Have you been convicted?</label>
+                <input id="convicted" type="checkbox" />
+              </div>
+              <button class="btn btn-primary" type="submit">
+                Moment of truth
+              </button>
+            </form>
+            <h3 id="armyAgeResult"></h3>
+          </div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en08">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 08</h2>
+            <h5>Ticket price calculator</h5>
+            <ul>
+              <strong
+                ><a href="./en/en08.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>preventDefault</li>
+              <li>number</li>
+              <li>textContent</li>
+              <li>toFixed</li>
+              <li>addEventListener</li>
+            </ul>
+          </div>
+          <strong>Ticket price list:</strong>
+          <ul>
+            <li>Regular ticket price - $6</li>
+            <li>Until 16 years old - 50% discount</li>
+            <li>Between 16 and 60 - Full price</li>
+            <li>Between 65 and 100 - 1/3 of Full price</li>
+            <li>Above 100 - Free</li>
+          </ul>
+          <div class="container-fluid p-0">
+            <form id="form2">
+              <input
+                id="ticketAge"
+                type="number"
+                placeholder="Please enter your age"
+              />
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+            <h3 id="ticketPrice">Ticket price:</h3>
+          </div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en07">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 07</h2>
+            <h5>JS Form valdymas</h5>
+            <ul>
+              <strong
+                ><a href="./en/en07.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>addEventListener</li>
+              <li>preventDefault</li>
+              <li>target</li>
+              <li>input</li>
+              <li>form</li>
+              <li>value</li>
+            </ul>
+          </div>
+          <div class="container-fluid p-0">
+            <form id="form1">
+              <input name="abc" type="text" placeholder="enter your name" />
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+            <h3 id="firstforma"></h3>
+          </div>
+        </div>
+        <div class="card bg-ligth p-3 mb-3 en06">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 06</h2>
+            <h5>Generate random number 1-100</h5>
+            <ul>
+              <strong
+                ><a href="./en/en06.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>Math.random</li>
+              <li>return</li>
+              <li>addEventListener</li>
+              <li>innerText</li>
+            </ul>
+          </div>
+          <div class="container-fluid p-0">
+            <button id="btnrandom" class="btn btn-primary">
+              Generate random number
+            </button>
+            <h3 id="randomnumber"></h3>
+          </div>
+        </div>
+        <div class="card bg-light p-3 mb-3 en05">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 05</h2>
+            <h5>Don't copy this piece of text</h5>
+            <ul>
+              <strong
+                ><a href="./en/en05.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>alert</li>
+              <li>new function</li>
+              <li>addEventListener</li>
+              <li>preventDefault</li>
+            </ul>
+          </div>
+          <p id="dontcopy">
+            Ac turpis egestas maecenas pharetra convallis posuere morbi leo.
+            Quam nulla porttitor massa id neque aliquam vestibulum morbi blandit
+            cursus risus, at ultrices mi tempus imperdiet nulla malesuada
+            pellentesque elit.
+          </p>
+        </div>
+        <div class="card bg-light p-3 mb-3 en04">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 04</h2>
+            <h5>JS eventai</h5>
+            <ul>
+              <strong
+                ><a href="./en/en04.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>counter++</li>
+              <li>innerText</li>
+              <li>addEventListener</li>
+              <li>getElementById</li>
+            </ul>
+          </div>
+          <div class="container-fluid d-flex p-0">
+            <h3 class="align-self-center" id="plusone">Increasing by one: 0</h3>
+            <button id="btnplusone" class="btn btn-primary ml-4">+1</button>
+          </div>
+        </div>
+        <div class="card bg-light p-3 mb-3 en03">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 03</h2>
+            <h5>Moving button to the repeating pattern</h5>
+            <ul>
+              <strong
+                ><a href="./en/en03.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>cssText</li>
+              <li>!</li>
+              <li>boolean</li>
+              <li>addEventListener</li>
+            </ul>
+          </div>
+          <div style="height: 100px" class="d-flex position-relative">
+            <button id="button99" class="btn btn-primary">Push!</button>
+          </div>
+        </div>
+        <div class="card bg-light p-3 mb-3 en02">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 02</h2>
+            <h5>Enlarge element on click</h5>
+            <ul>
+              <strong
+                ><a href="./en/en02.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>event</li>
+              <li>target</li>
+              <li>style</li>
+              <li>addEventListener</li>
+              <li>mondra funkcija</li>
+            </ul>
+          </div>
+          <div class="d-flex">
+            <div id="john">Click on MEEE</div>
+          </div>
+        </div>
+        <div class="card bg-light p-3 mb-3 en01">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 01</h2>
+            <h5>Input button manipulation</h5>
+            <ul>
+              <strong
+                ><a href="./en/en01.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>if else</li>
+              <li>event</li>
+              <li>addEventListener</li>
+              <li>getElementById</li>
+            </ul>
+          </div>
+          <p>
+            Change the background color when an Input field is Empty. Try to
+            write something in the input field and then delete it. See what
+            happens.
+          </p>
+          <div class="d-flex">
+            <input type="text" id="en1" value="" />
+            <button id="btn1" class="btn btn-primary">Button</button>
+          </div>
+        </div>
+        <div class="card bg-light p-3 mb-3 en00">
+          <div class="p-3 mb-2 bg-dark text-white">
+            <h2>Example numero 00</h2>
+            <h5>Button - function</h5>
+            <ul>
+              <strong
+                ><a href="./en/en00.js" target="”_blank”">Stack:</a></strong
+              >
+              <li>addEventListener</li>
+              <li>getElementById</li>
+              <li>textContent</li>
+            </ul>
+          </div>
+          <div class="container-fluid p-0">
+            <h3 id="greeting">Click button bellow and text will appear here</h3>
+            <button onclick="sayHello()" class="btn btn-primary">Hello</button>
+            <button id="btn0" class="btn btn-primary">Good Bye</button>
+            <br />
+            <hr />
+            <button id="btnabout" class="btn mt-2 btn-primary">
+              Click to know about me
+            </button>
+            <p id="aboutme"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./en/en36.js"></script>
+  <script src="./en/en33.js"></script>
+  <script src="./en/en32.js"></script>
+  <script src="./en/en31.js"></script>
+  <script src="./en/en30.js"></script>
+  <script src="./en/en29.js"></script>
+  <script src="./en/en28.js"></script>
+  <script src="./en/en27.js"></script>
+  <script src="./en/en26.js"></script>
+  <script src="./en/en25.js"></script>
+  <script src="./en/en24.js"></script>
+  <script src="./en/en23.js"></script>
+  <script src="./en/en22.js"></script>
+  <script src="./en/en21.js"></script>
+  <script src="./en/en20.js"></script>
+  <script src="./en/en18.js"></script>
+  <script src="./en/en17.js"></script>
+  <script src="./en/en16.js"></script>
+  <script src="./en/en15.js"></script>
+  <script src="./en/en14.js"></script>
+  <script src="./en/en13.js"></script>
+  <script src="./en/en12.js"></script>
+  <script src="./en/en11.js"></script>
+  <script src="./en/en10.js"></script>
+  <script src="./en/en09.js"></script>
+  <script src="./en/en08.js"></script>
+  <script src="./en/en07.js"></script>
+  <script src="./en/en06.js"></script>
+  <script src="./en/en05.js"></script>
+  <script src="./en/en04.js"></script>
+  <script src="./en/en03.js"></script>
+  <script src="./en/en02.js"></script>
+  <script src="./en/en01.js"></script>
+  <script src="./en/en00.js"></script>
+  <script src="http://localhost:8080/skewer"></script>
+  <script></script>
 </html>

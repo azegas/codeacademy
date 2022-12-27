@@ -1,5 +1,7 @@
 // alert(1);
 
+
+
 fetch("https://fakestoreapi.com/products")
     .then((data) => {
         // console.log(data);   // json format

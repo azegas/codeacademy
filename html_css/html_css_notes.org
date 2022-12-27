@@ -1,0 +1,59 @@
+:PROPERTIES:
+:ID:       8bcc8112-f9bf-4ffd-bed2-b8f68ab9b737
+:END:
+#+title: codeacademy
+#+date: [2022-07-19 Tue 19:08]
+#+category: codeacademy
+#+filetags: Project
+
+* codeacademy html/css notes
+** uzrasiukai 
+- inline block - neuzima vienos pilnos eilutes jeigu turi width uzdejes
+- margin 0 in body
+- inline style -> id -> class prioritetai -> element
+- normalize.css - visi browseriai tures defaultinius dalykus arba
+  (all: unset;)
+- [[https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing][box sizing:border box]]; - nustatai width ir box sizingas parsirupina jog viskas
+  su paddings ir margin tilptu i ta nustatyta width
+- width: calc(100% - 200px); buk per visa ekrana tik minus 200px gal
+  but kokiam kitam contentui
+- rem visada ziuri i browseri
+- em ziuri i parent. jeigu parent 10px, tai 0.5em bus 5px
+- https://developer.mozilla.org/en-US/docs/Web
+- !important - jeigu nori jog tam tikras elementas nebutu
+  overwridintas kito stiliaus
+- narsykles sukure savo defaultini css - seniau nereikedavo rasyti
+  css, puslapiukai budavo paprasti, useris neturedavo prieeigos prie
+  css - [[https://necolas.github.io/normalize.css/8.0.1/normalize.css][normalize css]]
+- CDN - vietoj to, kad deti normalize.css pas save i serveri, gal jis
+  nebus toks greitas ir pan.. tai gerau jau naudoti cdn - jis paiims
+  info is artimiausio serverio
+- min.css - be tarpeliu, be nieko - greiciau uzkrauna
+- .text p:first-child { font-size: 30px;} nth-child(3)
+- .text p:first-of-type{}
+- .text3::before { content: "read this: "}
+- lazy loading - uzkrauni elementa kuri naudoji tik ta
+  akimirka(paveiksliukam) dev tools network tabe [[https://web.dev/browser-level-image-lazy-loading/][example su katineliais]]
+- autofocus formose
+- display: block = tampa savanaudiskas divas, nepriima nieko i savo eilute
+- display: inline-block = draugiskas, dalinasi eilute su kitais
+  divais. Abut elementai turi buti inline block
+- flex nusako kaip turi elgtis jo childai. block ir inline block
+  nusako kaip turi elgtis PARENT.
+- flex direction: column, tai viskas pasisuka 90%, justify content
+  susimaiso su align items.
+- 100% height 100vh
+- flex grow/shrink - tampa didesnis/mazesnis uz kitus elementus
+- order: 1; order: 2; flexbox contenta gali keisti vietom - useful
+  when on the phone zn
+- Scrset del images skirtiengiem devices. Viename 10mb image kitam maziau. Gali pasirinkti. Kam loadint dideli ant mazos telefono
+- mobile first - mazai vietos telefone, neprikrausi dalyku unlike kaip
+  desktope su daug vietos. Pasirenki tik svarbiausia informacija
+- dribble design inspiration
+- keyframes - vaibas.lt judantis dalykelis
+- transitions - mygtukam ir pan. dydis kinta, spalvos kinta, shape
+  kinta, location kinta
+- accessibility - nenaudoti bruksniuku, nes juos irgi skaito
+- html scroll-behavior: smooth;
+- Auto auto auto - 3 columns, auto auto - 2 columns
+  

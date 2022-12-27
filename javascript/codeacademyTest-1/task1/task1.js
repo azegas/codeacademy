@@ -22,7 +22,7 @@ console.log(cars.filter(car => {
 // 1.4  Parašyti komandą kuri gražins automobilius su pridėtu papildomu laiku ojekte, kuris vadinasi "Kilowatts", kuris yra lygus "Horsepower" * 0.7457;
 
 // attempt 1. prisideda string i kiekviena object
-const cars2 = cars.map(v => ({
+const cars2 = cars.map(v => ({fdf
     ...v, blyn: "labas"
 }));
 
