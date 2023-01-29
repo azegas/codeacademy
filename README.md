@@ -10,7 +10,7 @@ VIGI_46 grupe. Programos startas - 2022-07-12.
 
 [HTML/CSS tasks/examples](https://arvydas.dev/codeacademy/html_css/index.html)
 
-[JavaScrip tasks/examples](https://arvydas.dev/codeacademy/javascript/index.html)
+[JavaScript tasks/examples](https://arvydas.dev/codeacademy/javascript/index.html)
 
 [Python tasks/examples](https://arvydas.dev/codeacademy/databases/index.html)
 
