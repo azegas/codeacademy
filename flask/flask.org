@@ -1,0 +1,773 @@
+#+title: CodeAcademy Flask
+#+date: <2023-01-30 19:48>
+#+description: CodeAcademy Flask notes
+#+filetags: python codeacademy flask
+#+OPTIONS: toc:2
+#+OPTIONS: num:t
+
+
+Flask yra populiariausias Python microframework. Jeigu projektas nėra
+labai didelis, arba tiesiog norime pasidaryti kažkokį GUI per
+naršyklę, kažką greitai prototipuoti, Flask yra labai geras
+pasirinkimas. Su flask yra pakankamai paprasta kurti API's. Ši
+paskaita bus greita įžanga, kitose nagrinėsime išsamiau.
+
+Flask galima įdiegti su pip naudojant ~pip install flask~.
+
+* Įžanga į Flask
+** Kaip sukurti minimalią svetainę:
+
+#+begin_src python
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "<h1>Čia mano naujas puslapis</h1>"
+
+if __name__ == "__main__":
+    app.run(debug=True):
+#+end_src
+
+** Kaip puslapyje atvaizduoti įvestą kintamąjį:
+
+#+begin_src python
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/<name>")
+def user(name):
+    return f"Labas, {name}"
+
+if __name__ == "__main__":
+    app.run()
+#+end_src
+
+** Kaip sukurti ir panaudoti HTML šabloną:
+
+main.py:
+
+#+begin_src python
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route("/")
+def user():
+    return render_template("index.html")
+
+if __name__ == "__main__":
+    app.run()
+#+end_src
+
+templates/index.html:
+
+#+begin_src html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mano Puslapis</title>
+</head>
+<body>
+<h1>Labas, pasauli!</h1>
+</body>
+</html>
+#+end_src
+
+Įdėkime į šabloną šiek tiek logikos:
+
+#+begin_src html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Skaičiavimai</title>
+</head>
+<body>
+<h1>Skaičiavimai: </h1>
+{%for x in range(10)%}
+{%if x % 2 == 0 %}
+<p>{{x}}</p>
+{% endif %}
+{%endfor%}
+</body>
+</html>
+#+end_src
+
+** Kaip kintamuosius perkelti į šabloną:
+
+main.py
+
+#+begin_src python
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    vardai = ['Jonas', 'Antanas', 'Petras']
+    return render_template("index.html", sarasas=vardai)
+
+if __name__ == "__main__":
+    app.run()
+#+end_src
+
+templates/index.html
+
+#+begin_src html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sarašas</title>
+</head>
+<body>
+<h1>Žmonių sarašas: </h1>
+{%for vardas in sarasas%}
+<p>{{vardas}}</p>
+{% endfor %}
+</body>
+</html>
+#+end_src
+
+** Kaip perduoti duomenis iš svetainės į programą:
+
+main.py
+
+#+begin_src python
+from flask import Flask, request, render_template
+app = Flask(__name__)
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    if request.method == "POST":
+        vardas = request.form['vardas']
+        return render_template("greetings.html", vardas=vardas)
+    else:
+        return render_template("login.html")
+
+
+if __name__ == "__main__":
+    app.run()
+#+end_src
+
+templates/index.html
+
+#+begin_src html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prisijungimas</title>
+</head>
+<body>
+<form action="#" method="post">
+    <p>Vardas:</p>
+    <p><input type="text" name="vardas"/></p>
+    <p><input type="submit" value="submit"/></p>
+</form>
+</body>
+</html>
+#+end_src
+
+
+templates/greetings.html
+
+#+begin_src html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sveikiname</title>
+</head>
+<body>
+<h1>{{vardas}}, sveikiname prisijungus!</h1>
+</body>
+</html>
+#+end_src
+
+** Naudojame base.html šabloną:
+
+Failas templates/base.html:
+
+#+begin_src html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Mano puslapis</title>
+</head>
+<body>
+<div>
+  <h1>Sveiki,</h1>
+  <p>Čia yra mano super puslapis!</p>
+</div>
+<div class="container">
+  {% block content %}{% endblock %}
+</div>
+<body>
+</html>
+#+end_src
+
+Failas templates/login.html:
+
+#+begin_src html
+{% extends "base.html" %}
+{% block content %}
+<form action="#" method="post">
+    <p>Vardas:</p>
+    <p><input type="text" name="vardas"/></p>
+    <p><input type="submit" value="submit"/></p>
+</form>
+{% endblock %}
+#+end_src
+
+Failas templates/greetings.html:
+
+#+begin_src html
+{% extends "base.html" %}
+{% block content %}
+<h1>{{vardas}}, sveikiname prisijungus!</h1>
+{% endblock %}
+#+end_src
+
+** Stiliui panaudojame "Bootstrap":
+
+Faile base.html:
+
+#+begin_src html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Mano puslapis</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+    Mano puslapis</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Prisijungti</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron text-center">
+  <h1>Sveiki,</h1>
+  <p>Čia yra mano super puslapis!</p>
+</div>
+
+<div class="container">
+{% block content %}{% endblock %}
+</div>
+
+</body>
+</html>
+#+end_src
+
+** Užduotys
+*** 1 užduotis
+Sukurti programą, kuri turėtų statinį puslapį, pvz. localhost:5000 su
+norimu tekstu (rekomenduojama naudoti šablonus)
+
+main.py
+
+#+begin_src python
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return render_template("home.html")
+
+if __name__ == "__main__":
+    app.run(debug=True)
+#+end_src
+
+template/home.html
+
+#+begin_src html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Labas</title>
+</head>
+<body>
+    <h1>Norimas tekstas</h1>
+</body>
+</html>
+#+end_src
+
+#+attr_html: :width 600px
+#+ATTR_ORG: :width 600
+[[./images/1.png]]
+
+*** 2 užduotis
+
+Sukurti programą, kuri įvedus norimą žodį adreso eilutėje (po /
+simbolio) ir paspaudus ENTER, atspausdintų jį penkis kartus.
+
+Still not sure where this is useful.
+
+main.py
+
+#+begin_src python
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route("/<word>")
+def word(word):
+    return render_template("word.html", word = word)
+
+if __name__ == "__main__":
+    app.run(debug=True)
+#+end_src
+
+templates/word.html
+
+#+begin_src html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Žodžiai</title>
+</head>
+<body>
+    {% for x in range(5) %}
+        {{word}}
+    {% endfor %}
+</body>
+</html>
+#+end_src
+
+
+#+attr_html: :width 600px
+#+ATTR_ORG: :width 600
+[[./images/2.png]]
+
+*** 3 užduotis
+Sukurti programą, kuri puslapyje localhost:5000/keliamieji parodytų
+visus keliamuosius metus nuo 1900 iki 2100 metų.
+
+Cool use of calendar.
+
+main.py
+
+#+begin_src python
+from flask import Flask, render_template
+import calendar
+
+app = Flask(__name__)
+
+@app.route("/keliamieji")
+def leap():
+    return render_template("leap.html", calendar = calendar)
+
+if __name__ == "__main__":
+    app.run(debug=True)
+#+end_src
+
+templates/leap.html
+
+#+begin_src html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leap</title>
+</head>
+<body>
+    {% for year in range(1900, 2100) %}
+    {% if calendar.isleap(year) %}
+    {{year}}
+    {% endif %}
+    {% endfor %}
+</body>
+</html>
+#+end_src
+
+#+attr_html: :width 600px
+#+ATTR_ORG: :width 600
+[[./images/3.png]]
+
+*** 4 užduotis
+Sukurti programą, kuri leistų įvesti metus ir paspaudus patvirtinimo
+mygtuką parodytų, ar jie yra keliamieji.
+
+main.py
+
+#+begin_src python
+  from flask import Flask, render_template, request
+  import calendar
+
+  app = Flask(__name__)
+
+
+  @app.route("/")
+  def home():
+      return "<h1>Labas, cia yra pradinis</h1><p>Paziurek kas slepiasi po http://localhost:5000/arkeliamieji</p>"
+
+
+  @app.route("/arkeliamieji", methods=["GET", "POST"])
+  def isleap():
+      if request.method == "GET":
+          return render_template("getyear.html")
+      elif request.method == "POST":
+          year = request.form["year"]
+          return render_template("isleap.html", year=int(year), calendar=calendar)
+
+
+  if __name__ == "__main__":
+      app.run(debug=True)
+#+end_src
+
+templates/getyear.html
+
+#+begin_src html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Get Year</title>
+</head>
+<body>
+<form action="#" method="post">
+    <p>Metai:</p>
+    <p><input type="text" name="year"/></p>
+    <p><input type="submit" value="Patikrinti"/></p>
+</form>
+</body>
+</html>
+#+end_src
+
+templates/isleap.html
+
+#+begin_src html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Is Leap</title>
+</head>
+<body>
+    {% if calendar.isleap(year) %}
+    <p>Keliamieji</p>
+    {% else %}
+    <p>Nekeliamieji</p>
+    {% endif %}
+</body>
+</html>
+#+end_src
+
+#+attr_html: :width 600px
+#+ATTR_ORG: :width 600
+[[./images/4.gif]]
+
+
+*** 5 užduotis (papildomai)
+
+Patobulinti anksčiau kurtą biudžeto programą, panaudojant Flask
+(bendravimui su vartotoju) ir SQLAlchemy (darbui su duomenų baze,
+kurioje bus saugomi pajamų ir išlaidų įrašai).
+
+Run db.py file first to create a database:
+
+db.py
+
+#+begin_src python
+import datetime
+import os
+from sqlalchemy import Column, Integer, String, Float, DateTime, create_engine
+from sqlalchemy.ext.declarative import declarative_base
+
+engine = create_engine("sqlite:///.db")
+Base = declarative_base()
+
+
+class Projektas(Base):
+    __tablename__ = "Projektas"
+    id = Column(Integer, primary_key=True)
+    name = Column("Pavadinimas", String)
+    price = Column("Kaina", Float)
+    created_date = Column("Sukūrimo data", DateTime, default=datetime.datetime.utcnow)
+
+    # aprasom taip pat kaip paprasta klase. Asocijuojam su klase. Kad zinotu i kuri collumn deti kintamaji
+    # created_date matai neidetas apacioje, nes nereikia jo mum patiem irasyti, jis turi default reiksme
+    # jeigu noretum irasyti ir keisti - tuomet prie init turetum prirasyti
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+    # Kada kvieciam klase su query, kad ja israsytu ir KAIP israsytu apibudinam cia
+    def __repr__(self):
+        return f"{self.id} {self.name} - {self.price}: {self.created_date}"
+
+
+# kviecia connectiona ir sukuria visas lenteles jeigu jos neegzistuoja. Jos neupdeitins.
+Base.metadata.create_all(engine)
+#+end_src
+
+main.py
+
+#+begin_src python
+  import os
+  from flask import Flask, request, render_template, url_for, redirect
+  from flask_sqlalchemy import SQLAlchemy
+
+  if __name__ == "__main__":
+      from models.irasas import Irasas
+
+  basedir = os.path.abspath(os.path.dirname(__file__))
+  app = Flask(__name__)
+
+
+  app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, "biudzetas.db")
+  app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+  db = SQLAlchemy(app)
+
+  db.create_all()
+
+
+  @app.route("/prideti", methods=["GET", "POST"])
+  def prideti():
+      if request.method == "POST":
+          suma = request.form["suma"]
+          info = request.form["info"]
+          irasas = Irasas(suma, info)
+          db.session.add(irasas)
+          db.session.commit()
+          return sarasas()
+      elif request.method == "GET":
+          return render_template("prideti.html")
+
+
+  @app.route("/")
+  def sarasas():
+      biudzetas = Irasas.query.all()
+      return render_template("sarasas.html", biudzetas=biudzetas)
+
+
+  @app.route("/balansas")
+  def balansas():
+      biudzetas = db.session.query(Irasas).all()
+      balansas = 0
+      for irasas in biudzetas:
+          balansas += irasas.suma
+      return render_template("balansas.html", balansas=balansas)
+
+
+  @app.route("/irasas_delete/<int:id>")
+  def irasas_delete(id):
+      uzklausa = db.session.query(Irasas).get(id)
+      db.session.delete(uzklausa)
+      db.session.commit()
+      return redirect(url_for("sarasas"))
+
+
+  @app.route("/irasas_update/<int:id>", methods=["GET", "POST"])
+  def irasas_update(id):
+      if request.method == "POST":
+          irasas = db.session.query(Irasas).get(id)
+          irasas.suma = request.form["suma"]
+          irasas.info = request.form["info"]
+          db.session.commit()
+          return redirect(url_for("sarasas"))
+      elif request.method == "GET":
+          irasas = db.session.query(Irasas).get(id)
+          return render_template("redaguoti.html", irasas=irasas)
+
+
+  if __name__ == "__main__":
+      app.run(debug=True)
+#+end_src
+
+models/irasas.py
+
+#+begin_src python
+from main import db
+
+
+class Irasas(db.Model):
+    __tablename__ = "Irasas"
+    id = db.Column(db.Integer, primary_key=True)
+    suma = db.Column("Suma", db.Float)
+    info = db.Column("Info", db.String(120))
+
+    def __init__(self, suma, info):
+        self.suma = suma
+        self.info = info
+
+    def __repr__(self):
+        return f"{self.id}: suma - {self.suma}, info - {self.info}"
+
+
+db.create_all()
+#+end_src
+
+templates/balansas.html
+
+#+begin_src html
+{% extends "base.html" %}
+{% block content %}
+    <h1>Balansas: </h1>
+    <p>{{balansas}}</p>
+{% endblock %}
+#+end_src
+
+templates/prideti.html
+
+#+begin_src html
+{% extends "base.html" %}
+{% block content %}
+<form action="#" method="post">
+    <p>Suma:</p>
+    <p><input type="text" name="suma"/></p>
+    <p>Info:</p>
+    <p><input type="text" name="info"/></p>
+    <p><input type="submit" value="Įvesti"/></p>
+</form>
+{% endblock %}
+#+end_src
+
+templates/redaguoti.html
+
+#+begin_src html
+{% extends "base.html" %}
+{% block content %}
+<form action="#" method="post">
+    <p>Suma:</p>
+    <p><input type="text" name="suma" value={{irasas.suma}} /></p>
+    <p>Info:</p>
+    <p><input type="text" name="info" value={{irasas.info}} /></p>
+    <p><input type="submit" value="Įvesti"/></p>
+</form>
+{% endblock %}>
+#+end_src
+
+templates/sarasas.html
+
+#+begin_src html
+{% extends "base.html" %}
+{% block content %}
+<h1>Biudžeto įrašai: </h1>
+{%for irasas in biudzetas%}
+<p>{{irasas}}</p>
+<a href="{{ url_for('irasas_delete', id=irasas['id']) }}">Ištrinti</a>
+<a href="{{ url_for('irasas_update', id=irasas['id']) }}">Redaguoti</a>
+<hr>
+{% endfor %}
+{% endblock %}
+#+end_src
+
+templates/base.html
+
+#+begin_src html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Mano biudžetas</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M15 4H1v8h14V4zM1 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H1z"/>
+    <path d="M13 4a2 2 0 0 0 2 2V4h-2zM3 4a2 2 0 0 1-2 2V4h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 12a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+    </svg>
+    Mano biudžetas</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Sąrašas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/balansas">Balansas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/prideti">Pridėti</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>
+#+end_src
+
+Run main.py and open http://127.0.0.1:5000, see the magic :)
+
+#+attr_html: :width 600px
+#+ATTR_ORG: :width 600
+[[./images/5.gif]]
+
+~Important notes~!!
+
+Jeigu norite paleistį šį projektą savo kompiuteryje, prieš tai
+įsitikinkite, jog turite šiam projektui reikiamą flask_sqlalchemy
+v2.5.1 versiją.
+
+Tai galite padaryti savo virtualioje, šiam projektui skirtoje python
+aplinkoje. Terminale tiesiog paleiskite šią komandą, kad įrašyti
+reikiamą flask-sqlalchemy versiją:
+
+~pip install flask-sqlalchemy==2.5.1~
+
+Arba galite pasinaudoti requirements.txt. failiuku ir vos tik
+parsisiuntus šį branch į savo kompiuterį ir pasiruošus virtualią
+aplinką, susirašyti visas šiam projektui būtinas "dependencies" su šia
+komanda:
+
+~pip install -r requirements.txt~
+
+requirements.txt
+
+#+begin_src bash
+click==8.1.3
+Flask==2.2.2
+Flask-SQLAlchemy==2.5.1
+greenlet==2.0.1
+importlib-metadata==6.0.0
+itsdangerous==2.1.2
+Jinja2==3.1.2
+MarkupSafe==2.1.2
+SQLAlchemy==1.4.46
+Werkzeug==2.2.2
+zipp==3.11.0
+#+end_src
