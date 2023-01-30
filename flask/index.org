@@ -5,6 +5,7 @@
 #+OPTIONS: toc:2
 #+OPTIONS: num:t
 
+* Įžanga į Flask
 
 Flask yra populiariausias Python microframework. Jeigu projektas nėra
 labai didelis, arba tiesiog norime pasidaryti kažkokį GUI per
@@ -14,7 +15,6 @@ paskaita bus greita įžanga, kitose nagrinėsime išsamiau.
 
 Flask galima įdiegti su pip naudojant ~pip install flask~.
 
-* Įžanga į Flask
 ** Kaip sukurti minimalią svetainę:
 
 #+begin_src python
