@@ -1,0 +1,3647 @@
+#+title: CodeAcademy Databases
+#+date: <2023-01-29 15:45>
+#+description: CodeAcademy Databases notes
+#+filetags: databases codeacademy
+#+OPTIONS: toc:2
+#+OPTIONS: num:t
+
+* Lesson 1 - Ivadas i duomenu bazes
+
+SVARBIAUSIOS SQL UZKLAUSOS
+
+~SELECT~ sakinys naudojamas įrašams iš vienos ar daugiau lentelių
+atrinkti.
+~FROM~ sakinyje nurodomos lentelės, iš kurių reikia išrinkti eilutes
+(sąryšiai gali būti nurodomi skirtingais JOIN variantais).
+~WHERE~ sakinyje nurodoma sąlyga, kurią turi tenkinti grąžinamos
+eilutės.
+~GROUP~ BY sąlygoje nurodoma, kad reikia grupuoti tam tikras eilutes.
+Grupuojant eilutes, dažniausiai naudojamos agregatinės funkcijos
+maksimalioms, vidutinėms ir panašioms reikšmėms išrinkti iš grupuotų
+eilučių.
+~ORDER~ BY sakiniu nurodoma viena ar daugiau rikiavimo sąlygų.
+~HAVING~ sakinyje nurodomas kriterijus, taikomas grupuojamoms eilutėms;
+~HAVING~ raktinis žodis gali būti naudojamas tik tais atvejais, jeigu
+užklausoje yra GROUP BY sakinys.
+~INSERT~ vartojamas naujų įrašų įterpimui į lentelę.
+~DELETE~ leidžia ištrinti įrašus iš lentelės.
+~UPDATE~ naudojamas pakeisti vieno ar daugiau įrašų reikšmes.
+~DISTINCT~ - skirtingų reikšmių išrinkimas.
+~DROP TABLE~ pašalina visą lentelę.
+
+KAIP SUKURTI LENTELĘ
+
+#+begin_src sql
+CREATE TABLE darbuotojai (vardas text, pavarde text, atlyginimas integer)
+#+end_src
+
+KAIP ĮDĖTI ĮRAŠĄ (EILUTĘ) Į LENTELĘ:
+
+#+begin_src sql
+INSERT INTO darbuotojai (vardas, pavarde, atlyginimas) VALUES (naujasvardas, naujapavarde, naujasatlyginimas)
+#+end_src
+
+KAIP PERŽIŪRĖTI ĮRAŠUS LENTELĖJE:
+
+#+begin_src sql
+SELECT * FROM darbuotojai
+SELECT * FROM darbuotojai WHERE pavarde = "ieskomapavarde"
+#+end_src
+
+KAIP PAKEISTI ĮRAŠĄ LENTELĖJE:
+
+#+begin_src sql
+UPDATE darbuotojai SET atlyginimas = naujasatlyginimas WHERE pavarde = ieskomapavarde
+#+end_src
+
+KAIP IŠTRINTI LENTELĖS ĮRAŠĄ:
+
+#+begin_src sql
+DELETE from darbuotojai WHERE vardas = ieskomasvardas AND pavarde = ieskomapavarde
+#+end_src
+
+PRAKTIKA: DUOMENŲ IŠRINKIMAS IR VALDYMAS
+
+Parsisiųskite [[https://github.com/CodeAcademy-Online/Python/tree/lesson-11/pradiniai-failai][lentelę]], atsidarykite ją programoje [[https://sqlitebrowser.org/][DB Browser for
+SQLite]] ir skiltyje "Execute SQL" atlikite šias SQL užklausas:
+
+su emacs
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai.db :colnames yes
+   -- DELETE from darbuotojai WHERE PAVARDĖ = "Sabutis"
+    -- select * from darbuotojai where vardas = "Petras"
+  -- UPDATE darbuotojai SET PAREIGOS = "IT Technikas" WHERE PAVARDĖ = "Petrauskas"
+       -- select * from darbuotojai
+     -- SELECT COUNT(PAREIGOS) FROM DARBUOTOJAI WHERE PAREIGOS = "IT Technikas";
+     UPDATE DARBUOTOJAI SET PAREIGOS = "testuotojas" WHERE PAVARDĖ = "Gabalis"
+#+end_src
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai.db :colnames yes
+   -- DELETE from darbuotojai WHERE PAVARDĖ = "Sabutis"
+    -- select * from darbuotojai where vardas = "Petras"
+  -- UPDATE darbuotojai SET PAREIGOS = "IT Technikas" WHERE PAVARDĖ = "Petrauskas"
+       select * from darbuotojai
+#+end_src
+#+RESULTS:
+| VARDAS    | PAVARDĖ       | GIMIMO_DATA | PAREIGOS       | SKYRIUS_PAVADINIMAS |
+|-----------+---------------+-------------+----------------+---------------------|
+| Martynas  | Jačas         |  1980-09-20 | Programuotojas | Gamybos             |
+| Goda      | Jablonkskaitė |  1986-02-11 | Vadybininkas   | Pardavimų           |
+| Mantas    | Gabalis       |  1990-08-20 | testuotojas    | Gamybos             |
+| Arnoldas  | Lukas         |  1994-02-13 | Programuotojas | Gamybos             |
+| Maja      | Jačiulytė     |  1998-03-12 | Buhalterė      | Finansų             |
+| Mikas     | Taileikis     |  2000-04-23 | Programuotojas | Gamybos             |
+| Giedrius  | Vaicekauskas  |  1986-05-30 | Vadovas        | Vadovybės           |
+| Romas     | Babavičius    |  1986-09-19 | Finansininkas  | Finansų             |
+| Milda     | Babavičiūtė   |  1986-09-19 | Testuotojas    | Gamybos             |
+| Domas     | Sabaliauskas  |  1999-03-13 | Testuotojas    | Gamybos             |
+| Tautvydas | Ubartas       |  1980-05-30 | Programuotojas | Gamybos             |
+| Arnoldas  | Jačas         |  1985-06-30 | Programuotojas | Gamybos             |
+| Jaunius   | Šindeikis     |  1988-03-12 | Vadovas        | Gamybos             |
+| Rimantas  | Kundrotas     |  1987-11-12 | Programuotojas | Gamybos             |
+| Petras    | Petrauskas    |  1999-12-12 | IT Technikas   | Vadovas             |
+| Petras    | Petrauskas    |  1999-12-12 | IT Technikas   | Vadovas             |
+
+#+begin_src sql
+  -- Pasirinkite visus duomenis iš lentelės “DARBUOTOJAI”.
+  SELECT * from DARBUOTOJAI
+
+  -- Pasirinkite visus duomenis iš stulpelio “GIMIMO_DATA” - lentelėje
+  -- “DARBUOTOJAS”.
+
+  SELECT GIMIMO_DATA from DARBUOTOJAI
+
+  -- Pasirinkite visus duomenis iš stulpelių “VARDAS”,”PAVARDĖ”,
+  -- “PAREIGOS” - lentelėje “DARBUOTOJAI”.
+
+  SELECT VARDAS, PAVARDĖ, PAREIGOS from DARBUOTOJAI
+
+  -- Pasirinkite skirtingas reikšmes iš stulpelio SKYRIUS_PAVADINIMAS -
+  -- lentelėje “DARBUOTOJAI”.
+
+  SELECT DISTINCT SKYRIUS_PAVADINIMAS FROM DARBUOTOJAI
+
+  -- Pasirinkite visus duomenis apie darbuotojus, kurie dirba Gamybos
+  -- skyriuje.
+
+  SELECT * FROM DARBUOTOJAI WHERE SKYRIUS_PAVADINIMAS = "Gamybos"
+
+  -- Pasirinkite duomenis, kokias pareigas užima Giedrius,
+
+  SELECT * FROM DARBUOTOJAI WHERE VARDAS = "Giedrius"
+
+  -- Pasirinkite visus duomenis apie darbuotojus, kurių gimimo data -
+  -- 1986-09-19.
+
+  SELECT * FROM DARBUOTOJAI WHERE GIMIMO_DATA = "1986-09-19"
+
+  -- Pasirinkite darbuotojų vardus, kurių pavardės yra Sabutis.
+
+  SELECT * FROM DARBUOTOJAI WHERE PAVARDĖ = "Sabutis"
+
+  -- Pasirinkite duomenis (vardą ir pavardę) apie programuotojus iš Gamybos
+  -- skyriaus.
+
+  SELECT VARDAS,PAVARDĖ FROM DARBUOTOJAI WHERE PAREIGOS = "Programuotojas"
+
+  -- Įterpkite į lentelę “DARBUOTOJAI” naują darbuotoją, užpildydami visus
+  -- reikiamus laukus (vardą, pavardę, gimimo datą, pareigas ir skyriaus
+  -- pavadinimą).
+
+  INSERT INTO darbuotojai (VARDAS, PAVARDĖ, GIMIMO_DATA, PAREIGOS, SKYRIUS_PAVADINIMAS) VALUES ("Petras", "Petrauskas", "1999-12-12", "Slavejas", "Vadovas")
+
+  -- Įterpkite į lentelę “DARBUOTOJAI” naują darbuotoją, užpildydami tik
+  -- laukus (vardą, pavardę, gimimo datą). Pareigas ir skyriaus pavadinimą
+  -- palikite neužpildytus.
+
+  INSERT INTO darbuotojai (VARDAS, PAVARDĖ, GIMIMO_DATA) VALUES ("Antanas", "Antanauskas", "1999-105-12")
+
+  -- Užpildykite likusius tuščius laukus “DARBUOTOJAI” lentelėje, jūsų
+  -- prieš tai įterptame įraše. Priskirkite darbuotojui pareigas ir skyrių.
+
+  UPDATE darbuotojai SET PAREIGOS = "IT Technikas" WHERE PAVARDĖ = "Antanauskas"
+  UPDATE darbuotojai SET SKYRIUS_PAVADINIMAS = "IT" WHERE PAVARDĖ = "Antanauskas"
+
+  -- Ištrinkite lentelės “DARBUOTOJAI” įrašą, kurio gimimo data yra tokia,
+  -- kurią jūs sukūrėte.
+
+  DELETE from darbuotojai WHERE GIMIMO_DATA = "1999-105-12" AND PAVARDĖ = "Antanauskas"
+
+  -- Įterpkite, du darbuotojus, pavarde Antanaitis kurių pareigos būtų
+  -- “Programuotojas”.
+
+  INSERT INTO darbuotojai (PAVARDĖ) VALUES ("Antanaitis")
+
+  -- Pakeiskite, abiejų Antanaičių pareigas į “Testuotojas” vienu sakiniu.
+
+  UPDATE DARBUOTOJAI SET PAREIGOS = "testuotojas" WHERE PAVARDĖ = "Antanaitis"
+
+  -- Suskaičiuokite, kiek įmonėje dirba Testuotojų.
+
+  SELECT COUNT(PAREIGOS) FROM DARBUOTOJAI WHERE PAREIGOS = "testuotojas";
+#+end_src
+* Lesson 2 - WHERE panaudojimas
+
+BETWEEN...AND
+
+Nurodo žemiausios ir aukščiausios reikšmių intervalą, išrenkant
+duomenis iš lentelės, t.y. rezultate pateikia duomenis tam tikram
+reikšmių intervalui:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+  select * from mashinos
+#+end_src
+
+#+RESULTS:
+| make       | model      | color      | year | price |
+|------------+------------+------------+------+-------|
+| Audi       | V8         | Red        | 1992 | 95940 |
+| Subaru     | SVX        | Aquamarine | 1993 | 14128 |
+| Pontiac    | Bonneville | Orange     | 1991 | 94076 |
+| Ford       | Probe      | Orange1993 | 1993 | 95940 |
+| Dodge      | Daytona    | Green      | 1989 | 23333 |
+| Dodge      | Petrona    | Pink       | 1988 | 50000 |
+| Volkswagen | Gofl       | Pink       | 1988 | 50000 |
+| Volvo      | S40        | Pink       | 1988 | 50000 |
+| Volvo      | S40        | null       | 1988 | 50000 |
+| Ford       | Fiesta     | null       | 1988 | 50000 |
+| Ford       | Fiesta     |            | 1988 | 50000 |
+| Peugeot    | Mondeo     |            | 1988 | 50000 |
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+  -- INSERT INTO mashinos (make, model, color, year, price) VALUES ("Dodge", "Petrona", "Pink", "1988", "50000")
+  INSERT INTO mashinos (make, model, color, year, price) VALUES ("Peugeot", "Mondeo", NULL, "1988", "50000")
+#+end_src
+
+#+RESULTS:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+  SELECT * FROM mashinos WHERE year BETWEEN 1980 AND 1990;
+#+end_src
+
+#+RESULTS:
+| make  | model   | color | year | price |
+|-------+---------+-------+------+-------|
+| Dodge | Daytona | Green | 1989 | 23333 |
+| Dodge | Petrona | Pink  | 1988 | 50000 |
+
+BETWEEN ... AND operatorius apima ir kraštutines reikšmes.
+
+IN
+
+Isrenka rezultatus pagal pateikta sarasa
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+select * from mashinos where year in (1993)
+#+end_src
+
+#+RESULTS:
+| make   | model | color      | year | price |
+|--------+-------+------------+------+-------|
+| Subaru | SVX   | Aquamarine | 1993 | 14128 |
+| Ford   | Probe | Orange1993 | 1993 | 95940 |
+
+LIKE
+
+Duomenu isrinkimui is lenteles naudoja sablona:
+- ~%~ - reiskia nuli arba keleta simboliu
+- ~_~ - reiskia viena simboli
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+select * from mashinos where make LIKE 'V%'
+#+end_src
+
+#+RESULTS:
+| make       | model | color | year | price |
+|------------+-------+-------+------+-------|
+| Volkswagen | Gofl  | Pink  | 1988 | 50000 |
+| Volvo      | S40   | Pink  | 1988 | 50000 |
+
+Kitas pvz. - išrenka eilutes, kuriose modelis iš 2-jų simbolių:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+select * from mashinos where model LIKE '__'
+#+end_src
+
+#+RESULTS:
+| make | model | color | year | price |
+|------+-------+-------+------+-------|
+| Audi | V8    | Red   | 1992 | 95940 |
+
+arba, tarkime:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+select * from mashinos where make LIKE '__d%'
+#+end_src
+
+#+RESULTS:
+| make  | model   | color | year | price |
+|-------+---------+-------+------+-------|
+| Audi  | V8      | Red   | 1992 | 95940 |
+| Dodge | Daytona | Green | 1989 | 23333 |
+| Dodge | Petrona | Pink  | 1988 | 50000 |
+
+Išrinktos eilutės, kuriose gamintojo (make) pavadinime trečia raidė yra n:
+
+IS NULL
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+select * from mashinos where color IS null
+#+end_src
+
+#+RESULTS:
+| make    | model  | color | year | price |
+|---------+--------+-------+------+-------|
+| Ford    | Fiesta |       | 1988 | 50000 |
+| Peugeot | Mondeo |       | 1988 | 50000 |
+
+AND, OR, NOT
+
+Naudojami salygu kombinavimui, pvz:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+select * from mashinos where make = "Ford" AND price > 40000
+#+end_src
+
+#+RESULTS:
+| make | model  | color      | year | price |
+|------+--------+------------+------+-------|
+| Ford | Probe  | Orange1993 | 1993 | 95940 |
+| Ford | Fiesta | null       | 1988 | 50000 |
+| Ford | Fiesta |            | 1988 | 50000 |
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+select * from mashinos where make = "Ford" OR year > 1992
+#+end_src
+
+#+RESULTS:
+| make   | model  | color      | year | price |
+|--------+--------+------------+------+-------|
+| Subaru | SVX    | Aquamarine | 1993 | 14128 |
+| Ford   | Probe  | Orange1993 | 1993 | 95940 |
+| Ford   | Fiesta | null       | 1988 | 50000 |
+| Ford   | Fiesta |            | 1988 | 50000 |
+
+Prieš kiekvieną sąlygą galima naudoti NOT:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+select * from mashinos where color NOT in ("Violet", "Orange", "Pink", "Red", "Aquamarine", "Green", "null")
+#+end_src
+
+#+RESULTS:
+| make | model | color      | year | price |
+|------+-------+------------+------+-------|
+| Ford | Probe | Orange1993 | 1993 | 95940 |
+
+Sudėtingesnis pavyzdys:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+select * from mashinos where (make = "Volvo" OR make = "Ford") and price NOT BETWEEN 10000 AND 60000
+#+end_src
+
+#+RESULTS:
+| make | model | color      | year | price |
+|------+-------+------------+------+-------|
+| Ford | Probe | Orange1993 | 1993 | 95940 |
+
+Pirmenybes atliekant lyginimo operacija:
+
+1. visi lyginimo operatoriai
+2. NOT
+3. AND
+4. OR
+
+ORDER BY, DESC
+Nustato, kaip turi būti išrūšiuoti duomenys užklausos rezultate. Pvz.:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+select * from mashinos
+#+end_src
+
+#+RESULTS:
+| make       | model      | color      | year | price |
+|------------+------------+------------+------+-------|
+| Audi       | V8         | Red        | 1992 | 95940 |
+| Subaru     | SVX        | Aquamarine | 1993 | 14128 |
+| Pontiac    | Bonneville | Orange     | 1991 | 94076 |
+| Ford       | Probe      | Orange1993 | 1993 | 95940 |
+| Dodge      | Daytona    | Green      | 1989 | 23333 |
+| Dodge      | Petrona    | Pink       | 1988 | 50000 |
+| Volkswagen | Gofl       | Pink       | 1988 | 50000 |
+| Volvo      | S40        | Pink       | 1988 | 50000 |
+| Volvo      | S40        | null       | 1988 | 50000 |
+| Ford       | Fiesta     | null       | 1988 | 50000 |
+| Ford       | Fiesta     |            | 1988 | 50000 |
+| Peugeot    | Mondeo     |            | 1988 | 50000 |
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+select * from mashinos ORDER BY price
+#+end_src
+
+#+RESULTS:
+| make       | model      | color      | year | price |
+|------------+------------+------------+------+-------|
+| Subaru     | SVX        | Aquamarine | 1993 | 14128 |
+| Dodge      | Daytona    | Green      | 1989 | 23333 |
+| Dodge      | Petrona    | Pink       | 1988 | 50000 |
+| Volkswagen | Gofl       | Pink       | 1988 | 50000 |
+| Volvo      | S40        | Pink       | 1988 | 50000 |
+| Volvo      | S40        | null       | 1988 | 50000 |
+| Ford       | Fiesta     | null       | 1988 | 50000 |
+| Ford       | Fiesta     |            | 1988 | 50000 |
+| Peugeot    | Mondeo     |            | 1988 | 50000 |
+| Pontiac    | Bonneville | Orange     | 1991 | 94076 |
+| Audi       | V8         | Red        | 1992 | 95940 |
+| Ford       | Probe      | Orange1993 | 1993 | 95940 |
+
+Jeigu norime atvirkštinio rūšiavimo, naudojame DESC:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+select * from mashinos ORDER BY price DESC
+#+end_src
+
+#+RESULTS:
+| make       | model      | color      | year | price |
+|------------+------------+------------+------+-------|
+| Audi       | V8         | Red        | 1992 | 95940 |
+| Ford       | Probe      | Orange1993 | 1993 | 95940 |
+| Pontiac    | Bonneville | Orange     | 1991 | 94076 |
+| Dodge      | Petrona    | Pink       | 1988 | 50000 |
+| Volkswagen | Gofl       | Pink       | 1988 | 50000 |
+| Volvo      | S40        | Pink       | 1988 | 50000 |
+| Volvo      | S40        | null       | 1988 | 50000 |
+| Ford       | Fiesta     | null       | 1988 | 50000 |
+| Ford       | Fiesta     |            | 1988 | 50000 |
+| Peugeot    | Mondeo     |            | 1988 | 50000 |
+| Dodge      | Daytona    | Green      | 1989 | 23333 |
+| Subaru     | SVX        | Aquamarine | 1993 | 14128 |
+
+Analogiškai tekstiniai įrašai rūšiuojasi pagal abėcėlę:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+select * from mashinos ORDER BY make
+#+end_src
+
+#+RESULTS:
+| make       | model      | color      | year | price |
+|------------+------------+------------+------+-------|
+| Audi       | V8         | Red        | 1992 | 95940 |
+| Dodge      | Daytona    | Green      | 1989 | 23333 |
+| Dodge      | Petrona    | Pink       | 1988 | 50000 |
+| Ford       | Probe      | Orange1993 | 1993 | 95940 |
+| Ford       | Fiesta     | null       | 1988 | 50000 |
+| Ford       | Fiesta     |            | 1988 | 50000 |
+| Peugeot    | Mondeo     |            | 1988 | 50000 |
+| Pontiac    | Bonneville | Orange     | 1991 | 94076 |
+| Subaru     | SVX        | Aquamarine | 1993 | 14128 |
+| Volkswagen | Gofl       | Pink       | 1988 | 50000 |
+| Volvo      | S40        | Pink       | 1988 | 50000 |
+| Volvo      | S40        | null       | 1988 | 50000 |
+
+Case insensitive paieška
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+select * from mashinos WHERE make = "dodge" collate nocase
+#+end_src
+
+#+RESULTS:
+| make  | model   | color | year | price |
+|-------+---------+-------+------+-------|
+| Dodge | Daytona | Green | 1989 | 23333 |
+| Dodge | Petrona | Pink  | 1988 | 50000 |
+
+II yra sujungimo operatorius (concatenate operator AKA pipe or
+paipas), naudojamas string reikšmių apjungimui paieškos rezultate:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+select "GAMINTOJAS: " || make, model FROM mashinos
+#+end_src
+
+#+RESULTS:
+| GAMINTOJAS:            |            | make | model |
+|------------------------+------------+------+-------|
+| GAMINTOJAS: Audi       | V8         |      |       |
+| GAMINTOJAS: Subaru     | SVX        |      |       |
+| GAMINTOJAS: Pontiac    | Bonneville |      |       |
+| GAMINTOJAS: Ford       | Probe      |      |       |
+| GAMINTOJAS: Dodge      | Daytona    |      |       |
+| GAMINTOJAS: Dodge      | Petrona    |      |       |
+| GAMINTOJAS: Volkswagen | Gofl       |      |       |
+| GAMINTOJAS: Volvo      | S40        |      |       |
+| GAMINTOJAS: Volvo      | S40        |      |       |
+| GAMINTOJAS: Ford       | Fiesta     |      |       |
+| GAMINTOJAS: Ford       | Fiesta     |      |       |
+| GAMINTOJAS: Peugeot    | Mondeo     |      |       |
+
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+select make||" "|| model AS "Full_name", year, price FROM mashinos
+#+end_src
+
+Šiuo atveju nurodėme, kaip vadinsime stulpelį t.y. full_name. Kitose
+DB, pvz Postgres, šiam veiksmui galime naudoti CONCAT paragrafą,
+tačiau SQLITE jis neveikia.
+
+#+RESULTS:
+| Full_name          | year | price |
+|--------------------+------+-------|
+| Audi V8            | 1992 | 95940 |
+| Subaru SVX         | 1993 | 14128 |
+| Pontiac Bonneville | 1991 | 94076 |
+| Ford Probe         | 1993 | 95940 |
+| Dodge Daytona      | 1989 | 23333 |
+| Dodge Petrona      | 1988 | 50000 |
+| Volkswagen Gofl    | 1988 | 50000 |
+| Volvo S40          | 1988 | 50000 |
+| Volvo S40          | 1988 | 50000 |
+| Ford Fiesta        | 1988 | 50000 |
+| Ford Fiesta        | 1988 | 50000 |
+| Peugeot Mondeo     | 1988 | 50000 |
+
+Skaičiavimai
+
+Užklausose galime nurodyti, kokius aritmetinius veiksmus
+norime atlikti su stulpeliu, prieš jį atvaizduojant rezultate:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+select make, model, 2021 - year AS "age" from mashinos
+#+end_src
+
+#+RESULTS:
+| make       | model      | age |
+|------------+------------+-----|
+| Audi       | V8         |  29 |
+| Subaru     | SVX        |  28 |
+| Pontiac    | Bonneville |  30 |
+| Ford       | Probe      |  28 |
+| Dodge      | Daytona    |  32 |
+| Dodge      | Petrona    |  33 |
+| Volkswagen | Gofl       |  33 |
+| Volvo      | S40        |  33 |
+| Volvo      | S40        |  33 |
+| Ford       | Fiesta     |  33 |
+| Ford       | Fiesta     |  33 |
+| Peugeot    | Mondeo     |  33 |
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+SELECT make, model, price, ROUND(price / 121.0 * 100, 2) AS "be PVM" FROM mashinos
+#+end_src
+
+Šiuo atveju naudojome funkciją ROUND gauto rezultato suapvalinimui.
+Nulis po kablelio (121.0) panaudotas tam, kad gautume float reikšmę
+pirmoje dalyboje.
+
+#+RESULTS:
+| make       | model      | price |   be PVM |
+|------------+------------+-------+----------|
+| Audi       | V8         | 95940 | 79289.26 |
+| Subaru     | SVX        | 14128 | 11676.03 |
+| Pontiac    | Bonneville | 94076 | 77748.76 |
+| Ford       | Probe      | 95940 | 79289.26 |
+| Dodge      | Daytona    | 23333 | 19283.47 |
+| Dodge      | Petrona    | 50000 | 41322.31 |
+| Volkswagen | Gofl       | 50000 | 41322.31 |
+| Volvo      | S40        | 50000 | 41322.31 |
+| Volvo      | S40        | 50000 | 41322.31 |
+| Ford       | Fiesta     | 50000 | 41322.31 |
+| Ford       | Fiesta     | 50000 | 41322.31 |
+| Peugeot    | Mondeo     | 50000 | 41322.31 |
+
+Grupavimas
+Grupavimui dažniausiai naudojamos funkcijos:
+
+~AVG()~ - nustato vidurkį grupei
+
+~COUNT()~ - nustato eilučių, kurių išraiška yra apibrėžta, kiekį lentelėje
+
+~MAX()~ - nustato didžiausią reikšmę
+
+~MIN()~ - nustato mažiausią reikšmę
+
+~SUM()~ - nustato bendrą sumą, ignoruojant neapibrėžtas reikšmes
+
+Funkcijų naudojimas be grupavimo:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+SELECT MIN(price), MAX(price), AVG(price) from mashinos
+#+end_src
+
+#+RESULTS:
+| MIN(price) | MAX(price) |       AVG(price) |
+|------------+------------+------------------|
+|      14128 |      95940 | 56118.0833333333 |
+
+Suraskime pigiausią fordą:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+SELECT make, model, min(price) FROM mashinos WHERE make="Ford"
+#+end_src
+
+#+RESULTS:
+| make | model  | min(price) |
+|------+--------+------------|
+| Ford | Fiesta |      50000 |
+
+Pavyzdžiai su grupavimu:
+
+Išrinkime kiek ir kokių automobilių yra lentelėje:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+SELECT make, count(*) FROM mashinos GROUP BY make ORDER BY count(*) DESC;
+#+end_src
+
+#+RESULTS:
+| make       | count(*) |
+|------------+----------|
+| Ford       |        3 |
+| Volvo      |        2 |
+| Dodge      |        2 |
+| Volkswagen |        1 |
+| Subaru     |        1 |
+| Pontiac    |        1 |
+| Peugeot    |        1 |
+| Audi       |        1 |
+
+Padarykime lentelę, kurioje matytųsi brangiausios spalvos:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+SELECT color, max(price), make, model FROM mashinos GROUP BY color ORDER BY price DESC
+#+end_src
+
+#+RESULTS:
+| color      | max(price) | make    | model      |
+|------------+------------+---------+------------|
+| Red        |      95940 | Audi    | V8         |
+| Orange1993 |      95940 | Ford    | Probe      |
+| Orange     |      94076 | Pontiac | Bonneville |
+| null       |      50000 | Volvo   | S40        |
+| Pink       |      50000 | Dodge   | Petrona    |
+|            |      50000 | Ford    | Fiesta     |
+| Green      |      23333 | Dodge   | Daytona    |
+| Aquamarine |      14128 | Subaru  | SVX        |
+
+Darant kompleksiškas užklausas, reikėtų laikytis tokio eiliškumo:
+
+- SELECT stulpelis, grupinė_funkcija
+- FROM lentelė
+- [WHERE sąlyga]
+- [GROUP BY sąrašas_grupavimui]
+- [HAVING grupės sąlyga]
+- [ORDER BY rūšiavimo sąlyga]
+
+
+#+begin_src sqlite :db ~/Dropbox/src/db/cars.db :colnames yes
+SELECT make, model, year, max(price) FROM mashinos WHERE make NOT IN ("Volvo") GROUP BY price HAVING year > 1990 ORDER BY make;
+#+end_src
+
+#+RESULTS:
+| make    | model      | year | max(price) |
+|---------+------------+------+------------|
+| Audi    | V8         | 1992 |      95940 |
+| Pontiac | Bonneville | 1991 |      94076 |
+| Subaru  | SVX        | 1993 |      14128 |
+
+Išrinktos brangiausios mašinos, kurių tarpe nėra toyotų, mercury ir
+volvo. Išfiltruotos tos, kurios senesnės už 1990m. Išrūšiuotos pagal
+gamintoją.
+
+#+RESULTS:
+
+PRAKTIKA: SQL WHERE CLAUSE
+
+Parsisiųskite darbuotojai2.db duomenų bazę, atsidarykite ją programoje
+DB Browser for SQLite ir skiltyje "Execute SQL" atlikite šias SQL
+užklausas:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai2.db :colnames yes
+select * from darbuotojas
+#+end_src
+
+#+RESULTS:
+| ID | VARDAS    | PAVARDĖ       | ASMENS_KODAS | PAREIGOS       |  DIRBA_NUO | SKYRIUS_ID | PROJEKTAS_ID |
+|----+-----------+---------------+--------------+----------------+------------+------------+--------------|
+|  1 | Martynas  | Jačas         |  38009200000 | Programuotojas | 2011-02-02 |          2 |            1 |
+|  2 | Goda      | Jablonkskaitė |  48602110000 | Vadybininkas   | 2009-04-06 |          3 |            2 |
+|  3 | Mantas    | Gabalis       |  39008200000 | Testuotojas    | 2012-12-15 |          2 |            1 |
+|  4 | Arnoldas  | Lukas         |  39402130000 | Programuotojas | 2002-02-30 |          2 |            2 |
+|  5 | Maja      | Jačiulytė     |  49803120000 | Buhalterė      | 2015-11-30 |          1 |            3 |
+|  6 | Mikas     | Taileikis     |  50004230000 | Programuotojas | 2008-05-25 |          2 |            4 |
+|  7 | Giedrius  | Vaicekauskas  |  38605300000 | Vadovas        | 2010-07-30 |          4 |            5 |
+|  8 | Romas     | Babavičius    |  38609190000 | Finansininkas  | 2011-09-30 |          1 |            5 |
+|  9 | Milda     | Babavičiūtė   |  48609190000 | Testuotojas    | 2010-07-15 |          2 |            2 |
+| 10 | Domas     | Sabaliauskas  |  39903130000 | Testuotojas    | 2016-08-15 |          2 |            2 |
+| 11 | Dainius   | Sabutis       |  39806230000 | Vadybininkas   | 2018-12-12 |          3 |            2 |
+| 12 | Tautvydas | Ubartas       |  38005300000 | Programuotojas | 2017-06-06 |          2 |            3 |
+| 13 | Henrikas  | Sabutis       |  39402020000 | Vadybininkas   | 2018-02-02 |          3 |            3 |
+| 14 | Arnoldas  | Jačas         |  38506300000 | Programuotojas | 2014-03-03 |          2 |            2 |
+| 15 | Jaunius   | Šindeikis     |  38803120000 | Vadovas        | 2014-06-08 |          2 |            1 |
+| 16 | Rimantas  | Kundrotas     |  38711120000 | Programuotojas | 2017-02-02 |          2 |            3 |
+| 17 | Egidijus  | Antanaitis    |  39002130000 | Testuotojas    | 2011-02-03 |          2 |            4 |
+| 18 | Lukas     | Antanaitis    |  38809130000 | Testuotojas    | 2011-12-02 |          2 |            4 |
+| 19 | Arnas     | Lukša         |  38807200000 |                | 2009-11-15 |            |            5 |
+| 20 | Urtė      | Lukaitė       |  60202020000 |                | 2005-02-02 |            |              |
+
+Išrinkite duomenis apie darbuotoją (asmens kodą, vardą ir pavardę) iš
+lentelės DARBUOTOJAS, kuris gimęs 1988 m. liepos 20 d.
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai2.db :colnames yes
+SELECT vardas, PAVARDĖ, asmens_kodas FROM darbuotojas where asmens_kodas LIKE '_880720%'
+#+end_src
+
+#+RESULTS:
+| VARDAS | PAVARDĖ | ASMENS_KODAS |
+|--------+---------+--------------|
+| Arnas  | Lukša   |  38807200000 |
+
+Išrinkite duomenis apie darbuotojus (nuo kada dirba, asmens kodą) iš
+lentelės DARBUOTOJAS, kurie būtų įsidarbinę nuo 2009 m. spalio 30 d.
+iki 2012 m. lapkričio 11d.
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai2.db :colnames yes
+SELECT dirba_nuo, asmens_kodas FROM darbuotojas where dirba_nuo between "2009-10-30" and "2017-11-11" Order by dirba_nuo
+#+end_src
+
+#+RESULTS:
+|  DIRBA_NUO | ASMENS_KODAS |
+|------------+--------------|
+| 2009-11-15 |  38807200000 |
+| 2010-07-15 |  48609190000 |
+| 2010-07-30 |  38605300000 |
+| 2011-02-02 |  38009200000 |
+| 2011-02-03 |  39002130000 |
+| 2011-09-30 |  38609190000 |
+| 2011-12-02 |  38809130000 |
+| 2012-12-15 |  39008200000 |
+| 2014-03-03 |  38506300000 |
+| 2014-06-08 |  38803120000 |
+| 2015-11-30 |  49803120000 |
+| 2016-08-15 |  39903130000 |
+| 2017-02-02 |  38711120000 |
+| 2017-06-06 |  38005300000 |
+
+Išrinkite duomenis apie darbuotojus (vardą, Skyriaus ID ir Projekto
+ID) iš lentelės DARBUOTOJAS, kurie dirba 2-ame ir 3-ame skyriuose
+(panaudojant IN operatorių).
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai2.db :colnames yes
+  SELECT vardas, SKYRIUS_ID, PROJEKTAS_ID FROM darbuotojas WHERE skyrius_id in (2,3)
+  -- select * from darbuotojas
+#+end_src
+
+#+RESULTS:
+| VARDAS    | SKYRIUS_ID | PROJEKTAS_ID |
+|-----------+------------+--------------|
+| Martynas  |          2 |            1 |
+| Goda      |          3 |            2 |
+| Mantas    |          2 |            1 |
+| Arnoldas  |          2 |            2 |
+| Mikas     |          2 |            4 |
+| Milda     |          2 |            2 |
+| Domas     |          2 |            2 |
+| Dainius   |          3 |            2 |
+| Tautvydas |          2 |            3 |
+| Henrikas  |          3 |            3 |
+| Arnoldas  |          2 |            2 |
+| Jaunius   |          2 |            1 |
+| Rimantas  |          2 |            3 |
+| Egidijus  |          2 |            4 |
+| Lukas     |          2 |            4 |
+
+Išrinkite duomenis (vardą, pavarde ir asmens kodą) apie visas moteris
+iš lentelės DARBUOTOJAS (panaudojant operatorių LIKE).
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai2.db :colnames yes
+  select * from darbuotojas where asmens_kodas like "4%"
+  -- select * from darbuotojas
+#+end_src
+
+#+RESULTS:
+| ID | VARDAS | PAVARDĖ       | ASMENS_KODAS | PAREIGOS     |  DIRBA_NUO | SKYRIUS_ID | PROJEKTAS_ID |
+|----+--------+---------------+--------------+--------------+------------+------------+--------------|
+|  2 | Goda   | Jablonkskaitė |  48602110000 | Vadybininkas | 2009-04-06 |          3 |            2 |
+|  5 | Maja   | Jačiulytė     |  49803120000 | Buhalterė    | 2015-11-30 |          1 |            3 |
+|  9 | Milda  | Babavičiūtė   |  48609190000 | Testuotojas  | 2010-07-15 |          2 |            2 |
+
+Išrinkite visus duomenis apie visus darbuotojus iš lentelės
+DARBUOTOJAS, kurie yra gimę 12 dieną (panaudojant operatorių LIKE).
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai2.db :colnames yes
+  select * from darbuotojas where asmens_kodas like "_____12____"
+  -- select * from darbuotojas
+#+end_src
+
+#+RESULTS:
+| ID | VARDAS   | PAVARDĖ   | ASMENS_KODAS | PAREIGOS       |  DIRBA_NUO | SKYRIUS_ID | PROJEKTAS_ID |
+|----+----------+-----------+--------------+----------------+------------+------------+--------------|
+|  5 | Maja     | Jačiulytė |  49803120000 | Buhalterė      | 2015-11-30 |          1 |            3 |
+| 15 | Jaunius  | Šindeikis |  38803120000 | Vadovas        | 2014-06-08 |          2 |            1 |
+| 16 | Rimantas | Kundrotas |  38711120000 | Programuotojas | 2017-02-02 |          2 |            3 |
+
+Išrinkite visus projektus iš lentelės PROJEKTAS, kurių pavadinime
+antra raidė būtų “a”.
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai2.db :colnames yes
+  select * from projektas where pavadinimas like "_a%"
+  -- select * from projektas
+  -- select * from darbuotojas
+#+end_src
+
+#+RESULTS:
+| ID | PAVADINIMAS |
+|----+-------------|
+|  1 | Galerija    |
+|  4 | Pardavimai  |
+
+Išrinkite visus darbuotojus iš lentelės DARBUOTOJAS, kuriems
+nepaskirtos jokios pareigos.
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai2.db :colnames yes
+  -- select * from projektas where pavadinimas like "_a%"
+  -- select * from projektas
+  select * from darbuotojas where pareigos is null
+#+end_src
+
+#+RESULTS:
+| ID | VARDAS | PAVARDĖ | ASMENS_KODAS | PAREIGOS |  DIRBA_NUO | SKYRIUS_ID | PROJEKTAS_ID |
+|----+--------+---------+--------------+----------+------------+------------+--------------|
+| 19 | Arnas  | Lukša   |  38807200000 |          | 2009-11-15 |            |            5 |
+| 20 | Urtė   | Lukaitė |  60202020000 |          | 2005-02-02 |            |              |
+
+Išrinkite duomenis apie darbuotojus (vardą, pavardę, nuo kada dirba ir
+pareigas), kurie dirba nuo 2011-02-02 ir jų pareigos yra
+Programuotojai.
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai2.db :colnames yes
+  select vardas, PAVARDĖ, dirba_nuo, pareigos from darbuotojas where pareigos="Programuotojas" and dirba_nuo="2011-02-02"
+  -- select * from projektas
+  -- select * from darbuotojas
+#+end_src
+
+#+RESULTS:
+| VARDAS   | PAVARDĖ |  DIRBA_NUO | PAREIGOS       |
+|----------+---------+------------+----------------|
+| Martynas | Jačas   | 2011-02-02 | Programuotojas |
+
+Išrinkite duomenis apie darbuotojus (vardą, pavardę, Skyriaus ID ir
+Projekto ID) iš lentelės DARBUOTOJAS, kurie yra iš Gamybos (2)
+skyriaus arba 1 projekto.
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai2.db :colnames yes
+  select vardas, PAVARDĖ, skyrius_id, projektas_id from darbuotojas where skyrius_id = "2" or projektas_id="1"
+  -- select * from projektas
+  -- select * from darbuotojas
+#+end_src
+
+#+RESULTS:
+| VARDAS    | PAVARDĖ      | SKYRIUS_ID | PROJEKTAS_ID |
+|-----------+--------------+------------+--------------|
+| Martynas  | Jačas        |          2 |            1 |
+| Mantas    | Gabalis      |          2 |            1 |
+| Arnoldas  | Lukas        |          2 |            2 |
+| Mikas     | Taileikis    |          2 |            4 |
+| Milda     | Babavičiūtė  |          2 |            2 |
+| Domas     | Sabaliauskas |          2 |            2 |
+| Tautvydas | Ubartas      |          2 |            3 |
+| Arnoldas  | Jačas        |          2 |            2 |
+| Jaunius   | Šindeikis    |          2 |            1 |
+| Rimantas  | Kundrotas    |          2 |            3 |
+| Egidijus  | Antanaitis   |          2 |            4 |
+| Lukas     | Antanaitis   |          2 |            4 |
+
+Išrinkite visus darbuotojų vardus, išskyrus tuos, kurių vardai
+prasideda raide “A” .
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai2.db :colnames yes
+  select vardas from darbuotojas where vardas like 'A%'
+  -- select vardas, PAVARDĖ, skyrius_id, projektas_id from darbuotojas where skyrius_id = "2" or projektas_id="1"
+  -- select * from projektas
+  -- select * from darbuotojas
+#+end_src
+
+#+RESULTS:
+| VARDAS   |
+|----------|
+| Arnoldas |
+| Arnoldas |
+| Arnas    |
+
+Išrinkite duomenis apie darbuotojus (vardą, pavardę ir nuo kada dirba)
+iš lentelės DARBUOTOJAS ir išrikiuokite visus duomenis nuo dirbančio
+seniausiai iki naujausiai.
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai2.db :colnames yes
+  select vardas, PAVARDĖ, dirba_nuo from darbuotojas order by dirba_nuo
+  -- select vardas, PAVARDĖ, skyrius_id, projektas_id from darbuotojas where skyrius_id = "2" or projektas_id="1"
+  -- select * from projektas
+  -- select * from darbuotojas
+#+end_src
+
+#+RESULTS:
+| VARDAS    | PAVARDĖ       |  DIRBA_NUO |
+|-----------+---------------+------------|
+| Arnoldas  | Lukas         | 2002-02-30 |
+| Urtė      | Lukaitė       | 2005-02-02 |
+| Mikas     | Taileikis     | 2008-05-25 |
+| Goda      | Jablonkskaitė | 2009-04-06 |
+| Arnas     | Lukša         | 2009-11-15 |
+| Milda     | Babavičiūtė   | 2010-07-15 |
+| Giedrius  | Vaicekauskas  | 2010-07-30 |
+| Martynas  | Jačas         | 2011-02-02 |
+| Egidijus  | Antanaitis    | 2011-02-03 |
+| Romas     | Babavičius    | 2011-09-30 |
+| Lukas     | Antanaitis    | 2011-12-02 |
+| Mantas    | Gabalis       | 2012-12-15 |
+| Arnoldas  | Jačas         | 2014-03-03 |
+| Jaunius   | Šindeikis     | 2014-06-08 |
+| Maja      | Jačiulytė     | 2015-11-30 |
+| Domas     | Sabaliauskas  | 2016-08-15 |
+| Rimantas  | Kundrotas     | 2017-02-02 |
+| Tautvydas | Ubartas       | 2017-06-06 |
+| Henrikas  | Sabutis       | 2018-02-02 |
+| Dainius   | Sabutis       | 2018-12-12 |
+
+Išrinkite duomenis apie darbuotojus (vardą, pavardę ir nuo kada dirba)
+iš lentelės DARBUOTOJAS ir išrikiuokite visus duomenis nuo dirbančio
+naujausiai iki seniausiai.
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai2.db :colnames yes
+  select vardas, PAVARDĖ, dirba_nuo from darbuotojas order by dirba_nuo DESC
+#+end_src
+
+#+RESULTS:
+| VARDAS    | PAVARDĖ       |  DIRBA_NUO |
+|-----------+---------------+------------|
+| Dainius   | Sabutis       | 2018-12-12 |
+| Henrikas  | Sabutis       | 2018-02-02 |
+| Tautvydas | Ubartas       | 2017-06-06 |
+| Rimantas  | Kundrotas     | 2017-02-02 |
+| Domas     | Sabaliauskas  | 2016-08-15 |
+| Maja      | Jačiulytė     | 2015-11-30 |
+| Jaunius   | Šindeikis     | 2014-06-08 |
+| Arnoldas  | Jačas         | 2014-03-03 |
+| Mantas    | Gabalis       | 2012-12-15 |
+| Lukas     | Antanaitis    | 2011-12-02 |
+| Romas     | Babavičius    | 2011-09-30 |
+| Egidijus  | Antanaitis    | 2011-02-03 |
+| Martynas  | Jačas         | 2011-02-02 |
+| Giedrius  | Vaicekauskas  | 2010-07-30 |
+| Milda     | Babavičiūtė   | 2010-07-15 |
+| Arnas     | Lukša         | 2009-11-15 |
+| Goda      | Jablonkskaitė | 2009-04-06 |
+| Mikas     | Taileikis     | 2008-05-25 |
+| Urtė      | Lukaitė       | 2005-02-02 |
+| Arnoldas  | Lukas         | 2002-02-30 |
+
+Išrinkite iš lentelės DARBUOTOJAS projektų ID, kurie būtų minimalus ir
+maksimalus skaičius.
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai2.db :colnames yes
+  SELECT min(PROJEKTAS_ID), max(PROJEKTAS_ID) from DARBUOTOJAS
+#+end_src
+
+#+RESULTS:
+| min(PROJEKTAS_ID) | max(PROJEKTAS_ID) |
+|-------------------+-------------------|
+|                 1 |                 5 |
+
+Išrinkite duomenis apie tai, kiek kiekviename projekte yra priskirta
+žmonių (projekto numeris ir skaičius, kiek jame dalyvauja žmonių).
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai2.db :colnames yes
+  select projektas_id, count() from darbuotojas group by projektas_id
+#+end_src
+
+#+RESULTS:
+| PROJEKTAS_ID | count() |
+|--------------+---------|
+|              |       1 |
+|            1 |       3 |
+|            2 |       6 |
+|            3 |       4 |
+|            4 |       3 |
+|            5 |       3 |
+
+#14 punkto užklausą pakoreguokite taip, kad rodytų tik tuos projektus,
+kuriems priskirti daugiau nei 3 darbuotojai.
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai2.db :colnames yes
+  select projektas_id, count() from darbuotojas group by projektas_id having count() >3
+#+end_src
+
+#+RESULTS:
+| PROJEKTAS_ID | count() |
+|--------------+---------|
+|            2 |       6 |
+|            3 |       4 |
+
+Išrinkite duomenis (projekto numeris, pareigos, skaičius) iš lentelės
+DARBUOTOJAS, kiek programuotojų dirba kiekviename projekte.
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai2.db :colnames yes
+SELECT PROJEKTAS_ID, PAREIGOS, count() FROM DARBUOTOJAS WHERE PAREIGOS = 'Programuotojas' group by PROJEKTAS_ID
+#+end_src
+
+#+RESULTS:
+| PROJEKTAS_ID | PAREIGOS       | count() |
+|--------------+----------------+---------|
+|            1 | Programuotojas |       1 |
+|            2 | Programuotojas |       2 |
+|            3 | Programuotojas |       2 |
+|            4 | Programuotojas |       1 |
+* Lesson 3 - Darbas su SQL Python aplinkoje
+** intro
+Python aplinkoje darbas su duomenų bazėmis vyksta importavus atitinkamos duomenų bazės tvarkyklę, pvz:
+
+Postrgres - psycopg2
+
+MySQL - mysql-connector-python
+
+SQLite - sqlite3
+
+Pythone SQLite tvarkyklės papildomai diegti nereikia, ji yra integruota kartu su Python.
+
+Darbas atrodo maždaug taip:
+
+#+begin_src python
+import sqlite3
+
+conn = sqlite3.connect('zmones.db')
+c = conn.cursor()
+
+query = '''
+CREATE TABLE draugai (
+f_name VARCHAR(50),
+l_name VARCHAR(50),
+email VARCHAR(100)
+);
+'''
+
+c.execute(query)
+conn.commit()
+conn.close()
+#+end_src
+
+Panagrinėkime detaliau:
+
+Importavome tvarkylę sqlite3;
+
+Sukūrėme prisijungimo objektą conn. Jeigu prieš tai neturėjome failo zmones.db, jis sukuriamas automatiškai;
+
+conn pagrindu sukūrėme kursoriaus objektą c. Su jo metodais vykdomos SQL užklausos;
+
+query yra mūsų SQL užklausa;
+
+Į kursoriaus metodo excecute parametrus dedame savo užklausą vykdymui;
+
+conn.commit() - išsaugo pakeitimus duomenų bazėje;
+
+conn.close() - uždarome atidarytą prisijungimą.
+
+Jeigu dar kartą leistumėm tą pačią programą, gautumėm klaidą, kadangi
+tokia lentelė jau sukurta. Todėl programose kuriant lenteles, pravartu
+papildyti sąlyga:
+
+#+begin_src sqlite
+CREATE TABLE IF NOT EXISTS lentelė (
+    ....
+#+end_src
+
+** Įrašymas
+Vykdomas taip pat, skiriasi tik užklausa:
+
+
+#+begin_src python
+query = '''
+INSERT INTO draugai (f_name, l_name, email)
+VALUES ("Jonas", "Viršaitis", "ponasjonas@gmail.com");
+'''
+#+end_src
+
+Tam, kad po kiekvienos užklausos nereikėtų uždarinėti prisijungimo,
+galime naudoti context manager'į:
+
+#+begin_src python
+import sqlite3
+
+conn = sqlite3.connect("duomenu_baze.db")
+c = conn.cursor()
+
+with conn:
+    c.execute("INSERT INTO draugai VALUES ('Domantas', 'Rutkauskas', 'd.rutkauskas@imone.lt')")
+    c.execute("INSERT INTO draugai VALUES ('Rimas', 'Radzevičius', 'RR@gmail.com')")
+#+end_src
+
+** Įrašų paieška
+
+.fetchone():
+
+#+begin_src python
+with conn:
+    c.execute("SELECT * From darbuotojai WHERE pavarde='Rutkauskas'")
+    print(c.fetchall())
+#+end_src
+
+# ('Domantas', 'Rutkauskas', 'd.rutkauskas@imone.lt')
+
+kitas pvz.:
+
+#+begin_src python
+with conn:
+    c.execute("SELECT * From draugai WHERE l_name LIKE 'R%'")
+    print(c.fetchone())
+# ('Domantas', 'Rutkauskas', 'd.rutkauskas@imone.lt')
+#+end_src
+
+Jeigu rezultatų daugiau, negu vienas, .fetchone() mums spausdina PIRMĄ
+rezultatą. Norint gauti juos visus, turėtumem naudoti .fetchall():
+
+#+begin_src python
+with conn:
+    c.execute("SELECT * From draugai WHERE l_name LIKE 'R%'")
+    print(c.fetchall())
+#+end_src
+
+** Įrašų keitimas ir trynimas
+
+#+begin_src python
+with conn:
+    c.execute("UPDATE draugai SET email='naujas.email@aol.com' WHERE l_name='Radzevičius'")
+
+with conn:
+    c.execute("DELETE from draugai WHERE l_name='Rutkauskas'")
+#+end_src
+
+Įrašų atnaujinimui ir trynimui nereikia naudoti jokių specifinių metodų.
+
+** Dinaminės užklausos
+
+Jeigu norėtume užklausoje panaudoti kintamuosius iš kodo, vienas iš galimų variantų būtų:
+
+#+begin_src python
+import sqlite3
+
+conn = sqlite3.connect("zmones.db")
+c = conn.cursor()
+
+vardas = input('Įveskite vardą: ')
+with conn:
+    c.execute(f"SELECT * From draugai WHERE f_name = '{vardas}'")
+    res = c.fetchall()
+if res:
+    print(res)
+else:
+    print('nėra tokio vardo!')
+#+end_src
+
+#+begin_src python
+Įveskite vardą: Domantas
+[('Domantas', 'Rutkauskas', 'd.rutkauskas@imone.lt')]
+#+end_src
+
+Tarkime, vardas suveikia kaip slaptažodis ir vartotojas gali matyti
+savo duomenis (labai primityvus pavyzdys :) ).
+
+pamėginkime dar kartą:
+
+#+begin_src python
+Įveskite vardą: 'OR 1=1--
+[('Jonas', 'Viršaitis', 'ponasjonas@gmail.com'), ('Jurgis', 'Vagelis', 'ponasjurgis@gmail.com'), ('Domantas', 'Rutkauskas', 'd.rutkauskas@imone.lt'), ('Rimas', 'Radzevičius', 'RR@gmail.com')]
+#+end_src
+
+Atsitiko taip, kad mes pratęsėme SQL užklausą ir ji tapo tokia:
+
+#+begin_src sqlite
+SELECT * From draugai WHERE f_name = '' OR 1=1--'
+#+end_src
+
+Tai yra vadinama SQL Injection ataka, kuri veikia, kuomet vartotojui
+yra palikta galimybė pratęsti SQL užklausą.
+
+Niekada nekelkite savo kintamųjų tiesiai į užklausas! :)
+
+** Saugus būdas
+
+sqlite3 (kaip ir kitos DB tvarkyklės) turi integruotą sistemą, saugiam
+kintamųjų naudojimui užklausose:
+
+#+begin_src python
+with conn:
+    c.execute("SELECT * From draugai WHERE f_name =?", (vardas,))
+    res = c.fetchall()
+#+end_src
+
+Šiuo atveju klaustukas užklausoje yra pakeičiamas antrame parametre
+nurodytomis vertėmis. Jis turi būti pateiktas tuple formatu. Dabar
+viskas veikia, kaip priklauso:
+
+
+#+begin_src python
+Įveskite vardą: Domantas
+[('Domantas', 'Rutkauskas', 'd.rutkauskas@imone.lt')]
+#+end_src
+
+#+begin_src python
+Įveskite vardą: OR 1=1--
+nėra tokio vardo!
+#+end_src
+
+Užklausoje galime naudoti ir daugiau klaustukų:
+
+#+begin_src python
+vardas = 'Algimantas'
+pavarde = 'Guobys'
+email = 'AGuobys@gmail.com'
+
+with conn:
+    c.execute("INSERT INTO draugai VALUES(?,?,?)", (vardas, pavarde, email))
+#+end_src
+
+** excecutemany()
+Galime įterpti daug įrašų į lentelę vienu kartu, svarbu
+jas paduoti tinkamu formatu (list of tuples):
+
+#+begin_src python
+draugai = [
+    ('Jonas', 'Jonaitis', 'jjonaitis@mail.lt'),
+    ('Petras', 'Miltelis', 'petras@pastas.lt'),
+    ('Inga', 'Guobytė', 'ingag@koksskirtumas.lt')
+]
+
+with conn:
+    c.executemany("INSERT INTO draugai VALUES(?,?,?)", draugai)
+#+end_src
+
+** Rowid
+
+SQLite turi ypatumą - ID stulpelį sukuria automatiškai, todėl kuriant
+lentelę nebūtina tuo rūpintis. Stulpelis vadinasi rowid:
+
+#+begin_src python
+ids = (1, 3, 5)
+
+with conn:
+    c.execute("SELECT * FROM draugai WHERE rowid IN (?,?,?)", ids)
+    print(c.fetchall())
+#+end_src
+
+Kitose duomenų bazėse reikėtų kurti atskirą ID, PostgreSQL pvz:
+
+#+begin_src sqlite
+CREATE TABLE lentele(
+    id SERIAL NOT NULL PRIMARY KEY
+....
+#+end_src
+* Lesson 4 - Duomenu jungimas(joins)
+[[https://www.youtube.com/watch?v=9yeOJ0ZMUYw&ab_channel=Socratica][SQL Joins Explained |¦| Joins in SQL |¦| SQL Tutorial]]
+** intro
+Yra du pagrindiniai būdai jungti duomenis iš skirtingų lentelių,
+vienas iš jų yra naudojant WHERE:
+
+
+#+begin_src sqlite
+SELECT <stulpeliai> FROM <lentelė1>, <lentelė2> WHERE <jungimo
+sąlyga> [AND <paieškos sąlyga>];
+#+end_src
+
+Kitas būdas naudojant JOIN:
+
+#+begin_src sqlite
+SELECT <stulpeliai> FROM <lentelė1> JOIN <lentelė 2> ON
+<jungimo sąlyga> [WHERE <paieškos sąlyga>];
+#+end_src
+
+** Where
+#+begin_src sqlite
+SELECT person.first_name, person.last_name, car.plate
+FROM person, car
+WHERE person.car_id = car.id
+#+end_src
+
+Užklausa iš 3-jų lentelių:
+
+#+begin_src sqlite
+SELECT last_name, make, name
+from person, car, company
+WHERE person.car_id = car.id AND person.company_id = company.id
+ORDER BY name
+#+end_src
+
+Pavyzdys su papildomomis sąlygomis:
+
+#+begin_src sqlite
+SELECT last_name, make, name
+from person, car, company
+WHERE person.car_id = car.id
+AND person.company_id = company.id
+AND make = "Ford"
+ORDER BY name DESC;
+#+end_src
+
+** Join
+
+Atlikime tuos pačius veiksmus su JOIN:
+
+#+begin_src sqlite
+SELECT person.first_name, person.last_name, car.plate
+FROM person
+JOIN car
+ON person.car_id = car.id
+#+end_src
+
+#+begin_src sqlite
+SELECT last_name, make, name
+FROM person
+JOIN car ON person.car_id = car.id
+JOIN company ON person.company_id = company.id
+ORDER BY name
+#+end_src
+
+#+begin_src sqlite
+SELECT last_name, make, name
+FROM person
+JOIN car ON person.car_id = car.id
+JOIN company ON person.company_id = company.id
+WHERE make = "Ford"
+ORDER BY name DESC
+#+end_src
+
+Kiek sudėtingesnis - suskaičiuokime, kiek kokioje kompanijoje dirba
+žmonių:
+
+#+begin_src sqlite
+SELECT company.name, count(*) as count
+FROM person
+JOIN company
+ON person.company_id = company.id
+GROUP BY company.name
+#+end_src
+
+Atrinkime tik tas kompanijas, kuriose dirba daugiau, negu 3
+automobilių savininkai:
+
+#+begin_src sqlite
+SELECT company.name, count()
+FROM person
+JOIN company ON person.company_id = company.id
+GROUP BY company.name
+HAVING count() > 3
+#+end_src
+
+Kokie yra Apple automobilių numeriai?
+
+#+begin_src sqlite
+SELECT plate, name
+FROM person
+LEFT JOIN car ON person.car_id = car.id
+JOIN company ON person.company_id = company.id
+WHERE company.name = "Apple"
+#+end_src
+
+Išrinkime žmones, mašinų markes ir kontorų pavadinimus tik iš tų
+kontorų, kuriose dirba ne daugiau kaip 3 žmonės iš sąrašo:
+
+#+begin_src sqlite
+SELECT first_name, last_name, make, company.name
+FROM person
+JOIN company on person.company_id = company.id
+JOIN car on person.car_id = car.id
+WHERE person.company_id IN
+
+(SELECT company_id
+FROM person
+GROUP BY company_id
+HAVING count() <= 3)
+ORDER BY company.name
+#+end_src
+
+** Join rusys
+
+- INNER JOIN yra standartinis JOIN, kurį naudojome iki šiol. Returns
+  connected, maching rows
+
+- LEFT JOIN - jungimo rezultatas yra papildomas kairiosios (pirmosios)
+  lentelės nesujungiamomis eilutėmis
+
+- RIGHT JOIN - jungimo rezultatas yra papildomas dešiniosios
+  (antrosios) lentelės nesujungiamomis eilutėmis
+
+- FULL OUTER JOIN - papildoma abiejų lentelių eilutėmis
+  nesujungiamomis eilutėmis
+
+Populiariausias apart standartinio JOIN yra LEFT JOIN, jį ir
+panagrinėsime:
+
+#+begin_src sqlite
+SELECT last_name, make, model
+FROM person
+LEFT JOIN car
+ON person.car_id = car.id
+#+end_src
+
+Rezultate matome, kad sujungtos buvo ir tos eilutės, kur person neturi
+car_id.
+** Praktika
+
+Parsisiųskite [[https://github.com/robotautas/kursas/blob/master/DB/db3/darbuotojai3.db][darbuotojai3.db]] duomenų bazę, atsidarykite ją programoje
+DB Browser for SQLite ir skiltyje "Execute SQL" atlikite šias SQL
+užklausas:
+
+Išrinkite darbuotojų vardus ir pavardes kartu su projekto pavadinimu,
+kuriame jie dirba.
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai3.db :colnames yes
+  -- SELECT *
+  SELECT VARDAS, PAVARDĖ, PAVADINIMAS
+  FROM DARBUOTOJAS
+  INNER JOIN PROJEKTAS
+  ON DARBUOTOJAS.PROJEKTAS_ID = PROJEKTAS.ID
+#+end_src
+
+#+RESULTS:
+| VARDAS    | PAVARDĖ       | PAVADINIMAS       |
+|-----------+---------------+-------------------|
+| Martynas  | Jačas         | Galerija          |
+| Goda      | Jablonkskaitė | Projektų valdymas |
+| Mantas    | Gabalis       | Galerija          |
+| Arnoldas  | Lukas         | Projektų valdymas |
+| Maja      | Jačiulytė     | Apskaita          |
+| Mikas     | Taileikis     | Pardavimai        |
+| Giedrius  | Vaicekauskas  | Svetainė          |
+| Romas     | Babavičius    | Svetainė          |
+| Milda     | Babavičiūtė   | Projektų valdymas |
+| Domas     | Sabaliauskas  | Projektų valdymas |
+| Dainius   | Sabutis       | Projektų valdymas |
+| Tautvydas | Ubartas       | Apskaita          |
+| Henrikas  | Sabutis       | Apskaita          |
+| Arnoldas  | Jačas         | Projektų valdymas |
+| Jaunius   | Šindeikis     | Galerija          |
+| Rimantas  | Kundrotas     | Apskaita          |
+| Egidijus  | Antanaitis    | Pardavimai        |
+| Lukas     | Antanaitis    | Pardavimai        |
+| Arnas     | Lukša         | Svetainė          |
+
+Išsirinkite darbuotojų dirbančių projekte Galerija vardus, pavardes ir
+projekto pavadinimą.
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai3.db :colnames yes
+  SELECT VARDAS, PAVARDĖ, PAVADINIMAS
+  from DARBUOTOJAS
+  JOIN PROJEKTAS
+  on PROJEKTAS.ID = DARBUOTOJAS.PROJEKTAS_ID where projektas.pavadinimas = "Galerija"
+#+end_src
+
+#+RESULTS:
+| VARDAS   | PAVARDĖ   | PAVADINIMAS |
+|----------+-----------+-------------|
+| Martynas | Jačas     | Galerija    |
+| Mantas   | Gabalis   | Galerija    |
+| Jaunius  | Šindeikis | Galerija    |
+
+
+Išrinkite visus projekto Projektų valdymas vykdytojus dirbančius
+Pardavimų skyriuje.
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai3.db :colnames yes
+  SELECT * from DARBUOTOJAS
+  JOIN SKYRIUS
+  on SKYRIUS.id = DARBUOTOJAS.SKYRIUS_ID
+  JOIN PROJEKTAS ON PROJEKTAS.ID = DARBUOTOJAS.PROJEKTAS_ID WHERE SKYRIUS.PAVADINIMAS = "Gamybos" AND PROJEKTAS.PAVADINIMAS = "Projektų valdymas"
+#+end_src
+
+#+RESULTS:
+| ID | VARDAS   | PAVARDĖ      | ASMENS_KODAS | PAREIGOS       |  DIRBA_NUO | BAZINIS_ATLYGINIMAS | PRIEDAI | SKYRIUS_ID | PROJEKTAS_ID | ID | PAVADINIMAS | ID | PAVADINIMAS       |
+|----+----------+--------------+--------------+----------------+------------+---------------------+---------+------------+--------------+----+-------------+----+-------------------|
+|  4 | Arnoldas | Lukas        |  39402130000 | Programuotojas | 2002-02-30 |              2200.0 |     0.0 |          2 |            2 |  2 | Gamybos     |  2 | Projektų valdymas |
+|  9 | Milda    | Babavičiūtė  |  48609190000 | Testuotojas    | 2010-07-15 |              1300.0 |   200.0 |          2 |            2 |  2 | Gamybos     |  2 | Projektų valdymas |
+| 10 | Domas    | Sabaliauskas |  39903130000 | Testuotojas    | 2016-08-15 |              1200.0 |   200.0 |          2 |            2 |  2 | Gamybos     |  2 | Projektų valdymas |
+| 14 | Arnoldas | Jačas        |  38506300000 | Programuotojas | 2014-03-03 |              1950.0 |   200.0 |          2 |            2 |  2 | Gamybos     |  2 | Projektų valdymas |
+
+
+Išrinkite visas moteris, dirbančias projekte Projektų valdymas ir
+išveskite į ekraną jų vardus, pavardes ir projekto pavadinimą.
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai3.db :colnames yes
+  SELECT VARDAS, PAVARDĖ, PAVADINIMAS
+  FROM DARBUOTOJAS
+  JOIN PROJEKTAS
+  ON PROJEKTAS.ID = DARBUOTOJAS.PROJEKTAS_ID WHERE (ASMENS_KODAS LIKE "4%" OR ASMENS_KODAS like "6%") AND PROJEKTAS.PAVADINIMAS = "Projektų valdymas"
+#+end_src
+
+#+RESULTS:
+| VARDAS | PAVARDĖ       | PAVADINIMAS       |
+|--------+---------------+-------------------|
+| Goda   | Jablonkskaitė | Projektų valdymas |
+| Milda  | Babavičiūtė   | Projektų valdymas |
+
+Išrinkite skyrių pavadinimus su juose dirbančių darbuotojų skaičiumi.
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai3.db :colnames yes
+  SELECT SKYRIUS.PAVADINIMAS, count()
+  FROM DARBUOTOJAS
+  JOIN SKYRIUS
+  on SKYRIUS.ID = DARBUOTOJAS.SKYRIUS_ID GROUP by SKYRIUS.PAVADINIMAS
+#+end_src
+
+#+RESULTS:
+| PAVADINIMAS | count() |
+|-------------+---------|
+| Finansų     |       2 |
+| Gamybos     |      12 |
+| Pardavimų   |       3 |
+| Vadovybė    |       1 |
+
+Apribokite #5 užklausos rezultatą taip, kad rodytų tik tuos skyrius
+kur dirba bent 5 darbuotojai.
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai3.db :colnames yes
+  SELECT SKYRIUS.PAVADINIMAS, count()
+  FROM DARBUOTOJAS
+  JOIN SKYRIUS
+  on SKYRIUS.ID = DARBUOTOJAS.SKYRIUS_ID GROUP by SKYRIUS.PAVADINIMAS HAVING count(*) > 5
+#+end_src
+
+#+RESULTS:
+| PAVADINIMAS | count() |
+|-------------+---------|
+| Gamybos     |      12 |
+
+Išrinkite darbuotojus (vardus, pavardes, pareigas) kartu su skyrių,
+kuriuose jie dirba pavadinimais, tačiau nesančius tų skyrių vadovais.
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai3.db :colnames yes
+  SELECT VARDAS, PAVARDĖ, PAREIGOS, SKYRIUS.PAVADINIMAS
+  FROM DARBUOTOJAS
+  JOIN SKYRIUS
+  on SKYRIUS.ID = DARBUOTOJAS.SKYRIUS_ID WHERE NOT PAREIGOS="Vadovas"
+#+end_src
+
+#+RESULTS:
+| VARDAS    | PAVARDĖ       | PAREIGOS       | PAVADINIMAS |
+|-----------+---------------+----------------+-------------|
+| Martynas  | Jačas         | Programuotojas | Gamybos     |
+| Goda      | Jablonkskaitė | Vadybininkas   | Pardavimų   |
+| Mantas    | Gabalis       | Testuotojas    | Gamybos     |
+| Arnoldas  | Lukas         | Programuotojas | Gamybos     |
+| Maja      | Jačiulytė     | Buhalterė      | Finansų     |
+| Mikas     | Taileikis     | Programuotojas | Gamybos     |
+| Romas     | Babavičius    | Finansininkas  | Finansų     |
+| Milda     | Babavičiūtė   | Testuotojas    | Gamybos     |
+| Domas     | Sabaliauskas  | Testuotojas    | Gamybos     |
+| Dainius   | Sabutis       | Vadybininkas   | Pardavimų   |
+| Tautvydas | Ubartas       | Programuotojas | Gamybos     |
+| Henrikas  | Sabutis       | Vadybininkas   | Pardavimų   |
+| Arnoldas  | Jačas         | Programuotojas | Gamybos     |
+| Rimantas  | Kundrotas     | Programuotojas | Gamybos     |
+| Egidijus  | Antanaitis    | Testuotojas    | Gamybos     |
+| Lukas     | Antanaitis    | Testuotojas    | Gamybos     |
+
+
+Sukurkite naują įrašą lentelėje “DARBUOTOJAS” (asmens kodas:
+38807117896, vardas: Pranas, pavardė: Logis, Dirba nuo: 2009-11-12,
+visa kita - Null).
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai3.db :colnames yes
+  INSERT INTO DARBUOTOJAS
+  VALUES (NULL, "Pranas", "Logis", 38807117896, NULL, "2009-11-12", NULL, NULL, NULL, NULL)
+#+end_src
+
+Išrinkite darbuotojų vardus, pavardes ir skyriaus pavadinimą.
+Rodykite, net ir tuos darbuotojus, kurie nedirba jokiame skyriuje
+(skyriaus pavadinimą pasiimkite iš lentelės SKYRIUS).
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai3.db :colnames yes
+  SELECT VARDAS, PAVARDĖ, PAVADINIMAS
+  FROM DARBUOTOJAS
+  LEFT JOIN SKYRIUS on DARBUOTOJAS.SKYRIUS_ID = SKYRIUS.ID
+#+end_src
+
+#+RESULTS:
+| VARDAS    | PAVARDĖ       | PAVADINIMAS |
+|-----------+---------------+-------------|
+| Martynas  | Jačas         | Gamybos     |
+| Goda      | Jablonkskaitė | Pardavimų   |
+| Mantas    | Gabalis       | Gamybos     |
+| Arnoldas  | Lukas         | Gamybos     |
+| Maja      | Jačiulytė     | Finansų     |
+| Mikas     | Taileikis     | Gamybos     |
+| Giedrius  | Vaicekauskas  | Vadovybė    |
+| Romas     | Babavičius    | Finansų     |
+| Milda     | Babavičiūtė   | Gamybos     |
+| Domas     | Sabaliauskas  | Gamybos     |
+| Dainius   | Sabutis       | Pardavimų   |
+| Tautvydas | Ubartas       | Gamybos     |
+| Henrikas  | Sabutis       | Pardavimų   |
+| Arnoldas  | Jačas         | Gamybos     |
+| Jaunius   | Šindeikis     | Gamybos     |
+| Rimantas  | Kundrotas     | Gamybos     |
+| Egidijus  | Antanaitis    | Gamybos     |
+| Lukas     | Antanaitis    | Gamybos     |
+| Arnas     | Lukša         |             |
+| Urtė      | Lukaitė       |             |
+| Pranas    | Logis         |             |
+
+
+1# punkto užklausą pataisykite taip, kad rodytų tik tuos vardus ir
+projektų pavadinimus kuriuose dirba daugiau nei 4 darbuotojai.
+
+#+begin_src sqlite :db ~/Dropbox/src/db/darbuotojai3.db :colnames yes
+  SELECT VARDAS, PAVARDĖ, PROJEKTAS.PAVADINIMAS
+  FROM DARBUOTOJAS
+  JOIN PROJEKTAS
+  on PROJEKTAS.ID = DARBUOTOJAS.PROJEKTAS_ID where PROJEKTAS_ID in (SELECT PROJEKTAS_ID FROM DARBUOTOJAS GROUP by PROJEKTAS_ID HAVING count() > 4)
+#+end_src
+
+#+RESULTS:
+| VARDAS   | PAVARDĖ       | PAVADINIMAS       |
+|----------+---------------+-------------------|
+| Goda     | Jablonkskaitė | Projektų valdymas |
+| Arnoldas | Lukas         | Projektų valdymas |
+| Milda    | Babavičiūtė   | Projektų valdymas |
+| Domas    | Sabaliauskas  | Projektų valdymas |
+| Dainius  | Sabutis       | Projektų valdymas |
+| Arnoldas | Jačas         | Projektų valdymas |
+* Lesson 5 - Lenteliu kurimas, constraints
+** create table
+Sukurkime paprastą lentelę:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/test.db :colnames yes
+CREATE TABLE coder (
+    f_name VARCHAR(50),
+    l_name VARCHAR(50),
+    email VARCHAR(100),
+    age INT,
+    xp_years INT
+)
+#+end_src
+
+** Constraints
+Dabar sukurkime lentelę su apribojimais (angl. constraints):
+
+#+begin_src sqlite :db ~/Dropbox/src/db/test.db :colnames yes
+CREATE TABLE coder (
+    id PRIMARY KEY NOT NULL,
+    f_name VARCHAR(50) NOT NULL,
+    l_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    age INT CHECK (age > 17 AND age < 75),
+    xp_years INT CHECK (xp_years < 40)
+)
+#+end_src
+
+#+RESULTS:
+
+po nurodyto stulpelio duomenų tipo galime (pagal poreikį) surašyti
+apribojimus:
+
+~NOT NULL~ - nurodo, kad įrašas negali būti tuščias;
+
+~PRIMARY KEY~ - stulpelį nustato kaip pirminį raktą;
+
+~UNIQUE~ - nurodo, kad įrašai stulpelyje negali kartotis;
+
+~CHECK~ (Sąlyga) - tikrina, ar įrašomi duomenys atitinka sąlygą;
+
+~DEFAULT~ - nurodo numatytąją reikšmę, jeigu duomenys nesuvedami.
+
+** Alter table
+
+Pridėkime stulpelį:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/test.db :colnames yes
+ALTER TABLE coder ADD COLUMN project_id INTEGER;
+#+end_src
+
+#+RESULTS:
+
+Pervadinkime jį į team_id:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/test.db :colnames yes
+ALTER TABLE coder RENAME COLUMN project_id TO team_id;
+#+end_src
+
+#+RESULTS:
+
+Galima pervadinti ir lentelės pavadinimą:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/test.db :colnames yes
+ALTER TABLE coder RENAME TO coderiai
+#+end_src
+
+#+RESULTS:
+
+SQLite nepalaiko daugiau ALTER TABLE komandos variacijų, pavyzdžiui
+ALTER TABLE lentelę, ADD CONSTRAINT ir kt. Todėl reikia skirti daugiau
+dėmesio planavimui.
+
+** Loginiai rysiai
+*** One to many
+
+Sukurkime sistemą, kur vienoje lentelėje bus programuotojai, o kitoje
+komandos. Vienai komandai gali priklausyti keletas programuotojų
+(one-to-many):
+
+#+begin_src sqlite :db ~/Dropbox/src/db/oneToMany.db :colnames yes
+CREATE TABLE teams (
+  id integer PRIMARY KEY,
+  name string
+);
+#+end_src
+
+#+RESULTS:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/oneToMany.db :colnames yes
+CREATE TABLE coders (
+  id integer PRIMARY KEY,
+  f_name string NOT NULL,
+  l_name string NOT NULL,
+  email string UNIQUE,
+  age integer,
+  team_id integer,
+  FOREIGN KEY (team_id) REFERENCES teams (id)
+);
+#+end_src
+
+#+RESULTS:
+
+Ryšys sukuriamas išorinio rakto - FOREIGN KEY pagalba. Paskutinėje
+eilutėje nurodoma, kad team_id stulpelis bus išorinis raktas ir
+referuos į person lentelės id, kuris turėtų būti pirminis raktas
+(unikalus indentifikatorius).
+
+Pridėkime lentelę tasks, kurioje vienas programuotojas galės turėti
+daug užduočių:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/oneToMany.db :colnames yes
+  CREATE TABLE tasks (
+  id integer PRIMARY KEY,
+  name string,
+  coder_id integer,
+  FOREIGN KEY (coder_id) REFERENCES coders (id)
+  );
+#+end_src
+
+#+RESULTS:
+
+Užpildykime pseudo duomenimis:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/oneToMany.db :colnames yes
+INSERT INTO "teams" ("name") VALUES ('Back End');
+INSERT INTO "teams" ("name") VALUES ('DevOps');
+INSERT INTO "teams" ("name") VALUES ('Front End');
+
+INSERT INTO "coders" ("f_name", "l_name", "email", "age", "team_id") VALUES ('Jonas', 'Jonaitis', 'jj@gmail.com', '20', '1');
+INSERT INTO "coders" ("f_name", "l_name", "email", "age", "team_id") VALUES ('Antanas', 'Antanaitis', 'aa@gmail.com', '25', '1');
+INSERT INTO "coders" ("f_name", "l_name", "email", "age", "team_id") VALUES ('Juozas', 'Juozaitis', 'jj@hotmail.com', '30', '2');
+INSERT INTO "coders" ("f_name", "l_name", "email", "age", "team_id") VALUES ('Petras', 'Petraitis', 'pp@mail.lt', '29', '2');
+INSERT INTO "coders" ("f_name", "l_name", "email", "age", "team_id") VALUES ('Virgis', 'Virgutis', 'vv@gmail.com', '21', '3');
+INSERT INTO "coders" ("f_name", "l_name", "email", "age", "team_id") VALUES ('Tomas', 'Aidietis', 'ta@imone.lt', '35', '3');
+
+INSERT INTO "tasks" ("name", "coder_id") VALUES ('Sutvarkyti DB', '5');
+INSERT INTO "tasks" ("name", "coder_id") VALUES ('Perdaryti dizainą', '1');
+INSERT INTO "tasks" ("name", "coder_id") VALUES ('Perdaryti formas', '2');
+INSERT INTO "tasks" ("name", "coder_id") VALUES ('Atnaujinti tvarkykles', '6');
+INSERT INTO "tasks" ("name", "coder_id") VALUES ('Perkrauti serverius', '5');
+INSERT INTO "tasks" ("name", "coder_id") VALUES ('Atnaujinti bibliotekas', '6');
+INSERT INTO "tasks" ("name", "coder_id") VALUES ('Pakeisti logotipus', '2');
+INSERT INTO "tasks" ("name", "coder_id") VALUES ('Atnaujinti dokumentaciją', '3');
+INSERT INTO "tasks" ("name", "coder_id") VALUES ('IšoneToManyuoti programą', '4');
+INSERT INTO "tasks" ("name", "coder_id") VALUES ('Perdaryti API', '4');
+#+end_src
+
+#+RESULTS:
+
+*** Many to many
+
+Sakykime, kad reikia darbuotojus kažkaip susieti su turimomis
+kompetencijomis. Pirmiausia sukurkime lentelę skills:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/manyToMany.db :colnames yes
+CREATE TABLE skills (
+  id integer PRIMARY KEY,
+  name integer
+);
+#+end_src
+
+#+RESULTS:
+
+Užpildykime duomenimis:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/manyToMany.db :colnames yes
+INSERT INTO "skills" ("name") VALUES ('Python');
+INSERT INTO "skills" ("name") VALUES ('JS');
+INSERT INTO "skills" ("name") VALUES ('CSS');
+INSERT INTO "skills" ("name") VALUES ('Go');
+INSERT INTO "skills" ("name") VALUES ('AWS');
+INSERT INTO "skills" ("name") VALUES ('Linux');
+INSERT INTO "skills" ("name") VALUES ('o365');
+#+end_src
+
+Turime situaciją, kai daug žmonių gali turėti daug kompetencijų ir
+atvirkščiai (pritempta). Gaunasi many-to-many ryšys. Tam, kad
+susikurtų toks ryšys, turime turėti tarpinę lentelę:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/manyToMany.db :colnames yes
+CREATE TABLE coders_skills (
+        coder_id integer,
+        skill_id integer,
+        FOREIGN KEY (coder_id) REFERENCES coders (id),
+        FOREIGN KEY (skill_id) REFERENCES skills (id)
+  );
+#+end_src
+
+#+RESULTS:
+
+Lentelėje yra tik du išoriniai raktai, ji yra techninė, saugo tik
+ryšius. Užpildykime:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/manyToMany.db :colnames yes
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('1', '2');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('1', '3');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('2', '2');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('2', '3');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('3', '1');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('3', '4');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('4', '1');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('4', '6');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('5', '4');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('5', '5');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('6', '5');
+INSERT INTO "coders_skills" ("coder_id", "skill_id") VALUES ('6', '6');
+#+end_src
+
+#+RESULTS:
+
+*** One to One
+Retai naudojamas ryšys, nes galima paprasčiausiai sudėti duomenis į tą
+pačią lentelę. Tarkime, kad norime paslėpti dalį informacijos, kad
+nesimatytų pagrindinėje lentelėje:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/manyToMany.db :colnames yes
+CREATE TABLE passwords (
+        id integer PRIMARY KEY,
+        coder_id integer UNIQUE,
+        pwd string,
+        FOREIGN KEY (coder_id) REFERENCES coders (id)
+);
+#+end_src
+
+#+RESULTS:
+
+Ryšys kuriamas taip pat, kaip ir one-to-many, tik išoriniam raktui
+pritaikomas UNIQUE apribojimas. Užpildykime:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/manyToMany.db :colnames yes
+INSERT INTO "passwords" ("coder_id", "pwd") VALUES ('1', '12345');
+INSERT INTO "passwords" ("coder_id", "pwd") VALUES ('2', 'verisykret');
+INSERT INTO "passwords" ("coder_id", "pwd") VALUES ('3', 'qwerty');
+INSERT INTO "passwords" ("coder_id", "pwd") VALUES ('4', 'uauauai');
+INSERT INTO "passwords" ("coder_id", "pwd") VALUES ('5', 'slaptazodis');
+INSERT INTO "passwords" ("coder_id", "pwd") VALUES ('6', 'barzda');
+#+end_src
+
+#+RESULTS:
+
+** Praktika
+1. sukurti duomenu baze pagal diagrama
+
+#+begin_src sqlite :db ~/Dropbox/src/db/shop.db :colnames yes
+CREATE TABLE status (
+  id integer PRIMARY KEY NOT NULL,
+  name string
+);
+#+end_src
+
+#+RESULTS:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/shop.db :colnames yes
+  CREATE TABLE customer (
+    id integer PRIMARY KEY NOT NULL,
+    f_name string,
+    l_name string,
+    email VARCHAR(100) UNIQUE
+  );
+#+end_src
+
+#+RESULTS:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/shop.db :colnames yes
+  CREATE TABLE product (
+  id integer PRIMARY KEY NOT NULL,
+  name string,
+  price float
+  );
+#+end_src
+
+#+RESULTS:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/shop.db :colnames yes
+  CREATE TABLE order_ (
+  id integer PRIMARY KEY NOT NULL,
+  customer_id integer UNIQUE,
+  date_ string,
+  status_id integer UNIQUE,
+  FOREIGN KEY (customer_id) REFERENCES customer (id),
+  FOREIGN KEY (status_id) REFERENCES status (id)
+  );
+#+end_src
+
+#+RESULTS:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/shop.db :colnames yes
+  CREATE TABLE product_order(
+          quantity integer,
+          order_id integer,
+          product_id integer,
+          FOREIGN KEY (order_id) REFERENCES order_ (id),
+          FOREIGN KEY (product_id) REFERENCES product (id)
+  );
+#+end_src
+
+#+RESULTS:
+
+
+
+2. Uzpildyti duomenimis
+   - bent 3 klientai, bent 5 užsakymai, kiekviename jų po 1-3
+     pozicijas, keletas produktų, keletas užsakymo statusų (pvz,
+     patvirtintas, vykdomas, įvykdytas, atmestas).
+
+#+begin_src sqlite :db ~/Dropbox/src/db/shop.db :colnames yes
+  INSERT INTO "customer" ("f_name", "l_name", "email") VALUES ('Jonas', 'Jonaitis', 'jj@gmail.com');
+  INSERT INTO "customer" ("f_name", "l_name", "email") VALUES ('Antanas', 'Antanaitis', 'aa@gmail.com');
+  INSERT INTO "customer" ("f_name", "l_name", "email") VALUES ('Juozas', 'Juozaitis', 'jj@hotmail.com');
+  INSERT INTO "customer" ("f_name", "l_name", "email") VALUES ('Petras', 'Petraitis', 'pp@mail.lt');
+  INSERT INTO "customer" ("f_name", "l_name", "email") VALUES ('Virgis', 'Virgutis', 'vv@gmail.com');
+  INSERT INTO "customer" ("f_name", "l_name", "email") VALUES ('Tomas', 'Aidietis', 'ta@imone.lt');
+#+end_src
+
+#+RESULTS:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/shop.db :colnames yes
+  INSERT INTO "status" ("name") VALUES ('Atmestas');
+  INSERT INTO "status" ("name") VALUES ('Vykdomas');
+  INSERT INTO "status" ("name") VALUES ('Patvirtintas');
+  INSERT INTO "status" ("name") VALUES ('Ivykdytas');
+#+end_src
+
+#+RESULTS:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/shop.db :colnames yes
+  INSERT INTO "product" ("name", "price") VALUES ('Agurkai', '20,99');
+  INSERT INTO "product" ("name", "price") VALUES ('Kisielius', '3,59');
+  INSERT INTO "product" ("name", "price") VALUES ('Prozektorius', '8,99');
+  INSERT INTO "product" ("name", "price") VALUES ('Grikiai', '2,99');
+#+end_src
+
+#+RESULTS:
+
+#+begin_src sqlite :db ~/Dropbox/src/db/shop.db :colnames yes
+  INSERT INTO "order_" ("customer_id", "date_", "status_id") VALUES (7, '2022-01-01', 3);
+#+end_src
+
+#+begin_src sqlite :db ~/Dropbox/src/db/shop.db :colnames yes
+  INSERT INTO "product_order" ("order_id", "product_id", "quantity") VALUES (1, 3, 10);
+#+end_src
+
+#+RESULTS:
+
+I lentele duomenys susidejo, bet belenkaip painu ka as cia realiai turiu
+
+3. Suformuoti pora uzklausu
+   - Kad rezultate matytųsi užsakymo id, užsakovo pavardė, data,
+     bendra užsakymo suma:
+
+     #+begin_src sqlite :db ~/Dropbox/src/db/shop.db :colnames yes
+       select order_id, date_, l_name, quantity*price AS Bendra_suma
+       from order_
+       INNER JOIN customer
+       ON order_.customer_id = customer.id
+       Inner join product_order
+       on order_.id = product_order.order_id
+       inner join product
+       on product.id = product_order.product_id
+     #+end_src
+
+     #+RESULTS:
+     | order_id |      date_ | l_name    | Bendra_suma |
+     |----------+------------+-----------+-------------|
+     |        1 | 2022-01-01 | Aidietis  |          80 |
+     |        2 | 2022-01-01 | Petraitis |          10 |
+     |        2 | 2022-01-01 | Petraitis |         140 |
+
+
+   - Kad rezultate matytųsi užsakymo id, pozicijos su kiekiais,
+     kainomis ir bendra pozicijos suma:
+
+     #+begin_src sqlite :db ~/Dropbox/src/db/shop.db :colnames yes
+       select order_id, name, quantity, price, quantity*price AS Bendra_suma
+       from order_
+       INNER JOIN customer
+       ON order_.customer_id = customer.id
+       Inner join product_order
+       on order_.id = product_order.order_id
+       inner join product
+       on product.id = product_order.product_id
+     #+end_src
+
+     #+RESULTS:
+     | order_id | name         | quantity | price | Bendra_suma |
+     |----------+--------------+----------+-------+-------------|
+     |        1 | Prozektorius |       10 | 8,99  |          80 |
+     |        2 | Grikiai      |        5 | 2,99  |          10 |
+     |        2 | Agurkai      |        7 | 20,99 |         140 |
+
+     Arba toks Monikos valaites sprendimas
+     #+begin_src sqlite :db ~/Dropbox/src/db/shop.db :colnames yes
+       SELECT name, sum(quantity), price, sum(quantity)*price as total
+       from product_order
+       JOIN order_ on order_.id = product_order.order_id
+       JOIN product on product.id = product_order.product_id
+       GROUP BY name
+     #+end_src
+
+     #+RESULTS:
+     | name         | sum(quantity) | price | total |
+     |--------------+---------------+-------+-------|
+     | Agurkai      |             7 | 20,99 |   140 |
+     | Grikiai      |             5 | 2,99  |    10 |
+     | Prozektorius |            10 | 8,99  |    80 |
+
+   - Prieš tai buvusios užklausos pagrindu sukurkite užklausą, kurioje
+     matytųsi, kiek ir kokio produkto buvo užsakyta:
+* Lesson 6 - SQLAlchemy
+** Intro
+
+Modulis SQLAlchemy susideda iš dviejų dalių:
+
+- SQL Alchemy Core – įrankis, skirtas manipuliuoti, modifikuoti ir
+  paleisti įvairias SQL užklausas. Labai panašiai, kaip ir SQLite3, tik
+  dirba SU VISOMIS duomenų bazėmis:
+  https://docs.sqlalchemy.org/en/13/core/engines.html
+
+- SQL Alchemy ORM (ORM – Object Related Mapping) – įrankis, skirtas
+  automatiškai susieti Python objektus su lentelėmis duomenų bazėje ir
+  vykdyti įvairius veiksmus (CRUD), nenaudojant SQL užklausų
+
+SQLAlchemy nėra vienintelis ORM funkcionalumą siūlantis modulis. Net
+ir Python pagrindu yra sukurta daugiau įrankių. Panašius modulius turi
+JAVA (Hibernate), kitos programavimo kalbos.
+
+** SQL Alchemy ORM
+
+Kaip susikurti objekto klasę, iš kurios bus sukurta lentelė:
+
+Tam, kad sukurtume reikiamos struktūros duomenų bazę ir ja naudotumės,
+užtenka sukurti SQLAlchemy klasę ir ją paleisti.
+
+#+begin_src python
+  import datetime
+  from sqlalchemy import Column, Integer, String, Float, DateTime, create_engine
+  from sqlalchemy.ext.declarative import declarative_base
+
+  engine = create_engine('sqlite:///projektai.db')
+  engine = create_engine('sqlite:///:memory:', echo=True)  # kompo atmintyje galim susikurti db, nebus fizinio failo
+  Base = declarative_base()
+
+  class Projektas(Base):
+      __tablename__ = 'Projektas'
+      id = Column(Integer, primary_key=True)
+      name = Column("Pavadinimas", String)
+      price = Column("Kaina", Float)
+      created_date = Column("Sukūrimo data", DateTime, default=datetime.datetime.utcnow)
+
+      # aprasom taip pat kaip paprasta klase. Asocijuojam su klase. Kad zinotu i kuri collumn deti kintamaji
+      # created_date matai neidetas apacioje, nes nereikia jo mum patiem irasyti, jis turi default reiksme
+      # jeigu noretum irasyti ir keisti - tuomet prie init turetum prirasyti
+      def __init__(self, name, price):
+          self.name = name
+          self.price = price
+
+      # Kada kvieciam klase su query, kad ja israsytu ir KAIP israsytu apibudinam cia
+      def __repr__(self):
+          return f"{self.id} {self.name} - {self.price}: {self.created_date}"
+
+  # kviecia connectiona ir sukuria visas lenteles jeigu jos neegzistuoja. Jos neupdeitins.
+  Base.metadata.create_all(engine)
+#+end_src
+** Kaip įrašyti, nuskaityti, atnaujinti, ištrinti duomenys SQLAlchemy lentelėje (CRUD)
+
+Kaip sukurti ryšį su sukurta DB kitame faile:
+
+#+begin_src python
+  from sqlalchemy import create_engine
+  from sqlalchemy.orm import sessionmaker
+  from projektas import Projektas
+
+  engine = create_engine('sqlite:///projektai.db')
+  Session = sessionmaker(bind=engine)
+  session = Session()
+#+end_src
+
+Kaip įrašyti duomenis į lentelę(~C~ R U D):
+
+C - create.
+
+#+begin_src python
+  projektas1 = Projektas("Naujas pr.", 20000)
+  session.add(projektas1)
+  session.commit()
+
+  projektas2 = Projektas("2 projektas", 55000)
+  session.add(projektas2)
+  session.commit()
+#+end_src
+
+Kaip gauti duomenis iš lentelės (C ~R~ U D):
+
+R - read.
+
+#+begin_src python
+  projektas1 = session.query(Projektas).get(1)
+
+  print(projektas1.name)
+  # Naujas pr.
+#+end_src
+
+#+begin_src python
+  projektas2 = session.query(Projektas).filter_by(name="2 projektas").one()
+#+end_src
+
+#+begin_src python
+  projektai = session.query(Projektas).all()
+
+  for projektas in projektai:
+      print(projektas.name, projektas.price)
+  # Naujas pr. 20000.0
+  # 2 projektas 55000.0
+#+end_src
+
+Kaip ieškoti duomenų pagal sąlygą ar šabloną:
+
+#+begin_src python
+search = session.query(Projektas).filter(Projektas.name.ilike("2%"))
+search2 = session.query(Projektas).filter(Projektas.price > 1000)
+search3 = session.query(Projektas).filter(
+    Projektas.price > 1000,
+    Projektas.name.ilike("2%"))
+
+print([i for i in search])
+print([i for i in search2])
+print([i for i in search3])
+
+# [2 2 projektas - 55000.0: 2021-02-03 14:29:33.477232]
+# [1 Naujas pr. - 20000.0: 2021-02-03 14:29:33.437231, 2 2 projektas - 55000.0: 2021-02-03 14:29:33.477232]
+# [2 2 projektas - 55000.0: 2021-02-03 14:29:33.477232]
+#+end_src
+
+Kaip pakeisti duomenis lentelėje (C R ~U~ D):
+
+U - update.
+
+#+begin_src python
+projektas1 = session.query(Projektas).get(1)
+projektas1.price = 22000
+session.commit()
+#+end_src
+
+#+begin_src python
+projektas2 = session.query(Projektas).filter_by(name="2 projektas").one()
+projektas2.name = "2 projektas tikrai"
+session.commit()
+#+end_src
+
+Kaip ištrinti duomenis lentelėje (C R U ~D~):
+
+D - delete.
+
+#+begin_src python
+projektas1 = session.query(Projektas).filter_by(name="Naujas pr.").one()
+
+session.delete(projektas1)
+session.commit()
+#+end_src
+
+** Programos su duomenų baze (konsolėje) pavyzdys:
+
+#+begin_src python
+from models import engine, Projektas
+from sqlalchemy.orm import sessionmaker
+
+engine = create_engine('sqlite:///projektai.db')
+Session = sessionmaker(bind=engine)
+session = Session()
+
+while True:
+    pasirinkimas = int(input("Pasirinkite veiksmą: \n1 - atvaizduoti projektus \n2 - sukurti projektą \n3 - pakeisti projektą \n4 - ištrinti projektą\n"))
+
+    if pasirinkimas == 1:
+        projektai = session.query(Projektas).all()
+        print("-------------------")
+        for projektas in projektai:
+            print(projektas)
+        print("-------------------")
+
+    if pasirinkimas == 2:
+        name = input("Įveskite projekto pavadinimą")
+        price = float(input("Įveskite projekto kainą"))
+        projektas = Projektas(name, price)
+        session.add(projektas)
+        session.commit()
+
+    if pasirinkimas == 3:
+        projektai = session.query(Projektas).all()
+        print("-------------------")
+        for projektas in projektai:
+            print(projektas)
+        print("-------------------")
+        keiciamo_id = int(input("Pasirinkite norimo pakeisti projekto ID"))
+        keiciamas_projektas = session.query(Projektas).get(keiciamo_id)
+        pakeitimas = int(input("Ką norite pakeisti: 1 - pavadinimą, 2 - kainą"))
+        if pakeitimas == 1:
+            keiciamas_projektas.name = input("Įveskite projekto pavadinimą")
+        if pakeitimas == 2:
+            keiciamas_projektas.price = float(input("Įveskite projekto kainą"))
+        session.commit()
+
+    if pasirinkimas == 4:
+        projektai = session.query(Projektas).all()
+        print("-------------------")
+        for projektas in projektai:
+            print(projektas)
+        print("-------------------")
+        keiciamo_id = int(input("Pasirinkite norimo ištrinti projekto ID"))
+        trinamas_projektas = session.query(Projektas).get(keiciamo_id)
+        session.delete(trinamas_projektas)
+        session.commit()
+#+end_src
+
+#+RESULTS:
+** Uzduotys
+*** 1 užduotis
+Sukurti programą, kuri:
+
+Leistų įvesti darbuotojus: vardą, pavardę, gimimo datą, pareigas,
+atlyginimą, nuo kada dirba (data būtų nustatoma automatiškai, pagal
+dabartinę datą)
+
+Duomenys būtų saugomi duomenų bazėję, panaudojant SQLAlchemy ORM (be
+SQL užklausų)
+
+Vartotojas galėtų įrašyti, peržiūrėti, ištrinti ir atnaujinti
+darbuotojus
+
+#+begin_src python
+# cia yra db.py
+
+import datetime
+from sqlalchemy import Column, String, Float, Integer, DateTime, create_engine
+from sqlalchemy.ext.declarative import declarative_base
+
+engine = create_engine(
+    "sqlite:////home/arvydas/Dropbox/src/db/sqlAlchemy_1_1/db.db", echo=True
+)
+
+base = declarative_base()
+
+
+class darbuotojai(base):
+
+    __tablename__ = "darbuotojai"
+
+    id = Column(Integer, primary_key=True)
+    name = Column("Vardas", String)
+    lastname = Column("Pavarde", String)
+    birthdate = Column("Gimimo Data", String)
+    occupation = Column("Pareigos", String)
+    salary = Column("Alga", Integer)
+    works_from = Column("Nuo kada dirba", DateTime, default=datetime.datetime.utcnow)
+
+    def __init__(self, name, lastname, birthdate, occupation, salary):
+        self.name = name
+        self.lastname = lastname
+        self.birthdate = birthdate
+        self.occupation = occupation
+        self.salary = salary
+
+    def __repr__(self):
+        return f"Jo ID yra - {self.id}. Kviečiamas yra - {self.name} vardu bei {self.lastname} pavarde. Gimęs jis - {self.birthdate}, dirba - {self.occupation} ir uždirba: {self.salary}"
+
+
+base.metadata.create_all(engine)
+#+end_src
+
+#+begin_src python
+# create.py
+import db
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+
+engine = create_engine(
+    "sqlite:////home/arvydas/Dropbox/src/db/sqlAlchemy_1_1/db.db", echo=True
+)
+
+Session = sessionmaker(bind=engine)
+session = Session()
+
+user1 = darbuotojai("Arvydas", "Gaspariunas", 1994, "Kalvis", 50)
+user = darbuotojai("Petras", "Petraitis", 1992, "Programuotojas", 100)
+session.add(user)
+session.commit()
+#+end_src
+
+#+begin_src python
+  # read.py
+
+  import db
+  from sqlalchemy import create_engine
+  from sqlalchemy.orm import sessionmaker
+
+  engine = create_engine(
+      "sqlite:////home/arvydas/Dropbox/src/db/sqlAlchemy_1_1/db.db", echo=True
+  )
+
+  Session = sessionmaker(bind=engine)
+  session = Session()
+
+  # imam pagal ID
+  x = session.query(darbuotojai).get(1)
+  print(x.name)
+
+  # get viena, PIRMA useri kuris machina criteria
+  x2 = session.query(darbuotojai).filter_by(name="Arvydas").one()
+  print(x2)
+
+  # get all users IN A LIST
+  pimpiai = session.query(darbuotojai).all()
+  print(pimpiai)
+
+  # for loopas oo taip
+  for darbuotojas in pimpiai:
+      print(darbuotojas)
+
+  search = session.query(darbuotojai).filter(darbuotojai.name.ilike("S%"))
+  search2 = session.query(darbuotojai).filter(darbuotojai.salary > 60)
+  search3 = session.query(darbuotojai).filter(
+      darbuotojai.salary < 60
+      darbuotojai.name.ilike("S%")
+  )
+
+  print([i for i in search])
+  print([i for i in search2])
+  print([i for i in search3])
+#+end_src
+
+#+begin_src python
+# update.py
+
+import db
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+engine = create_engine(
+    "sqlite:////home/arvydas/Dropbox/src/db/sqlAlchemy_1_1/db.db", echo=True
+)
+
+Session = sessionmaker(bind=engine)
+session = Session()
+
+x2 = session.query(darbuotojai).filter_by(name="Arvydas").one()
+x2.salary = 2000
+session.commit()
+#+end_src
+
+#+begin_src python
+# delete.py
+
+import db
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+engine = create_engine(
+    "sqlite:////home/arvydas/Dropbox/src/db/sqlAlchemy_1_1/db.db", echo=True
+)
+
+Session = sessionmaker(bind=engine)
+session = Session()
+
+x2 = session.query(darbuotojai).filter_by(name="Nabagas").one()
+
+session.delete(x2)
+session.commit()
+#+end_src
+*** 1.5
+Can't remember what is this exactly, go ahead and test.
+
+#+begin_src python
+import datetime
+from sqlalchemy import Column, Integer, String, Float, DateTime, create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+engine = create_engine(
+    "sqlite:////home/arvydas/Dropbox/src/db/sqlAlchemy_1_1.5/employee.db", echo=True
+)
+
+Base = declarative_base()
+
+
+class Employee(Base):
+    """
+    Tokia ir tokia klase cia.
+
+    Ir dar keli dalykai.
+    """
+
+    __tablename__ = "employee"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    salary = Column(Float)
+    created_date = Column(DateTime, default=datetime.datetime.utcnow)
+
+    def __init__(self, name, salary):
+        """Cia parasom tiesiog kaip uzvadinam dalykus, nzn."""
+        self.name = name
+        self.salary = salary
+
+    def __repr__(self):
+        """Cia parasom kaip norim kad outputtintu mum klase kai iskviesim."""
+        return f"{self.id} {self.name} - ${self.salary}: Hired on {self.created_date}"
+
+    def add_employee(self):
+        """Add employee."""
+        Base.metadata.create_all(engine)
+        Session = sessionmaker(bind=engine)
+        session = Session()
+        session.add(self)
+        session.commit()
+        session.close()
+
+    @classmethod
+    def get_all_employees(self):
+        """
+        Cia yra kazkas negi tipo documentation???. Cia yra summary line.
+
+        PZZZ, tikrai cia yra documentation. Cia yra description.
+        """
+        Session = sessionmaker(bind=engine)
+        session = Session()
+        employees = session.query(Employee).all()
+        session.close()
+        return employees
+
+    @classmethod
+    def get_employee_by_id(self, id):
+        """
+        Cia yra kazkas negi tipo documentation???. Cia yra summary line.
+
+        PZZZ, tikrai cia yra documentation. Cia yra description.
+        """
+        Session = sessionmaker(bind=engine)
+        session = Session()
+        # Select * from Users Where id = 1 2 3
+        employee = session.query(Employee).filter_by(id=id).first()
+        session.close()
+        return employee
+
+    @classmethod
+    def update_employee(self, name, salary):
+        """Cia yra kazkas."""
+        Session = sessionmaker(bind=engine)
+        session = Session()
+
+        employee = session.query(Employee).filter_by(id=self.id).first()
+        employee.name = name
+        employee.salary = salary
+
+        session.commit()
+        session.close()
+
+    @classmethod
+    def delete_employee(self):
+        """Cia yra kazkas."""
+        Session = sessionmaker(bind=engine)
+        session = Session()
+
+        session.delete(self)
+        session.commit()
+        session.close()
+
+
+# ADD Employee
+employee1 = Employee("Piotr", 500)
+employee1.add_employee()
+
+
+# GET ALL ID
+employees = Employee.get_all_employees()
+print(employees)
+
+zaltis = Employee.get_employee_by_id(1)
+print(zaltis)
+
+zaltis.update_employee(name="Oplia", salary=5)
+print(zaltis)
+
+zaltis.delete_employee()
+#+end_src
+
+*** 1.6
+
+#+begin_src python
+# Sukurti programą, kuri:
+
+# Leistų įvesti darbuotojus: vardą, pavardę, gimimo datą, pareigas,
+# atlyginimą, nuo kada dirba (data būtų nustatoma automatiškai, pagal
+# dabartinę datą)
+
+# Duomenys būtų saugomi duomenų bazėję, panaudojant SQLAlchemy ORM (be
+# SQL užklausų)
+
+# Vartotojas galėtų įrašyti, peržiūrėti, ištrinti ir atnaujinti darbuotojus
+
+
+import datetime
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy.orm import sessionmaker
+
+
+engine = create_engine(
+    "sqlite:////home/arvydas/Dropbox/src/db/sqlAlchemy_1_1.6/employee.db", echo=True
+)
+Base = declarative_base()
+
+
+class Darbuotojas(Base):
+    __tablename__ = "darbuotojas"
+    id = Column(Integer, primary_key=True)
+    vardas = Column(String)
+    pavarde = Column(String)
+    gimimo_data = Column(String)
+    pareigas = Column(String)
+    atlyginimas = Column(Integer)
+    dirba_nuo = Column(DateTime, default=datetime.datetime.utcnow)
+
+    def __init__(self, vardas, pavarde, gimimo_data, pareigas, atlyginimas):
+        self.vardas = vardas
+        self.pavarde = pavarde
+        self.gimimo_data = gimimo_data
+        self.pareigas = pareigas
+        self.atlyginimas = atlyginimas
+
+    def __repr__(self):
+        return f"<{self.vardas} {self.pavarde} {self.gimimo_data} {self.pareigas} {self.atlyginimas} {self.dirba_nuo}>"
+
+
+# įrašyti, peržiūrėti, ištrinti
+Base.metadata.create_all(engine)
+
+Session = sessionmaker(bind=engine)
+session = Session()
+
+
+def prideti_darbuotoja():
+    """Kuriam funkcija isoreje, nebutina deti i vidu."""
+    vardas = input("Irasyti vardas: ")
+    pavarde = input("Irasyti pavarde: ")
+    gimimo_data = input("Irasyti data gimimo (YYYY-MM-DD): ")
+    pareigas = input("Irasyti pareigas: ")
+    atlyginimas = input("Irasyti atlyginima: ")
+
+    # jeigu nenaudojat __init__ KLASEJE
+    # naujas_darbuotojas = Darbuotojas(vardas=vardas,pavarde=pavarde, gimimo_data=gimimo_data)
+
+    naujas_darbuotojas = Darbuotojas(
+        vardas, pavarde, gimimo_data, pareigas, atlyginimas
+    )
+
+    # Pridam ir išsaugojam
+    session.add(naujas_darbuotojas)
+    session.commit()
+
+
+def perziureti_darbuotojus():
+    darbuotojai = session.query(Darbuotojas).all()
+    for darbuotojas in darbuotojai:
+        print(darbuotojas)
+
+
+def darbuotojas_atnaujinti():
+    id = input("Įrašyti darbutojo ID: ")
+
+    #
+    darbuotojas = session.query(Darbuotojas).filter(Darbuotojas.id == id).first()
+
+    # Default
+    vardas = input("Irasyti vardas: ")
+    pavarde = input("Irasyti pavarde: ")
+    gimimo_data = input("Irasyti data gimimo (YYYY-MM-DD): ")
+    pareigas = input("Irasyti pareigas: ")
+    atlyginimas = input("Irasyti atlyginima: ")
+
+    darbuotojas.vardas = vardas
+    darbuotojas.pavarde = pavarde
+    darbuotojas.gimimo_data = gimimo_data
+    darbuotojas.pareigas = pareigas
+    darbuotojas.atlyginimas = atlyginimas
+
+    session.commit()
+
+
+def darbuotojas_istrinti():
+    id = input("Įrašyti darbutojo ID: ")
+    darbuotojas = session.query(Darbuotojas).filter(Darbuotojas.id == id).first()
+    session.delete(darbuotojas)
+    session.commit()
+
+
+prideti_darbuotoja()
+perziureti_darbuotojus()
+darbuotojas_atnaujinti()
+darbuotojas_istrinti()
+
+session.close()
+#+end_src
+
+*** 2 užduotis
+
+Perdaryti programą 1 užduotyje, kad ji:
+
+Turėtų grafinę sąsają (su ikona ir pavadinimu). Sukurti per Tkinter
+
+Leistų įvesti asmenis į duomenų bazę (jų vardą, pavardę, amžių, ...)
+
+Parodytų visų į duomenų bazę įvestų asmenų sąrašą
+
+Leistų ištrinti pasirinktą asmenį iš duomenų bazės
+
+Leistų paredaguoti įvesto asmens duomenis ir įrašyti atnaujinimus į
+duomenų bazę Sukurti paleidžiamąjį programos failą (exe, su ikona)
+
+
+#+begin_src python
+
+  # asmenys.py
+
+  from dbcon import *
+  from tkinter import Tk, Frame, Label, Entry, Button, Listbox, SINGLE, END
+
+  asmuo_edit = False
+  get_all_records_list()
+
+
+  def update_fields():
+      boksas.delete(0, END)
+      boksas.insert(END, *get_all_records_list())
+      laukas1.delete(0, "end")
+      laukas2.delete(0, "end")
+      laukas3.delete(0, "end")
+      laukas1.focus()
+
+
+  def ui_add(event):
+      global asmuo_edit
+      if asmuo_edit:
+          update_record(asmuo_edit.id, laukas1.get(), laukas2.get(), laukas3.get())
+          asmuo_edit = False
+      else:
+          add_record(laukas1.get(), laukas2.get(), laukas3.get())
+      update_fields()
+
+
+  def ui_delete():
+      aktyvus = get_all_records_list()[boksas.curselection()[0]]
+      delete_record(aktyvus.id)
+      update_fields()
+
+
+  def ui_edit():
+      global asmuo_edit
+      asmuo_edit = get_all_records_list()[boksas.curselection()[0]]
+      update_fields()
+      laukas1.insert(0, asmuo_edit.name)
+      laukas2.insert(0, asmuo_edit.surname)
+      laukas3.insert(0, asmuo_edit.age)
+
+
+  # Graphic Objects initialization
+  main_window = Tk()
+  main_window.title("Asmenų katalogas")
+  # main_window.iconbitmap(r'asmenys.ico')
+  top_frame = Frame(main_window)
+  button_frame = Frame(main_window)
+  boksas = Listbox(button_frame, selectmode=SINGLE)
+  boksas.insert(END, *get_all_records_list())
+  uzrasas1 = Label(top_frame, text="Įveskite asmenį", width=40)
+  laukas1 = Entry(top_frame)
+  laukas1_uzr = Label(top_frame, text="Vardas")
+  laukas2 = Entry(top_frame)
+  laukas2_uzr = Label(top_frame, text="Pavardė")
+  laukas3 = Entry(top_frame)
+  laukas3_uzr = Label(top_frame, text="Amžius")
+  mygtukas1 = Button(top_frame, text="Įvesti")
+  mygtukas1.bind("<Button-1>", ui_add)
+  laukas1.bind("<Return>", ui_add)
+  laukas2.bind("<Return>", ui_add)
+  laukas3.bind("<Return>", ui_add)
+  mygtukas2 = Button(top_frame, text="Redaguoti", command=ui_edit)
+  mygtukas3 = Button(top_frame, text="Ištrinti", command=ui_delete)
+
+  # Graphic Objects visualization
+  uzrasas1.grid(row=0, columnspan=2)
+  laukas1_uzr.grid(row=1, column=0)
+  laukas1.grid(row=1, column=1)
+  laukas2_uzr.grid(row=2, column=0)
+  laukas2.grid(row=2, column=1)
+  laukas3_uzr.grid(row=3, column=0)
+  laukas3.grid(row=3, column=1)
+  mygtukas1.grid(row=4, columnspan=2, sticky="E")
+  mygtukas2.grid(row=4, columnspan=2)
+  mygtukas3.grid(row=4, columnspan=2, sticky="W")
+  boksas.pack()
+  top_frame.pack()
+  button_frame.pack()
+  main_window.mainloop()
+#+end_src
+
+#+begin_src python
+  # dbcon.py
+
+  from models.asmuo import Asmuo
+
+  from sqlalchemy import create_engine
+  from sqlalchemy.orm import sessionmaker
+
+  engine = create_engine(
+      "sqlite:////home/arvydas/Dropbox/src/db/sqlAlchemy_2_2/asmenys.db", echo=True
+  )
+  Session = sessionmaker(bind=engine)
+  session = Session()
+
+
+  def add_record(name, surname, age):
+      asmuo = Asmuo(name, surname, age)
+      session.add(asmuo)
+      session.commit()
+
+
+  def update_record(record_id, newname, newsurname, newage):
+      asmuo = session.query(Asmuo).get(record_id)
+      asmuo.name = newname
+      asmuo.surname = newsurname
+      asmuo.age = newage
+      session.commit()
+
+
+  def delete_record(record_id):
+      asmuo = session.query(Asmuo).get(record_id)
+      session.delete(asmuo)
+      session.commit()
+
+
+  def get_all_records_list():
+      return session.query(Asmuo).all()
+#+end_src
+
+#+begin_src python
+  # inside models folder - asmuo.py
+
+  from sqlalchemy import *
+  from sqlalchemy.ext.declarative import declarative_base
+
+  engine = create_engine(
+      "sqlite:////home/arvydas/Dropbox/src/db/sqlAlchemy_2_2/asmenys.db", echo=True
+  )
+  Base = declarative_base()
+
+
+  class Asmuo(Base):
+      __tablename__ = "Asmuo"
+
+      id = Column(Integer, primary_key=True)
+      name = Column("Vardas", String)
+      surname = Column("Pavardė", String)
+      age = Column("Amžius", Integer)
+
+      def __init__(self, name, surname, age):
+          self.name = name
+          self.surname = surname
+          self.age = age
+
+      def __str__(self):
+          return f"{self.name}, {self.surname}, {self.age}"
+
+
+  Base.metadata.create_all(engine)
+
+#+end_src
+
+
+
+*** 3 užduotis
+
+[[https://github.com/robotautas/kursas/tree/master/DB/cars_SQLAlchemy][Atsakymas for reference]]
+
+DB užduotis su mašinom, SQLAlchemy
+
+Perdarykite [[https://github.com/robotautas/kursas/wiki/DB-Python-u%C5%BEduotys][šioje]] padarytą programą, naudodami SQLAlchemy. Duomenimis
+kol kas neužpildykite, suveskite keletą įrašų ir patikrinkite, ar
+veikia. Pirmiausiai reikės susikurti modelį, o jau tuomet pasigaminti
+programą, kuri galės vykdyti paiešką.
+
+Parašykite programą, kuri užpildys jūsų duomenų bazę eilutėmis iš
+duoto csv failo.
+
+Parašykite Flask + SQLAlchemy aplikaciją, kuri pagal tą pačią logiką,
+kaip ir pirma programėlė, ieškos duomenų bazėje automobilių, pagal
+užpildytą html formą.
+
+* Lesson 7 - SQLAlchemy 2
+** Many To One
+
+(daug tėvų turi po vieną vaiką. Atvirkščiai - kiekvienas vaikas gali
+turėti daug tėvų)
+
+#+begin_src sqlite
+from sqlalchemy import Column, Integer, String, ForeignKey, create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship, sessionmaker
+
+engine = create_engine('sqlite:///many2one_test.db')
+Base = declarative_base()
+
+
+class Tevas(Base):
+    __tablename__ = "tevas"
+    id = Column(Integer, primary_key=True)
+    vardas = Column("Vardas", String)
+    pavarde = Column("Pavardė", String)
+    vaikas_id = Column(Integer, ForeignKey('vaikas.id'))
+    vaikas = relationship("Vaikas")
+
+
+class Vaikas(Base):
+    __tablename__ = "vaikas"
+    id = Column(Integer, primary_key=True)
+    vardas = Column("Vardas", String)
+    pavarde = Column("Pavardė", String)
+    mokymo_istaiga = Column("Mokymo įskaita", String)
+
+Base.metadata.create_all(engine)
+#+end_src
+
+- Kaip sukurti sesiją su sukurta DB
+
+  (engine importuoti iš sqlalchemy ORM klasės, jei ji kitame faile)
+
+  #+begin_src sqlite
+    Session = sessionmaker(bind=engine)
+    session = Session()
+  #+end_src
+
+- Kaip įrašyti tėvą ir jo vaiką (~C~ R U D)
+
+  #+begin_src sqlite
+    vaikas = Vaikas(vardas="Vaikas", pavarde="Tevaika", mokymo_istaiga = "Čiurlionio gimnazija")
+    tevas = Tevas(vardas="Tevas", pavarde="Tevaika", vaikas=vaikas)
+    session.add(tevas)
+    session.commit()
+  #+end_src
+
+- Kaip pakeisti tėvo ar vaiko duomenis (C ~R U~ D)
+
+Priskirti naują vaiką:
+
+#+begin_src sqlite
+vaikas = Vaikas(vardas="Naujas vaikas", pavarde="Tevaika")
+tevas = session.query(Tevas).get(1)
+tevas.vaikas = vaikas
+session.commit()
+#+end_src
+
+- Pakeisti tėvo vaiko duomenis:
+
+  #+begin_src sqlite
+    tevas = session.query(Tevas).get(1)
+    tevas.vaikas.pavarde = "Naujapavardaitis"
+    session.commit()
+  #+end_src
+
+- Kaip ištrinti tėvą (C R U ~D~)
+
+(vaikas lieka, nes nenustatytas "cascade" trynimas)
+
+#+begin_src sqlite
+tevas = session.query(Tevas).get(1)
+session.delete(tevas)
+session.commit()
+#+end_src
+
+** One To Many
+
+(kiekvienas tėvas gali turėti po daug vaikų. Atvirkščiai - kiekvienas
+vaikas gali turėti tik vieną tėvą)
+
+#+begin_src sqlite
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship, sessionmaker
+
+engine = create_engine('sqlite:///one2many_test.db')
+Base = declarative_base()
+
+
+class Tevas(Base):
+    __tablename__ = "tevas"
+    id = Column(Integer, primary_key=True)
+    vardas = Column("Vardas", String)
+    pavarde = Column("Pavardė", String)
+    vaikai = relationship("Vaikas")
+
+
+class Vaikas(Base):
+    __tablename__ = "vaikas"
+    id = Column(Integer, primary_key=True)
+    vardas = Column("Vardas", String)
+    pavarde = Column("Pavardė", String)
+    mokymo_istaiga = Column("Mokymo įskaita", String)
+    tevas_id = Column(Integer, ForeignKey("tevas.id"))
+    tevas = relationship("Tevas")
+
+
+Base.metadata.create_all(engine)
+#+end_src
+
+- Kaip sukurti sesiją su sukurta DB
+
+(engine importuoti iš sqlalchemy ORM klasės, jei ji kitame faile)
+
+#+begin_src sqlite
+Session = sessionmaker(bind=engine)
+session = Session()
+#+end_src
+
+- Kaip įrašyti tėvą ir jo vaikus (~C~ R U D)
+
+  #+begin_src sqlite
+    vaikas = Vaikas(vardas="Vaikas", pavarde="Vaikaitis")
+    vaikas2 = Vaikas(vardas="Vaikas 2", pavarde="Vaikaitis 2")
+    tevas = Tevas(vardas="Tevas", pavarde="Vaikaitis")
+    tevas.vaikai.append(vaikas)
+    tevas.vaikai.append(vaikas2)
+    session.add(tevas)
+    session.commit()
+  #+end_src
+
+- Kaip nuskaityti tėvo vaikus (C ~R~ U D)
+
+  #+begin_src sqlite
+    tevas = session.query(Tevas).get(1)
+    for vaikas in tevas.vaikai:
+        print(vaikas.vardas, vaikas.pavarde)
+  #+end_src
+
+- Kaip redaguoti tėvo vaikus (C R ~U~ D)
+
+Redaguojamas pirmo (0) vaiko vardas:
+
+#+begin_src sqlite
+tevas = session.query(Tevas).get(1)
+tevas.vaikai[0].vardas = "Vaikas 1"
+session.commit()
+#+end_src
+
+- Kaip gauti vaiko tėvą
+
+#+begin_src sqlite
+vaikas = session.query(Vaikas).get(1)
+print(vaikas.tevas.vardas)
+#+end_src
+
+- Kaip ištrinti tėvo vaiką
+
+(vaikas lieka, nes nenustatytas "cascade" trynimas, tik be tėvo ID)
+
+#+begin_src sqlite
+tevas = session.query(Tevas).get(1)
+vaikas1 = tevas.vaikai[0]
+tevas.vaikai.remove(vaikas1)
+session.commit()
+#+end_src
+
+** Many To Many
+
+(kiekvienas tėvas gali turėti po daug vaikų. Kiekvienas vaikas gali
+turėti po daug tėvų)
+
+#+begin_src sqlite
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, create_engine, Table
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship, sessionmaker
+
+engine = create_engine('sqlite:///many2many_test.db')
+Base = declarative_base()
+
+association_table = Table('association', Base.metadata,
+    Column('tevas_id', Integer, ForeignKey('tevas.id')),
+    Column('vaikas_id', Integer, ForeignKey('vaikas.id'))
+)
+
+class Tevas(Base):
+    __tablename__ = 'tevas'
+    id = Column(Integer, primary_key=True)
+    vardas = Column("Vardas", String)
+    pavarde = Column("Pavardė", String)
+    vaikai = relationship("Vaikas", secondary=association_table, back_populates="tevai")
+
+class Vaikas(Base):
+    __tablename__ = 'vaikas'
+    id = Column(Integer, primary_key=True)
+    vardas = Column("Vardas", String)
+    pavarde = Column("Pavardė", String)
+    tevai = relationship("Tevas", secondary=association_table, back_populates="vaikai")
+
+Base.metadata.create_all(engine)
+#+end_src
+
+- Kaip sukurti sesiją su sukurta DB
+
+(engine importuoti iš sqlalchemy ORM klasės, jei ji kitame faile)
+
+#+begin_src sqlite
+Session = sessionmaker(bind=engine)
+session = Session()
+#+end_src
+
+- Kaip pridėti daug tėvų su daug vaikų
+
+#+begin_src sqlite
+tevas1 = Tevas(vardas="Tėvas", pavarde="Tėvaika")
+tevas2 = Tevas(vardas="Motina", pavarde="Tevienė")
+vaikas1 = Vaikas(vardas="Vaikas", pavarde="Tėvaika")
+vaikas2 = Vaikas(vardas="Vaikė", pavarde="Tėvaikytė")
+
+tevas1.vaikai.append(vaikas1)
+tevas2.vaikai.append(vaikas1)
+tevas2.vaikai.append(vaikas2)
+
+session.add(tevas1)
+session.add(tevas2)
+session.commit()
+#+end_src
+
+- Kaip peržiūrėti susijusius įrašus
+
+Kaip gauti visus tėvo vaikus:
+
+#+begin_src sqlite
+tevas = session.query(Tevas).get(2)
+for vaikas in tevas.vaikai:
+    print(vaikas.vardas, vaikas.pavarde)n
+#+end_src
+
+- Kaip gauti visus vaiko tėvus:
+
+#+begin_src sqlite
+vaikas = session.query(Vaikas).get(1)
+for tevas in vaikas.tevai:
+    print(tevas.vardas, tevas.pavarde)n
+#+end_src
+
+- Kaip pakeisti tėvo vaiko įrašą:
+
+#+begin_src sqlite
+tevas = session.query(Tevas).get(2)
+tevas.vaikai[0].vardas = "Vaikas 1"
+session.commit()
+#+end_src
+
+- Kaip ištrinti tėvo vaiko įrašą:
+
+#+begin_src sqlite
+tevas = session.query(Tevas).get(2)
+vaikas1 = tevas.vaikai[0]
+tevas.vaikai.remove(vaikas1)
+session.commit()
+#+end_src
+
+** Žygimantas examples
+
+#+begin_src python
+# Many To One
+
+# "BlogPost" model has a one-to-many relationship with the "BlogComment" model, while the "BlogComment" model has a many-to-one relationship with the "BlogPost" model.
+
+# from sqlalchemy import Column, Integer, String, Float, ForeignKey, create_engine
+# from sqlalchemy.ext.declarative import declarative_base
+# from sqlalchemy.orm import relationship, sessionmaker
+
+# engine = create_engine('sqlite:///SQL_Alchemy_2/many2one_test.db')
+# Base = declarative_base()
+
+# class BlogPost(Base):
+#     __tablename__ = "blog_post"
+#     id = Column(Integer, primary_key=True)
+#     title = Column(String)
+#     content = Column(String)
+#     comments = relationship("BlogComment")
+
+# class BlogComment(Base):
+#     __tablename__ = "blog_comment"
+#     id = Column(Integer, primary_key=True)
+#     content = Column(String)
+#     post_id = Column(Integer, ForeignKey("blog_post.id"))
+#     post = relationship("BlogPost")
+
+# Base.metadata.create_all(engine)
+
+# Session = sessionmaker(bind=engine)
+# session = Session()
+
+# post1 = BlogPost(title='Hello World 3', content='This is my second blog post')
+# post2 = BlogPost(title='Hello World 4', content='This is my second blog post')
+
+
+# comment1 = BlogComment(content="Great Post! 3", post=post1)
+# comment2 = BlogComment(content="Sure ! 4", post=post2)
+
+# session.add_all([post1,post2,comment1,comment2])
+# session.commit()
+
+
+## One to Many
+
+# "Employee" model has a many-to-one relationship with the "Department" model, while the "Department" model has a one-to-many relationship with the "Employee" model.
+
+# from sqlalchemy import Column, Integer, String, ForeignKey, create_engine
+# from sqlalchemy.ext.declarative import declarative_base
+# from sqlalchemy.orm import relationship, sessionmaker
+
+# engine = create_engine('sqlite:///SQL_Alchemy_2/one2many.db')
+# Base = declarative_base()
+
+# class Department(Base):
+#     __tablename__ = "department"
+#     id = Column(Integer, primary_key=True)
+#     name = Column(String, unique=True)
+#     employess = relationship("Employee")
+
+# class Employee(Base):
+#     __tablename__ = "employee"
+#     id = Column(Integer, primary_key=True)
+#     name = Column(String)
+#     salary = Column(Integer)
+#     department_id = Column(Integer, ForeignKey("department.id"))
+#     department = relationship("Department")
+
+# Base.metadata.create_all(engine)
+# Session = sessionmaker(bind=engine)
+# session = Session()
+
+# department1 = Department(name='IT')
+# employee = Employee(name="John2", salary=50000, department=department1)
+
+# session.add(department1)
+# session.add(employee)
+
+# session.commit()
+
+## Many to Many
+
+# from sqlalchemy import Column, Integer, String, create_engine, Table, ForeignKey
+# from sqlalchemy.ext.declarative import declarative_base
+# from sqlalchemy.orm import relationship, sessionmaker
+
+# engine = create_engine('sqlite:///SQL_Alchemy_2/many2many_test.db')
+# Base = declarative_base()
+
+# #association_table
+
+# #groups_id = Column(Integer, ForeignKey("group.id"))
+
+# user_group_table = Table('user_group', Base.metadata,
+#     Column('user_id', Integer, ForeignKey('user.id')),
+#     Column('group_id', Integer, ForeignKey('group.id'))
+# )
+
+# class User(Base):
+#     __tablename__="user"
+#     id = Column(Integer, primary_key=True)
+#     name = Column(String)
+#     groups = relationship("Group", secondary=user_group_table)
+
+# class Group(Base):
+#     __tablename__="group"
+#     id = Column(Integer, primary_key=True)
+#     name = Column(String)
+#     users = relationship("User", secondary=user_group_table)
+
+
+
+# Base.metadata.create_all(engine)
+
+
+# Session = sessionmaker(bind=engine)
+# session = Session()
+
+# user = User(name="John")
+
+# group1 = Group(name="IT")
+# group2 = Group(name="HR")
+
+# user.groups = [group1, group2]
+
+# #group1.users = [user1, user2, user3, .....]
+
+# session.add(user)
+# session.add(group1)
+# session.add(group2)
+
+# session.commit()
+
+
+## Many to Many without association
+
+
+from sqlalchemy import Column, Integer, String, create_engine, Table, ForeignKey
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship, sessionmaker
+
+engine = create_engine('sqlite:///SQL_Alchemy_2/many2many_without_association.db')
+Base = declarative_base()
+
+class User(Base):
+    __tablename__="user"
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    groups = relationship("Group", secondary="user_group")
+
+class Group(Base):
+    __tablename__="group"
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    users = relationship("User", secondary="user_group")
+
+class User_Group(Base):
+    __tablename__="user_group"
+    user_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
+    group_id = Column(Integer, ForeignKey('group.id'), primary_key=True)
+
+
+Base.metadata.create_all(engine)
+
+
+Session = sessionmaker(bind=engine)
+session = Session()
+
+new_user = User(name="John")
+session.add(new_user)
+session.commit()
+
+new_group = Group(name="IT")
+session.add(new_group)
+session.commit()
+
+new_User_Group = User_Group(user_id=new_user.id, group_id=new_group.id)
+session.add(new_User_Group)
+session.commit()
+#+end_src
+
+#+begin_src python
+# from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Float, PrimaryKeyConstraint
+# from sqlalchemy.ext.declarative import declarative_base
+# from sqlalchemy.orm import relationship
+
+# engine = create_engine('sqlite:///SQL_Alchemy_2/order_without_association.db')
+# Base = declarative_base()
+
+
+# class Customer(Base):
+#     __tablename__='customer'
+#     id = Column(Integer, primary_key=True)
+#     f_name = Column(String)
+#     l_name = Column(String)
+#     email = Column(String, unique=True)
+
+# class Status(Base):
+#     __tablename__='status'
+#     id = Column(Integer, primary_key=True)
+#     name = Column(String)
+#     order = relationship("Order")
+
+# class Order(Base):
+#     __tablename__="order"
+#     id = Column(Integer, primary_key=True)
+#     date = Column(String)
+#     customer_id = Column(Integer, ForeignKey('customer.id'))
+#     status_id = Column(Integer, ForeignKey('status.id'))
+#     product = relationship("Product", secondary='product_order')
+
+# class Product(Base):
+#     __tablename__="product"
+#     id = Column(Integer, primary_key=True)
+#     name = Column(String)
+#     price = Column(Float)
+#     order = relationship("Order", secondary='product_order')
+
+# class ProductOrder(Base):
+#     __tablename__="product_order"
+#     order_id = Column(Integer, ForeignKey('order.id'), primary_key=True)
+#     product_id = Column(Integer, ForeignKey('product.id'), primary_key=True)
+#     quantity = Column(Integer)
+
+# Base.metadata.create_all(engine)
+
+
+#########
+
+
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Float, PrimaryKeyConstraint, Table
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
+
+engine = create_engine('sqlite:///SQL_Alchemy_2/order_with_association.db')
+Base = declarative_base()
+
+class Customer(Base):
+    __tablename__='customer'
+    id = Column(Integer, primary_key=True)
+    f_name = Column(String)
+    l_name = Column(String)
+    email = Column(String, unique=True)
+    order = relationship("Order")
+
+class Status(Base):
+    __tablename__='status'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    order = relationship("Order")
+
+ProductOrder = Table('product_order', Base.metadata,
+        Column('order_id', Integer, ForeignKey('order.id'), primary_key=True),
+        Column('product_id', Integer, ForeignKey('product.id'), primary_key=True),
+        Column('quantity', Integer)
+)
+
+class Product(Base):
+    __tablename__="product"
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    price = Column(Float)
+    order = relationship("Order", secondary='product_order')
+
+class Order(Base):
+    __tablename__="order"
+    id = Column(Integer, primary_key=True)
+    date = Column(String)
+    customer_id = Column(Integer, ForeignKey('customer.id'))
+    status_id = Column(Integer, ForeignKey('status.id'))
+    product = relationship("Product", secondary=ProductOrder)
+
+
+Base.metadata.create_all(engine)
+
+#+end_src
+
+#+begin_src python
+from sqlalchemy import create_engine, Column, Integer, String, Float, ForeignKey, Table
+from sqlalchemy.orm import sessionmaker, relationship
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
+engine = create_engine('sqlite:///SQL_Alchemy_2/order_with_association.db')
+
+OrderProduct = Table('order_product', Base.metadata,
+    Column('product_id', Integer, ForeignKey('product.id'), primary_key=True),
+    Column('order_id', Integer, ForeignKey('order.id'), primary_key=True),
+    Column('quantity', Integer)
+)
+
+class Customer(Base):
+    __tablename__='customer'
+    id = Column(Integer, primary_key=True)
+    f_name = Column(String)
+    l_name = Column(String)
+    email = Column(String)
+    orders = relationship("Order")
+
+class Order(Base):
+    __tablename__='order'
+    id = Column(Integer, primary_key=True)
+    customer_id = Column(Integer, ForeignKey('customer.id'))
+    date = Column(String)
+    status_id = Column(Integer, ForeignKey('status.id'))
+    products = relationship("Product", secondary=OrderProduct, back_populates="orders")
+
+class Status(Base):
+    __tablename__='status'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    orders = relationship("Order")
+
+class Product(Base):
+    __tablename__='product'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    price = Column(Float)
+    orders = relationship("Order", secondary=OrderProduct, back_populates="products")
+
+
+Base.metadata.create_all(bind=engine)
+Session = sessionmaker(bind=engine)
+session = Session()
+
+# add buyer
+def add_buyer(f_name, l_name, email):
+    customer = Customer(f_name=f_name, l_name=l_name, email=email)
+    session.add(customer)
+    session.commit()
+    print(f"Buyer {f_name} {l_name} with email {email} has been added.")
+
+# Add a product
+def add_product(name, price):
+    product = Product(name=name, price=price)
+    session.add(product)
+    session.commit()
+    print(f"Product {name} with price {price} has been added.")
+
+# Add status
+def add_status(name):
+    status = Status(name=name)
+    session.add(status)
+    session.commit()
+    print(f"status {name} has been added.")
+
+def add_order(customer_id, date, status_id):
+    order = Order(customer_id=customer_id, date=date, status_id=status_id)
+    session.add(order)
+    session.commit()
+    print(f"Order with customer_id {customer_id}, date {date}, and status_id {status_id} has been added.")
+
+# Withdraw order by id
+def withdraw_order(order_id):
+    session.query(Order).filter(Order.id == order_id).delete()
+    session.commit()
+    print(f"Order with id {order_id} has been withdrawn.")
+
+# Change order status by order id
+def change_order_status(order_id, status_id):
+    session.query(Order).filter(Order.id == order_id).update({Order.status_id: status_id})
+    session.commit()
+    print(f"Order status of order with id {order_id} has been changed to {status_id}.")
+
+#Add product to order
+def add_product_to_order(product_id, order_id, quantity):
+    session.execute(OrderProduct.insert().values(product_id=product_id, order_id=order_id, quantity=quantity))
+    session.commit()
+    print(f"Product with id {product_id} has been added to order")
+
+
+# # alternative
+# def add_product_to_order(product_id, order_id, quantity):
+#     order_product = OrderProduct(product_id=product_id, order_id=order_id, quantity=quantity)
+#     session.add(order_product)
+#     session.commit()
+#     print(f"Product with id {product_id} has been added to order with id {order_id} with quantity {quantity}.")
+
+
+# add_buyer("Jurgas","Jurgelis","Test@gmail.com")
+
+# add_product("Telefonas5",450)
+
+# add_status("Completed")
+# add_status("In Progress")
+
+# add_order(1,"2022-01-25",2)
+
+# add_product_to_order(4,1,450)
+#+end_src
+
+** Užduotys
+*** [[https://github.com/robotautas/kursas/wiki/ORM-2-u%C5%BEduotis][1 užduotis]]
+
+#+begin_src python
+  # crud.py
+
+  from sqlalchemy.orm import sessionmaker
+  from model import Order, Customer, Product, Status, OrderProduct, engine
+
+  Session = sessionmaker(bind=engine)
+  session = Session()
+
+  def options_list(class_):
+      options = session.query(class_).all()
+      for i in options:
+          print(i, end=' ')
+
+
+  def create_customer():
+      f_name = input("First Name: ")
+      l_name = input("Last Name: ")
+      email = input("Email: ")
+      customer = Customer(f_name=f_name, l_name=l_name, email=email)
+      session.add(customer)
+      session.commit()
+      print('created!\n')
+
+  def create_status():
+      print('Existing statuses:')
+      options_list(Status)
+      name = input("\nEnter new status: ")
+      status = Status(name=name)
+      session.add(status)
+      session.commit()
+      print('created!\n')
+
+
+  def create_product():
+      print('Existing products:')
+      options_list(Product)
+      name = input("\nName: ")
+      price = input("Price: ")
+      product = Product(name=name, price=price)
+      session.add(product)
+      session.commit()
+      print('created!\n')
+
+
+  def create_order():
+      options_list(Customer)
+      customer_id = input("\nCustomer Id: ")
+      order = Order(customer_id=customer_id, status_id=1)
+      session.add(order)
+      session.commit()
+      last_order_id = session.query(Order).all()[-1].id
+      print('Products available:')
+      options_list(Product)
+      while True:
+          product_id = input('\nProduct Id: ')
+          quantity = input('Quantity: ')
+          if product_id and quantity:
+              order_product = OrderProduct(order_id=last_order_id, product_id=product_id, quantity=quantity)
+              session.add(order_product)
+              session.commit()
+          else:
+              print('created!\n')
+              break
+
+
+  def get_order():
+      last_order_id = session.query(Order).all()[-1].id
+      id_ = input(f'Order id (1-{last_order_id}): ')
+      order = session.query(Order).get(id_)
+      order_lines = session.query(OrderProduct).filter_by(order_id=order.id)
+      print(f'\nOrder #{id_}, customer - {order.customer.f_name} {order.customer.l_name}:')
+      print('\nProduct\tQty\tPrice\tSum')
+      total = 0
+      for line in order_lines:
+          print(f'{line.product.name}\t{line.quantity}\t{line.product.price}\t{line.quantity * line.product.price}')
+          total += line.product.price * line.quantity
+      print(f'\n\t\tTotal:\t{total}')
+      print(f'\t\tStatus:\t{order.status.name}')
+
+  def change_status():
+      last_order_id = session.query(Order).all()[-1].id
+      id_ = input(f'Order id (1-{last_order_id}): ')
+      order = session.query(Order).get(id_)
+      options_list(Status)
+      status_id = input('\nSet status id:')
+      order.status_id = status_id
+      session.commit()
+
+
+  while True:
+      choice = input('c Add Customer | p Add Product | s Add Status | o Add Order | g Get Order | cs Change Status | q Quit\nChoose action: ')
+      if choice == 'c':
+          create_customer()
+      elif choice == 'p':
+          create_product()
+      elif choice == 's':
+          create_status()
+      elif choice == 'o':
+          create_order()
+      elif choice == 'g':
+          get_order()
+      elif choice == 'cs':
+          change_status()
+      elif choice == 'q':
+          break
+      else:
+          print('Wrong input!')
+
+  session.close()
+#+end_src
+
+
+#+begin_src python
+  # model.py
+
+  import datetime
+  from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, Table, create_engine
+  from sqlalchemy.ext.declarative import declarative_base
+  from sqlalchemy.orm import relationship, sessionmaker
+
+  engine = create_engine('sqlite:///orders.db')
+  Base = declarative_base()
+
+
+  class Customer(Base):
+      __tablename__ = "customer"
+      id = Column(Integer, primary_key=True)
+      f_name = Column("f_name", String)
+      l_name = Column("l_name", String)
+      email = Column("email", String)
+      orders = relationship("Order")
+
+      def __repr__(self):
+          return f'{self.id} {self.f_name} {self.l_name}'
+
+
+  class Status(Base):
+      __tablename__ = "status"
+      id = Column(Integer, primary_key=True)
+      name = Column("name", String)
+      orders = relationship("Order")
+
+      def __repr__(self):
+          return f'{self.id} {self.name}'
+
+
+  class Product(Base):
+      __tablename__ = "product"
+      id = Column(Integer, primary_key=True)
+      name = Column("name", String)
+      price = Column("price", Float)
+
+      def __repr__(self):
+          return f'{self.id} {self.name}'
+
+  class Order(Base):
+      __tablename__ = "order_"
+      id = Column(Integer, primary_key=True)
+      date = Column("date_", DateTime, default=datetime.datetime.utcnow)
+      customer_id = Column(Integer, ForeignKey("customer.id"))
+      status_id = Column(Integer, ForeignKey("status.id"))
+      customer = relationship("Customer")
+      status = relationship("Status")
+
+
+
+  class OrderProduct(Base):
+      __tablename__='order_product'
+      id = Column(Integer, primary_key=True)
+      order_id = Column("order_id", Integer, ForeignKey('order_.id'))
+      product_id = Column("project_id", Integer, ForeignKey('product.id'))
+      quantity = Column("quantity", Integer)
+      order = relationship("Order")
+      product = relationship("Product")
+
+  if __name__ == "__main__":
+      Base.metadata.create_all(engine)
+
+
+  # email = Column(Integer, ForeignKey('vaikas.id'))
+  #     vaikas = relationship("Vaikas")
+#+end_src

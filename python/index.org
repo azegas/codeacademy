@@ -1,0 +1,7261 @@
+#+title: CodeAcademy Python
+#+date: <2023-01-29 15:45>
+#+description: CodeAcademy Python notes
+#+filetags: python codeacademy
+#+OPTIONS: toc:2
+#+OPTIONS: num:t
+
+* Lesson1 Įvadas į Python
+** Loginiai operatoriai ir sąlygos
+*** ARITHMETIC OPERATORS
+
+- + Addition	x + y
+- - Subtraction	x - y
+- * Multiplication	x * y
+- / Division	x / y
+- % Modulus	x % y
+- * Exponentiation	x ** y
+- // Floor division	x // y
+
+*** ASSIGNMENT OPERATORS
+
+- =	x = 5	x = 5
+- +=	x += 3	x = x + 3
+- -=	x -= 3	x = x - 3
+- *=	x *= 3	x = x * 3
+- /=	x /= 3	x = x / 3
+- %=	x %= 3	x = x % 3
+- //=	x //= 3	x = x // 3
+- **=	x **= 3	x = x ** 3
+- &=	x &= 3	x = x & 3
+- |=	x |= 3	x = x | 3
+- ^=	x ^= 3	x = x ^ 3
+- >>=	x >>= 3	x = x >> 3
+- <<=	x <<= 3	x = x << 3
+
+*** COMPARISON OPERATORS
+
+- ==	Equal	x == y
+- !=	Not equal	x != y
+- >	Greater than	x > y
+- <	Less than	x < y
+- >=	Greater than or equal to	x >= y
+- <=	Less than or equal to	x <= y
+
+*** LOGICAL OPERATORS
+
+- and     Returns True if both statements are true	x < 5 and  x < 10
+- or	Returns True if one of the statements is true	x < 5 or x < 4
+- not	Reverse the result, returns False if the result is true	not(x < 5 and x < 10)
+
+*** IDENTITY OPERATORS
+
+- is      Returns True if both variables are the same object	x is y
+- is not	Returns True if both variables are not the same object	x is not y
+
+*** MEMBERSHIP OPERATORS
+
+- in      Returns True if a sequence with the specified value is present in the object	x in y
+- not in	Returns True if a sequence with the specified value is not present in the object	x not in y
+
+*** BITWISE OPERATORS
+
+- &       AND	Sets each bit to 1 if both bits are 1
+- |	OR	Sets each bit to 1 if one of two bits is 1
+- ^	XOR	Sets each bit to 1 if only one of two bits is 1
+- ~	NOT	Inverts all the bits
+- <<	Zero fill left shift	Shift left by pushing zeros in from the right and let the leftmost bits fall off
+- >>	Signed right shift	Shift right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off
+
+** Kintamieji, string ir number duomenu tipai
+*** Kintamieji (skaičiai):
+**** Sveikieji skaičiai – Integer (int):
+
+#+begin_src python
+  def better_than_average(class_points, your_points):
+
+      class_points.append(your_points)
+      print(class_points)
+
+      average = sum(class_points) / len(class_points)
+      if average >= your_points:
+          return False
+      else:
+          return True
+
+
+  better_than_average([1, 2, 3], 9)
+#+end_src
+
+#+begin_src python
+a = 5
+print(a)
+
+# 5
+
+a = int(5)
+print(a)
+
+# 5
+
+a = 7
+print(a)
+
+# 7
+
+a = 10
+print(a)
+
+# 10
+
+a = a - 4
+print(a)
+
+# 6
+#+end_src
+
+**** Skaičiai su kableliu – float:
+
+#+begin_src python
+a = 8.56
+b = 5
+c = a + b
+print(c)
+
+# 13.56
+a = float(5)
+print(a)
+
+# 5.00
+#+end_src
+
+**** Veiksmai su kintamaisiais:
+
+#+begin_src python
+a = 5 + 2
+print(a)
+
+# 7
+
+b = 5 - 2
+print(b)
+
+# 3
+
+c = 5 * 2
+print(c)
+
+# 10
+
+d = 5 / 2
+print(d)
+
+# 2.5
+#+end_src
+
+**** Kintamųjų pavadinimų sudarymo taisyklės
+
+Kintamųjų pavadinimai turi prasidėti raide arba pabraukimu, pvz:
+
+_vardas
+
+vardas
+
+Likusioji kintamojo dalis gali būti sudaryta iš raidžių, skaičių ir pabraukimų:
+
+pirmas1
+
+antras_skaicius
+
+_e5786
+
+Pavadinimuose svarbios didžiosios ir mažosios raidės:
+
+Vardas ir vardas būtų skirtingi kintamieji.
+
+Kintamaisiais negali būti python raktiniai žodžiai:
+
+'False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await',
+'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except',
+'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is',
+'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try',
+'while', 'with', 'yield'
+
+Python kalboje sudurtinius kintamųjų pavadinimus priimta sudarinėti
+taip:
+
+first_block, vandens_temperatura
+
+**** Paprastesnis veiksmų atlikimas:
+
+#+begin_src python
+a = 5
+a += 2
+print(a)
+
+# 7
+
+b = 12
+b /= 3
+print(b)
+
+# 4.0
+#+end_src
+**** Kėlimas laipsniu:
+
+#+begin_src python
+a = 2**2
+print(a)
+
+# 4
+
+b = 5**3
+print(b)
+
+# 125
+#+end_src
+**** Sveikojo skaičiaus ir liekanos paieška (div/mod):
+
+#+begin_src python
+a = 32 / 6
+print(a)
+
+# 5.333333333333333
+
+b = 32 // 6
+print(b)
+
+# 5
+
+c = 32 % 6
+print(c)
+# 2
+#+end_src
+**** Simbolių eilutės (String) tipas:
+
+#+begin_src python
+zodis1 = "Labas "
+print(zodis1)
+
+# Labas
+
+zodis2 = str("vakaras")
+print(zodis2)
+
+# vakaras
+
+print(zodis1 + zodis2)
+
+# Labas vakaras
+#+end_src
+**** Nauja eilutė:
+
+#+begin_src python
+print("Labas \nvakaras")
+
+# Labas
+# vakaras
+#+end_src
+**** Veiksmai su simbolių eilėmis (String):
+
+#+begin_src python
+zodis = "Code Academy"
+
+print(zodis[5])
+
+# A
+
+print(zodis[-2])
+
+# m
+
+print(zodis[5:12])
+
+# Academy
+
+print(zodis[5:])
+
+# Academy
+
+print(zodis[:4])
+
+# Code
+
+print(zodis[5:12:1])
+
+# Academy
+
+print(zodis[5::2])
+
+# Aaey
+
+print(zodis[::-1])
+
+# ymedacA edoC
+
+print(zodis.split())
+
+# ['Code', 'Academy']
+
+print(zodis.upper())
+
+# CODE ACADEMY
+
+print(zodis.replace('c', 'k'))
+
+# Code Akademy
+
+print(zodis.replace('Code', 'Music'))
+
+# Music Academy
+#+end_src
+**** Geras būdas formuoti stringus iš kintamųjų:
+
+#+begin_src python
+  a = 5
+
+  zodis = "Labas"
+  dar_vienas = "Šitas žodis"
+
+  print("a lygu: " + str(a) + ", žodis: " + zodis + ", dar vienas žodis – " + dar_vienas)
+
+  # Geresnis variantas:
+  print(f"a lygu {a}, žodis: {zodis}, dar vienas žodis – {dar_vienas}")
+#+end_src
+**** Veiksmai su skirtingais tipais (konvertavimas):
+
+#+begin_src python
+d = "Žodis "
+e = 5
+print(d+e)
+
+# TypeError: can only concatenate str (not "int") to str
+
+e = str(e)
+print(d+e)
+
+# Žodis 5
+
+a = "250"
+b = 4
+print(a * b)
+
+# ???
+#+end_src
+**** Kintamųjų įvedimas ir išvedimas:
+#+begin_src python
+  # String įvedimas:
+
+  a = input("Įveskite pirmą žodį ")
+  b = input("Įveskite antrą žodį ")
+  print("Jūsų sakinys: ", a + b)
+
+  # Įveskite pirmą žodį Python
+  # Įveskite antrą žodį programavimas
+  # Jūsų sakinys: Python programavimas
+  # Integer, Float įvedimas:
+
+
+  a = int(input("Įveskite pirmą skaičių "))
+  b = int(input("Įveskite antrą skaičių "))
+  print("Jūsų skaičių suma: ", a + b)
+
+  # Įveskite pirmą skaičių 5
+  # Įveskite antrą skaičių 6
+  # Jūsų skaičių suma: 11
+
+  h = float(input("Įveskite skaičių "))
+  print(h)
+#+end_src
+
+** Sąlyga IF (jeigu)
+*** Jeigu (IF) [sąlyga], tuomet [veiksmas]
+#+begin_src python
+  if 5 > 0:
+      print("5 yra daugiau už 0")
+  # 5 yra daugiau už 0
+  if 5 < 0:
+      print("5 yra daugiau už 0")
+  print("Programa baigta")
+
+  # Programa baigta
+  skaicius = 25
+  if skaicius < 100:
+      print("1: Skaičius yra mažesnis už 100")
+  if skaicius > 10:
+      print("2: Skaičius yra didesnis už 10")
+  if skaicius < 10:
+      print("3: Skaičius yra mažesnis už 10")
+
+  # 1: Skaičius yra mažesnis už 100
+  # 2: Skaičius yra didesnis už 10
+
+  skaicius = 60
+  if skaicius < 70:
+      print("Skaičius yra mažesnis už 70")
+      if skaicius > 15:
+          print("Skaičius yra tarp 15 ir 70")
+
+  # Skaičius yra mažesnis už 70
+  # Skaičius yra tarp 15 ir 70
+
+  skaicius = 10
+
+  # Skaičius yra mažesnis už 70
+#+end_src
+*** Sąlyga ELSE (jei ne, tuomet):
+#+begin_src python
+skaicius = 56
+if skaicius == 50:
+    print("1: Skaičius yra lygus 50")
+else:
+    print("2: Skaičius nelygus 50")
+
+# 2: Skaičius nelygus 50
+
+# Sąlyga ELIF (jei sąlyga netenkinama ir jei):
+
+skaicius = 0
+
+if skaicius > 0:
+    print("Teigiamas skaičius")
+elif skaicius == 0:
+    print("Nulis")
+else:
+    print("Neigiamas skaičius")
+
+# Nulis
+#+end_src
+** Užduotys
+*** 1 užduotis
+Parašyti programą, kuri:
+
+Leistų įvesti skaičius a ir b (int arba float)
+
+Išvestų įf ekraną „a mažesnis už b“, jei taip yra
+
+Išvestų į ekraną „a lygu b“, jei taip yra
+
+Išvestų į ekraną „a didesnis už b“, jei taip yra
+
+Patarimas: naudoti if, elif, else sąlygas
+
+#+begin_src python
+a = int(input("Įveskite skaičių a "))
+b = int(input("Įveskite skaičių b "))
+if b > a:
+    print("a mažesnis už b")
+elif a == b:
+    print("a lygu b")
+else:
+    print("a didesnis už b")
+#+end_src
+
+*** 2 užduotis
+Parašyti programą, kuri su eilute "Zen of Python" darytų šiuos veiksmus:
+
+Atspausdintų paskutinį antro žodžio simbolį
+
+Atspausdintų pirmą trečio žodžio simbolį
+
+Atspausdintų tik pirmą žodį
+
+Atspausdintų tik paskutinį žodį
+
+Atspausdintų visą frazę atbulai
+
+Atskirtų žodžius ir juos atspausdintų
+
+Žodį "Python" pakeistų į "Programming" ir atspausdintų naują sakinį
+
+Patarimas: naudoti string karpymo įrankius, funkcijas split(),
+replace()
+
+#+begin_src python
+  zodis = "Zen of Python"
+  print(zodis[5])
+  print(zodis[-6])
+  print(zodis[:3])
+  print(zodis[-6:])
+  print(zodis[::-1])
+  print(zodis.split())
+  print(zodis.replace("Python", "Programming"))
+
+#+end_src
+*** 3 užduotis
+Programoje išbandyti daugiau string funkcijų:
+
+upper()
+
+casefold()
+
+capitalize()
+
+count()
+
+find()
+
+ir t.t.
+
+Visas jas galite rasti čia:
+https://www.w3schools.com/python/python_ref_string.asp
+
+#+begin_src python
+zodis = "The Zen of Python"
+
+print(zodis.upper())
+print(zodis.casefold())
+print(zodis.capitalize())
+print(zodis.count("e"))
+print(zodis.count("Zen"))
+#+end_src
+*** 4 užduotis
+Parašyti programą, kuri:
+
+Leistų įvesti pirmą skaičių
+
+Leistų įvesti antrą skaičių
+
+Paklaustų, kokį matematinį veiksmą reiktų atliktų
+
+Atspausdintų rezultatą: pasirinktų skaičių suma, daugybą ar pan.
+
+Patarimas: naudoti input(), if, print
+
+#+begin_src python
+  a = int(input("Įveskite pirmą skaičių "))
+  b = int(input("Įveskite antrą skaičių "))
+  c = input("Pasirinkite matematinį veiksmą (+, -, *, /): ")
+
+  if c == "+":
+      print("Skaičių suma lygi: ", a + b)
+  if c == "-":
+      print("Skaičių atimtis lygi: ", a - b)
+  if c == "*":
+      print("Skaičių daugyba lygi: ", a * b)
+  if c == "/":
+      print("Skaičių dalyba lygi: ", a / b)
+#+end_src
+*** 5 užduotis
+Parašyti programą, kuri:
+
+Leistų įvesti skaičių
+
+Išvesti į ekraną „Skaičius yra lyginis“, jei taip yra
+
+Išvesti į ekraną „Skaičius yra nelyginis“, jei taip yra
+
+Išvesti į ekraną „Skaičius dalinasi iš 3“, jei skaičius dalinasi iš trijų
+
+Patarimas: naudoti input(), if, print, %, <, >
+
+#+begin_src python
+skaicius = int(input("Įveskite skaičių: "))
+
+if skaicius % 2 == 0:
+    print("Įvestas skaičius yra lyginis!")
+else:
+    print("Įvestas skaičius yra nelyginis!")
+
+if skaicius % 3 == 0:
+    print("Įvestas skaičius dalinasi iš trijų")
+#+end_src
+
+* Lesson2 Masyvai, žodynai ir ciklai
+** Masyvai
+
+# Masyvas (angl. Array) – tai kintamojo tipas, leidžiantis išsaugoti daug reikšmių.
+
+#+begin_src python
+sarasas = []
+skaiciai = [4, 5, 45, 95]
+zodziai = ["Labas ", "vakaras, ", "Lietuva"]
+visko_po_truputi = [5, 5.6, "Lietuva", [5, 6, 15], True]
+
+print(zodziai)
+
+# ['Labas ', 'vakaras, ', 'Lietuva']
+#+end_src
+*** Kaip pasiekti atskirus sąrašo įrašus:
+
+#+begin_src python
+zodziai = ["Labas ", "vakaras, ", "Lietuva"]
+
+print(zodziai[0])
+print(zodziai[2])
+
+# Labas
+# Lietuva
+
+
+zodis = "Laba diena"
+print(zodis[5])
+
+# d
+
+visko_po_truputi = [5, 5.6, "Lietuva", [5, 6, 15], True]
+print(visko_po_truputi[3][1])
+
+# 6
+#+end_src
+*** Kaip į sąrašą pridėti duomenų:
+
+#+begin_src python
+sarasas = [5, 2, 6]
+sarasas.append(13)
+
+print(sarasas)
+
+# [5, 2, 6, 13]
+Kaip pakeisti ar ištrinti sąrašo įrašą:
+
+sarasas = [5, 2, 6]
+sarasas[1] = 64
+print(sarasas)
+
+# [5, 64, 6]
+
+sarasas2 = [5, 64, 6]
+sarasas2.pop(1)
+print(sarasas2)
+
+# [5, 6]
+#+end_src
+
+*** Kaip sužinoti sąrašo dydį:
+
+#+begin_src python
+  sarasas = [6, 98, 159, "zodziai", 5.55, True]
+  print(len(sarasas))
+
+  # 6
+
+
+  ilgiausias_zodis = "nebeprisikiškiakopūsteliaujantiesiems"
+  print(len(ilgiausias_zodis))
+
+  # 37
+
+  pats_ilgiausias_zodis = "Nebeprisivaizdotinklaraštininkaujantiesiems"
+  print (len(pats_ilgiausias_zodis))
+
+  # 43
+#+end_src
+** Zodynai
+
+#+begin_src python
+amzius = {"Rokas": 20, "Andrius": 34, "Laura": 25}
+print(amzius)
+
+# {'Rokas': 20, 'Andrius': 34, 'Laura': 25}
+#+end_src
+*** Kaip pasiekti konkretų žodyno įrašą:
+
+#+begin_src python
+  amzius = {"Rokas": 20, "Andrius": 34, "Laura": 25}
+
+  print(amzius["Laura"])
+  # 25
+
+  print(amzius["Rokas"])
+  # 20
+
+#+end_src
+
+*** Kaip pridėti į žodyno įrašą:
+#+begin_src python
+  automobilis = {"Gamintojas": "Tesla", "Modelis": "Model S P100D", "Metai": 2016}
+
+  automobilis["Galia"] = 588
+
+  print(automobilis)
+
+  # {'Gamintojas': 'Tesla', 'Modelis': 'Model S P100D', 'Metai': 2016, 'Galia': 588}
+#+end_src
+
+*** Kaip pakeisti žodyno įrašą:
+
+#+begin_src python
+automobilis = {"Gamintojas": "Tesla", "Modelis": "Model S P100D", "Metai": 2016}
+
+automobilis["Metai"] = 2019
+
+print(automobilis)
+
+# {'Gamintojas': 'Tesla', 'Modelis': 'Model S P100D', 'Metai': 2019}
+#+end_src
+*** Kaip ištrinti žodyno įrašą:
+#+begin_src python
+automobilis = {"Gamintojas": "Tesla", "Modelis": "Model S P100D", "Metai": 2019}
+
+del automobilis["Metai"]
+
+print(automobilis)
+
+# {'Gamintojas': 'Tesla', 'Modelis': 'Model S P100D'}
+
+#+end_src
+
+** Ciklai
+Ciklas – operacijos kartojimas (tiek, kiek reikalauja sąlyga)
+
+Iteracija (lot. iteratio - kartojimas) – vienas operacijos pakartojimas
+
+*** For ciklai:
+
+Kaip veikia ciklai, galima išsamiai išnagrinėti naudojant PyCharm debug režimą.
+
+#+begin_src python
+sarasas = [45, 126, 7,"Labas", 45.45]
+
+for saraso_irasas in sarasas:
+    print(saraso_irasas)
+
+# 45
+# 126
+# 7
+# Labas
+# 45.45
+skaiciai = [2, 6, 7, 9, 41, 4, 46, 789]
+
+skaiciu_suma = 0
+
+for skaicius in skaiciai:
+    skaiciu_suma += skaicius
+
+print(skaiciu_suma)
+
+# 904
+#+end_src
+
+*** Kaip iteruoti per žodyno įrašus:
+
+#+begin_src python
+amzius = {"Rokas": 20, "Andrius": 34, "Laura": 25}
+
+for irasas in amzius:
+    print(irasas)
+
+# Rokas
+# Andrius
+# Laura
+
+for irasas in amzius.values():
+    print(irasas)
+
+# 20
+# 34
+# 25
+
+for raktas, reiksme in amzius.items():
+    print(raktas, reiksme)
+
+# Rokas 20
+# Andrius 34
+# Laura 25
+#+end_src
+*** Kaip sukti for ciklą tam tikrą kiekį kartų (funkcija range):
+
+#+begin_src python
+for skaicius in range(6):
+    print(skaicius)
+
+# 0
+# 1
+# 2
+# 3
+# 4
+# 5
+
+
+for skaicius in range(4, 15, 2):
+    print(skaicius)
+
+# 4
+# 6
+# 8
+# 10
+# 12
+# 14
+#+end_src
+*** While ciklai:
+Kol (while) [sąlyga], tol vykdyk ciklą
+
+#+begin_src python
+a = 5
+
+while a < 100:
+    a += 5
+    print(a)
+
+# 10
+# 15
+# 20
+# 25
+# 30
+# 35
+# 40
+# 45
+# 50
+# 55
+# 60
+# 65
+# 70
+# 75
+# 80
+# 85
+# 90
+# 95
+# 100
+#+end_src
+*** Begalinis ciklas (Infinite loop):
+#+begin_src python
+while True:
+    print("dar kartą")
+
+# dar kartą
+# dar kartą
+# dar kartą
+# dar kartą
+# dar kartą
+# dar kartą
+# dar kartą
+# ...
+
+#+end_src
+*** Ciklo nutraukimas (break):
+#+begin_src python
+sarasas = range(0, 10, 2)
+
+for one in sarasas:
+    print(one)
+    if one == 4:
+        print("Skaičius 4 yra šiame sąraše")
+        break
+
+# 0
+# 2
+# 4
+# Skaičius 4 yra šiame sąraše
+
+#+end_src
+*** Pakartojimo praleidimas (continue):
+#+begin_src python
+for one in range(0, 6):
+    if one == 3:
+        continue
+    print(one)
+
+# 0
+# 1
+# 2
+# 4
+# 5
+#+end_src
+
+*** Sąlyga [else] for ir while cikluose:
+
+#+begin_src python
+for skaicius in range(1, 5):
+    if skaicius == 10:
+        break
+    print(skaicius)
+else:
+    print("Ciklas užbaigtas")
+
+# 1
+# 2
+# 3
+# 4
+# Ciklas užbaigtas
+sarasas = [2, 8, 45, 787, 45, 89, 45, 78, 78, 9, 4]
+ieskomasis = int(input("Įveskite ieškomą skaičių"))
+
+for x in sarasas:
+    print(x)
+    if x == ieskomasis:
+        print("Skaičius rastas")
+        break
+else:
+    print("Skaičius nerastas")
+
+print("Programos pabaiga")
+#+end_src
+** Destytojo pavyzdžiai
+#+begin_src python
+  sarasas = range(0, 10, 1)
+
+  for one in sarasas:
+      print(one)
+      if one == 4:
+          print("Skaičius 4 yra šiame sąraše")
+          break
+
+  # --------------------------------------------------------------------
+
+  automobilis = {"Gamintojas": "Tesla", "Modelis": "Model S P100D", "Metai": 2016}
+
+  for a, b in automobilis.items():
+      print(f"Raktas: {a} ir vertė: {b}")
+
+
+  # --------------------------------------------------------------------
+
+  amzius = {"Rokas": 20, "Andrius": 34, "Laura": 25}
+
+  # fancy, su .get metodu paraso error, kad nerasta instead of breaking koda jeigu be get daryciau
+  print(amzius.get("Laur", "Nerasta"))
+
+  # --------------------------------------------------------------------
+
+  car1 = {
+    "brand": "Ford",
+    "model": "Mustang",
+    "year": 1964
+  }
+
+  car2 = {
+    "brand": "Ford",
+    "model": "Mustang",
+    "year": 1964
+  }
+
+  car3 = {
+    "brand": "Ford",
+    "model": "Mustang",
+    "year": 1964
+  }
+
+  masinos = [car1, car2, car3]
+  print(masinos)
+#+end_src
+** Užduotys
+
+Atsakymai
+https://github.com/CodeAcademy-Online/Python/tree/lesson-2
+
+*** 1 užduotis
+Sukurti norimą sąrašą ir žodyną ir juose:
+
+Atspausdinti vieną norimą įrašą
+
+Pridėti įrašą
+
+Ištrinti įrašą
+
+pakeisti įrašą
+
+Išbandyti kitas sąrašų ir žodynų funkcijas: clear(), index(), insert(), remove...
+
+https://www.w3schools.com/python/python_ref_list.asp
+https://www.w3schools.com/python/python_ref_dictionary.asp
+
+#+begin_src python
+  sarasas = [6, 98, 159, "zodziai", 5.55, True]
+
+  print(sarasas[2])
+
+  sarasas.append(888)
+  print(sarasas)
+
+  sarasas.insert(2, "Naujas")
+  print(sarasas)
+
+  sarasas.remove("Naujas")
+  print(sarasas)
+
+  sarasas.clear()
+  print(sarasas)
+
+  amzius = {"Rokas": 20, "Andrius": 34, "Laura": 25}
+
+  print(amzius["Laura"])
+
+  amzius["Donatas"] = 100
+  print(amzius)
+
+  del amzius["Laura"]
+  print(amzius)
+
+  amzius["Andrius"] = 35
+  print(amzius)
+#+end_src
+
+*** 2 užduotis
+Parašyti programą, kuri:
+
+Leistų vartotojui įvesti skaičių.
+
+Jei įvestas skaičius yra teigiamas, paprašyti įvesti dar vieną skaičių
+
+Jei įvestas skaičius neigiamas, nutraukti programą ir atspausdinti visų įvestų teigiamų skaičių sumą
+
+Patarimas: Naudoti ciklą while, sąlygą if, break
+
+#+begin_src python
+suma = 0
+
+while True:
+    skaicius = int(input("Įveskite skaičių: "))
+    if skaicius < 0:
+        break
+    suma += skaicius
+
+print(suma)
+#+end_src
+
+*** 3 užduotis
+Sukurti programą, kuri:
+
+Leistų vartotojui po vieną įvesti 5 žodžius
+
+Pridėtų įvestus žodžius į sąrašą
+
+Atspausdintų kiekvieną žodį, jo ilgį ir eilės numerį sąraše (nuo 1)
+
+Sudėtingiau: kad programa leistų įvesti norimą žodžių kiekį
+
+Patarimas: Naudoti sąrašą (list), ciklą for, funkcijas len ir index
+
+#+begin_src python
+zodziai = []
+
+while True:
+    ivedimas = (input("Įveskite žodį: "))
+    if ivedimas == "":
+        break
+    zodziai.append(ivedimas)
+
+for numeris, zodis in enumerate(zodziai):
+    print(f"{numeris + 1}: {zodis}, simbolių kiekis: {len(zodis)}")
+print("Žodžių kiekis:", len(zodziai))
+
+
+# paprasčiau:
+
+# zodziai = []
+
+# for i in range(5):
+    # zodziai.append(input("Įveskite žodį: "))
+
+# for zodis in zodziai:
+    # print(zodis, len(zodis), zodziai.index(zodis))
+#+end_src
+
+*** 4 užduotis
+Kauliukų žaidimas
+
+Sukurti programą, kuri:
+
+Sugeneruotų tris atsitiktinius skaičius nuo 1 iki 6
+
+Jei vienas iš šių skaičių yra 5, atspausdinti „Pralaimėjai...“
+
+Kitu atveju atspausdinti „Laimėjai!“
+
+Patarimas: Naudoti while ciklą, funkciją random.randint (import
+random), else, break
+
+#+begin_src python
+import random
+
+print("Bus sugeneruoti 3 skaičiai")
+print("Jei vienas iš jų – 5, tu pralaimėjai!")
+
+for x in range(3):
+    num = random.randint(1, 6)
+    print(num)
+    if num == 5:
+        print("Pralaimėjai...")
+        break
+else:
+    print("Laimėjai!")
+
+
+# Alternatyva:
+
+# import random
+#
+# num1 = random.randint(1, 6)
+# num2 = random.randint(1, 6)
+# num3 = random.randint(1, 6)
+#
+# print(num1, num2, num3)
+#
+# if num1 == 5 or num2 == 5 or num3 == 5:
+#     print("Pralaimėjai")
+# else:
+#     print("Laimėjai")
+
+
+# Arba:
+# from random import randint
+
+# skaiciai = [randint(1,6), randint(1,6), randint(1,6)]
+# print(skaiciai)
+
+# if 5 in skaiciai:
+#     print("Pralaimėjai")
+# else:
+#     print("Laimėjai")
+#+end_src
+
+*** 5 užduotis
+Sukurti programą, kuri:
+
+Leistų vartotojui įvesti metus
+
+Atspausdintų „Keliamieji metai“, jei taip yra
+
+Atspausdintų „Nekeliamieji metai“, jei taip yra
+#+begin_src python
+
+metai = int(input("Iveskite metus: "))
+if (metai % 400 == 0) or (metai % 100 != 0 and metai % 4 == 0):
+    print("Keliamieji metai")
+else:
+    print("Nekeliamieji metai")
+
+
+# alternatyva:
+
+# metai = int(input("Iveskite metus: "))
+
+# if metai % 400 == 0:
+    # print("Keliamieji metai")
+
+# elif metai % 100 == 0:
+    # print("Nekeliamieji metai")
+# elif metai % 4 == 0:
+    # print("Keliamieji metai")
+
+# else:
+    # print("Nekeliamieji metai")
+#+end_src
+
+*** 6 užduotis
+Perdaryti 5 užduoti taip, kad programa atspausdintų visus keliamuosius metus, nuo 1900 iki 2100 metų.
+
+Keliamieji metai yra kas 4 metus, išskyrus paskutinius amžiaus metus, kurie keliamieji yra tik kas 400 metų
+
+Patarimas: Google! :)
+
+#+begin_src python
+
+for metai in range(2000, 2100):
+    if metai % 400 == 0:
+        print(metai)
+    elif metai % 100 == 0:
+        continue
+    elif metai % 4 == 0:
+        print(metai)
+    else:
+        continue
+#+end_src
+
+*** 7 random uzduotis
+#+begin_src python
+  # Dictionary is a hashed structure of key and value pairs.
+  # Dictionary is created by placing elements in { } as “key”:”value”, each key value pair is separated by commas “, “
+  # The keys of dictionary can be of any data type.
+  # The elements are accessed via key-values.
+  # There is no guarantee for maintaining order.
+
+  # Creating a Dictionary
+  # with Integer Keys
+  dict = {1: "Geeks", 2: "For", 3: "Geeks"}
+
+  y = 0
+
+  print("dictionary with the use of Integer Keys: ")
+  print(dict)
+  # fromkeys - overwrite the values with you own, good for creating new dictionaries I guess
+  print(dict.fromkeys(dict, y))
+  print(dict.get(1))
+
+  # Creating a Dictionary
+  # with Mixed keys
+  Dict = {"Name": "Geeks", 1: [1, 2, 3, 4]}
+  print("\nDictionary with the use of Mixed Keys: ")
+  print(Dict)
+#+end_src
+
+* Lesson3 Boolean, data, laikas, išimtys
+** Loginis kintamasis(Boolean)
+*** Dvi reikšmės = True (tiesa) arba False (klaidinga)
+
+Daugiau apie boolean: https://www.w3schools.com/python/python_booleans.asp
+
+
+#+begin_src python
+teisybe = True
+print(teisybe)
+# True
+
+
+teisybe2  = False
+print(teisybe2)
+# False
+
+loginis = bool()
+print(loginis)
+# False
+
+
+print(1 == 1 or 2 == 2)
+# True
+
+
+print(2 < 1 or 3 > 6)
+# False
+
+
+logika = 1 == 1 or 2 == 2
+print(logika)
+# True
+
+
+atvirkstine = not 2 * 2 == 4
+print(atvirkstine)
+# False
+
+#+end_src
+
+*** Funkcijos, gražinančios boolean (True arba False) reikšmę
+
+#+begin_src python
+sakinys = "Sveikas, pasauli"
+
+as_skaicius = sakinys.isdigit()
+print(as_skaicius)
+
+# False
+
+
+ar_prasideda_s = sakinys.startswith("S")
+print(ar_prasideda_s)
+
+# True
+
+#+end_src
+
+** Type funkcija
+
+*** Norint patikrinti kintamojo tipą galima naudoti type funckiją:
+
+#+begin_src python
+  sarasas = ["Vienas", "Du", "Trys"]
+  skaicius = 123
+  kablelis = 5.56
+  zodynas = {"Mantas": 20}
+  loginis = True
+  print(type(sarasas))
+  print(type(skaicius))
+  print(type(kablelis))
+  print(type(zodynas))
+  print(type(loginis))
+
+  # prints out:
+  <class 'list'>
+  <class 'int'>
+  <class 'float'>
+  <class 'dict'>
+  <class 'bool'>
+#+end_src
+
+*** Programa, kuri paskaičiuoja ir atspausdina sąrašo skaičių (sveikų) sumą:
+
+#+begin_src python
+sarasas = [5, 8, "Lietuva", 95, "Žodis", True]
+
+suma = 0
+
+for x in sarasas:
+    if type(x) is int:
+        suma += x
+
+print(suma)
+
+# 108
+#+end_src
+
+*** mokytojo pavyzdys
+#+begin_src python
+  # TYPE FUNKCIJA
+
+  sarasas = ["Vienas", "Du", "Trys", 123, 55]
+  skaicius = 123
+  kablelis = 5.56
+  zodynas = {"Mantas": 20}
+  loginis = True
+  print(type(sarasas))
+  print(type(skaicius))
+  print(type(kablelis))
+  print(type(zodynas))
+  print(type(loginis))
+
+  sarasas_misrus2 = ["Vienas", "Du", "Trys", 123, 55, {"Mantas": 29}, True]
+
+  for narys in sarasas_misrus2:
+      if type(narys) == int or type(narys) == float:
+          suma += narys
+  print(suma)
+#+end_src
+
+** Data,laikas (datetime)
+
+Datetime kintamasis gali išsaugoti datą ir/arba laiką. Jis
+importuojamas per ~import datetime~
+** Isimtys ir ju suvaldymas
+
+# Galimų klaidų sąrašas: https://docs.python.org/3/library/exceptions.html
+
+#+begin_src python
+  7 / 0
+  # ZeroDivisionError: division by zero
+
+
+  skaicius = int(input("Įveskite skaičių: "))
+  # Įveskite skaičių: k11
+  # ValueError: invalid literal for int() with base 10: 'k11'
+
+#+end_src
+
+*** Ką daryti, kad programa išmestų norimą pranešimą ir nesustotų? Variantas:
+#+begin_src python
+dalinys = 7
+daliklis = 0
+if daliklis == 0:
+    print("Dalyba iš nulio negalima")
+else:
+    dalinys / daliklis
+print("Programa vykdoma toliau")
+
+# Dalyba iš nulio negalima
+# Programa vykdoma toliau
+#+end_src
+
+*** Klaidų suvaldymas naudojant try/except:
+#+begin_src python
+try:
+    7 / 0
+except:
+    print("Dalyba iš nulio negalima")
+
+# Dalyba iš nulio negalima
+
+
+try:
+    skaicius = int(input("Įveskite skaičių: "))
+except:
+    print("Įvestas klaidingas skaičius")
+
+# Įveskite skaičių: k11
+# Įvestas klaidingas skaičius
+
+
+try:
+    open('file.txt')
+except:
+    print("Nepavyksta atidaryti failo")
+
+print("Programa vykdoma toliau")
+
+# Nepavyksta atidaryti failo
+# Programa vykdoma toliau
+
+#+end_src
+*** Kuo naudingas try/except/finally naudojimas:
+Leidžia pakeisti klaidų pranešimus norimu tekstu
+
+Įvykus klaidai, programa nesustoja (apsaugo nuo lūžimo). Po neįvykdyto kodo, programa vykdoma toliau
+
+Leidžia nuspręsti, ką daryti, atsiradus klaidai (pvz., išmesti tam tikrą pranešimą, paleisti kitą funkciją ir t.t
+
+*** Kaip suvaldyti kelias išimtis:
+
+#+begin_src python
+  try:
+      skaicius = int(input("Įveskite skaičių: "))
+      print(7 / skaicius)
+      open('file.txt')
+  except ZeroDivisionError:
+      print("Dalyba iš nulio negalima")
+  except ValueError:
+      print("Įvestas klaidingas skaičius")
+  except FileNotFoundError:
+      print("Nepavyko atidaryti failo")
+
+  # Įveskite skaičių: k11
+  # Įvestas klaidingas skaičius
+
+
+  # Įveskite skaičių: 0
+  # Dalyba iš nulio negalima
+
+
+  # Įveskite skaičių: 7
+  # 1.0
+  # Nepavyko atidaryti failo
+#+end_src
+
+*** Add subtract time
+#+begin_src python
+# add subtract time
+
+import datetime
+
+now = datetime.datetime.now()
+print(now)
+print(now - datetime.timedelta(days=5))
+print(now + datetime.timedelta(hours=5))
+print(now + datetime.timedelta(days=20, hours=8))
+
+# Kaip sužinoti datų skirtumą (pvz. dienomis):
+
+now = datetime.datetime.now()
+nepriklausomybes_diena = datetime.datetime(1990, 3, 11)
+skirtumas = now - nepriklausomybes_diena
+print(skirtumas.days)
+
+# Kaip įvesti datą/laiką:
+
+ivesta_data = input("Įveskite datą: ")
+data = datetime.datetime.strptime(
+    ivesta_data, "%Y-%m-%d %H:%M:%S"
+)  # strptime leidzia susiformatuoti paciam data
+skirtumas = datetime.datetime.now() - data
+print(skirtumas.days)
+
+# Kaip iš datetime atskirai ištraukti metus, mėnesį, valandas...?
+
+now = datetime.datetime.today()
+
+print(now.year)
+print(now.month)
+print(now.weekday())
+print(now.day)
+print(now.hour)
+print(now.minute)
+print(now.second)
+print(now.microsecond)
+
+# Naudodami timedelta galime pamatuoti, per kiek laiko mūsų
+# kompiuteris susidorojo su užduotimi, pvz.:
+
+pradzia = datetime.datetime.today()
+for x in range(100000):
+    print("Labas")
+
+pabaiga = datetime.datetime.today()
+print(f"Programa užtruko {(pabaiga - pradzia).total_seconds()}")
+
+# Taip pat galime į kodą įdėti pauzę:
+import time
+
+for x in range(1000000):
+    print("Labas")
+    time.sleep(2)
+
+# --------------------------------------------------------------------
+# Boolean, data, laikas, išimtys
+# klaidu sarasas - https://docs.python.org/3/library/exceptions.html
+
+print(7 / 0)
+
+a = 7 / 0
+print(a)
+
+dalinys = 7
+daliklis = 0
+if daliklis == 0:
+    print("Dalyba iš nulio negalima")
+else:
+    dalinys / daliklis
+print("Programa vykdoma toliau")
+#+end_src
+
+*** Try except stuff
+#+begin_src python
+# Kuo naudingas try/except/finally naudojimas: Leidžia pakeisti klaidų
+# pranešimus norimu tekstu
+
+# Įvykus klaidai, programa nesustoja (apsaugo nuo lūžimo). Po
+# neįvykdyto kodo, programa vykdoma toliau
+
+# Leidžia nuspręsti, ką daryti, atsiradus klaidai (pvz., išmesti tam
+# tikrą pranešimą, paleisti kitą funkciją ir t.t
+
+# except - ka daryt jeigu kode yra klaida
+
+# pamegink padaryti veiksma, jeigu jis sukelia mum klaida - atspausdik kazka
+try:
+    7 / 4
+    print("zdarovaa")
+except:
+    print("Dalyba iš nulio negalima")
+
+try:
+    skaicius = int(input("Įveskite skaičių: "))
+except:
+    print("Įvestas klaidingas skaičius")
+
+try:
+    open("file.txt")
+except:
+    print("Nepavyksta atidaryti failo")
+
+print("Programa vykdoma toliau")
+
+# --------------------------------------------------------------------
+try:
+    skaicius = int(input("Įveskite skaičių: "))
+    print(7 / skaicius)
+    open("file.txt")
+except ZeroDivisionError:
+    print("Dalyba iš nulio negalima")
+except ValueError:
+    print("Įvestas klaidingas skaičius")
+except FileNotFoundError:
+    print("Nepavyko atidaryti failo")
+
+# --------------------------------------------------------------------
+
+import datetime
+
+try:  # Paleidžia kodą, tikrina ar nėra klaidų
+    pradzios_laikas = datetime.datetime.today()
+    failas = open("E:\Failai\tekstas.txt")
+except:  # Suvaldome klaidą, aprašome ką daryti jeigu try bloke iškilo klaida
+    print("Tokio failo nėra")
+
+else:  # Leidžia įvykdyti tolimesnį kodą, jeigu try blocke nebuvo klaidos
+    failas.close()
+
+finally:  # Šis blokas vykdomas visada: nesvarbu ar try bloke buvo klaida ar nebuvo
+    pabaigos_laikas = datetime.datetime.today()
+    trukme = pabaigos_laikas - pradzios_laikas
+    print(trukme)
+#+end_src
+
+*** Finally
+(kodas, vykdomas nepaisant to, kas įvyksta try/except blokuose)
+
+#+begin_src python
+try:
+    print(7 / 0)
+except:
+    print("Dalyba iš nulio negalima")
+finally:
+    print("Todėl įvykdysime daugybą: ")
+    print(7 * 7)
+print("Programa vykdoma toliau")
+
+
+# Dalyba iš nulio negalima
+# Todėl įvykdysime daugybą:
+# 49
+# Programa vykdoma toliau
+Kaip panaudoti try/except įvedant duomenis:
+
+while True:
+    try:
+        x = int(input("Įveskite skaičių: "))
+        break
+    except ValueError:
+        print("Įvedėte ne skaičių. Bandykite dar kartą")
+#+end_src
+
+** Destytojo pavyzdžiai
+#+begin_src python
+    sarasas = ["Vienas", "Du", "Trys", 123, 55, {"Mantas": 20}, True]
+    suma = 0
+
+    for narys in sarasas:
+        if type(narys) == int or type(narys) == float:
+            suma += narys
+
+    print(suma)
+
+    # --------------------------------------------------------------------
+
+    from datetime import datetime
+
+    data_string = "2020-05-22 17:45:21"
+    date_format = "%Y-%m-%d %H:%M:%S"
+    data = datetime.strptime(data_string, date_format)
+    dabar = datetime.now().replace(microsecond=0)
+
+    sutrumpintas_laikas = int((dabar - data).total_seconds())
+
+    print(sutrumpintas_laikas)
+
+    # --------------------------------------------------------------------
+
+    import datetime
+    try:  # Paleidžia kodą, tikrina ar nėra klaidų
+        pradzios_laikas = datetime.datetime.today()
+        failas = open("E:\Failai\tekstas.txt")
+    except: # Suvaldome klaidą, aprašome ką daryti jeigu try bloke iškilo klaida
+        print("Tokio failo nėra")
+
+    else: # Leidžia įvykdyti tolimesnį kodą, jeigu try blocke nebuvo klaidos
+        failas.close()
+
+  finally: # Šis blokas vykdomas visada: nesvarbu ar try bloke buvo klaida ar nebuvo
+      pabaigos_laikas = datetime.datetime.today()
+      trukme = pabaigos_laikas - pradzios_laikas
+      print(trukme)
+
+  # Laikas su lietuviškumu:
+  import datetime
+  import locale
+
+  locale.setlocale(locale.LC_TIME, "lt_LT.UTF-8")
+  x = datetime.datetime(2020, 2, 29, 18, 20, 50)
+  print(x.strftime("%A, %d. %B %Y %I:%M%p"))
+#+end_src
+** Užduotys
+
+# Atsakymai
+# https://github.com/CodeAcademy-Online/Python/tree/lesson-3
+
+*** 1 užduotis
+Parašyti programą, kuri:
+
+Leistų vartotojui įvesti sveiką skaičių.
+
+Atspausdinti True, jei skaičius teigiamas
+
+Atspausdinti False, jei skaičius neigiamas ar lygus 0
+
+True/False reikšmei išsaugoti naudoti boolean tipo kintamąjį ar_skaicius_teigiamas
+
+Patarimas: naudoti input, boolean, if/else
+
+#+begin_src python
+skaicius = int(input("Įveskite skaičių: "))
+ar_skaicius_teigiamas = skaicius > 0
+print(ar_skaicius_teigiamas)
+
+# alternatyva:
+
+# print(int(input("Įveskite skaičių")) > 0)
+#+end_src
+
+*** 2 užduotis
+Parašyti programą, kuri:
+
+Atspausdintų dabartinę datą ir laiką
+
+Atimtų iš dabartinės datos ir laiko 5 dienas ir juos atspausdintų
+
+Pridėti prie dabartinės datos ir laiko 8 valandas ir juos atspausdintų
+
+Atspausdintų dabartinę datą ir laiką tokiu formatu: 2019 03 08, 09:57:17
+
+Patarimas: naudoti datetime, timedelta (from datetime import timedelta)
+
+https://www.w3schools.com/python/python_datetime.asp
+
+#+begin_src python
+# datetime.timedelta(days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0, weeks=0)
+
+import datetime
+from datetime import timedelta
+
+now = datetime.datetime.now()
+print(now)
+print(now - timedelta(days=5))
+print(now + timedelta(hours=8))
+print(now.strftime("%Y %m %d, %X"))
+#+end_src
+
+*** 3 užduotis
+Parašyti programą, kuri:
+
+Leistų vartotojui įvesti norimą datą ir laiką (pvz. gimtadienį)
+
+Paskaičiuotų ir atspausdintų, kiek nuo įvestos datos ir laiko praėjo:
+
+Metų
+
+Mėnesių
+
+Dienų
+
+Valandų
+
+Minučių
+
+Sekundžių
+
+Kadangi tiksliai galima paskaičiuoti tik dienas ir sekundes, metus, mėnesius ir t.t. paskaičiuokite apytiksliai.
+
+Patarimas: naudoti datetime, .days, .total_seconds()
+
+Skaičių suapvalinimo pavyzdys (kurio gali prireikti šioje užduotyje):
+
+#+begin_src python
+skaicius = 4.66
+
+print(round(skaicius))
+#+end_src
+
+#+begin_src python
+import datetime
+
+ivesta = input("Įveskite metus (YYYY-MM-DD HH:MM:SS) ")
+
+ivesta_data = datetime.datetime.strptime(ivesta, "%Y-%m-%d %X")
+now = datetime.datetime.now()
+skirtumas = now - ivesta_data
+
+print("Praėjo metų: ", skirtumas.days // 365)
+print("Praėjo mėnesių: ", round(skirtumas.days / 365 * 12))
+print("Praėjo savaičių: ", skirtumas.days // 7)
+print("Praėjo dienų: ", skirtumas.days)
+print("Praėjo valandų: ", round(skirtumas.total_seconds() / 3600))
+print("Praėjo minučių: ", round(skirtumas.total_seconds() / 60))
+print("Praėjo sekundžių: ", round(skirtumas.total_seconds()))
+
+
+# jeigu norime laiko intervalą atvaizduoti taip, pvz:
+# praėjo 2 metai, 7 mėnesiai, 23 dienos ir t.t.
+# konsolėje: pip install python-dateutil
+
+# from dateutil.relativedelta import relativedelta
+# delta = relativedelta(datetime.datetime.now(), kazkokia_data)
+# print(f'metu: {res.years}, menesiu {res.months}, dienu {res.days}, valandu {res.hours}') ir t.t.
+#+end_src
+
+*** 4, 5 užduotys
+Pakeisti 1 ir 3 užduotis taip, kad neteisingai įvedus duomenis ar
+įvykus klaidoms, programos mestų norimas klaidas lietuvių kalba
+(panaudoti try/except)
+
+#+begin_src python
+while True:
+    try:
+        print(int(input("Įveskite skaičių: ")) > 0)
+        break
+    except ValueError:
+        print("Įvestas neteisingas skaičius (turi būti sveikasis)")
+#+end_src
+
+#+begin_src python
+import datetime
+
+while True:
+    try:
+        ivesta = input("Įveskite metus (YYYY-MM-DD) ")
+        ivesta_data = datetime.datetime.strptime(ivesta, "%Y-%m-%d")
+        break
+    except:
+        print("Įvestas ne sveikasis arba netinkamas datos skaičius")
+
+now = datetime.datetime.now()
+skirtumas = now - ivesta_data
+
+print(f"Praėjo metų: ", skirtumas.days // 365)
+print("Praėjo mėnesių: ", round(skirtumas.days / 365 * 12))
+print("Praėjo savaičių: ", round(skirtumas.days / 7))
+print("Praėjo dienų: ", skirtumas.days)
+print("Praėjo valandų: ", round(skirtumas.total_seconds() / 3600))
+print("Praėjo minučių: ", round(skirtumas.total_seconds() / 60))
+print("Praėjo sekundžių: ", round(skirtumas.total_seconds()))
+#+end_src
+
+* Lesson4 Funkcijos
+** Paprastos funkcijos
+#+begin_src python
+def pasisveikinti():
+    print("Sveikas, pasauli!")
+
+pasisveikinti()
+pasisveikinti()
+pasisveikinti()
+
+# Sveikas, pasauli!
+# Sveikas, pasauli!
+# Sveikas, pasauli!
+#+end_src
+*** Funkcijos su argumentais:
+
+#+begin_src python
+def pasisveikinti(vardas):
+    print(f"Sveikas, {vardas}")
+
+pasisveikinti("Tomas")
+pasisveikinti("Jonas")
+pasisveikinti("")
+
+# Sveikas, Tomas
+# Sveikas, Jonas
+# Sveikas,
+def kvadratas(skaicius):
+    kvadratu = skaicius ** 2
+    print(kvadratu)
+
+kvadratas(2)
+# 4
+#+end_src
+
+*** Funkcijos su gražinama reikšme (return):
+#+begin_src python
+  # Funkcijos be return trūkumas:
+
+  def kvadratu(skaicius):
+      rezultatas = skaicius ** 2
+      print(rezultatas)
+
+  kvadratu(3)
+  # 9
+
+  daugyba = kvadratu(3) * 2
+  print(daugyba)
+  # TypeError: unsupported operand type(s) for *: 'NoneType' and 'int'
+
+  print(kvadratu(3))
+  None
+
+  # Su return:
+
+  def kvadratu(skaicius):
+      rezultatas = skaicius ** 2
+      return rezultatas
+
+  daugyba = kvadratu(3) * 2
+  print(daugyba)
+  # 18
+#+end_src
+*** Funkcijos su keliais argumentais:
+#+begin_src python
+def skaiciu_suma(skaicius1, skaicius2, skaicius3):
+    suma = skaicius1 + skaicius2
+    daugyba = suma * skaicius3
+    return daugyba
+
+print(skaiciu_suma(2, 5, 20))
+# 140
+#+end_src
+
+*** Funkcijos su nebūtinais argumentais:
+
+#+begin_src python
+def skaiciu_suma(skaicius1, skaicius2, skaicius3=1):
+    rezultatas = (skaicius1 + skaicius2) * skaicius3
+    return rezultatas
+
+
+print(skaiciu_suma(2, 5, 4))
+# 28
+
+print(skaiciu_suma(2, 5))
+# 7
+def skaiciu_suma(skaicius1=10, skaicius2=10, skaicius3=1):
+    rezultatas = (skaicius1 + skaicius2) * skaicius3
+    return rezultatas
+
+print(skaiciu_suma())
+print(skaiciu_suma(2))
+print(skaiciu_suma(2, 5))
+print(skaiciu_suma(2, 5, 4))
+
+# 20
+# 12
+# 7
+# 28
+#+end_src
+*** Kaip priskirti konkretų argumentą (-us):
+
+#+begin_src python
+  def skaiciu_suma(skaicius1=10, skaicius2=10, skaicius3=1):
+      rezultatas = (skaicius1 + skaicius2) * skaicius3
+      return rezultatas
+
+  print(skaiciu_suma(skaicius3=3))
+  print(skaiciu_suma(skaicius1=20, skaicius3=3))
+
+  # 60
+  # 90
+#+end_src
+*** Funkcijos su neribotais argumentais:
+
+#+begin_src python
+    def daug_kvadratu(*args):
+        for skaicius in args:
+            print(skaicius ** 2)
+
+
+    daug_kvadratu(4, 5, 7, 8, 9, 10)
+
+    # 16
+    # 25
+    # 49
+    # 64
+    # 81
+    # 100
+    def spausdinti_reiksmes(**kwargs):
+        for raktas, reiksme in kwargs.items():
+            print(raktas, reiksme)
+
+
+    spausdinti_reiksmes(vardas="Tomas", pavarde="Rutkauskas", lytis="Vyras", amzius=29, daiktai=["Telefonas", "Ausinės", "Krepšys"])
+
+
+  # vardas Tomas
+  # pavarde Rutkauskas
+  # lytis Vyras
+  # amzius 29
+  # daiktai ['Telefonas', 'Ausinės', 'Krepšys']
+#+end_src
+
+*** Funkcijos su įprastais ir neribotais argumentais:
+
+#+begin_src python
+def spausdinti_reiksmes(vardas, pavarde, **kwargs):
+    print(f"Vardas: {vardas}, Pavardė: {pavarde}")
+    for raktas, reiksme in kwargs.items():
+        print(raktas, reiksme)
+
+spausdinti_reiksmes("Tomas", "Rutkauskas", lytis="Vyras", amzius=29, daiktai=["Telefonas", "Ausinės", "Krepšys"])
+
+# Vardas: Tomas, Pavardė: Rutkauskas
+# lytis Vyras
+# amzius 29
+# daiktai ['Telefonas', 'Ausinės', 'Krepšys']
+def spausdinti_reiksmes(skaicius1, skaicius2, *args):
+    print("Skaičių suma: ", skaicius1 + skaicius2)
+    for vienas in args:
+        print(vienas)
+
+
+spausdinti_reiksmes(5, 2, "Labas", 5.26)
+
+# Skaičių suma:  7
+# Labas
+# 5.26
+#+end_src
+
+** Globalus ir lokalus scope
+#+begin_src python
+globalus = 10
+
+def funkcija():
+    lokalus = 12
+    suma = globalus + lokalus
+    print(suma)
+
+kita_suma = globalus + lokalus
+print(kita_suma)
+# NameError: name 'lokalus' is not defined
+
+funkcija()
+# 22
+#+end_src
+** Funkcijos komentavimas(Docstring)
+#+begin_src python
+  def funkcija(parametras1, parametras2):
+      '''
+
+      :param parametras1:
+      :param parametras2:
+      :return:
+      '''
+      return
+  def funkcija(parametras1, parametras2):
+      '''
+      Ši funkcija visiškai nieko nedaro
+      :param parametras1: Nereikalingas parametras
+      :param parametras2: Dar vienas nereikalingas
+      parametras
+      :return: Nieko negražina
+      '''
+      return
+#+end_src
+** Anonimines (Lambda) funkcijos
+Tai supaprastinta funkcija, paprastai naudojama tik kartą, visas kodas telpa vienoje eilutėje.
+
+Paprastą funkciją:
+
+#+begin_src python
+def kvadratu(a):
+    return a ** 2
+#+end_src
+Galima pakeisti į:
+
+#+begin_src python
+lambda a: a ** 2
+#+end_src
+
+Ją taip pat galima prisiskirti kintamajam ir iškviesti:
+
+#+begin_src python
+kvadratu = lambda a: a ** 2
+
+print(kvadratu(2))
+#+end_src
+n
+Bet naudingiau panaudoti, pavyzdžiui, tokiu atveju:
+
+#+begin_src python
+sarasas = [2, 5, 4, 65, 78, 99, 38]
+
+sarasas2 = map(lambda a: a ** 2, sarasas)
+
+for skaicius in sarasas2:
+    print(skaicius)
+#+end_src
+
+Dar pora lambda panaudojimo pavyzdžių:
+
+#+begin_src python
+daugyba_is_saves = [lambda i=skaicius: i*i for skaicius in range(1, 6)]
+for vienas in daugyba_is_saves:
+    print(vienas())
+keliamieji = [lambda i=metai: i for metai in range(1900, 2101) if (metai % 400 == 0) or (metai % 100 != 0 and metai % 4 == 0)]
+for vienas in keliamieji:
+    print(vienas())
+#+end_src
+
+** Destytojo pavyzdžiai
+#+begin_src python
+  def daug_kvadratu(*args):
+      sarasas = []
+      for skaicius in args:
+          sarasas.append(skaicius)
+
+      print(len(sarasas))
+      if len(sarasas) > 0:
+          print(sarasas[0])
+
+
+  daug_kvadratu(5, 4, 5.5, 9, 10, 5555)
+
+
+  # --------------------------------------------------------------------
+
+  def spausdinti_reiksmes(skaicius1, skaicius2, *args):
+      print("Skaičių suma: ", skaicius1 + skaicius2)
+      for vienas in args:
+          print(vienas)
+
+
+  spausdinti_reiksmes(5, 2, "Labas", 2, 5.26, 88, [1, 2, 3], {"Vardas":""})
+
+  # --------------------------------------------------------------------
+
+
+  def spausdinti_reiksmes(*args, **kwargs):
+      print("Skaičių suma: ", skaicius1 + skaicius2)
+      for vienas in args:
+          print(vienas)
+      print("Atspausdinom pozicinius kintamuosius")
+      for raktas, reiksme in kwargs.items():
+          print(raktas, reiksme)
+      print("Atspausdinom raktažodinius kintamuosius")
+
+
+  spausdinti_reiksmes(5, 2, "Labas", 2, 5.26, 88)
+
+  # --------------------------------------------------------------------
+
+  def spausdinti_reiksmes(*args, **kwargs):
+      zodynas = {}
+      for vienas in args:
+          print(vienas)
+      print("Atspausdinom pozicinius kintamuosius")
+      for raktas, reiksme in kwargs.items():
+          print(raktas, reiksme)
+          zodynas[raktas] = reiksme
+      print("Atspausdinom raktažodinius kintamuosius")
+
+      return zodynas
+
+
+  kintamasis = spausdinti_reiksmes(5, 2, "Labas", 2, 5.26, 88, skaicius1 = 10, skaicius2 = 9)
+
+  print(kintamasis)
+#+end_src
+** Užduotys
+Atsakymai
+https://github.com/CodeAcademy-Online/Python/tree/lesson-4
+
+*** 1 užduotis
+Sukurkite ir išsibandykite funkcijas, kurios:
+
+Gražintų trijų paduotų skaičių sumą.
+
+Gražintų paduoto sąrašo iš skaičių, sumą.
+
+Atspausdintų didžiausią iš kelių paduotų skaičių (panaudojant *args).
+
+Gražintų paduotą stringą atbulai.
+
+Atspausdintų, kiek paduotame stringe yra žodžių, didžiųjų ir mažųjų raidžių, skaičių.
+
+Gražintų sąrašą tik su unikaliais paduoto sąrašo elementais.
+
+Gražintų, ar paduotas skaičius yra pirminis.
+
+Išrikiuotų paduoto stringo žodžius nuo paskutinio iki pirmojo
+
+Gražina, ar paduoti metai yra keliamieji, ar ne.
+
+Atspausdina, kiek nuo paduotos sukakties praėjo metų, mėnesių, dienų,
+valandų, minučių, sekundžių.
+
+#+begin_src python
+# Sukurkite ir išsibandykite funkcijas, kurios:
+
+# 1. Gražinti trijų paduotų skaičių sumą.
+
+def skaiciu_suma(sk1, sk2, sk3):
+    return sk1 + sk2 + sk3
+
+
+print(skaiciu_suma(45, 5, 6))
+
+
+# 2. Gražintų paduoto sąrašo iš skaičių, sumą.
+
+def saraso_suma(sarasas):
+    suma = 0
+    for skaicius in sarasas:
+        suma += skaicius
+    return suma
+
+
+sarasas = [4, 5, 78, 8]
+print(saraso_suma(sarasas))
+
+
+# 3. Atspausdintų didžiausią iš kelių paduotų skaičių (panaudojant *args).
+
+# def didziausias_skaicius(*args):
+#     didziausias = args[0]
+#     for sk in args:
+#         if sk > didziausias:
+#             didziausias = sk
+#     return didziausias
+
+# arba
+
+def didziausias_skaicius(*args):
+    return max(args)
+
+
+print(didziausias_skaicius(5, 8, 789, 94, 78))
+
+
+# 4. Gražintų paduotą stringą atbulai.
+
+def stringas_atbulai(stringas):
+    return stringas[::-1]
+
+
+print(stringas_atbulai("Donatas Noreika"))
+
+
+# 5. Atspausdintų, kiek paduotame stringe yra žodžių, didžiųjų ir mažųjų raidžių, skaičių.
+
+def info_apie_sakini(stringas):
+    print(f"Šiame sakinyje yra {len(stringas.split())} žodžių")
+    didziosios = 0
+    mazosios = 0
+    skaiciai = 0
+    for simbolis in stringas:
+        if simbolis.isupper():
+            didziosios += 1
+        if simbolis.islower():
+            mazosios += 1
+        if simbolis.isnumeric():
+            skaiciai += 1
+    print(f"Didžiosios: {didziosios}, mažosios: {mazosios}, skaičiai: {skaiciai}")
+
+info_apie_sakini("Laba diena laba diena lab 522")
+
+
+# 6. Gražintų sąrašą tik su unikaliais paduoto sąrašo elementais.
+
+def unikalus_sarasas(sarasas):
+    naujas_sarasas = []
+    for skaicius in sarasas:
+        if skaicius not in naujas_sarasas:
+            naujas_sarasas.append(skaicius)
+    return naujas_sarasas
+
+
+print(unikalus_sarasas([4, 5, "Labas", 6, "Labas", True, 5, True, 10]))
+
+
+# 7. Gražintų, ar paduotas skaičius yra pirminis.
+
+def test_prime(n):
+    if (n == 1):
+        return False
+    elif (n == 2):
+        return True;
+    else:
+        for x in range(2, n):
+            if (n % x == 0):
+                return False
+        return True
+
+
+print(test_prime(5))
+
+
+# 8. Išrikiuotų paduoto stringo žodžius nuo paskutinio iki pirmojo
+
+def isrikiuoti_nuo_galo(sakinys):
+    zodziai = sakinys.split()[::-1]
+    return " # ".join(zodziai)
+
+
+print(isrikiuoti_nuo_galo("Vienas du trys keturi"))
+
+# 9. Gražina, ar paduoti metai yra keliamieji, ar ne.
+
+import calendar
+
+
+def ar_keliamieji(metai):
+    return calendar.isleap(metai)
+
+
+print(ar_keliamieji(2020))
+print(ar_keliamieji(2100))
+print(ar_keliamieji(2000))
+
+# 10. Gražina, kiek nuo paduotos sukakties praėjo metų, mėnesių, dienų, valandų, minučių, sekundžių.
+
+import datetime
+
+
+def patikrinti_data(sukaktis):
+    ivesta_data = datetime.datetime.strptime(sukaktis, "%Y-%m-%d %X")
+    now = datetime.datetime.now()
+    skirtumas = now - ivesta_data
+
+    print("Praėjo metų: ", skirtumas.days // 365)
+    print("Praėjo mėnesių: ", skirtumas.days / 365 * 12)
+    print("Praėjo savaičių: ", skirtumas.days // 7)
+    print("Praėjo dienų: ", skirtumas.days)
+    print("Praėjo valandų: ", skirtumas.total_seconds() / 3600)
+    print("Praėjo minučių: ", skirtumas.total_seconds() / 60)
+    print("Praėjo sekundžių: ", skirtumas.total_seconds())
+
+
+patikrinti_data("2000-01-01 12:12:12")
+patikrinti_data("1991-03-11 12:12:12")
+#+end_src
+
+*** 2 užduotis
+Sukurti funkciją, kuri patikrintų, ar paduotas Lietuvos piliečio asmens kodas yra validus.
+
+Padaryti, kad programa sugeneruotų teisingą asmens kodą (panaudojus anksčiau sukurtą funkciją) pagal įvestą lytį, gimimo datą ir eilės numerį).
+
+Info apie asmens kodo sudarymą
+
+Veikiantis validatorius/generatorius pavyzdys
+
+#+begin_src python
+def grazinti_asmens_kodo_kontrolinį(asmens_kodas):
+    kodas = str(asmens_kodas)
+    A = int(kodas[0])
+    B = int(kodas[1])
+    C = int(kodas[2])
+    D = int(kodas[3])
+    E = int(kodas[4])
+    F = int(kodas[5])
+    G = int(kodas[6])
+    H = int(kodas[7])
+    I = int(kodas[8])
+    J = int(kodas[9])
+    S = A * 1 + B * 2 + C * 3 + D * 4 + E * 5 + F * 6 + G * 7 + H * 8 + I * 9 + J * 1
+    if S % 11 != 10:
+        return S % 11
+    else:
+        S = A * 3 + B * 4 + C * 5 + D * 6 + E * 7 + F * 8 + G * 9 + H * 1 + I * 2 + J * 3
+        if S % 11 != 10:
+            return S % 11
+        else:
+            return 0
+
+
+def asmens_kodo_validacija(asmens_kodas):
+    paskutinis_sk = int(str(asmens_kodas)[-1])
+    return paskutinis_sk == grazinti_asmens_kodo_kontrolinį(asmens_kodas)
+
+
+def asmens_kodo_generavimas(lytis, gimimo_data, eiles_numeris):
+    pirmas_skaicius = ""
+
+    data_split = gimimo_data.split("-")
+    metai = int(data_split[0][:2])
+
+    if lytis == "vyras":
+        pirmas_skaicius = str((int(metai) - 18) * 2 + 1)
+    else:
+        pirmas_skaicius = str((int(metai) - 18) * 2 + 2)
+
+    metai = data_split[0][2:]
+    menuo = data_split[1]
+    diena = data_split[2]
+
+    be_paskutinio = pirmas_skaicius + metai + menuo + diena + eiles_numeris
+
+    return int(be_paskutinio + str(grazinti_asmens_kodo_kontrolinį(be_paskutinio)))
+
+
+print(asmens_kodo_validacija(45102129987))
+print(asmens_kodo_validacija(61907108400))
+
+print(asmens_kodo_generavimas("vyras", "2000-12-12", "512"))
+#+end_src
+
+*** 3 užduotis
+codingbat.com :)
+
+* Lesson5 Objektinis programavimas (I dalis)
+** Objektinis programavimas
+Objektinis programavimas – programavimo būdas, naudojant objektus ir
+jų sąveikas
+
+Objektas – į vieną vienetą (klasę) sutalpintos susijusios savybės ir
+funkcionalumas (kintamieji, funkcijos ir t.t.)
+
+*** Kaip sukuriama objekto klasė:
+
+#+begin_src python
+class Kate:
+    def __init__(self, spalva, kojos):
+        self.spalva = spalva
+        self.kojos = kojos
+#+end_src
+
+Objekto klasė duomenų nesaugo. Ji yra lyg instrukcija, pagal kurią
+sukuriamas objektas (kuris saugo objekto duomenis).
+
+init metodas (konstruktorius) yra automatiškai įvykdomas kuriant
+objektą. Jame gali būti inicijuojamos savybės (objekto kintamieji),
+paleidžiami metodai (funkcijos) ir t. t.
+
+Objekto kintamieji vadinami savybėmis (Property), o funkcijos –
+metodais (Methods)
+
+*** Kaip sukuriami objektai:
+Objekto klasė:
+
+#+begin_src python
+class Kate:
+    def __init__(self, spalva, kojos):
+        self.spalva = spalva
+        self.kojos = kojos
+#+end_src
+
+Sukurti (inicijuoti) objektai:
+
+#+begin_src python
+kate1 = Kate("pilka", 4)
+kate2 = Kate("juoda", 3)
+Iškviesti objektai:
+
+
+print(kate1.spalva)
+print(kate2.kojos)
+
+# juoda
+# 3
+#+end_src
+
+Pakeistos savybės:
+
+#+begin_src python
+kate2.kojos = 4
+print(kate1.kojos)
+print(kate2.kojos)
+
+# 4
+# 4
+#+end_src
+
+Kaip sukuriamas metodas (objekto funkcija):
+
+#+begin_src python
+class Kate:
+    def __init__(self, spalva, kojos):
+        self.spalva = spalva
+        self.kojos = kojos
+
+
+    def miaukseti(self):
+        print("Miau")
+kate1 = Kate("pilka", 4)
+kate1.miaukseti()
+
+# Miau
+#+end_src
+** Objektinio programavimo principai
+
+Inkapsuliacija (Encapsulation) – vidiniai objekto (klasės) duomenys
+yra slepiami ir pasiekiami tik metodais (savybėmis, funkcijomis). Tai
+leidžia neprisirišti prie vidinės objekto struktūros, jį nesunkiai
+pakeisti kitu arba pakeisti jo struktūrą, nekeičiant pirminio kodo
+
+Abstrakcija (Abstraction) – galimybė naudotis objektais, nesigilinant
+į tai, kaip jie veikia. Supaprastina objektų naudojimą, sumažina
+pakeitimų poveikį likusiams kodui
+
+#+begin_src python
+class Kate:
+    def __init__(self, spalva, kojos):
+        self.spalva = spalva
+        self.kojos = kojos
+
+    def _judinti_kojas(self):
+        pass
+
+    def _ziureti_kur_begi(self):
+        pass
+
+    def begti(self):
+        self._judinti_kojas()
+        self._ziureti_kur_begi()
+        print("Bėgu")
+muza = Kate("pilka", 4)
+muza.begti()
+
+# Bėgu
+#+end_src
+
+** Naudingi veiksmai su objektais
+*** Kaip sukurti objektą su skirtingu kiekiu savybių:
+
+#+begin_src python
+class Kate:
+    def __init__(self, spalva = "juoda", kojos = 4):
+        self.spalva = spalva
+        self.kojos = kojos
+kate3 = Kate("pilka", 4)
+print(kate3.spalva, kate3.kojos)
+
+# pilka 4
+kate4 = Kate()
+print(kate4.spalva, kate4.kojos)
+
+# Juoda 4
+#+end_src
+*** Kaip sukurti metodą su skirtingu kiekiu argumentų:
+
+#+begin_src python
+class Kate:
+    def __init__(self, spalva, kojos):
+        self.spalva = spalva
+        self.kojos = kojos
+
+    def miaukseti(self, zinute = "Miau", kiekis = 1):
+        print(zinute * kiekis)
+kate5 = Kate("Juoda", 4)
+
+print(kate5.miaukseti())
+# Miau
+
+print(kate5.miaukseti("Murrrr", 5))
+# MurrrrMurrrrMurrrrMurrrrMurrrr
+#+end_src
+
+*** Kaip pakeisti objekto spausdinimą (str metodas):
+
+#+begin_src python
+class Kate:
+    def __init__(self, spalva, kojos):
+        self.spalva = spalva
+        self.kojos = kojos
+kate5 = Kate("Juoda", 4)
+print(kate5)
+
+class Kate:
+    def __init__(self, spalva, kojos):
+        self.spalva = spalva
+        self.kojos = kojos
+
+    def __str__(self):
+        return f"Spalva: {self.spalva}, kojos: {self.kojos}"
+kate5 = Kate("Juoda", 4)
+print(kate5)
+
+# Spalva: Juoda, kojos: 4
+#+end_src
+
+*** Simbolių eilutė (String) kaip objektas
+
+#+begin_src python
+  pasisveikinimas = "Sveikas, pasauli"
+
+  # Objekto tipas, pavadinimas
+  print(type(pasisveikinimas))
+
+  # prints:
+   <class 'str'>
+
+
+  # Vieta darbinėje atmintyje
+  print(id(pasisveikinimas))
+
+  # 2053418975424
+
+
+  # Reikšmė
+  print(pasisveikinimas)
+
+  # Sveikas, pasauli
+
+
+  print(pasisveikinimas.split())
+
+  # ['Sveikas,', 'pasauli']
+
+
+  print(pasisveikinimas.upper())
+
+  # SVEIKAS, PASAULI
+  Kaip objektus sudėti į masyvą ir iš jo išimti:
+
+  class Kate:
+      def __init__(self, spalva, kojos):
+          self.spalva = spalva
+          self.kojos = kojos
+
+
+  kates = []
+
+  kate1 = Kate("Juoda", 4)
+  kate2 = Kate("Balta", 4)
+  kate3 = Kate("Pilka", 4)
+
+  kates.append(kate1)
+  kates.append(kate2)
+  kates.append(kate3)
+
+  for kate in kates:
+      print(kate.spalva, kate.kojos)
+
+  # Juoda 4
+  # Balta 4
+  # Pilka 4
+#+end_src
+
+*** Kad nereikėtų taip kartotis:
+
+#+begin_src python
+class Kate:
+    def __init__(self, vardas, amzius, spalva="juoda"):
+        # Savybės:
+        self.vardas = vardas
+        self.amzius = amzius
+        self.spalva = spalva
+
+    # Metodas:
+    def miaukseti(self, miauksejimas="Miau", kartai=1):
+        print(miauksejimas * kartai)
+
+    def __str__(self):
+        return f"Katė vardu {self.vardas}"
+
+    def __repr__(self):
+        return f"Katė vardu {self.vardas}"
+
+
+kates = []
+
+while True:
+    pasirinkimas = int(input("Pasirinkite:\n1 - įvesti katę\n2 - peržiūrėti visas kates\n3 - išeiti iš programos\n"))
+    if pasirinkimas == 1:
+        vardas = input("Įveskite katės vardą")
+        amzius = int(input("Įveskite katės amžių"))
+        spalva = input("Įveskite katės spalvą")
+        kate = Kate(vardas, amzius, spalva)
+        kates.append(kate)
+    if pasirinkimas == 2:
+        for kate in kates:
+            print(kate)
+    if pasirinkimas == 3:
+        print("Viso gero")
+        break
+#+end_src
+
+** Destytojo pavyzdžiai
+#+begin_src python
+  def funkcija(*args):
+      skaiciai = []
+      for skaicius in args:
+          if skaicius < 10:
+              skaiciai.append(skaicius)
+
+      return skaiciai
+
+  def suma(*args):
+      suma = 0
+      skaiciai_mazesni_uz_10 = funkcija(*args)
+      for skaicius in skaiciai_mazesni_uz_10:
+          suma += skaicius
+      return suma
+
+
+  print(suma(20, 5, 6, 9, 5, 100, 9, 15))
+
+
+  # --------------------------------------------------------------------
+
+  def funkcija(*args):
+      for narys in args:
+          print(narys)
+          print(type(narys))
+
+
+  sarasas = [20, 5, 6, 9, 5, 100, 9, 15]
+
+  funkcija(*sarasas)
+
+  # --------------------------------------------------------------------
+
+  def funkcija(*args):
+      skaiciai = []
+      for skaicius in args:
+          if skaicius < 10:
+              skaiciai.append(skaicius)
+
+      return skaiciai
+
+  sarasas = [20, 5, 6, 9, 5, 100, 9, 15]
+
+  naujas_pavadinimas = funkcija
+
+  print(naujas_pavadinimas(*sarasas))
+
+  # --------------------------------------------------------------------
+
+  kintamasis = "Globalus"
+
+  def lokalus_loabalus():
+      kintamasis1 = "lokalus"
+      print(kintamasis)
+      print(kintamasis1)
+
+
+  lokalus_loabalus()
+
+  # --------------------------------------------------------------------
+
+  kintamasis = "Globalus"
+
+  def lokalus_loabalus():
+      kintamasis1 = "lokalus"
+
+
+  print(kintamasis)
+  print(kintamasis1)
+
+
+  # --------------------------------------------------------------------
+
+
+  kintamasis = "Globalus"
+
+  def lokalus_loabalus():
+      kintamasis = "lokalus"
+      print(kintamasis)
+
+
+
+  lokalus_loabalus()
+
+  # --------------------------------------------------------------------
+
+  kintamasis = "Globalus"
+
+  def lokalus_loabalus():
+      global kintamasis
+      kintamasis = "lokalus"
+      print(kintamasis)
+
+
+  lokalus_loabalus()
+  print(kintamasis)
+
+  # --------------------------------------------------------------------
+
+  globalus = 10
+
+  def funkcija():
+      global globalus
+      globalus += 1
+
+  funkcija()
+
+  print(globalus)
+
+  # --------------------------------------------------------------------
+
+  globalus = 10
+
+  def funkcija(skaicius):
+      print(skaicius + globalus)
+
+  funkcija(1)
+
+  print(globalus)
+
+  # --------------------------------------------------------------------
+
+  globalus = 10
+
+  def funkcija(skaicius):
+      ''' Ši funkcija sudeda globalų ir lokalų kintamuosius
+      Antra docstring eilutė
+      '''
+      print(skaicius + globalus)
+
+  print(type.__doc__)
+
+  funkcija(1)
+
+  print(globalus)
+
+  # --------------------------------------------------------------------
+
+  sarasas = [2, 5, 4, 65, 78, 99, 38]
+  def kvadratas(sk1):
+      return sk1 ** 2
+
+  sarasas2 = map(kvadratas, sarasas)
+
+  for skaicius in sarasas2:
+      print(skaicius)
+
+  # Tas pats rezultatas
+
+  sarasas = [2, 5, 4, 65, 78, 99, 38]
+
+  sarasas2 = map(lambda a: a ** 2, sarasas)
+
+  for skaicius in sarasas2:
+      print(skaicius)
+#+end_src
+#+begin_src python
+  # --------------------------------------------------------------------
+
+  # Objektinio programavimo principai
+  # pakeista fukcija _ziureti_kur_begi
+
+  class Kate:
+      def __init__(self, spalva, kojos, vietove):
+          self.spalva = spalva
+          self.kojos = kojos
+          self.vietove = vietove
+
+      def _judinti_kojas(self):
+          pass
+
+      def _ziureti_kur_begi(self):
+          print("Begdamas žiuriu į {}".format(self.vietove))
+
+      def begti(self):
+          self._judinti_kojasf()
+          self._ziureti_kur_begi()
+          print("Bėgu")
+
+  muza = Kate("pilka", 4, "kiema")
+  muza._ziureti_kur_begi()
+
+  # --------------------------------------------------------------------
+
+  class Person:
+      def __init__(self,vardas,pavarde,amzius,gyvenimo_vieta,pareigos,lytis,hobis):
+          self.vardas = vardas
+          self.pavarde = pavarde
+          self.amzius = amzius
+          self.gyvenimo_vieta = gyvenimo_vieta
+          self.pareigos = pareigos
+          self.lytis = lytis
+          self.hobis = hobis
+
+      def mokosi_metai(self,mokslo_metai = 4):
+          print(self.amzius + mokslo_metai)
+
+      def __str__(self):
+          return f"As esu: {self.vardas} {self.pavarde} mano pareigos: {self.pareigos}"
+
+  zygimantas = Person("Zygimantas","Glodenis",24,"Moletai","Devops","Vyras","zaidimai")
+
+  petras = Person("Petras","Pertrauskas",50,"Kaunas"," ","Vyras"," ")
+
+  petras.pareigos = 1323
+
+  petras.mokosi_metai()
+
+  # Išprintiną klasė Person dictionary formatu
+  print(vars(petras))
+#+end_src
+
+*** pure function vs OOP class
+#+begin_src python
+"""What is pure function."""
+
+# PURE FUNCTION
+# 1. does not mutate the data
+# 2. returns new instances
+# 3. using python where you just add functions
+# 4. you can pass functions into other functions
+# 5. list comperhensions can do everything that map, filter, reduce
+# can do
+
+
+def add(x, y):
+    return x + y
+
+
+def multiply(x, y):
+    return x * y
+
+
+def do_math(action, x, y):
+    return action(x, y)
+
+
+add(5, 6)
+multiply(5, 6)
+do_math(multiply, 5, 6)
+
+my_list = (1, 2, 3, 4)
+
+doubled_list = [2 * val for val in my_list]
+print(my_list)
+print(doubled_list)
+
+
+"""Same just in object oriented programming."""
+
+# OOP CLASS
+# 1. CAN mutate the data
+# 2. So this can change the values inside of the class?
+
+
+class do_math:
+    def __init__(self, val1, val2):  # constructor
+        self.val1 = val1  # storing inside of a class(STATE)
+        self.val2 = val2  # storing inside of a class(STATE)
+
+    def add(self):
+        return self.val1 + self.val2
+
+    def multiply(self):
+        return self.val1 * self.val2
+
+    def double_input(self):  # similar to list comperhension example
+        # does not return anything, just acts on the state of our class
+        self.val1 *= 2
+        self.val2 *= 2
+        # if we dont have a specific return value declared = python will return "none"
+
+
+math_instance = do_math(3, 4)
+print(math_instance.add())
+print(math_instance.multiply())
+print(math_instance.double_input())
+print(math_instance.add())
+#+end_src
+** SOLID priciples in python(wiki)
+#+begin_src python
+# https://en.wikipedia.org/wiki/SOLID
+"""
+Single Responsibility Principle
+“…You had one job” — Loki to Skurge in Thor: Ragnarok
+A class should have only one job.
+If a class has more than one responsibility, it becomes coupled.
+A change to one responsibility results to modification of the other responsibility.
+"""
+
+
+class Animal:
+    def __init__(self, name: str):
+        self.name = name
+
+    def get_name(self) -> str:
+        pass
+
+    def save(self, animal: Animal):
+        pass
+
+
+"""
+The Animal class violates the SRP.
+How does it violate SRP?
+
+SRP states that CLASSES SHOULD HAVE ONE RESPONSIBILITY, here, we can
+draw out TWO RESPONSIBILITIES: animal database management and animal
+properties management.
+
+The constructor and get_name manage the Animal properties while the
+save manages the Animal storage on a database.
+
+How will this design cause issues in the future? If the application
+changes in a way that it affects database management functions. The
+classes that make use of Animal properties will have to be touched and
+recompiled to compensate for the new changes.
+
+You see this system smells of rigidity, it’s like a domino effect,
+touch one card it affects all other cards in line.
+
+To make this conform to SRP, we create another class that will handle
+the sole responsibility of storing an animal to a database: """
+
+
+class Animal:
+    def __init__(self, name: str):
+        self.name = name
+
+    def get_name(self):
+        pass
+
+
+class AnimalDB:
+    def get_animal(self) -> Animal:
+        pass
+
+    def save(self, animal: Animal):
+        pass
+
+
+""" When designing our classes, we should aim to put related features
+together, so whenever they tend to change they change for the same reason.
+
+And we should try to separate features if they will change for
+different reasons. - Steve Fenton """
+
+# --------------------------------------------------------------------
+
+"""
+Open-Closed Principle
+
+Software entities(Classes, modules, functions) should be open for
+extension, not modification. """
+
+
+class Animal:
+    def __init__(self, name: str):
+        self.name = name
+
+    def get_name(self) -> str:
+        pass
+
+
+animals = [Animal("lion"), Animal("mouse")]
+
+
+def animal_sound(animals: list):
+    for animal in animals:
+        if animal.name == "lion":
+            print("roar")
+
+        elif animal.name == "mouse":
+            print("squeak")
+
+
+animal_sound(animals)
+
+""" The function animal_sound does not conform to the open-closed
+principle because it cannot be closed against new kinds of animals.
+
+IF WE ADD A NEW ANIMAL, SNAKE, WE HAVE TO MODIFY THE ANIMAL_SOUND
+FUNCTION.
+
+You see, for every new animal, a new logic is added to the
+animal_sound function.
+
+This is quite a simple example. When your application grows and
+becomes complex, you will see that the if statement would be repeated
+over and over again in the animal_sound function each time a new
+animal is added, all over the application. """
+
+animals = [Animal("lion"), Animal("mouse"), Animal("snake")]
+
+
+def animal_sound(animals: list):
+    for animal in animals:
+        if animal.name == "lion":
+            print("roar")
+        elif animal.name == "mouse":
+            print("squeak")
+        elif animal.name == "snake":
+            print("hiss")
+
+
+animal_sound(animals)
+
+"""
+How do we make it (the animal_sound) conform to OCP?
+"""
+
+
+class Animal:
+    def __init__(self, name: str):
+        self.name = name
+
+    def get_name(self) -> str:
+        pass
+
+    def make_sound(self):
+        pass
+
+
+class Lion(Animal):
+    def make_sound(self):
+        return "roar"
+
+
+class Mouse(Animal):
+    def make_sound(self):
+        return "squeak"
+
+
+class Snake(Animal):
+    def make_sound(self):
+        return "hiss"
+
+
+def animal_sound(animals: list):
+    for animal in animals:
+        print(animal.make_sound())
+
+
+animal_sound(animals)
+
+""" Animal now has a virtual method make_sound. We have each animal
+extend the Animal class and implement the virtual make_sound method.
+
+Every animal adds its own implementation on how it makes a sound in
+the make_sound. The animal_sound iterates through the array of animal
+and just calls its make_sound method. Now, if we add a new animal,
+animal_sound doesn’t need to change. All we need to do is add the new
+animal to the animal array. animal_sound now conforms to the OCP
+principle. """
+
+
+""" Another example:
+
+Let’s imagine you have a store, and you give a discount of 20% to your
+favorite customers using this class:
+
+When you decide to offer double the 20% discount to VIP customers. You
+may modify the class like this: """
+
+
+class Discount:
+    def __init__(self, customer, price):
+        self.customer = customer
+        self.price = price
+
+    def give_discount(self):
+        if self.customer == "fav":
+            return self.price * 0.2
+        if self.customer == "vip":
+            return self.price * 0.4
+
+
+""" No, this fails the OCP principle. OCP forbids it. If we want to
+give a new percent discount maybe, to a diff. type of customers, you
+will see that a new logic will be added.
+
+To make it follow the OCP principle, we will add a new class that will
+extend the Discount. In this new class, we would implement its new
+behavior: """
+
+
+class Discount:
+    def __init__(self, customer, price):
+        self.customer = customer
+        self.price = price
+
+    def get_discount(self):
+        return self.price * 0.2
+
+
+class VIPDiscount(Discount):
+    def get_discount(self):
+        return super().get_discount() * 2
+
+
+"""
+If you decide 80% discount to super VIP customers, it should be like this:
+You see, extension without modification.
+"""
+
+
+class SuperVIPDiscount(VIPDiscount):
+    def get_discount(self):
+        return super().get_discount() * 2
+
+
+# --------------------------------------------------------------------
+
+"""
+Liskov Substitution Principle
+
+A sub-class must be substitutable for its super-class.
+
+The aim of this principle is to ascertain that a sub-class can assume
+the place of its super-class without errors.
+
+If the code finds itself checking the type of class then, it must have
+violated this principle.
+
+Let’s use our Animal example.
+"""
+
+
+def animal_leg_count(animals: list):
+    for animal in animals:
+        if isinstance(animal, Lion):
+            print(lion_leg_count(animal))
+        elif isinstance(animal, Mouse):
+            print(mouse_leg_count(animal))
+        elif isinstance(animal, Pigeon):
+            print(pigeon_leg_count(animal))
+
+
+animal_leg_count(animals)
+
+""" To make this function follow the LSP principle, we will follow
+this LSP requirements postulated by Steve Fenton:
+
+If the super-class (Animal) has a method that accepts af super-class
+type (Animal) parameter.
+
+Its sub-class(Pigeon) should accept as argument a super-class type
+(Animal type) or sub-class type(Pigeon type).
+
+If the super-class returns a super-class type (Animal).
+
+Its sub-class should return a super-class type (Animal type) or
+sub-class type(Pigeon).
+
+Now, we can re-implement animal_leg_count function:
+"""
+
+
+def animal_leg_count(animals: list):
+    for animal in animals:
+        print(animal.leg_count())
+
+
+animal_leg_count(animals)
+
+""" The animal_leg_count function cares less the type of Animal
+passed, it just calls the leg_count method.
+
+All it knows is that the parameter must be of an Animal type, either
+the Animal class or its sub-class.
+
+The Animal class now have to implement/define a leg_count method.
+
+And its sub-classes have to implement the leg_count method: """
+
+
+class Animal:
+    def leg_count(self):
+        pass
+
+
+class Lion(Animal):
+    def leg_count(self):
+        pass
+
+
+""" When it’s passed to the animal_leg_count function, it returns the
+number of legs a lion has.
+
+You see, the animal_leg_count doesn’t need to know the type of Animal
+to return its leg count, it just calls the leg_count method of the
+Animal type because by contract a sub-class of Animal class must
+implement the leg_count function. """
+
+# --------------------------------------------------------------------
+
+"""
+Interface Segregation Principle
+
+Make fine grained interfaces that are client specific
+
+Clients should not be forced to depend upon interfaces that they do
+not use. This principle deals with the disadvantages of implementing
+big interfaces. Let’s look at the below IShape interface: """
+
+
+class IShape:
+    def draw_square(self):
+        raise NotImplementedError
+
+    def draw_rectangle(self):
+        raise NotImplementedError
+
+    def draw_circle(self):
+        raise NotImplementedError
+
+
+""" This interface draws squares, circles, rectangles. class Circle,
+Square or Rectangle implementing the IShape interface must define the
+methods draw_square(), draw_rectangle(), draw_circle(). """
+
+
+class Circle(IShape):
+    def draw_square(self):
+        pass
+
+    def draw_rectangle(self):
+        pass
+
+    def draw_circle(self):
+        pass
+
+
+class Square(IShape):
+    def draw_square(self):
+        pass
+
+    def draw_rectangle(self):
+        pass
+
+    def draw_circle(self):
+        pass
+
+
+class Rectangle(IShape):
+    def draw_square(self):
+        pass
+
+    def draw_rectangle(self):
+        pass
+
+    def draw_circle(self):
+        pass
+
+
+""" It’s quite funny looking at the code above. class Rectangle
+implements methods (draw_circle and draw_square) it has no use of,
+likewise Square implementing draw_circle, and draw_rectangle, and
+class Circle (draw_square, draw_rectangle). If we add another method
+to the IShape interface, like draw_triangle(), """
+
+
+class IShape:
+    def draw_square(self):
+        raise NotImplementedError
+
+    def draw_rectangle(self):
+        raise NotImplementedError
+
+    def draw_circle(self):
+        raise NotImplementedError
+
+    def draw_triangle(self):
+        raise NotImplementedError
+
+
+"""
+the classes must implement the new method or error will be thrown.
+
+We see that it is impossible to implement a shape that can draw a
+circle but not a rectangle or a square or a triangle. We can just
+implement the methods to throw an error that shows the operation
+cannot be performed.
+
+ISP frowns against the design of this IShape interface. clients (here
+Rectangle, Circle, and Square) should not be forced to depend on
+methods that they do not need or use.
+
+Also, ISP states that interfaces should perform only one job (just
+like the SRP principle) any extra grouping of behavior should be
+abstracted away to another interface.
+
+Here, our IShape interface performs actions that should be handled
+independently by other interfaces.
+
+To make our IShape interface conform to the ISP principle, we
+segregate the actions to different interfaces.
+
+Classes (Circle, Rectangle, Square, Triangle, etc) can just inherit
+from the IShape interface and implement their own draw behavior. """
+
+
+class IShape:
+    def draw(self):
+        raise NotImplementedError
+
+
+class Circle(IShape):
+    def draw(self):
+        pass
+
+
+class Square(IShape):
+    def draw(self):
+        pass
+
+
+class Rectangle(IShape):
+    def draw(self):
+        pass
+
+
+""" We can then use the I -interfaces to create Shape specifics like
+Semi Circle, Right-Angled Triangle, Equilateral Triangle, Blunt-Edged
+Rectangle, etc. """
+
+# --------------------------------------------------------------------
+
+"""
+Dependency Inversion Principle
+Dependency should be on abstractions not concretions
+A. High-level modules should not depend upon low-level modules. Both should depend upon abstractions.
+B. Abstractions should not depend on details. Details should depend upon abstractions.
+There comes a point in software development where our app will be largely composed of modules.
+When this happens, we have to clear things up by using dependency injection.
+High-level components depending on low-level components to function.
+"""
+
+
+class XMLHttpService(XMLHttpRequestService):
+    pass
+
+
+class Http:
+    def __init__(self, xml_http_service: XMLHttpService):
+        self.xml_http_service = xml_http_service
+
+    def get(self, url: str, options: dict):
+        self.xml_http_service.request(url, "GET")
+
+    def post(self, url, options: dict):
+        self.xml_http_service.request(url, "POST")
+
+
+""" Here, Http is the high-level component whereas HttpService is the
+low-level component.
+
+This design violates DIP A: High-level modules should not depend on
+low-level level modules. It should depend upon its abstraction. This
+Http class is forced to depend upon the XMLHttpService class. If we
+were to change to change the Http connection service, maybe we want to
+connect to the internet through cURL or even Mock the http service. We
+will painstakingly have to move through all the instances of Http to
+edit the code and this violates the OCP principle. The Http class
+should care less the type of Http service you are using. We make a
+Connection interface:
+"""
+
+
+class Connection:
+    def request(self, url: str, options: dict):
+        raise NotImplementedError
+
+
+""" The Connection interface has a request method. With this, we pass
+in an argument of type Connection to our Http class: """
+
+
+class Http:
+    def __init__(self, http_connection: Connection):
+        self.http_connection = http_connection
+
+    def get(self, url: str, options: dict):
+        self.http_connection.request(url, "GET")
+
+    def post(self, url, options: dict):
+        self.http_connection.request(url, "POST")
+
+
+""" So now, no matter the type of Http connection service passed to
+Http it can easily connect to a network without bothering to know the
+type of network connection. We can now re-implement our XMLHttpService
+class to implement the Connection interface: """
+
+
+class XMLHttpService(Connection):
+    xhr = XMLHttpRequest()
+
+    def request(self, url: str, options: dict):
+        self.xhr.open()
+        self.xhr.send()
+
+
+""" We can create many Http Connection types and pass it to our Http
+class without any fuss about errors. """
+
+
+class NodeHttpService(Connection):
+    def request(self, url: str, options: dict):
+        pass
+
+
+class MockHttpService(Connection):
+    def request(self, url: str, options: dict):
+        pass
+
+
+""" Now, we can see that both high-level modules and low-level modules
+depend on abstractions. Http class(high level module) depends on the
+Connection interface(abstraction) and the Http service types(low level
+modules) in turn, depends on the Connection interface(abstraction).
+Also, this DIP will force us not to violate the Liskov Substitution
+Principle: The Connection types Node-XML-MockHttpService are
+substitutable for their parent type Connection. """
+
+#+end_src
+
+** Užduotys
+# atsakymai
+https://github.com/CodeAcademy-Online/Python/tree/lesson-5
+
+*** 1 užduotis:
+#+begin_src python
+  # Parašyti klasę Sakinys, kuri turi savybę tekstas ir metodus, kurie:
+  class Sakinys:
+      def __init__(self, tekstas="Zen of Python"):
+          self.tekstas = tekstas
+
+      # Gražina tekstą atbulai
+      def atbulai(self):
+          return self.tekstas[::-1]
+
+      # Gražina tekstą didžiosiomis raidėmis
+      def didziosiomis(self):
+          return self.tekstas.upper()
+
+      # Gražina tekstą mažosiomis raidėmis
+      def mazosiomis(self):
+          return self.tekstas.lower()
+
+      # Gražina žodį pagal nurodytą eilės numerį
+      # Gražina, kiek tekste yra nurodytų simbolių arba žodžių
+      def ieskoti(self, ieskomas):
+          return self.tekstas.count(ieskomas)
+
+      # Gražina tekstą su pakeistu nurodytu žodžiu arba simboliu
+      def pakeisti(self, senas, naujas):
+          return self.tekstas.replace(senas, naujas)
+
+      # Gražina, kiek tekste yra nurodytų simbolių arba žodžių
+      def atspausdintiZodi(self, skaicius):
+          suskirstytas = self.tekstas.split()
+          return suskirstytas[skaicius]
+
+      # Atspausdina, kiek sakinyje yra žodžių, skaičių, didžiųjų ir mažųjų raidžių
+      def info(self):
+          zodziu_kiekis = len(self.tekstas.split())
+          skaiciai = sum(i.isnumeric() for i in self.tekstas)
+          didziosios = sum(i.isupper() for i in self.tekstas)
+          mazosios = sum(i.islower() for i in self.tekstas)
+          print(
+              f"Žodžių kiekis: {zodziu_kiekis}, Skaičiai: {skaiciai}, Didžiosios: {didziosios}, Mažosios: {mazosios}")
+
+      def __str__(self):
+          return ("Tekstas: " + self.tekstas)
+
+
+  # Susikurti kelis klasės objektus ir išbandyti visus metodus
+  mano_sakinys = Sakinys("Mano tekstas yra toks")
+  print(mano_sakinys)
+  print(mano_sakinys.atbulai())
+  print(mano_sakinys.mazosiomis())
+  print(mano_sakinys.didziosiomis())
+  print(mano_sakinys.ieskoti("a"))
+  print(mano_sakinys.pakeisti("Mano", "Savo"))
+  print(mano_sakinys.atspausdintiZodi(2))
+  print(mano_sakinys.info())
+  mano_sakinys.info()
+#+end_src
+
+*** 2 užduotis:
+#+begin_src python
+  # Sukurti klasę Sukaktis, kuri turėtų savybę data (galima atskirai įvesti metus, mėnesius ir kt.) ir metodus, kurie:
+  # Gražina, kiek nuo įvestos sukakties praėjo metų, savaičių, dienų, valandų, minučių, sekundžių
+  # Gražina, ar nurodytos sukakties metai buvo keliamieji
+  # Atima iš nurodytos datos nurodytą kiekį dienų ir gražina naują datą
+  # Prideda prie nurodytos datos nurodytą kiekį dienų ir gražina naują datą
+
+    import datetime
+    import calendar
+
+
+    class Sukaktis:
+        def __init__(self, metai=2000, menuo=12, diena=12, valandos=12, minutes=12):
+            self.metai = metai
+            self.menuo = menuo
+            self.diena = diena
+            self.valandos = valandos
+            self.minutes = minutes
+            self.data = datetime.datetime(metai, menuo, diena, valandos, minutes)
+
+        def smulkiai(self):
+            now = datetime.datetime.now()
+            skirtumas = now - self.data
+            print(f"Praėjo metų: ", skirtumas.days // 365)
+            print("Praėjo mėnesių: ", skirtumas.days / 365 * 12)
+            print("Praėjo savaičių: ", skirtumas.days / 7)
+            print("Praėjo dienų: ", skirtumas.days)
+            print("Praėjo valandų: ", skirtumas.total_seconds() / 3600)
+            print("Praėjo minučių: ", skirtumas.total_seconds() / 60)
+            print("Praėjo sekundžių: ", skirtumas.total_seconds())
+
+        def arKeliamieji(self):
+            if calendar.isleap(self.metai):
+                print("Keliamieji metai")
+
+        def atimtiDienas(self, dienos):
+            return self.data - datetime.timedelta(days=dienos)
+
+        def pridetiDienas(self, dienos):
+            return self.data + datetime.timedelta(days=dienos)
+
+        def __str__(self):
+            return (
+                f"Data: {self.metai}-{self.menuo}-{self.diena} {self.valandos}:{self.minutes}")
+
+
+    data1 = Sukaktis(2000, 1, 1, 12, 12)
+    data1.arKeliamieji()
+    data1.smulkiai()
+    print(data1.atimtiDienas(5))
+    print(data1.pridetiDienas(45))
+    print(data1)
+#+end_src
+
+*** 5 užduotis:
+#+begin_src python
+
+  # Padaryti minibiudžeto programą, kuri:
+  # Leistų vartotojui įvesti pajamas
+  # Leistų vartotojui įvesti išlaidas
+  # Leistų vartotojui parodyti pajamų/išlaidų balansą
+  # Leistų vartotojui parodyti biudžeto ataskaitą (visus pajamų ir išlaidų įrašus su sumomis)
+  # Leistų vartotojui išeiti iš programos
+
+  # ~REKOMENDACIJA, KAIP GALIMA BŪTŲ PADARYTI:~
+  # Programa turi turėti klasę Irasas, kuri turėtų argumentus tipas (Pajamos arba Išlaidos) ir suma. Galima prirašyti str metodą, kuris gražintų, kaip bus atvaizduojamas spausdinamas objektas.
+  # Programa turi turėti klasę Biudzetas, kurioje būtų:
+  # Metodas init, kuriame sukurtas tuščias sąrašas zurnalas, į kurį bus dedami sukurti pajamų ir išlaidų objektai
+  # Metodas prideti_pajamu_irasa(self, suma), kuris priimtų paduotą sumą, sukurtų pajamų objektą ir įdėtų jį į biudžeto žurnalą
+  # Metodas prideti_islaidu_irasa(self, suma), kuris priimtų paduotą sumą, sukurtų išlaidų objektą ir įdėtų jį į biudžeto žurnalą
+  # Metodas gauti_balansą(self), kuris gražintų žurnale laikomų pajamų ir išlaidų balansą.
+  # Metodas parodyti_ataskaita(self), kuris atspausdintų visus pajamų ir
+  # išlaidų įrašus (nurodydamas kiekvieno įrašo tipą ir sumą).
+
+    class Irasas:
+        def __init__(self, tipas, suma):
+            self.tipas = tipas
+            self.suma = suma
+
+        def __str__(self):
+            return f"{self.tipas}: {self.suma}"
+
+
+    class Biudzetas:
+        def __init__(self):
+            self.zurnalas = []
+
+        def prideti_pajamu_irasa(self, suma):
+            pajamos = Irasas("Pajamos", suma)
+            self.zurnalas.append(pajamos)
+
+        def prideti_islaidu_irasa(self, suma):
+            islaidos = Irasas("Išlaidos", suma)
+            self.zurnalas.append(islaidos)
+
+        def gauti_balansą(self):
+            suma = 0
+            for irasas in self.zurnalas:
+                if irasas.tipas == "Pajamos":
+                    suma += irasas.suma
+                if irasas.tipas == "Išlaidos":
+                    suma -= irasas.suma
+            print(suma)
+
+        def parodyti_ataskaita(self):
+            for irasas in self.zurnalas:
+                print(f"{irasas.tipas}: {irasas.suma}")
+
+
+    biudzetas = Biudzetas()
+
+    while True:
+        pasirinkimas = int(input("1 - įvesti pajamas, \n2 - įvesti išlaidas, \n3 - gauti balansą, \n4 - parodyti ataskaitą, \n9 - išeiti iš programos"))
+        if pasirinkimas == 1:
+            suma = float(input("Įveskite pajamų sumą: "))
+            biudzetas.prideti_pajamu_irasa(suma)
+        if pasirinkimas == 2:
+            suma = float(input("Įveskite išlaidų sumą: "))
+            biudzetas.prideti_islaidu_irasa(suma)
+        if pasirinkimas == 3:
+            biudzetas.gauti_balansą()
+        if pasirinkimas == 4:
+            biudzetas.parodyti_ataskaita()
+        if pasirinkimas == 9:
+            print("Viso gero")
+            break
+
+#+end_src
+
+* Lesson6 Objektinis programavimas (II dalis)
+** Paveldejimas ir polimorfizmas
+*** Paveldėjimas (Inheritance)
+
+ – galimybė apjungti panašių objektų funkcionalumą, naudojant tėvines
+ klases. Tai leidžia nekartoti panašaus ar to paties kodo. Taip pat,
+ nekeičiant paties objekto kodo, papildyti arba keisti jo
+ funkcionalumą.
+
+#+begin_src python
+class Gyvunas():
+    def __init__(self, vardas, spalva):
+        self.vardas = vardas
+        self.spalva = spalva
+
+    def begti(self):
+        print("Bėgu")
+
+
+class Kate(Gyvunas):
+    def miaukseti(self):
+        print("Miau")
+
+
+class Suo(Gyvunas):
+    def loti(self):
+        print("Au")
+
+
+vezlys = Gyvunas("Tadas", "Rudas")
+vezlys.begti()
+
+# Bėgu
+
+vezlys.miaukseti()
+
+# AttributeError: 'Gyvunas' object has no attribute 'miaukseti'
+
+
+kate1 = Kate("Mūza", "Pilka")
+suo1 = Suo("Čakas", "Baltas")
+
+kate1.begti()
+
+# Bėgu
+
+kate1.miaukseti()
+
+# Miau
+
+kate1.loti()
+
+# AttributeError: 'Kate' object has no attribute 'loti'
+
+suo1.loti()
+
+# Au
+#+end_src
+
+*** Polimorfizmas (Polymorphism)
+
+ – galimybė operacijas (metodus) vykdyti skirtingai, priklausomai nuo
+ konkrečios klasės (ar duomenų tipo) realizacijos, metodo kvietėjui
+ nežinant apie tuos skirtumus. Tai pasiekiama perrašant tam tikrus
+ metodus vaikinėse klasėse.
+
+Metodo (funkcijos) perrašymas (Overriding):
+
+#+begin_src python
+class Gyvunas():
+    def __init__(self, vardas, spalva):
+        self.vardas = vardas
+        self.spalva = spalva
+
+    def begti(self):
+        print("Bėgu")
+
+
+class Vezlys(Gyvunas):
+    def begti(self):
+        print("Aš lėtai einu, ne bėgu")
+
+gyvunas = Gyvunas("Jonas", "d")
+gyvunas.begti()
+
+vezlys = Vezlys("Tadas", "Rudas")
+vezlys.begti()
+
+# Aš lėtai einu, ne bėgu
+#+end_src
+
+Kaip pasiekti tėvinės klasės metodą:
+
+#+begin_src python
+  class Gyvunas():
+      def __init__(self, vardas, spalva):
+          self.vardas = vardas
+          self.spalva = spalva
+
+      def begti(self):
+          print("Bėgu")
+
+
+  class Vezlys(Gyvunas):
+      def begti(self):
+          super().begti()
+          print("Aš lėtai einu, ne bėgu")
+
+
+  vezlys = Vezlys("Tadas", "Rudas")
+  vezlys.begti()
+#+end_src
+
+** Kiti naudingi veiksmai su klasemis
+*** Kaip vaikinei klasei pridėti papildomas savybes:
+#+begin_src python
+class Tevas:
+    def __init__(self, vardas, pavarde):
+        self.vardas = vardas
+        self.pavarde = pavarde
+
+
+class Vaikas(Tevas):
+    def __init__(self, vardas, pavarde, mokymosi_istaiga):
+        super().__init__(vardas, pavarde)
+        self.mokymosi_istaiga = mokymosi_istaiga
+
+
+tevas = Tevas("Rokas", "Budreika")
+vaikas = Vaikas("Urtė", "Budreikaitė", "Čiurlionio menų gimnazija")
+
+print(tevas.mokymosi_istaiga)
+# AttributeError: 'Tevas' object has no attribute 'mokymosi_istaiga'
+
+print(vaikas.mokymosi_istaiga)
+# Čiurlionio menų gimnazija
+
+#+end_src
+*** Kaip patikrinti, kokiai klasei priklauso objektas (biudžeto pavyzdys):
+
+#+begin_src python
+class Irasas:
+    def __init__(self, suma):
+        self.suma = suma
+
+class PajamuIrasas(Irasas):
+    pass
+
+class IslaiduIrasas(Irasas):
+    pass
+
+biudzetas = []
+
+irasas1 = PajamuIrasas(2000)
+irasas2 = IslaiduIrasas(20)
+biudzetas.append(irasas1)
+biudzetas.append(irasas2)
+
+for x in biudzetas:
+    if isinstance(x, PajamuIrasas):
+        print(x.suma)
+        print("Čia pajamos")
+    elif isinstance(x, IslaiduIrasas):
+        print(x.suma)
+        print("Čia Išlaidos")
+#+end_src
+** Destytojo pavyzdžiai
+#+begin_src python
+  # very useful when you want the procedure to be done on MULTIPLE list or dicsts
+  # args kwargs allows you to put multiple sarasai!! have to repeat myself to rememberrrr
+
+  sarasas = [1, 5, 5.9, "Tomas", 99, False, 88, 4, 9.9, "Pirmadienis", 1000, 507, True, 12.2 , "Ruduo", 63384, [1, 2, 3], {'Vardas': 'tomas', 'amzius': 48}]
+
+  zmones = {'Jolanta': 31, 'Tomas': 35, 'Daiva': 42}
+
+  def gauti_skaicius(*args, **kwargs):
+      skaiciai = []
+      for arg in args:
+          if type(arg) == int or type(arg) == float:
+              skaiciai.append(arg)
+          elif type(arg) == list:
+              for narys in arg:
+                  if type(narys) == int or type(narys) == float:
+                      skaiciai.append(narys)
+          elif type(arg) == dict:
+              for raktas, verte in arg.items():
+                  if type(verte) == int or type(verte) == float:
+                      skaiciai.append(verte)
+      return skaiciai
+
+
+  def test(**kwargs):
+      for kwarg in kwargs:
+          print(type(kwarg))
+
+
+  print(gauti_skaicius(sarasas, zmones))  # without zvaigzdute
+  print(gauti_skaicius(*sarasas, zmones))  # with zvaigzdute (prints array and dict also)
+
+  # --------------------------------------------------------------------
+
+  sarasas = [1, 5, 5.9, "Tomas", 99, False, 88, 4, 9.9, "Pirmadienis", 1000, 507, True, 12.2 , "Ruduo", 63384, [1, 2, 3], {'Vardas': 'tomas', 'amzius': 48}]
+
+  zmones = {'Jolanta': 31, 'Tomas': 35, 'Daiva': 42}
+
+
+  def gauti_skaicius(*args, **kwargs):
+      skaiciai = []
+      for arg in args:
+          if type(arg) == int or type(arg) == float:
+              skaiciai.append(arg)
+          elif type(arg) == list:
+              for narys in arg:
+                  if type(narys) == int or type(narys) == float:
+                      skaiciai.append(narys)
+          elif type(arg) == dict:
+              for raktas, verte in arg.items():
+                  if type(verte) == int or type(verte) == float:
+                      skaiciai.append(verte)
+      for raktas, verte in kwargs.items():
+          if type(verte) == int or type(verte) == float:
+              skaiciai.append(verte)
+      return skaiciai
+
+  def test(**kwargs):
+      print(type(kwargs))
+      for key, value in kwargs.items():
+          print(type(key), type(value))
+
+  print(gauti_skaicius(50, 40, "Labas", *sarasas, **zmones))
+
+  # --------------------------------------------------------------------
+
+
+  def f2(funkcija):
+      def wrapper(*args, **kwargs):
+          print("Vykdom pries paduota funkcija")
+          value =  funkcija(*args, **kwargs)
+          print("Vykdom po paduotos funkcijos")
+          return value
+      return wrapper
+
+  @f2                             # KAS CIA
+  def f1(vardas):
+      print(f"Labas, {vardas}")
+      return len(vardas)
+
+
+  #f1 = f2(f1)
+  print(f1("Rasa"))
+
+  # --------------------------------------------------------------------
+
+  import datetime
+  def log(gauta_funkcija):
+      def wrapper(*args, **kwargs):
+          with open("logs_vigi.txt", "a") as failas:
+              failas.write("Funkcija iškviesta su " + " ".join([str(arg) for arg in args]) + " argumentais, " +str(datetime.datetime.now()) + " laiku. \n")
+          atsakymas = gauta_funkcija(*args, **kwargs)
+          return atsakymas
+      return wrapper
+
+  @log
+  def suma(*args):
+      suma = 0
+      for arg in args:
+          suma += arg
+      return suma
+
+  print(suma(5, 9, 4.5, 5, 3, 22))
+
+  # --------------------------------------------------------------------
+
+  # Dekoratoriaus sudarymo PVZ:
+
+  #Įprasta funkcija:
+
+  def f1():
+      print("Funkcija f1")
+
+  f1()
+
+  # --------------------------------------------------------------------
+
+  #Atspausdinam funkciją jos nekviečiant
+
+  def f1():
+      print("Funkcija f1")
+
+  print(f1)
+
+  #Funkcija - tai objektas. Grąžinant funkciją jos nekviečiant,
+  #grąžinamas objekto (funkcijos) vieta atmintyje
+
+  # --------------------------------------------------------------------
+
+  #Funkcijai f2 duodam argumentą f1.
+
+  def f1():
+      print("Funkcija f1")
+
+  def f2(f):
+      f()
+
+  f2(f1)
+  # Kviečiant funkciją f2 su argumentu f1, pradedam vykdyti kodą, esantį
+  # f2 viduje. f2 funkcijoje kviečiame argumentą f (taip iškviečiam f1).
+
+  # --------------------------------------------------------------------
+
+  def f1(gauta_funkcija):  # f1 funkcija gaus kitą funkciją kaip
+                           # argumentą (lokalus kintamasis
+                           # gauta_funkcija)
+      def wrapper():  # Iškvietus f1, sukuriam funkciją wrapper
+          print("gauta_funkcija prasideda")
+          gauta_funkcija()  # Kaffi vykdysim wrapper funkciją, bus
+                            # iškviesta pirminė funkcija f
+          print("gauta_funkcija pasibaigia")
+
+      return wrapper  # Grąžinam naujai sukurtą funkciją kaip objektą,
+                      # bet jos nekviečiam
+
+  def f():
+      print("Labas vakaras")
+
+  f = f1(f)  # Iškviečiam funkciją f1, kuriai kaip argumentą duodame
+             # funkciją f. Gražintą funkciją (wrapper) įrašom į f vietą.
+             # Dabar f bus ne pirminė funkcija, o ta kurią gražino f1
+             # (return wrapper)
+  f()  # Iškviečiam naujai suformuotą funkciją
+  f1(f)() # Taip pat galime naują suformuotą funkciją iškviesti iškart
+          # naudojant (). Rezultatas tas pats kaip ir 2 eilutės prieš
+          # tai.
+
+  # --------------------------------------------------------------------
+
+  #Tas pats pavyzdys, tik užrašytas naudojant dekoratorių
+
+  def f1(gauta_funkcija):
+      def wrapper():
+          print("gauta_funkcija prasideda")
+          gauta_funkcija()
+          print("gauta_funkcija pasibaigia")
+
+      return wrapper
+
+  @f1 # Taip aprašomas dekoratorius. Kiekvieną kartą kviečiant funkciją
+      # f(), ji bus paduodama į funkciją f1().
+  def f():
+      print("Labas vakaras")
+
+  f() # Iškviečiama funkcija f. Dėka dekoratoriaus sintaksės @f1
+      # eilutėje virš def f(): dekorutoa funkcija kviečiama kaip
+      # įprasta.
+
+  # --------------------------------------------------------------------
+
+  #Jeigu funkciją kviečiame su argumentais naudojant dekoratorių,
+  #argumentus reikia perduoti dekuruojančiojo funkcijoje f1() naudojant
+  #*args, **kwargs
+
+  def f1(gauta_funkcija):
+      def wrapper(*args, **kwargs):  # Funkcijai wrapper perduodadi visi args ir kwargs argumentai.
+          print("gauta_funkcija prasideda")
+          gauta_funkcija(*args, **kwargs)
+          print("gauta_funkcija pasibaigia")
+
+      return wrapper
+
+  @f1  # Taip aprašomas dekoratorius naujai aprašomai funkcijai f(argumentas1)
+  def f(argumentas1):
+      print(argumentas1)
+
+  f("Labas")
+
+  # --------------------------------------------------------------------
+
+  #Jeigu iš funkcijos reikia grąžinti kažkokią vertę ar kintamąjį
+  #(return ...), mūsų sukuriamoje funkcijoje wrapper reikia grąžinti
+  #atsakymą.
+
+  def f1(gauta_funkcija):
+      def wrapper(*args, **kwargs):
+          print("gauta_funkcija prasideda")
+          atsakymas = gauta_funkcija(*args, **kwargs) # Iškviečiama
+                                                      # pirminė
+                                                      # funkcija, gautas
+                                                      # atsakymas
+                                                      # įrašomas į
+                                                      # kintamąjį
+                                                      # atsakymas
+          print("gauta_funkcija pasibaigia")
+          return atsakymas  # Anksčiau įrašytas kintamasis grąžinamas
+                            # funkcijos gale tam, kad visa funkcija būtų
+                            # baigta iki galo
+
+      return wrapper
+
+  @f1 # Taip aprašomas dekoratorius
+  def suma(sk1, sk2):
+      return sk1 + sk2
+
+  print(suma(79, 96))
+#+end_src
+#+begin_src python
+  # Parent 1
+  class Person():
+      def __init__(self, vardas, pavarde):
+          self.vardas = vardas
+          self.pavarde = pavarde
+
+
+  # Child 1
+  class Company(Person):
+      def __init__(self,vardas, pavarde, kompanijos_vardas, lokacija):
+          super().__init__(vardas,pavarde)  # paimam is parent!!
+          self.kompanijos_vardas = kompanijos_vardas
+          self.lokacija = lokacija
+
+
+  # Child 2
+  class Employee(Company):
+      def __init__(self,vardas, pavarde, kompanijos_vardas, lokacija):
+          super().__init__(vardas, pavarde, kompanijos_vardas, lokacija)
+
+      def informacija(self):
+          print("Dirbu", self.kompanijos_vardas)
+          print("Kompanijos vietove: ", self.lokacija)
+
+
+  darbuotojas = Employee("zygimantas","Glodenis","Kompanija","Kaunas")
+
+  print(darbuotojas.kompanijos_vardas)
+
+  # --------------------------------------------------------------------
+
+  # Parent 1
+
+  class Person():
+      def __init__(self, vardas, pavarde):
+          self.vardas = vardas
+          self.pavarde = pavarde
+
+
+  # Child 1
+
+  class Company():
+      def __init__(self,kompanijos_vardas, lokacija):
+          self.kompanijos_vardas = kompanijos_vardas
+          self.lokacija = lokacija
+
+
+  # Child 2
+
+  # Kada norim paveldėti dviejų tevu kintamuosius nenaudojam super naudojam Klases pavadinimus
+  class Employee(Person,Company):
+      def __init__(self,vardas, pavarde, kompanijos_vardas,lokacija):
+          Person.__init__(self,vardas,pavarde)
+          Company.__init__(self,kompanijos_vardas,lokacija)
+
+
+  #PVZ
+  # Čia pvz naudojant Super tačiau syntaxe ganėtiniai sudetinga tampa.
+  # class Employee(Person,Company):
+  #     def __init__(self,vardas, pavarde, kompanijos_vardas,lokacija):
+  #         super().__init__(vardas,pavarde)
+  #         super(Person, self).__init__(kompanijos_vardas,lokacija)
+
+  darbuotojas = Employee("zygimantas","Glodenis","Kompanija","Kaunas")
+
+  print(darbuotojas.kompanijos_vardas)
+#+end_src
+** Užduotys
+# atsakymai
+https://github.com/CodeAcademy-Online/Python/tree/lesson-6
+*** 1 užduotis
+#+begin_src python
+  # Sukurti programą, kuri:
+
+  # Turėtų klasę Automobilis
+  # Automobilis turėtų savybes: metai, modelis, kuro_tipas
+  # Automobilis turėtų metodus: vaziuoti, stoveti, pildyti_degalu, kurie
+  # atitinkamai atspausdintų „Važiuoja“, „Priparkuota“, „Degalai įpilti“
+  # Sukūrus objektą, automatiškai atspausdintų automobilio metus, modelį
+  # ir kuro tipą
+  # Turėtų klasę Elektromobilis (jo tėvinis objektas – Automobilis)
+  # Elektromobilis pakeistų Automobilio metodą pildyti_degalu taip, kad
+  # jis atspausdintų „Baterija įkrauta“
+  # Elektromobilis turėtų metodą vaziuoti_autonomiskai, kuris spausdintų
+  # „Važiuoja autonomiškai“
+  # Sukurti norimą Automobilio objektą
+  # Sukurti norimą Elektromobilio objektą
+  # Su sukurtu Automobilio objektu paleisti funkcijas vaziuoti, stoveti,
+  # pildyti_degalu
+  # Su sukurtu Elektromobilio objektu paleisti funkcijas vaziuoti,
+  # stoveti, pildyti_degalu, vaziuoti_autonomiskai
+
+    class Automobilis():
+        def __init__(self, metai, modelis, kuro_tipas):
+            self.metai = metai
+            self.modelis = modelis
+            self.kuro_tipas = kuro_tipas
+            self._informacija()
+
+        def vaziuoti(self):
+            print("Važiuoja")
+
+        def stoveti(self):
+            print("Priparkuota")
+
+        def pildyti_degalu(self):
+            print("Degalai įpilti")
+
+        def _informacija(self):
+            print("Metai:", self.metai, "Modelis:", self.modelis, "Tipas:", self.kuro_tipas)
+
+    class Elektromobilis(Automobilis):
+        def pildyti_degalu(self):
+            print("Baterija įkrauta")
+
+        def vaziuoti_automonomiškai(self):
+            print("Važiuoja autonomiškai")
+
+    toyota = Automobilis(2015, "Toyota Avensis", "Dyzelinas")
+    tesla = Elektromobilis(2018, "Telsla Model S", "Elektra")
+
+    toyota.vaziuoti()
+    toyota.stoveti()
+    toyota.pildyti_degalu()
+    tesla.pildyti_degalu()
+    tesla.vaziuoti_automonomiškai()
+#+end_src
+
+*** 2 užduotis
+#+begin_src python
+  # Sukurti programą, kuri:
+
+  # Turėtų klasę Darbuotojas
+  # Darbuotojas turėtų savybes: vardas, valandos_ikainis, dirba_nuo
+  # Turėtų privatų metodą kuris paskaičiuotų, kiek darbuotojas nudirbo
+  # dienų nuo įvestos dienos (dirba_nuo) iki šiandien (turint omeny, kad
+  # darbuotojas dirba 7 dienas per savaitę)
+  # Turėtų metodą paskaiciuoti_atlyginima, kuris panaudodamas aukščiau
+  # aprašytu metodu, paskaičiuotų bendrą atlyginimą (turint omeny, kad
+  # darbuotojas dirba 8 valandas per dieną)
+  # Turėtų klasę NormalusDarbuotojas, kuri pakeistų Darbuotojo klasę taip,
+  # kad ji skaičiuotų atlyginimą, dirbant darbuotojui 5 dienas per savaitę
+  # Sukurti norimą Darbuotojo objektą
+  # Sukurti norimą NormalusDarbuotojas objektą
+  # Su abiem objektais paleisti funkciją paskaiciuoti_atlyginima
+
+  import datetime
+
+  class Darbuotojas():
+      def __init__(self, vardas, valandos_ikainis, dirba_nuo):
+          self.vardas = vardas
+          self.valandos_ikainis = valandos_ikainis
+          self.dirba_nuo = dirba_nuo
+
+
+      def _kiek_dirba_valandu(self):
+          nuo_kada_dirba = datetime.datetime.strptime(self.dirba_nuo, "%Y, %m, %d, %H, %M, %S")
+          dabar = datetime.datetime.today()
+          skirtumas = dabar - nuo_kada_dirba
+          return skirtumas.days * 8
+
+      def paskaiciuoti_atlyginima(self):
+          atlyginimas = self.valandos_ikainis * self._kiek_dirba_valandu()
+          print (self.vardas + " uždirbo " + str(atlyginimas))
+
+  class NormalusDarbuotojas(Darbuotojas):
+      def _kiek_dirba_valandu(self):
+          nuo_kada_dirba = datetime.datetime.strptime(self.dirba_nuo, "%Y, %m, %d, %H, %M, %S")
+          dabar = datetime.datetime.today()
+          skirtumas = dabar - nuo_kada_dirba
+          return (skirtumas.days * 8) / 7 * 5
+
+
+  donatas = Darbuotojas("Donatas", 10, "2019, 03, 12, 12, 00, 00")
+  donatas_normalus = NormalusDarbuotojas("Donatas", 10, "2019, 03, 12, 12, 00, 00")
+  donatas.paskaiciuoti_atlyginima()
+  donatas_normalus.paskaiciuoti_atlyginima()
+#+end_src
+
+*** 3 užduotis
+#+begin_src python
+  # Patobulinti 5 pamokos biudžeto programą:
+
+  # Sukurti tėvinę klasę Irasas, kurioje būtų savybės suma , iš kurios
+  # klasės PajamuIrasas ir IslaiduIrasas paveldėtų visas savybes.
+
+  # Į klasę PajamuIrasas papildomai pridėti savybes siuntejas ir
+  # papildoma_informacija, kurias vartotojas galėtų įrašyti.
+
+  # Į klasę IslaiduIrasas papildomai pridėti savybes atsiskaitymo_budas ir
+  # isigyta_preke_paslauga, kurias vartotojas galėtų įrašyti.
+
+  # Atitinkamai perdaryti klasės Biudzetas metodus gauti_balansa ir
+  # gauti_ataskaita kad pasiėmus įrašą iš žurnalo, atpažintų, ar tai yra
+  # pajamos ar išlaidos (pvz., panaudojus isinstance() metodą) ir
+  # atitinkamai atliktų veiksmus.
+
+  # Padaryti, kad vartotojui (per konsolę) būtų leidžiama įrašyti pajamų
+  # ir išlaidų įrašus, peržiūrėti balansą ir ataskaitą.
+
+  class Irasas:
+      def __init__(self, suma):
+          self.suma = suma
+
+  class PajamuIrasas(Irasas):
+      def __init__(self, suma, siuntejas, papildoma_info):
+          super().__init__(suma)
+          self.siuntejas = siuntejas
+          self.papildoma_info = papildoma_info
+
+  class IslaiduIrasas(Irasas):
+      def __init__(self, suma, atsiskaitymo_budas, isigyta_preke_paslauga):
+          super().__init__(suma)
+          self.atsiskaitymo_budas = atsiskaitymo_budas
+          self.isigyta_preke_paslauga = isigyta_preke_paslauga
+
+  class Biudzetas():
+      def __init__(self):
+          self.zurnalas = []
+
+      def ivesti_pajamas(self, suma, siuntejas, papildoma_informacija):
+          pajamu_irasas = PajamuIrasas(suma, siuntejas, papildoma_informacija)
+          self.zurnalas.append(pajamu_irasas)
+
+      def ivesti_islaidas(self, suma, atsiskaitymo_budas, isigyta_preke_paslauga):
+          islaidu_irasas = IslaiduIrasas(suma, atsiskaitymo_budas, isigyta_preke_paslauga)
+          self.zurnalas.append(islaidu_irasas)
+
+      def gauti_biudzeto_balansa(self):
+          balansas = 0
+          for irasas in self.zurnalas:
+              if isinstance(irasas, PajamuIrasas):
+                  balansas += irasas.suma
+              if isinstance(irasas, IslaiduIrasas):
+                  balansas -= irasas.suma
+          return balansas
+
+      def gauti_ataskaita(self):
+          for irasas in self.zurnalas:
+              if isinstance(irasas, PajamuIrasas):
+                  print(f"Pajamos: {irasas.suma} {irasas.siuntejas} {irasas.papildoma_info}")
+              if isinstance(irasas, IslaiduIrasas):
+                  print(f"Išlaidos: {irasas.suma} {irasas.atsiskaitymo_budas} {irasas.isigyta_preke_paslauga}")
+
+  mano_biudzetas = Biudzetas()
+
+  while True:
+      print("Pasirinkite veiksmą: ")
+      print("1 - Įvesti pajamas")
+      print("2 - Įvesti išlaidas")
+      print("3 - Gauti balansą")
+      print("4 - Gauti ataskaitą")
+      print("0 - Išeiti iš programos")
+      pasirinkimas = input()
+      if pasirinkimas == "1":
+          print("Įveskite pajamas: ")
+          suma = int(input("Suma: "))
+          siuntejas = input("Siuntėjas: ")
+          papildoma_informacija = input("Papildoma informacija: ")
+          mano_biudzetas.ivesti_pajamas(suma, siuntejas, papildoma_informacija)
+          print("Pajamos įvestos sėkmingai!")
+      if pasirinkimas == "2":
+          print("Įveskite išlaidas: ")
+          suma = int(input("Suma: "))
+          atsiskaitymo_budas = input("Atsiskaitymo būdas: ")
+          isigyta_preke_paslauga = input("Įsigyta prekė/paslauga: ")
+          mano_biudzetas.ivesti_islaidas(suma, atsiskaitymo_budas, isigyta_preke_paslauga)
+          print("Išlaidos įvestos sėkmingai!")
+      if pasirinkimas == "3":
+          print(f"Sąskaitos balansas: {mano_biudzetas.gauti_biudzeto_balansa()}")
+      if pasirinkimas == "4":
+          mano_biudzetas.gauti_ataskaita()
+      if pasirinkimas == "0":
+          break
+#+end_src
+
+* Lesson7 Moduliu sistemos ir darbas su failais
+** Moduliu sistemos
+
+# Visi python moduliai - https://docs.python.org/3/library/
+
+Projekte turime du .py failus
+
+Failas mano_modulis.py:
+
+#+begin_src python
+kintamasis = "Čia yra testinis kintamasis"
+
+print("mano_modulis sėkmingai importuotas!")
+
+def parasyti_atbulai(sakinys):
+    print(sakinys[::-1])
+#+end_src
+
+Failas mano_pagrindinis.py:
+
+#+begin_src python
+import mano_modulis
+
+sakinys = "Sveikas, pasauli!"
+atbulai = mano_modulis.parasyti_atbulai(sakinys)
+
+# mano_modulis sėkmingai importuotas!
+# !iluasap ,sakievS
+#+end_src
+
+*** Importuoti modulį kaip:
+
+#+begin_src python
+import mano_modulis as mm
+
+sakinys = "Sveikas, pasauli!"
+atbulai = mm.parasyti_atbulai(sakinys)
+
+# mano_modulis sėkmingai importuotas!
+# !iluasap ,sakievS
+#+end_src
+*** Importuoti tik funkciją:
+
+#+begin_src python
+from mano_modulis import parasyti_atbulai
+
+sakinys = "Sveikas, pasauli!"
+atbulai = parasyti_atbulai(sakinys)
+
+# mano_modulis sėkmingai importuotas!
+# !iluasap ,sakievS
+#+end_src
+*** Importuoti daugiau:
+
+#+begin_src python
+from mano_modulis import parasyti_atbulai, kintamasis
+
+sakinys = "Sveikas, pasauli!"
+atbulai = parasyti_atbulai(sakinys)
+print(kintamasis)
+
+# mano_modulis sėkmingai importuotas!
+# !iluasap ,sakievS
+# Čia yra testinis kintamasis
+#+end_src
+*** Importuoti vieną jų kaip trumpinį:
+
+#+begin_src python
+from mano_modulis import parasyti_atbulai as pa, kintamasis
+
+sakinys = "Sveikas, pasauli!"
+atbulai = pa(sakinys)
+print(kintamasis)
+
+# mano_modulis sėkmingai importuotas!
+# !iluasap ,sakievS
+# Čia yra testinis kintamasis
+#+end_src
+*** Importuoti viską:
+
+#+begin_src python
+from mano_modulis import *
+
+sakinys = "Sveikas, pasauli!"
+atbulai = parasyti_atbulai(sakinys)
+print(kintamasis)
+
+# mano_modulis sėkmingai importuotas!
+# !iluasap ,sakievS
+# Čia yra testinis kintamasis
+#+end_src
+
+*** Kad kodas būtų paleidžiamas tik tiesiogiai paleidžiant failą:
+
+#+begin_src python
+kintamasis = "Čia yra testinis kintamasis"
+
+print("mano_modulis sėkmingai importuotas!")
+
+def parasyti_atbulai(sakinys):
+    print(sakinys[::-1])
+
+if __name__ == '__main__':
+    print("Kodas vykdomas tik leidžiant tiesiogiai")
+
+
+#+end_src
+
+Failas mano_pagrindinis.py:
+
+#+begin_src python
+import mano_modulis
+
+sakinys = "Sveikas, pasauli!"
+atbulai = mano_modulis.parasyti_atbulai(sakinys)
+
+# mano_modulis sėkmingai importuotas!
+# !iluasap ,sakievS
+#+end_src
+*** Importuoti modulį iš kito katalogo:
+Projekte turime du .py failus, taip pat katalogą moduliai su dar vienu .py failu
+
+Failas moduliai/mano_modulis_3.py:
+
+#+begin_src python
+kintamasis3 = "Čia yra testinis kintamasis 3"
+
+print("mano_modulis_3 sėkmingai importuotas!")
+
+def parasyti_atbulai3(sakinys):
+    print(sakinys[::-1])
+#+end_src
+
+Failas mano_pagrindinis.py (neteisingas import):
+
+#+begin_src python
+import mano_modulis_3
+
+# ModuleNotFoundError: No module named 'mano_modulis_3'
+#+end_src
+
+Teisingas import:
+
+#+begin_src python
+import moduliai.mano_modulis_3 as mm3
+print(mm3.kintamasis3)
+
+# mano_modulis_3 sėkmingai importuotas!
+# Čia yra testinis kintamasis 3
+
+#+end_src
+
+*** Kaip importuoti modulius iš to paties katalogo (absolute import):
+Failas moduliai/mano_pagrindinis_3.py:
+
+#+begin_src python
+from moduliai.mano_modulis_3 import kintamasis3
+
+print(kintamasis3)
+
+# mano_modulis_3 sėkmingai importuotas!
+# Čia yra testinis kintamasis 3
+#+end_src
+*** Kitas importavimo iš to paties katalogo būdas (relative import):
+Failas moduliai/mano_pagrindinis_3.py:
+
+#+begin_src python
+from .mano_modulis_3 import kintamasis3
+
+print(kintamasis3)
+
+# mano_modulis_3 sėkmingai importuotas!
+# Čia yra testinis kintamasis 3
+#+end_src
+. – tame pačiame pakete (kataloge)
+
+.. – aukščiau esančiame pakete (kataloge)
+
+! Parodyti, kaip paleisti failą iš cmd
+
+*** Importavimas iš standartinės Python bibliotekos
+
+#+begin_src python
+import random
+
+pasirinkimai = ["Istorija", "Fizika", "Medicina", "Informatika"]
+pasirinktas_kursas = random.choice(pasirinkimai)
+print(pasirinktas_kursas)
+
+# Istorija
+import math
+
+saknis = math.sqrt(9)
+print(saknis)
+
+# 3
+from datetime import date
+import calendar
+
+print(date.today())
+print(calendar.isleap(2017))
+print(calendar.isleap(2020))
+
+# 2019-03-29
+# False
+# True
+import os
+
+print(os.getcwd())
+
+# C:\Users\Donoras\CodeAcademy\projektas
+#+end_src
+** Darbas su failais ir katalogais(os modulis)
+#+begin_src python
+import os
+#+end_src
+
+Kaip pažiūrėti, ką gali os modulis:
+#+begin_src python
+print(dir(os))
+#+end_src
+
+Kaip sužinoti katalogą, kuriame esame:
+
+#+begin_src python
+print(os.getcwd())
+# C:\Users\Donoras\PycharmProjects\failai
+#+end_src
+
+Kaip pakeisti aktyvų katalogą, kuriame esame:
+
+#+begin_src python
+os.chdir('C:\\Users\\Donoras\\Desktop')
+print(os.getcwd())
+
+# C:\Users\Donoras\Desktop
+#+end_src
+
+
+Kaip pažiūrėti, kokie failai ir katalogai yra kataloge:
+
+#+begin_src python
+print(os.listdir())
+
+# ['Demo katalogas', 'paveikslelis.jpg', 'tekstas.txt']
+#+end_src
+
+
+Kaip sukurti naują katalogą:
+
+#+begin_src python
+  os.mkdir("Naujas katalogas")
+  # arba:
+
+  os.makedirs("Naujas katalogas/Katalogas kataloge")
+
+  print(os.listdir())
+
+  # ['Demo katalogas', 'Naujas katalogas', 'paveikslelis.jpg', 'tekstas.txt']
+#+end_src
+
+
+Kaip sužinoti failo/katalogo informaciją:
+
+#+begin_src python
+  print(os.stat("Demo Katalogas"))
+  # arba:
+
+
+  print(os.stat("naujas_tekstas.txt"))
+
+  # os.stat_result(st_mode=33206,
+  # st_ino=11258999068714091, st_dev=987816996,
+  # st_nlink=1, st_uid=0, st_gid=0, st_size=279,
+  # st_atime=1553103727, st_mtime=1553072965,
+  # st_ctime=1553101362)
+#+end_src
+
+Kaip sužinoti failo dydį:
+
+#+begin_src python
+print(os.stat("naujas_tekstas.txt").st_size)
+
+# 279 (baitais)
+#+end_src
+
+Kaip sužinoti kada failas buvo paskutinį kartą modifikuotas:
+
+#+begin_src python
+print(os.stat("naujas_tekstas.txt").st_mtime)
+
+# 1553072965.1983721
+#+end_src
+
+Pakeitus suprantamu formatu:
+
+#+begin_src python
+from datetime import datetime
+data = os.stat("naujas_tekstas.txt").st_mtime
+print(datetime.fromtimestamp(data))
+
+# 2019-03-20 11:09:25.198372
+#+end_src
+** Tekstiniu failu kurimas ir nuskaitymas
+
+Kaip sukurti tekstinį failą: (jei failo nėra, bus sukurtas naujas, jei yra - bus įrašoma jame)
+
+#+begin_src python
+  with open("failas.txt", 'w') as failas:
+      failas.write("Sveikas, pasauli!")
+
+  # arba (kitas būdas, kurio geriau nenaudoti):
+
+  failas = open("failas.txt", 'w')
+  failas.write("Sveikas, pasauli!")
+  failas.close()
+#+end_src
+
+Kaip nuskaityti tekstą iš failo:
+
+#+begin_src python
+with open("failas.txt", 'r') as failas:
+    print(failas.read())
+
+# Sveikas, pasauli!
+#+end_src
+
+Kaip įrašyti ir nuskaityti failą vienu metu:
+
+#+begin_src python
+with open("failas.txt", 'r+') as failas:
+    print(failas.read())
+    failas.write("Labas rytas, pasauli!")
+
+# Sveikas, pasauli!
+
+with open("failas.txt", 'r') as failas:
+    print(failas.read())
+
+Sveikas, pasauli!Labas rytas, pasauli!
+#+end_src
+
+Kaip į failą įrašyti lietuviškus rašmenis: Problema:
+
+#+begin_src python
+with open("failas.txt", 'w') as failas:
+    failas.write("Čia yra pirmas failo sakinys")
+
+# UnicodeEncodeError: 'charmap' codec can't encode character '\u010c' in position 0: character maps to <undefined>
+#+end_src
+
+Sprendimas:
+
+#+begin_src python
+with open("failas.txt", 'w', encoding="utf-8") as failas:
+    failas.write("Čia yra pirmas failo sakinys")
+#+end_src
+
+
+Kaip nuskaityti failą su lietuviškais rašmenimis:
+
+#+begin_src python
+with open("failas.txt", 'r', encoding="utf-8") as failas:
+    print(failas.read())
+#+end_src
+
+Kaip pridėti, o ne perrašyti failo eilutę:
+
+Problema:
+
+#+begin_src python
+with open("failas.txt", 'w', encoding="utf-8") as failas:
+    failas.write("Čia yra pirmas sakinys \n")
+
+with open("failas.txt", 'w', encoding="utf-8") as failas:
+    failas.write("Čia yra antras sakinys \n")
+#+end_src
+
+
+Sprendimas:
+
+#+begin_src python
+with open("failas.txt", 'a', encoding="utf-8") as failas:
+    failas.write("Čia yra pirmas sakinys \n")
+
+with open("failas.txt", 'a', encoding="utf-8") as failas:
+    failas.write("Čia yra antras sakinys \n")
+#+end_src
+
+Kaip perrašyti tekstą norimoje vietoje:
+
+#+begin_src python
+with open("failas.txt", 'w', encoding="utf-8") as failas:
+    failas.write("Test")
+    failas.write("Test")
+#+end_src
+
+#+begin_src python
+with open("failas.txt", 'w', encoding="utf-8") as failas:
+    failas.write("Test")
+    failas.seek(0)
+    failas.write("BE")
+#+end_src
+
+#+begin_src python
+with open("failas.txt", 'r', encoding="utf-8") as failas:
+    print(failas.readline())
+    print(failas.readline())
+    print(failas.readline())
+
+# Čia yra pirmas sakinys
+# Čia yra antras sakinys
+# Čia yra trečias sakinys
+#+end_src
+
+arba:
+
+#+begin_src python
+with open("failas.txt", 'r', encoding="utf-8") as failas:
+    print(failas.readlines())
+
+# ['Čia yra pirmas sakinys \n', 'Čia yra antras sakinys \n', 'Čia
+# yra trečias sakinys \n', 'Čia yra ketvirtas sakinys \n', 'Čia yra
+# penktas sakinys \n', 'Čia yra šeštas sakinys \n', 'Čia yra septintas
+# sakinys \n', 'Čia yra aštuntas sakinys \n', 'Čia yra devintas sakinys \
+# n', 'Čia yra dešimtas sakinys \n']
+#+end_src
+
+Iteravimas per failo eilutes:
+
+#+begin_src python
+with open("failas.txt", 'r', encoding="utf-8") as failas:
+    for eilute in failas:
+        print(eilute)
+
+# Čia yra pirmas sakinys
+
+# Čia yra antras sakinys
+
+# Čia yra trečias sakinys
+
+# Čia yra ketvirtas sakinys
+#+end_src
+
+kad nebūtų tarpų tarp eilučių:
+
+#+begin_src python
+with open("failas.txt", 'r', encoding="utf-8") as failas:
+    for eilute in failas:
+        print(eilute, end="")
+
+# Čia yra pirmas sakinys
+# Čia yra antras sakinys
+# Čia yra trečias sakinys
+# Čia yra ketvirtas sakinys
+# Čia yra penktas sakinys
+# Čia yra šeštas sakinys
+# Čia yra septintas sakinys
+# .............
+#+end_src
+
+Kaip nuskaityti ribotą kiekį duomenų:
+
+#+begin_src python
+with open("failas.txt", 'r', encoding="utf-8") as failas:
+    print(failas.read(100))
+
+# Čia yra pirmas sakinys
+# Čia yra antras sakinys
+# Čia yra trečias sakinys
+# Čia yra ketvirtas sakinys
+
+print(failas.read(100))
+
+# Čia yra penktas sakinys
+# Čia yra šeštas sakinys
+# Čia yra septintas sakinys
+# Čia yra aštuntas sakinys
+
+print(failas.read(100))
+
+# Čia yra devintas sakinys
+# Čia yra dešimtas sakinys
+#+end_src
+
+Darbas su dviem failais (teksto kopijavimas iš vieno į kitą):
+
+#+begin_src python
+    with open("failas.txt", 'r') as r_failas:
+        with open("failo_kopija.txt", 'w') as w_failas:
+            for r_eilute in r_failas:
+                w_failas.write(r_eilute)
+
+  # (gauname tekstinio failo kopiją)
+#+end_src
+
+
+Dvejetainių failų kopijavimas:
+
+Problema:
+
+#+begin_src python
+with open("logo.png", 'r') as r_failas:
+    with open("logo_kopija.png", 'w') as w_failas:
+        for r_eilute in r_failas:
+            w_failas.write(r_eilute)
+
+# UnicodeDecodeError: 'charmap' codec can't decode byte 0x9d in position 65: character maps to <undefined>
+#+end_src
+
+Sprendimas:
+
+#+begin_src python
+  with open("logo.png", 'rb') as r_failas:
+      with open("logo_kopija.png", 'wb') as w_failas:
+          for r_eilute in r_failas:
+              w_failas.write(r_eilute)
+
+  # (gauname paveikslėlio failo kopiją)
+#+end_src
+
+** Kaip i faila issaugoti kontamuosius/objektus(modulis pickle)
+*** Išsaugome kintamąjį
+Įrašymas:
+
+#+begin_src python
+import pickle
+
+a = 1024
+
+with open("a.pkl", "wb") as pickle_out:
+    pickle.dump(a, pickle_out)
+#+end_src
+
+Nuskaitymas:
+
+#+begin_src python
+  import pickle
+
+  with open("a.pkl", "rb") as pickle_in:
+      naujas_a = pickle.load(pickle_in)
+
+  print(naujas_a)
+
+  # 1024
+#+end_src
+
+*** Išsaugome masyvą:
+
+Įrašymas:
+
+#+begin_src python
+import pickle
+
+zodynas = {1:"Pirmas", 2:"Antras", 3:"Trečias"}
+
+with open("zodynas.pkl", "wb") as pickle_out:
+    pickle.dump(zodynas, pickle_out)
+#+end_src
+
+Nuskaitymas:
+
+#+begin_src python
+import pickle
+
+with open("zodynas.pkl", "rb") as pickle_in:
+    naujas_zodynas = pickle.load(pickle_in)
+
+print(naujas_zodynas)
+
+# {1: 'Pirmas', 2: 'Antras', 3: 'Trečias'}
+#+end_src
+*** Išsaugome daug kintamųjų (Pickle):
+Įrašymas:
+
+#+begin_src python
+a = 10
+b = 7
+c = 23
+
+with open("abc.pkl", "wb") as pickle_out:
+    pickle.dump(a, pickle_out)
+    pickle.dump(b, pickle_out)
+    pickle.dump(c, pickle_out)
+#+end_src
+
+Nuskaitymas:
+
+#+begin_src python
+with open("abc.pkl", "rb") as pickle_in:
+    nauja_a = pickle.load(pickle_in)
+    nauja_b = pickle.load(pickle_in)
+    nauja_c = pickle.load(pickle_in)
+
+print(nauja_a)
+print(nauja_b)
+print(nauja_c)
+
+# 10
+# 7
+# 23
+#+end_src
+
+arba:
+
+#+begin_src python
+import pickle
+
+with open("abc.pkl", "rb") as pickle_in:
+    while True:
+        try:
+            print(pickle.load(pickle_in))
+        except EOFError:
+            break
+
+# 10
+# 7
+# 23
+#+end_src
+
+Pavyzdys su vardų sąrašu:
+
+#+begin_src python
+import pickle
+
+while True:
+    veiksmas = int(input("Pasirinkite veiksmą: 1 - peržiūrėti, 2 - įrašyti, 3 - išeiti"))
+    if veiksmas == 1:
+        try:
+            with open("zmones.pkl", 'rb') as failas:
+                print(pickle.load(failas))
+        except:
+            print("Nėra tokio failo")
+            with open("zmones.pkl", 'wb') as failas:
+                zmones = []
+                pickle.dump(zmones, failas)
+    if veiksmas == 2:
+        with open("zmones.pkl", 'rb') as failas:
+            zmones = pickle.load(failas)
+            vardas = input("Įveskite naują vardą")
+            with open("zmones.pkl", 'wb') as failas:
+                zmones.append(vardas)
+                pickle.dump(zmones, failas)
+    if veiksmas == 3:
+        print("Programa baigta")
+        break
+#+end_src
+
+Pavyzdys su objektų sarašu:
+
+#+begin_src python
+import pickle
+
+class Automobilis:
+    def __init__(self, marke, modelis):
+        self.marke = marke
+        self.modelis = modelis
+
+automobiliai = [Automobilis("Toyota", "Avensis"), Automobilis("Toyota", "Corolla"), Automobilis("Toyota", "Camry")]
+
+with open("automobilis.pkl", "wb") as failas:
+    pickle.dump(automobiliai, failas)
+
+with open("automobilis.pkl", "rb") as failas:
+    automobiliai = pickle.load(failas)
+    for automobilis in automobiliai:
+        print("Markė", automobilis.marke)
+        print("Modelis", automobilis.modelis)
+#+end_src
+** Destytojo pavyzdžiai
+#+begin_src python
+  # Open a file with access mode 'a'
+  failiukas = open('sample.txt', 'a')
+  # Append 'hello' at the end of file
+  failiukas.write('hello')
+  failiukas.write("\n")
+
+  # --------------------------------------------------------------------
+
+  import os
+  #import datetime
+  from datetime import datetime
+
+
+  desktop_location = "/home/zygimantas"
+  folderio_pavadinimas = "datetime_fullpath_folderis"
+  failo_pavadinimas = "date_fullpath"
+  # failo_pavadinimas = "date.txt"
+
+
+  print(os.getcwd())
+
+  try:
+      os.mkdir(desktop_location + "/" + folderio_pavadinimas)
+  except:
+      print("Folderis existuoja")
+
+
+  # os.chdir("/home/zygimantas/datetime_folderis")
+
+  # Tikrinam ar tinkam folderi
+  # print(os.getcwd())
+
+
+  with open("/home/zygimantas/datetime_fullpath_folderis/date_fullpath.txt", "w") as f:
+      # f.write(str(datetime.datetime.today()))
+      f.write(str(datetime.today()))
+
+
+  print(os.stat("/home/zygimantas/datetime_fullpath_folderis/date_fullpath.txt").st_size)
+
+
+  print(os.getcwd())
+#+end_src
+** Užduotys
+# atsakymai https://github.com/CodeAcademy-Online/Python/tree/lesson-7
+
+*** 1 užduotis Python faile padaryti šiuos veiksmus (atskirai, ne iškart):
+
+Importuoti modulį datetime. Atsispausdinti šiandienos datą ir laiką
+kartu, tik datą (date.today()) bei tik laiką (.now().time()).
+
+Iš paketo datetime importuoti modulį date. Atsispausdinti šiandienos
+datą.
+
+Iš paketo datetime importuoti modulį date kaip data (as data).
+Atsispausdinti šiandienos datą.
+
+#+begin_src python
+# 1 Importuoti modulį datetime. Atsispausdinti (atskirai) šiandienos datą (date.today()), tik laiką bei datą ir laiką kartu.
+
+# import datetime
+#
+# print(datetime.date.today())
+# print(datetime.datetime.today())
+# print(datetime.datetime.now().time())
+
+# 2 Iš paketo datetime importuoti modulį date. Atsispausdinti šiandienos datą
+
+# from datetime import date
+#
+# print(date.today())
+
+# 3 Iš paketo datetime importuoti modulį date kaip data (as data). Atsispausdinti šiandienos datą.
+
+from datetime import date as data
+
+print(data.today())
+#+end_src
+
+*** 2 užduotis Sukurti naują projektą Jame sukurti failą modulis.py,
+kuriame:
+
+Kintamajam kintamasis priskirti reikšmę „Čia yra kintamasis“
+
+Sukurti funkciją funkcija(), kuri atspausdina „Čia yra funkcija“.
+
+Sukurti klasę Objektas, kurį iniciavus atspausdina „Čia yra klasė“.
+
+Sukurti failą main.py, kuriame:
+
+Importuoti modulį modulis
+
+Atspausdinti importuotą kintamąjį kintamasis
+
+Paleisti importuotą funkciją funkcija()
+
+Inicijuoti importuotos klasės Objektas() objektą
+
+**** main.py
+#+begin_src python
+import modulis
+
+print(modulis.kintamasis)
+modulis.funkcija()
+importuotas_objektas = modulis.Objektas()
+#+end_src
+
+**** modulis.py
+
+#+begin_src python
+
+kintamasis = "Čia yra kintamasis"
+
+def funkcija():
+    print("Čia yra funkcija")
+
+class Objektas:
+    def __init__(self):
+        print("Čia yra klasė")
+#+end_src
+
+*** 3 užduotis Perdaryti biudžeto programą su klasėmis (iš praeitos paskaitos) taip, kad visos klasės būtų skirtinguose failuose.
+**** biudzetas.py
+#+begin_src python
+
+from modules.pajamu_irasas import PajamuIrasas
+from modules.islaidu_irasas import IslaiduIrasas
+
+class Biudzetas():
+    def __init__(self):
+        self.zurnalas = []
+
+    def ivesti_pajamas(self, suma, siuntejas, papildoma_informacija):
+        pajamu_irasas = PajamuIrasas(suma, siuntejas, papildoma_informacija)
+        self.zurnalas.append(pajamu_irasas)
+
+    def ivesti_islaidas(self, suma, atsiskaitymo_budas, isigyta_preke_paslauga):
+        islaidu_irasas = IslaiduIrasas(suma, atsiskaitymo_budas, isigyta_preke_paslauga)
+        self.zurnalas.append(islaidu_irasas)
+
+    def gauti_biudzeto_balansa(self):
+        balansas = 0
+        for irasas in self.zurnalas:
+            if isinstance(irasas, PajamuIrasas):
+                balansas += irasas.suma
+            if isinstance(irasas, IslaiduIrasas):
+                balansas -= irasas.suma
+        return balansas
+
+    def gauti_ataskaita(self):
+        for irasas in self.zurnalas:
+            if isinstance(irasas, PajamuIrasas):
+                print(f"Pajamos: {irasas.suma} {irasas.siuntejas} {irasas.papildoma_info}")
+            if isinstance(irasas, IslaiduIrasas):
+                print(f"Išlaidos: {irasas.suma} {irasas.atsiskaitymo_budas} {irasas.isigyta_preke_paslauga}")
+#+end_src
+**** irasas.py
+#+begin_src python
+class Irasas:
+    def __init__(self, suma):
+        self.suma = suma
+#+end_src
+**** islaidu_sarasas.py
+#+begin_src python
+from modules.irasas import Irasas
+
+class IslaiduIrasas(Irasas):
+    def __init__(self, suma, atsiskaitymo_budas, isigyta_preke_paslauga):
+        super().__init__(suma)
+        self.atsiskaitymo_budas = atsiskaitymo_budas
+        self.isigyta_preke_paslauga = isigyta_preke_paslauga
+#+end_src
+**** pajamu_irasas.py
+#+begin_src python
+from modules.irasas import Irasas
+
+class PajamuIrasas(Irasas):
+    def __init__(self, suma, siuntejas, papildoma_info):
+        super().__init__(suma)
+        self.siuntejas = siuntejas
+        self.papildoma_info = papildoma_info
+#+end_src
+
+**** main.py
+#+begin_src python
+from modules.biudzetas import Biudzetas
+
+mano_biudzetas = Biudzetas()
+
+while True:
+    print("Pasirinkite veiksmą: ")
+    print("1 - Įvesti pajamas")
+    print("2 - Įvesti išlaidas")
+    print("3 - Gauti balansą")
+    print("4 - Gauti ataskaitą")
+    print("0 - Išeiti iš programos")
+    pasirinkimas = input()
+    if pasirinkimas == "1":
+        print("Įveskite pajamas: ")
+        suma = int(input("Suma: "))
+        siuntejas = input("Siuntėjas: ")
+        papildoma_informacija = input("Papildoma informacija: ")
+        mano_biudzetas.ivesti_pajamas(suma, siuntejas, papildoma_informacija)
+        print("Pajamos įvestos sėkmingai!")
+    if pasirinkimas == "2":
+        print("Įveskite išlaidas: ")
+        suma = int(input("Suma: "))
+        atsiskaitymo_budas = input("Atsiskaitymo būdas: ")
+        isigyta_preke_paslauga = input("Įsigyta prekė/paslauga: ")
+        mano_biudzetas.ivesti_islaidas(suma, atsiskaitymo_budas, isigyta_preke_paslauga)
+        print("Išlaidos įvestos sėkmingai!")
+    if pasirinkimas == "3":
+        print(f"Sąskaitos balansas: {mano_biudzetas.gauti_biudzeto_balansa()}")
+    if pasirinkimas == "4":
+        mano_biudzetas.gauti_ataskaita()
+    if pasirinkimas == "0":
+        break
+#+end_src
+*** 4 užduotis Sukurti programą, kuri:
+
+Leistų vartotojui įvesti norimą eilučių kiekį
+
+Įrašytų įvestą tekstą atskiromis eilutėmis į failą
+
+Leistų vartotojui įrašyti norimą kuriamo failo pavadinimą
+
+Patarimai:
+
+Sukurti while ciklą, kuris užsibaigtų tik įvedus vartotojui tuščią
+eilutę (nuspaudus ENTER)
+
+#+begin_src python
+tekstas = ""
+
+while True:
+    pirmas = input("Įveskite eilutę: ")
+    if pirmas != "":
+        tekstas += pirmas + "\n"
+    else:
+        break
+
+failo_pavadinimas = input("Įveskite failo pavadinimą: ")
+
+with open(failo_pavadinimas + ".txt", "w", encoding="UTF-8") as failas:
+    failas.write(tekstas)
+#+end_src
+
+*** 5 užduotis Sukurti programą, kuri:
+
+Kompiuterio darbalaukyje (Desktop) sukurtų katalogą „Naujas Katalogas“
+
+Šiame kataloge sukurtų tekstinį failą, kuriame būtų šiandienos data ir
+laikas
+
+Atspausdintų šio tekstinio failo sukūrimo datą ir dydį baitais
+
+Patarimai:
+
+Failo sukūrimo datą galima pasiekti per os.stat(„Failas.txt“).st_ctime
+
+#+begin_src python
+import os
+from datetime import datetime
+
+# 1 Ant darbalaukio sukurtų naują katalogą "Mano Katalogas"
+
+try:
+    os.chdir('C:\\Users\\Donoras\\Desktop')
+    os.mkdir("Naujas katalogas")
+except:
+    "Toks katalogas jau yra"
+
+os.chdir('C:\\Users\\Donoras\\Desktop\\Naujas katalogas')
+
+# 2 Jame sukurtų failą "data.txt", kurios tektas - šiandienos data ir laikas
+
+with open("data.txt", "w") as failas:
+    failas.write(str(datetime.today()))
+
+# 3 Atspaudintų, kada naujas failas buvo modifikuotas ir kiek jis užima baitų
+os.chdir('C:\\Users\\Donoras\\Desktop\\Naujas katalogas')
+
+print("Sukūrimo data:", datetime.fromtimestamp(os.stat("data.txt").st_ctime))
+print("Failo dytis:", os.stat("data.txt").st_size)
+#+end_src
+
+* Lesson8 Triukai su sarasais
+** Daznai naudojaos sarasu funkcijos
+
+*** Funkcija map
+Sąrašo keitimas (įprastas būdas):
+
+#+begin_src python
+sarasas = [4, 3, 2, 1]
+
+sarasas_2 = []
+for skaicius in sarasas:
+    sarasas_2.append(skaicius ** 2)
+
+print(sarasas_2)
+
+# [16, 9, 4, 1]
+#+end_src
+
+Būdas su map funkcija:
+
+#+begin_src python
+sarasas = [4, 3, 2, 1]
+naujas = map(lambda x: x**2, sarasas)
+print(naujas)
+
+
+print(list(naujas))
+
+# [16, 9, 4, 1]
+#+end_src
+
+Datos išskirstymas su map:
+
+#+begin_src python
+data = "2000-03-25"
+y, m, d = map(int, data.split("-"))
+
+print(y)
+print(m)
+print(d)
+
+# 2000
+# 3
+# 25
+skaiciai = "4, 3, 2, 1"
+p, a, t, k = map(float, skaiciai.split(", "))
+print(p, a, t, k)
+#+end_src
+
+# 4.0 3.0 2.0 1.0
+*** Funkcija filter
+Sąrašo filtravimas (įprastas būdas):
+
+#+begin_src python
+sarasas = [4, 3, 2, 1]
+
+def daugiau_nei_2(sarasas):
+    sarasas_2 = []
+    for skaicius in sarasas:
+        if skaicius > 2:
+            sarasas_2.append(skaicius)
+    return sarasas_2
+
+print(daugiau_nei_2(sarasas))
+
+# [4, 3]
+#+end_src
+
+Su funkcija filter:
+
+#+begin_src python
+sarasas = [4, 3, 2, 1]
+naujas = filter(lambda x: x > 2, sarasas)
+print(list(naujas))
+
+# [4, 3]
+sarasas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+naujas = filter(lambda x: x % 2 == 0, sarasas)
+print(list(naujas))
+
+# [2, 4, 6, 8, 10]
+import calendar
+
+metai = list(range(1900, 2150))
+naujas = list(filter(calendar.isleap, metai))
+print(naujas)
+#+end_src
+*** Funkcija reduce
+
+#+begin_src python
+from functools import reduce
+
+sarasas = [4, 3, 2, 1]
+naujas = reduce(lambda x, y: x + y, sarasas)
+print(naujas)
+
+# 10
+from functools import reduce
+
+sarasas = [4, 3, 2, 1]
+naujas = reduce(lambda x, y: x * y, sarasas)
+print(naujas)
+
+# 24
+#+end_src
+*** Funkcijos sum, max, min
+
+#+begin_src python
+sarasas = [4, 3, 2, 1, 5, 6, 7, 10, 9, 8]
+
+print(sum(sarasas))
+
+# 55
+
+print(min(sarasas))
+
+# 1
+
+print(max(sarasas))
+
+# 10
+#+end_src
+*** Vidurkis ir mediana
+
+#+begin_src python
+from statistics import mean, median
+
+sarasas = [2, 9, 10, 39, 45]
+
+print(mean(sarasas))
+
+# 21
+
+print(median(sarasas))
+
+# 10
+#+end_src
+** Saraso apibrezimas(list comperhension)
+#+begin_src python
+  sarasas = [4, 3, 2, 1]
+  naujas = [x**2 for x in sarasas]
+  print(naujas)
+
+  # [16, 9, 4, 1]
+  sarasas = [4, 3, 2, 1]
+  naujas = [x for x in sarasas if x > 2]
+  print(naujas)
+
+  # [4, 3]
+#+end_src
+
+Lyginių skaičių paieška (įprastas būdas):
+
+#+begin_src python
+sarasas = list(range(20))
+
+def lyginiai(sarasas):
+    naujas = []
+    for skaicius in sarasas:
+        if skaicius % 2 == 0:
+            naujas.append(skaicius)
+    return naujas
+
+print(lyginiai(sarasas))
+
+# [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+#+end_src
+
+Su list comprehension:
+
+#+begin_src python
+sarasas = list(range(20))
+lyginiai = (x for x in sarasas if x % 2 == 0)
+
+print(lyginiai)
+
+[0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+#+end_src
+
+Atkreipkime dėmesį į rezultato kintamojo tipą!
+
+#+begin_src python
+sarasas = [4, 3, 2, 1]
+naujas = (x**2 for x in sarasas)
+print(naujas)
+
+print(list(naujas))
+
+# [16, 9, 4, 1]
+#+end_src
+
+arba:
+
+#+begin_src python
+sarasas = [4, 3, 2, 1]
+naujas = [x**2 for x in sarasas]
+print(naujas)
+
+# [16, 9, 4, 1]
+#+end_src
+
+Sąrašo elementų tipų skaičiavimas:
+
+#+begin_src python
+sarasas = [2.5, 2, "Labas", True, 5, 7, 8, 2.8, "Vakaras"]
+
+int_kiekis = sum(type(c) is int for c in sarasas)
+print(int_kiekis)
+
+# 4
+
+str_kiekis = sum(type(c) is str for c in sarasas)
+print(str_kiekis)
+
+# 2
+sarasas = [2.5, 2, "Labas", True, 5, 7, 8, 2.8, "Vakaras"]
+bool_kiekis = sum(type(c) is bool for c in sarasas)
+print(bool_kiekis)
+
+# 1
+
+float_kiekis = sum(type(c) is float for c in sarasas)
+print(float_kiekis )
+
+# 2
+#+end_src
+
+** Duomenu rikiavimas
+
+*** sort() ir sorted()
+Sąrašų rikiavimas:
+
+#+begin_src python
+sarasas = [4, 3, 2, 1, 5, 6, 7, 10, 9, 8]
+
+sarasas.sort()
+print(sarasas)
+
+# [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+naujas = sorted(sarasas)
+print(naujas)
+
+# [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+sarasas.sort(reverse=True)
+print(sarasas)
+
+# [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+
+naujas = sorted(sarasas, reverse=True)
+print(naujas)
+
+# [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+tuple_sarasas = (4, 3, 2, 1, 5, 6, 7, 10, 9, 8)
+
+tuple_sarasas.sort()
+AttributeError: 'tuple' object has no attribute 'sort'
+
+naujas = sorted(tuple_sarasas)
+print(naujas)
+
+# [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+#+end_src
+
+Žodynų rikiavimas:
+
+#+begin_src python
+zodynas = {"Vardas": "Donatas", "Pavardė": "Noreika", "Amžius": None}
+surusiuotas = sorted(zodynas)
+
+print(surusiuotas)
+
+# ['Amžius', 'Pavardė', 'Vardas']
+Rušiavimas pagal absoliutinę reikšmę:
+
+
+sarasas = [-2, 5, -4, 7, -5, 9]
+surusiuotas = sorted(sarasas)
+print(surusiuotas)
+
+# [-5, -4, -2, 5, 7, 9]
+
+sarasas = [-2, 5, -4, 7, -5, 9]
+surusiuotas = sorted(sarasas, key=abs)
+print(surusiuotas)
+
+# [-2, -4, 5, -5, 7, 9]
+#+end_src
+
+*** Objektų rikiavimas sąraše
+
+#+begin_src python
+class Darbuotojas:
+    def __init__(self, vardas, pavarde, atlyginimas):
+        self.vardas = vardas
+        self.pavarde = pavarde
+        self.atlyginimas = atlyginimas
+
+    def __repr__(self):
+        return (f"({self.vardas}, {self.pavarde}, {self.atlyginimas})")
+
+d1 = Darbuotojas("Tadas", "Rutkauskas", 1500)
+d2 = Darbuotojas("Domas", "Radzevičius", 2000)
+d3 = Darbuotojas("Rokas", "Ramanauskas", 1000)
+sarasas = [d1, d2, d3]
+
+def rusiavimas(darbuotojas):
+    return darbuotojas.vardas
+
+surusiuotas = sorted(sarasas, key=rusiavimas)
+print(surusiuotas)
+
+#[(Domas, Radzevičius, 2000), (Rokas, Ramanauskas, 1000), (Tadas, Rutkauskas, 1500)]
+
+surusiuotas = sorted(sarasas, key=lambda e: e.atlyginimas)
+print(surusiuotas)
+
+# [(Rokas, Ramanauskas, 1000), (Tadas, Rutkauskas, 1500), (Domas, Radzevičius, 2000)]
+
+from operator import attrgetter
+surusiuotas = sorted(sarasas, key=attrgetter("atlyginimas"))
+print(surusiuotas)
+
+[(Rokas, Ramanauskas, 1000), (Tadas, Rutkauskas, 1500), (Domas, Radzevičius, 2000)
+#+end_src
+
+** Destytojo pavyzdžiai
+#+begin_src python
+  sarasas = [4, 3, 2, 1]
+
+  sarasas_2 = []
+
+  for skaicius in sarasas:
+      sarasas_2.append(skaicius ** 2)
+
+  print(sarasas_2)
+
+
+
+  sarasas = [4, 3, 2, 1]
+  naujas = map(lambda x: x**2, sarasas)
+
+  print(list(naujas))
+
+
+  sarasas = [4, 3, 2, 1]
+
+  def daugiau_nei_2(sarasas):
+      sarasas_2 = []
+      for skaicius in sarasas:
+          if skaicius > 2:
+              sarasas_2.append(skaicius)
+      return sarasas_2
+
+  print(daugiau_nei_2(sarasas))
+
+
+  sarasas = [4, 3, 2, 1]
+  naujas = filter(lambda x: x > 2, sarasas)
+  print(list(naujas))
+
+  sarasas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  naujas = filter(lambda x: x % 2 == 0, sarasas)
+  print(list(naujas))
+
+  # --------------------------------------------------------------------
+
+  sarasas = [4, 3, 2, 1]
+
+  naujas = []
+
+  for x in sarasas:
+      x= x**2
+      naujas.append(x)
+
+  naujas = [x**2 for x in sarasas]
+  print(naujas)
+
+
+  sarasas = list(range(20))
+
+  lyginiai = [x for x in sarasas if x % 2 == 0]
+
+
+  print(type(lyginiai))
+  print(list(lyginiai))
+
+  sarasas = [2.5, 2, "Labas", True, 5, 7, 8, 2.8, "Vakaras"]
+
+  int_kiekis = sum(type(c) is int for c in sarasas)
+
+  print(int_kiekis)
+
+  # --------------------------------------------------------------------
+
+  data_list = [-5, -23, 5, 0, 23, -6, 23, 67]
+  new_list = []
+
+  while data_list:
+      minimum = data_list[0]
+      for x in data_list:
+          if x < minimum:
+              minimum = x
+      new_list.append(minimum)
+      data_list.remove(minimum)
+
+  print (new_list)
+
+
+  data_list = [-5, -23, 5, 0, 23, -6, 23, 67]
+  data_list.sort()
+
+  print(data_list)
+
+
+  zodynas = {"Vardas": "Donatas", "Pavardė": "Noreika", "Amžius": None}
+  surusiuotas = sorted(zodynas)
+
+  print(surusiuotas)
+
+  # --------------------------------------------------------------------
+
+  from operator import attrgetter,itemgetter
+
+  class Movie:
+    def __init__(self,name,date):
+         self.name = name
+         self.date = date
+
+  movie = Movie('TheDarkKnight',"2012")
+
+  print(attrgetter('name')(movie))
+
+
+  print(attrgetter('date')(movie))
+
+
+  movies = [{'name':'Avengers Endgame','date':'26/4/2019'},
+            {'name':'Cron Man 3','date':'26/4/2013'},
+            {'name':'Bvengers: Age of Ultron','date':'24/4/2020'}
+  ]
+
+  print(sorted(movies, key=itemgetter('name')))
+
+  # --------------------------------------------------------------------
+
+  zodziai = filter(lambda s: type(s) is str, sarasas)
+
+  sakinys = " ".join(zodziai)
+
+  print(sakinys)
+
+  # True = 1
+  # False = 0
+
+  boolenas = filter(lambda s: type(s) is bool, sarasas)
+
+  # print(list(boolenas))
+
+  # boolenas = list(boolenas).count(False)
+
+  boolenas = list(boolenas).count(True)
+
+  print(boolenas)
+#+end_src
+** Užduotys
+
+# atsakymai https://github.com/CodeAcademy-Online/Python/tree/lesson-8
+
+*** 1 užduotis: Sukurti programą, kuri:
+
+Prie kiekvieno sakinio „The Zen of Python tekstu“ žodžio pridėtų
+šauktuką ir atspausdintų naują sakinį.
+
+Patarimai:
+
+Naudoti map (su lambda) arba comprehension, " ".join()
+
+#+begin_src python
+
+# Prie kiekvieno sakinio „The Zen of Python tekstu“ žodžio pridėtų šauktuką ir atspausdintų naują sakinį
+
+sakinys = "The Zen of Python"
+
+# naujas = map(lambda x: x + "!", sakinys.split())
+# print(" ".join(naujas))
+
+# arba:
+
+naujas = [x + "!" for x in sakinys.split()]
+print(" ".join(naujas))
+
+#+end_src
+
+*** 2 užduotis: Sukurti programą, kuri:
+
+Sukurtų sąrašą iš skaičių nuo 0 iki 50
+
+Padaugintų visus sąrašo skaičius iš 10 ir atspausdintų
+
+Atrinktų iš sąrašo skaičius, kurie dalinasi iš 7 ir atspausdintų
+
+Pakeltų visus sąrašo skaičius kvadratu ir atspausdintų
+
+Su kvadratų sąrašu atliktų šiuos veiksmus: atspausdintų sumą,
+mažiausią ir didžiausią skaičių, vidurkį, medianą
+
+Surūšiuotų ir atspausdintų kvadratų sąrašą atbulai
+
+Patarimai:
+
+Naudoti map, filter arba comprehension, sum, min, max, mean, median, %
+
+from statistics import mean, median
+
+#+begin_src python
+
+from statistics import mean, median
+
+# Atliktų veiksmus su skaičiais iki 50:
+
+skaiciai = list(range(51))
+
+# Padaugintų visus sąrašo skaičius iš 10 ir atspausdintų:
+
+# naujas = map(lambda x: x * 10, skaiciai)
+# print(list(naujas))
+
+# arba
+
+naujas = [x * 10 for x in skaiciai]
+print(naujas)
+
+# Atrinktų iš sąrašo skaičius, kurie dalinasi iš 7 ir atspausdintų
+
+# is_7 = filter(lambda x: x % 7 == 0, skaiciai)
+# print(list(is_7))
+
+# arba
+
+is_7 = [x for x in skaiciai if x % 7 == 0]
+print(is_7)
+
+# Pakeltų visus sąrašo skaičius kvadratu ir atspausdintų
+
+# kvadratu = list(map(lambda x: x ** 2, skaiciai))
+# print(list(kvadratu))
+
+# arba
+
+kvadratu = [x ** 2 for x in skaiciai]
+print(kvadratu)
+
+# Su kvadratų sąrašu atliktų šiuos veiksmus: atspausdintų sumą,
+# mažiausią ir didžiausią skaičių, vidurkį, medianą
+
+print(sum(kvadratu))
+print(min(kvadratu))
+print(max(kvadratu))
+print(mean(kvadratu))
+print(median(kvadratu))
+
+# Surūšiuotų ir atspausdintų kvadratų sąrašą atbulai
+
+atbulai = sorted(kvadratu, reverse=True)
+print(atbulai)
+#+end_src
+
+*** 3 užduotis: Duotas sąrašas: sarasas = [2.5, 2, "Labas", True, 5, 7, 8, 2.8, "Vakaras"]
+
+Sukurti programą, kuri:
+
+Paskaičiuotų ir atspausdintų visų sąrašo skaičių sumą
+
+Sudėtų ir atspausdintų visus sąrašo žodžius
+
+Suskaičiuotų ir atspausdintų, kiek sąraše yra loginių (boolean)
+kintamųjų su True reikšme
+
+Patarimai:
+
+Naudoti filter arba comprehension, sum, " ".join()
+
+#+begin_src python
+
+sarasas = [2.5, 2, "Labas", True, 5, 7, 8, 2.8, "Vakaras"]
+
+# Paskaičiuotų ir atspausdintų visų sąrašo skaičių sumą
+
+# suma = sum(filter(lambda x: type(x) is int or type(x) is float, sarasas))
+# print(suma)
+
+# arba
+
+stringai = sum(x for x in sarasas if type(x) is int or type(x) is float)
+print(stringai)
+
+# Sudėtų ir atspausdintų visus sąrašo žodžius
+#
+# sakinys = filter(lambda x: type(x) is str, sarasas)
+# print(" ".join(sakinys))
+
+# arba
+
+sakinys = [x for x in sarasas if type(x) is str]
+print(" ".join(sakinys))
+
+# Suskaičiuotų ir atspausdintų, kiek sąrašę yra loginių (boolean)
+# kintamųjų su True reikšme
+
+# kiek = sum(filter(lambda x: type(x) is bool, sarasas))
+# print(kiek)
+
+# arba
+
+kiek = sum([type(x) is bool for x in sarasas])
+print(kiek)
+#+end_src
+
+*** 4 užduotis: Sukurti programą, kuri:
+
+Turėtų klasę Zmogus, su savybėmis vardas ir amzius
+
+Klasėje būtų repr metodas, kuris atvaizduotų vardą ir amžių
+
+Inicijuoti kelis Zmogus objektus su vardais ir amžiais
+
+Įdėti sukurtus Zmogus objektus į naują sąrašą
+
+Surūšiuotų ir atspausdintų sąrašo objektus pagal vardą ir pagal amžių
+(ir atbulai)
+
+Patarimai:
+
+Naudoti sorted, attrgetter, reverse, funkciją repr
+
+from operator import attrgetter
+
+#+begin_src python
+
+from operator import attrgetter
+
+# Turėtų klasę Zmogus, su savybėmis vardas ir amzius
+# Klasėje būtų __repr__ metodas, kuris atvaizduotų vardą ir amžių
+
+class Zmogus:
+    def __init__(self, vardas, amzius):
+        self.vardas = vardas
+        self.amzius = amzius
+
+    def __repr__(self):
+        return (f"({self.vardas}, {self.amzius})")
+
+# Inicijuoti kelis Zmogus objektus su vardais ir amžiais
+# Įdėti sukurtus Zmogus objektus į naują sąrašą
+
+z1 = Zmogus("Domas", 22)
+z2 = Zmogus("Antanas", 30)
+z3 = Zmogus("Jonas", 45)
+
+sarasas = [z1, z2, z3]
+
+# Surūšiuotų ir atspausdintų sąrašo objektus pagal vardą
+
+# surusiuotas = sorted(sarasas, key=lambda e: e.vardas)
+# print(surusiuotas)
+
+# arba
+
+surusiuotas = sorted(sarasas, key=attrgetter("vardas"))
+print(surusiuotas)
+
+# Surūšiuotų ir atspausdintų sąrašo objektus pagal vardą atbulai
+
+surusiuotas = sorted(sarasas, key=attrgetter("vardas"), reverse=True)
+print(surusiuotas)
+
+# Surūšiuotų ir atspausdintų sąrašo objektus pagal amžių
+
+surusiuotas = sorted(sarasas, key=attrgetter("amzius"))
+print(surusiuotas)
+
+# Surūšiuotų ir atspausdintų sąrašo objektus pagal amžių atbulai
+
+surusiuotas = sorted(sarasas, key=attrgetter("amzius"), reverse=True)
+print(surusiuotas)
+#+end_src
+
+* Lesson9 Grafinės sąsajos (GUI) kūrimas
+** Kaip sukurti grafine vartotojo sasaja (su Tkinter)
+
+*** Minimali programa:
+
+#+begin_src python
+  from tkinter import *
+
+  langas = Tk()
+  langas.geometry("250x200")
+  uzrasas = Label(langas, text="Tiesiog tekstas")
+  uzrasas.pack()
+  langas.mainloop()
+#+end_src
+
+*** Grafinės sąsajos objektai:
+Label – užrašas (kortelė)
+Button – mygtukas
+Entry – laukelis
+Menu – meniu
+Frame – rėmelis
+Checkbutton – varnelė
+Listbox – sąrašas
+Scrollbar – sąrašo slinkimo juosta
+
+*** Grafinių objektų formavimas rėmeliuose (su pack funkcija):
+
+#+begin_src python
+  from tkinter import *
+
+  langas = Tk()
+
+  virsutinis = Frame(langas)
+  apatinis = Frame(langas)
+
+  mygtukas1 = Button(virsutinis, text="1 mygtukas")
+  mygtukas2 = Button(virsutinis, text="2 mygtukas")
+  mygtukas3 = Button(virsutinis, text="3 mygtukas")
+  mygtukas4 = Button(apatinis, text="4 mygtukas")
+
+  virsutinis.pack()
+  apatinis.pack(side=BOTTOM)
+  mygtukas1.pack(side=LEFT)
+  mygtukas2.pack(side=LEFT)
+  mygtukas3.pack(side=LEFT)
+  mygtukas4.pack(side=BOTTOM, fill=Y)
+
+  langas.mainloop()
+#+end_src
+
+*** Grafinių objektų formavimas lentelėje (su grid funkcija):
+
+#+begin_src python
+  from tkinter import *
+
+  langas = Tk()
+
+  uzrasas1 = Label(langas, text="Vardas")
+  laukas1 = Entry(langas)
+  uzrasas2 = Label(langas, text="Pavardė")
+  laukas2 = Entry(langas)
+  varnele = Checkbutton(langas, text="Pažymėk varnelę")
+
+  uzrasas1.grid(row=0, column=0, sticky=E)
+  laukas1.grid(row=0, column=1)
+  uzrasas2.grid(row=1, column=0, sticky=E)
+  laukas2.grid(row=1, column=1)
+  varnele.grid(row=2, columnspan=2)
+
+  langas.mainloop()
+#+end_src
+
+*** Kaip įdėti funkciją paleidžiantį mygtuką:
+
+#+begin_src python
+  from tkinter import *
+  langas = Tk()
+
+  def spausdinti():
+      print("Spausdina!")
+
+  mygtukas = Button(langas, text="Spausdinti", command=spausdinti)
+  mygtukas.pack()
+  langas.mainloop()
+
+  # Spausdina!
+#+end_src
+
+*** Kaip esant skirtingiems vartotojo veiksmams, paleisti skirtingas funkcijas:
+
+#+begin_src python
+  from tkinter import *
+  langas = Tk()
+
+  def spausdinti(event):
+      print("Paspaustas kairys pelės mygtukas!")
+
+  def spausdinti2(event):
+      print("Paspaustas dešinys pelės mygtukas!")
+
+  def spausdinti3(event):
+      print("Paspaustas ENTER!")
+
+  mygtukas = Button(langas, text="Spausdinti")
+  mygtukas.bind("<Button-1>", spausdinti)
+  mygtukas.bind("<Button-3>", spausdinti2)
+  langas.bind("<Return>", spausdinti3)
+  mygtukas.pack()
+
+  langas.mainloop()
+
+  # Paspaustas kairys pelės mygtukas!
+  # Paspaustas dešinys pelės mygtukas!
+  # Paspaustas ENTER!
+  # Mygtukų kodus bind funkcijai rasite čia: https://web.archive.org/web/20190515021108id_/http://infohost.nmt.edu/tcc/help/pubs/tkinter/web/key-names.html
+#+end_src
+
+*** Kaip per bind iškviesti funkciją be "event" argumento?
+
+#+begin_src python
+  from tkinter import *
+  langas = Tk()
+
+  def spausdinti():
+      print("Spausdina!")
+
+  mygtukas = Button(langas, text="Spausdinti", command=spausdinti)
+  langas.bind("<Return>", lambda event: spausdinti())
+  mygtukas.pack()
+
+  langas.mainloop()
+#+end_src
+
+*** Kaip per grafinę sąsają nuskaityti ir atspausdinti duomenis:
+
+#+begin_src python
+  from tkinter import *
+
+  langas = Tk()
+
+  def spausdinti():
+      ivesta = laukas1.get()
+      rezultatas["text"] = ivesta
+
+  uzrasas1 = Label(langas, text="Įrašykite žodį")
+  laukas1 = Entry(langas)
+  mygtukas = Button(langas, text="Įvesti", command=spausdinti)
+  rezultatas = Label(langas, text="")
+
+  uzrasas1.grid(row=0, column=0)
+  laukas1.grid(row=0, column=1)
+  mygtukas.grid(row=0, column=2)
+  rezultatas.grid(row=1, columnspan=3)
+
+  langas.mainloop()
+#+end_src
+
+*** Kaip sukurti atvaizduojamą sąrašą:
+
+#+begin_src python
+  from tkinter import *
+
+  langas = Tk()
+  boksas = Listbox(langas)
+  sarasas = range(1, 200)
+  boksas.insert(END, *sarasas)
+  boksas.pack(side=LEFT)
+  langas.mainloop()
+#+end_src
+
+*** Kaip pridėti sąrašo slinkimo juostą:
+
+#+begin_src python
+  from tkinter import *
+  langas = Tk()
+  masyvas = range(1, 200)
+  scrollbaras = Scrollbar(langas)
+  boksas = Listbox(langas,
+  yscrollcommand=scrollbaras.set)
+  scrollbaras.config(command=boksas.yview)
+  boksas.insert(END, *masyvas)
+  scrollbaras.pack(side=RIGHT, fill=Y)
+  boksas.pack(side=LEFT)
+  langas.mainloop()
+#+end_src
+
+Kaip pasiimti duomenis iš pažymėtos sąrašo vietos:
+
+#+begin_src python
+  from tkinter import *
+
+  langas = Tk()
+  sarasas = range(1, 200)
+
+  def spausdinti():
+      pasirinkta = sarasas[boksas.curselection()[0]]
+      uzrasas["text"] = pasirinkta
+
+  mygtukas = Button(langas, text="Spausdinti",
+  command=spausdinti)
+
+  uzrasas = Label(langas, text="Nieko")
+  boksas = Listbox(langas, selectmode=SINGLE)
+  boksas.insert(END, *sarasas)
+  boksas.pack(side=LEFT)
+  mygtukas.pack()
+  uzrasas.pack()
+  langas.mainloop()
+#+end_src
+
+*** Kaip sukurti meniu:
+
+#+begin_src python
+from tkinter import *
+langas = Tk()
+
+meniu = Menu(langas)
+langas.config(menu=meniu)
+submeniu = Menu(meniu, tearoff = 0)
+
+meniu.add_cascade(label="Meniu", menu=submeniu)
+submeniu.add_command(label="Pirmas")
+submeniu.add_command(label="Antras")
+langas.mainloop()
+#+end_src
+
+Kaip meniu punktams priskirti funkcijas:
+
+#+begin_src python
+  from tkinter import *
+  langas = Tk()
+
+  meniu = Menu(langas)
+  langas.config(menu=meniu)
+  submeniu = Menu(meniu, tearoff = 0)
+
+  def antras():
+      print("Antras!")
+
+  meniu.add_cascade(label="Meniu", menu=submeniu)
+  submeniu.add_command(label="Pirmas")
+  submeniu.add_command(label="Antras",
+  command=antras)
+  langas.mainloop()
+
+  # Antras!
+#+end_src
+
+Kaip sukurti daugiau meniu, juos atskirti:
+
+#+begin_src python
+from tkinter import *
+langas = Tk()
+
+meniu = Menu(langas)
+langas.config(menu=meniu)
+submeniu = Menu(meniu, tearoff = 0)
+submeniu2 = Menu(meniu, tearoff = 0)
+submeniu3 = Menu(meniu, tearoff = 0)
+
+meniu.add_cascade(label="Meniu", menu=submeniu)
+submeniu.add_command(label="Pirmas")
+
+submeniu.add_command(label="Antras")
+submeniu.add_separator()
+submeniu.add_command(label="Trečias")
+
+meniu.add_cascade(label="Meniu 2",
+menu=submeniu2)
+submeniu2.add_command(label="1")
+submeniu2.add_command(label="2")
+
+meniu.add_cascade(label="Meniu 3",
+menu=submeniu3)
+
+langas.mainloop()
+#+end_src
+
+*** Statuso juostos (status bar) kūrimas:
+
+#+begin_src python
+from tkinter import *
+langas = Tk()
+
+status = Label(langas, text="Nieko nedaro...", bd=1, relief=SUNKEN, anchor=W)
+status.pack(side=BOTTOM, fill=X)
+langas.mainloop()
+#+end_src
+
+Su mygtuku:
+
+#+begin_src python
+from tkinter import *
+langas = Tk()
+
+def daryti():
+    status["text"] = "Dabar daro"
+
+mygtukas = Button(langas, text="Daryti", command=daryti)
+status = Label(langas, text="Nieko nedaro...", bd=1, relief=SUNKEN, anchor=W)
+status.pack(side=BOTTOM, fill=X)
+
+mygtukas.pack()
+
+langas.mainloop()
+#+end_src
+
+Jei statuso juosta formuojama lentelėje:
+
+#+begin_src python
+status.grid(row=2, columnspan=3, sticky=W+E)
+#+end_src
+
+*** Kaip sukurti veikiančią nuorodą:
+
+#+begin_src python
+from tkinter import *
+import webbrowser
+
+def callback(url):
+    webbrowser.open_new(url)
+
+root = Tk()
+link1 = Label(root, text="Google Hyperlink", fg="blue", cursor="hand2")
+link1.pack()
+link1.bind("<Button-1>", lambda e: callback("http://www.google.com"))
+
+link2 = Label(root, text="Ecosia Hyperlink", fg="blue", cursor="hand2")
+link2.pack()
+link2.bind("<Button-1>", lambda e: callback("http://www.ecosia.org"))
+
+root.mainloop()
+#+end_src
+
+*** Kaip atidaryti nuotrauką:
+
+#+begin_src python
+from tkinter import *
+from PIL import ImageTk, Image
+import os
+
+root = Tk()
+img = ImageTk.PhotoImage(Image.open("paveiksliukas.JPG"))
+panel = Label(root, image = img)
+panel.pack(side = "bottom", fill = "both", expand = "yes")
+root.mainloop()
+#+end_src
+
+*** Kintamųjų naudojimas Tkinter programoje:
+Jei kuriant programą su Tkinter, prireiks funkcijose panaudoti
+kintamąjį, standartiniai kintamieji (pvz. kintamasis = "") nesuveiks.
+Todėl patartina naudoti StringVar, IntVar kintamuosius. Jie turi set()
+(reikšmės nustatymui) ir get() (kintamojo reikšmės gavimui) funkcijas.
+Atkreipkite dėmesį, kad jos gali būti kviečiamos tik funkcijose. Pvz:
+
+StringVar panaudojimo pavyzdys:
+
+#+begin_src python
+from tkinter import *
+
+langas = Tk()
+
+kintamasis = StringVar()
+# kintamasis = ""
+
+def funkcija():
+    kintamasis.set("Naujas tekstas")
+    print(kintamasis.get())
+#+end_src
+
+*** Kaip tkinter programoje padaryti kelis langus:
+
+#+begin_src python
+  import tkinter as tk
+
+  class Demo1:
+      def __init__(self, master):
+          self.master = master
+          self.frame = tk.Frame(self.master)
+          self.button1 = tk.Button(self.frame, text = 'New Window', width = 25, command = self.new_window)
+          self.button1.pack()
+          self.frame.pack()
+
+      def new_window(self):
+          self.newWindow = tk.Toplevel(self.master)
+          self.app = Demo2(self.newWindow)
+
+  class Demo2:
+      def __init__(self, master):
+          self.master = master
+          self.frame = tk.Frame(self.master)
+          self.quitButton = tk.Button(self.frame, text = 'Quit', width = 25, command = self.close_windows)
+          self.quitButton.pack()
+          self.frame.pack()
+
+      def close_windows(self):
+          self.master.destroy()
+
+  def main():
+      root = tk.Tk()
+      app = Demo1(root)
+      root.mainloop()
+
+  if __name__ == '__main__':
+      main()
+#+end_src
+
+** Užduotys
+
+# atsakymai https://github.com/CodeAcademy-Online/Python/tree/lesson-9
+
+*** 1 užduotis
+Sukurti programą su grafine sąsaja, kuri:
+
+Turėtų laukelį su užrašu "Įveskite vardą", kuriame vartotojas galėtų
+įvesti vardą
+
+Turėtų mygtuką su užrašu "Patvirtinti", kurį nuspaudus, programa po
+lauku atspausdintų "Labas, {vardas}!"
+
+#+begin_src python
+# Sukurti programą su grafine sąsaja, kuri:
+# Turėtų laukelį su užrašu "Įveskite vardą", kuriame vartotojas galėtų įvesti vardą
+# Turėtų mygtuką su užrašu "Patvirtinti", kurį nuspaudus, programa po lauku atspausdintų "Labas, {vardas}!"
+
+from tkinter import *
+
+langas = Tk()
+
+def pasisveikinti():
+    ivesta = ivedimas1.get()
+    uzrasas2["text"] = (f"Labas, {ivesta}!")
+
+# Laukų, mygtukų formavimas
+uzrasas1 = Label(langas, text="Įveskite vardą")
+ivedimas1 = Entry(langas)
+mygtukas1 = Button(langas, text="Patvirtinti", command = pasisveikinti)
+uzrasas2 = Label(langas, text="")
+
+# Lango piešimas
+uzrasas1.grid(row=0, column=0)
+ivedimas1.grid(row=0, column=1)
+mygtukas1.grid(row=0, column=2)
+uzrasas2.grid(row=1, columnspan=3)
+langas.mainloop()
+#+end_src
+
+*** 2 užduotis
+Patobulinti 1 užduoties programą, kad ji:
+
+Atspausdintų pasisveikinimą ne tik nuspaudus mygtuką, bet ir paspaudus
+mygtuką "Enter"
+
+#+begin_src python
+# Patobulinti 1 užduoties programą, kad ji:
+# Įvedus vardą, atspausdintų "Labas, {vardas}!" ne tik nuspaudus mygtuką, bet ir paspaudus mygtuką "Enter"
+
+
+from tkinter import *
+
+pagrindinis_langas = Tk()
+
+def pasisveikinti():
+    ivesta = ivedimas1.get()
+    uzrasas2["text"] = (f"Labas, {ivesta}!")
+
+# Laukų, mygtukų formavimas
+uzrasas1 = Label(pagrindinis_langas, text="Įveskite vardą")
+ivedimas1 = Entry(pagrindinis_langas)
+mygtukas1 = Button(pagrindinis_langas, text="Patvirtinti", command=pasisveikinti)
+ivedimas1.bind("<Return>", lambda event: pasisveikinti())
+uzrasas2 = Label(pagrindinis_langas, text="")
+
+# Lango piešimas
+uzrasas1.grid(row=0, column=0)
+ivedimas1.grid(row=0, column=1)
+mygtukas1.grid(row=0, column=2)
+uzrasas2.grid(row=1, columnspan=3)
+pagrindinis_langas.mainloop()
+#+end_src
+
+*** 3 užduotis
+#+begin_src python
+# Patobulinti 2 užduoties programą, kad ji:
+# Turėtų meniu, kuriame:
+# Būtų punktas "Išvalyti", kurį paspaudus išsitrintų tekstas eilutėje, kurioje spausdinamas pasisveikinimo tekstas
+# Būtų punktas "Atkurti", kurį paspaudus pasisveikinimo teksto eilutėje butų atspausdintas paskutinis atspausdintas tekstas
+# Būtų punktas "Išeiti", kurį paspaudus užsidarytų programos langas
+# Tarp menių punktų "Atkurti" ir "Išeiti" būtų atskyrimo brūkšnys
+
+
+from tkinter import *
+
+pagrindinis_langas = Tk()
+paskutinis = StringVar()
+
+def pasisveikinti():
+    ivesta = ivedimas1.get()
+    uzrasas2["text"] = (f"Labas, {ivesta}!")
+    paskutinis.set(uzrasas2["text"])
+
+def isvalyti():
+    uzrasas2["text"] = ""
+
+def atkurti():
+    uzrasas2["text"] = paskutinis.get()
+
+def uzdaryti():
+    pagrindinis_langas.destroy()
+
+# Laukų, mygtukų formavimas
+uzrasas1 = Label(pagrindinis_langas, text="Įveskite vardą")
+ivedimas1 = Entry(pagrindinis_langas)
+mygtukas1 = Button(pagrindinis_langas, text="Patvirtinti", command=pasisveikinti)
+ivedimas1.bind("<Return>", lambda event: pasisveikinti())
+uzrasas2 = Label(pagrindinis_langas, text="")
+
+# Meniu:
+meniu = Menu(pagrindinis_langas)
+pagrindinis_langas.config(menu=meniu)
+submeniu = Menu(meniu, tearoff = 0)
+meniu.add_cascade(label="Meniu", menu=submeniu)
+
+submeniu.add_command(label="Išvalyti", command = isvalyti)
+submeniu.add_command(label="Atkurti paskutinį", command = atkurti)
+submeniu.add_separator()
+submeniu.add_command(label="Išeiti", command = uzdaryti)
+
+# Lango piešimas
+uzrasas1.grid(row=0, column=0)
+ivedimas1.grid(row=0, column=1)
+mygtukas1.grid(row=0, column=2)
+uzrasas2.grid(row=1, columnspan=3)
+pagrindinis_langas.mainloop()
+#+end_src
+
+*** 4 užduotis
+#+begin_src python
+# Patobulinti 3 užduoties programą, kad ji:
+# Turėtų statuso juostą apačioje, kurioje:
+# Būtų rodoma "Sukurta", kai atspausdinamas pasisveikinimo tekstas
+# Būtų rodoma "Išvalyta", kai ištrinamas pasisveikinimo tekstas
+# Būtų rodoma "Atkurta", kai atkuriamas paskutinis pasisveikinimo tekstas
+# Nuspaudus klaviatūros mygtuką "Escape", uždarytų programos langą
+
+from tkinter import *
+
+langas = Tk()
+paskutinis = StringVar()
+
+def pasisveikinti():
+    ivesta = ivedimas1.get()
+    uzrasas2["text"] = (f"Labas, {ivesta}!")
+    paskutinis.set(uzrasas2["text"])
+    status["text"] = "Sukurta"
+
+def isvalyti():
+    uzrasas2["text"] = ""
+    status["text"] = "Išvalyta"
+
+def atkurti():
+    uzrasas2["text"] = paskutinis.get()
+    status["text"] = "Atkurta"
+
+def uzdaryti():
+    langas.destroy()
+
+# Laukų, mygtukų formavimas
+uzrasas1 = Label(langas, text="Įveskite vardą")
+ivedimas1 = Entry(langas)
+mygtukas1 = Button(langas, text="Patvirtinti", command=pasisveikinti)
+ivedimas1.bind("<Return>", lambda event: pasisveikinti())
+uzrasas2 = Label(langas, text="")
+langas.bind("<Escape>", lambda event: uzdaryti())
+
+
+# Status juosta
+status = Label(langas, text="", bd=1, relief=SUNKEN, anchor=W)
+
+# Lango piešimas
+uzrasas1.grid(row=0, column=0)
+ivedimas1.grid(row=0, column=1)
+mygtukas1.grid(row=0, column=2)
+uzrasas2.grid(row=1, columnspan=3)
+status.grid(row=2, columnspan=3, sticky=W+E)
+
+# Meniu:
+meniu = Menu(langas)
+langas.config(menu=meniu)
+submeniu = Menu(meniu, tearoff = 0)
+meniu.add_cascade(label="Meniu", menu=submeniu)
+
+submeniu.add_command(label="Išvalyti", command = isvalyti)
+submeniu.add_command(label="Atkurti paskutinį", command = atkurti)
+submeniu.add_separator()
+submeniu.add_command(label="Išeiti", command = uzdaryti)
+
+# Lango piešimas
+uzrasas1.grid(row=0, column=0)
+ivedimas1.grid(row=0, column=1)
+mygtukas1.grid(row=0, column=2)
+uzrasas2.grid(row=1, columnspan=3)
+status.grid(row=2, columnspan=3, sticky=W+E)
+langas.mainloop()
+#+end_src
+
+*** 5 užduotis (papildoma)
+#+begin_src python
+  # Perdaryti bet kurią ankstesnėse pamokose sukurtą programą, kurioje
+  # vartotojas turėjo įvesti duomenis, į programą su grafine sąsaja
+
+  # Perdaryti bet kurią ankstesnėse pamokose sukurtą arba savo programą,
+  # kurioje vartotojas turėjo įvesti duomenis, į programą su grafine
+  # sąsaja. Pvz., tą, kuri atrenka keliamuosius metus, skaičiuoja laiką
+  # nuo praeitos datos, pateikia informaciją apie įvestą eilutę ar pan.
+
+  from tkinter import *
+  import calendar
+
+  langas = Tk()
+
+  def tikrinti():
+      ivesta = int(ivedimas1.get())
+      if calendar.isleap(ivesta):
+          uzrasas2["text"] = (f"{ivesta} metai yra keliamieji!")
+      else:
+          uzrasas2["text"] = (f"{ivesta} metai yra nekeliamieji!")
+
+  def uzdaryti():
+      langas.destroy()
+
+  # Laukų, mygtukų formavimas
+  uzrasas1 = Label(langas, text="Įveskite metus")
+  ivedimas1 = Entry(langas)
+  mygtukas1 = Button(langas, text="Patvirtinti", command=tikrinti)
+  ivedimas1.bind("<Return>", lambda event: tikrinti())
+  langas.bind("<Escape>", lambda event: uzdaryti())
+  uzrasas2 = Label(langas, text="")
+
+  # Lango piešimas
+  uzrasas1.grid(row=0, column=0)
+  ivedimas1.grid(row=0, column=1)
+  mygtukas1.grid(row=0, column=2)
+  uzrasas2.grid(row=1, columnspan=3)
+  langas.mainloop()
+#+end_src
+
+*** 6 užduotis (papildoma)
+Perdaryti biudžeto programą (pvz. su pickle), pridedant tkinter grafinę sąsają.
+**** biudzetas_tkinter.py
+#+begin_src python
+import pickle
+from tkinter import *
+
+langas = Tk()
+virsus = Frame(langas)
+apacia = Frame(langas)
+
+
+def gauti_biudzeta():
+    try:
+        with open("biudzetas.pkl", "rb") as pickle_in:
+            biudzetas = pickle.load(pickle_in)
+    except:
+        biudzetas = []
+    return biudzetas
+
+
+def irasyti_biudzeta(biudzetas):
+    try:
+        with open("biudzetas.pkl", "wb") as pickle_out:
+            pickle.dump(biudzetas, pickle_out)
+    except:
+        print("Nepavyko įrašyti failo")
+
+
+def ivesti_irasa(event):
+    suma = int(suma_laukas.get())
+    biudzetas = gauti_biudzeta()
+    biudzetas.append(suma)
+    irasyti_biudzeta(biudzetas)
+    boksas.delete(0, END)
+    boksas.insert(END, *gauti_biudzeta())
+    balansas_uzrasas["text"] = str(sum(gauti_biudzeta()))
+    suma_laukas.delete(0, 'end')
+
+def isvalyti():
+    biudzetas = []
+    irasyti_biudzeta(biudzetas)
+    boksas.delete(0, END)
+
+langas.geometry("250x200")
+uzrasas1 = Label(virsus, text="Įrašykite sumą")
+suma_laukas = Entry(virsus)
+mygtukas = Button(virsus, text="Įvesti")
+mygtukas.bind("<Button-1>", ivesti_irasa)
+langas.bind("<Return>", ivesti_irasa)
+mygtukas2 = Button(virsus, text="Išvalyti", command=isvalyti)
+balansas_uzrasas_labas = Label(virsus, text="Balansas:")
+balansas_uzrasas = Label(virsus, text=str(sum(gauti_biudzeta())))
+
+scrollbaras = Scrollbar(apacia)
+boksas = Listbox(apacia, yscrollcommand=scrollbaras.set)
+scrollbaras.config(command=boksas.yview)
+boksas.insert(END, *gauti_biudzeta())
+
+virsus.pack()
+apacia.pack()
+uzrasas1.grid(row=0, column=0)
+suma_laukas.grid(row=0, column=1)
+mygtukas.grid(row=0, column=2)
+scrollbaras.pack(side=RIGHT, fill=Y)
+boksas.pack(side=LEFT)
+mygtukas2.grid(row=2, column=2)
+balansas_uzrasas_labas.grid(row=1, column=1)
+balansas_uzrasas.grid(row=1, column=2)
+langas.mainloop()
+#+end_src
+**** biudzetas su klasemis pickle tkinter.py
+
+#+begin_src python
+  import pickle
+  from tkinter import *
+
+  langas = Tk()
+  virsus = Frame(langas)
+  apacia = Frame(langas)
+
+
+  class Irasas:
+      def __init__(self, suma):
+          self.suma = suma
+
+
+  class PajamuIrasas(Irasas):
+      def __init__(self, suma, siuntejas="", papildoma_info=""):
+          super().__init__(suma)
+          self.siuntejas = siuntejas
+          self.papildoma_info = papildoma_info
+
+      def __str__(self):
+          return f"Pajamų suma: {self.suma}"
+
+
+  class IslaiduIrasas(Irasas):
+      def __init__(self, suma, atsiskaitymo_budas="", isigyta_preke_paslauga=""):
+          super().__init__(suma)
+          self.atsiskaitymo_budas = atsiskaitymo_budas
+          self.isigyta_preke_paslauga = isigyta_preke_paslauga
+
+      def __str__(self):
+          return f"Išlaidų suma: {self.suma}"
+
+
+  class Biudzetas():
+      def __init__(self):
+          self.zurnalas = self.gauti_biudzeta()
+
+      def ivesti_pajamas(self, suma, siuntejas="", papildoma_informacija=""):
+          pajamu_irasas = PajamuIrasas(suma, siuntejas, papildoma_informacija)
+          self.zurnalas.append(pajamu_irasas)
+          self.irasyti_biudzeta(self.zurnalas)
+
+      def ivesti_islaidas(self, suma, atsiskaitymo_budas="", isigyta_preke_paslauga=""):
+          islaidu_irasas = IslaiduIrasas(suma, atsiskaitymo_budas, isigyta_preke_paslauga)
+          self.zurnalas.append(islaidu_irasas)
+          self.irasyti_biudzeta(self.zurnalas)
+
+      def gauti_biudzeto_balansa(self):
+          balansas = 0
+          for irasas in self.gauti_biudzeta():
+              if isinstance(irasas, PajamuIrasas):
+                  balansas += irasas.suma
+              if isinstance(irasas, IslaiduIrasas):
+                  balansas -= irasas.suma
+          return balansas
+
+      def gauti_biudzeta(self):
+          try:
+              with open("biudzetas.pkl", "rb") as pickle_in:
+                  biudzetas = pickle.load(pickle_in)
+          except:
+              biudzetas = []
+          return biudzetas
+
+      def irasyti_biudzeta(self, biudzetas):
+          try:
+              with open("biudzetas.pkl", "wb") as pickle_out:
+                  pickle.dump(biudzetas, pickle_out)
+          except:
+              print("Nepavyko įrašyti failo")
+
+
+  mano_biudzetas = Biudzetas()
+
+
+  def ivesti_irasa(event):
+      suma = int(suma_laukas.get())
+      if suma < 0:
+          irasas = IslaiduIrasas(abs(suma))
+      else:
+          irasas = PajamuIrasas(abs(suma))
+      biudzetas = mano_biudzetas.gauti_biudzeta()
+      biudzetas.append(irasas)
+      mano_biudzetas.irasyti_biudzeta(biudzetas)
+      boksas.delete(0, END)
+      boksas.insert(END, *mano_biudzetas.gauti_biudzeta())
+      balansas_uzrasas["text"] = str(mano_biudzetas.gauti_biudzeto_balansa())
+      suma_laukas.delete(0, 'end')
+
+
+  def isvalyti():
+      biudzetas = []
+      mano_biudzetas.irasyti_biudzeta(biudzetas)
+      boksas.delete(0, END)
+      balansas_uzrasas["text"] = ""
+
+
+  langas.geometry("250x200")
+  uzrasas1 = Label(virsus, text="Įrašykite sumą")
+  suma_laukas = Entry(virsus)
+  mygtukas = Button(virsus, text="Įvesti")
+  mygtukas.bind("<Button-1>", ivesti_irasa)
+  langas.bind("<Return>", ivesti_irasa)
+  mygtukas2 = Button(virsus, text="Išvalyti", command=isvalyti)
+  balansas_uzrasas_labas = Label(virsus, text="Balansas:")
+  balansas_uzrasas = Label(virsus, text=str(mano_biudzetas.gauti_biudzeto_balansa()))
+
+  scrollbaras = Scrollbar(apacia)
+  boksas = Listbox(apacia, yscrollcommand=scrollbaras.set)
+  scrollbaras.config(command=boksas.yview)
+  boksas.insert(END, *mano_biudzetas.gauti_biudzeta())
+
+  virsus.pack()
+  apacia.pack()
+  uzrasas1.grid(row=0, column=0)
+  suma_laukas.grid(row=0, column=1)
+  mygtukas.grid(row=0, column=2)
+  scrollbaras.pack(side=RIGHT, fill=Y)
+  boksas.pack(side=LEFT)
+  mygtukas2.grid(row=2, column=2)
+  balansas_uzrasas_labas.grid(row=1, column=1)
+  balansas_uzrasas.grid(row=1, column=2)
+  langas.mainloop()
+#+end_src
+
+* Lesson10 Virtualios aplinkos ir paleidžiamieji failai
+** Virtualios aplinkos (VENV)
+
+*** Kaip pažiūrėti, kokie paketai (moduliai) įdiegti sistemoje?
+Komandinėje eilutėje įvykdykite pip list komandą:
+
+#+begin_src bash
+C:\Users\Vartotojas>pip list
+
+Package Version
+-------------- --------
+decorator 4.0.10
+docutils 0.12
+pefile 2018.8.8
+pip 18.1
+PyInstaller 3.4
+pytz 2016.7
+pywin32-ctypes 0.2.0
+setuptools 40.6.2
+#+end_src
+
+*** Kaip sukurti virtualią programavimo aplinką?
+
+#+begin_src bash
+C:\Users\Vartotojas>cd Desktop
+
+C:\Users\Vartotojas\Desktop>mkdir Projektas
+
+C:\Users\Vartotojas\Desktop>cd Projektas
+
+C:\Users\Vartotojas\Desktop\Projektas>python -m venv venv
+#+end_src
+
+*** Kaip aktyvuoti/deaktyvuoti virtualią programavimo aplinką?
+
+#+begin_src bash
+C:\Users\Donoras\Desktop\Projektas>venv\Scripts\activate.bat
+(venv) C:\Users\Donoras\Desktop\Projektas>pip list
+
+Package Version
+---------- -------
+pip 18.1
+setuptools 40.6.2
+
+(venv) C:\Users\Donoras\Desktop\Projektas>python sveiki.py
+(venv) C:\Users\Donoras\Desktop\Projektas>deactivate
+#+end_src
+
+*** Kaip įdiegti paketus į virtualią programavimo aplinką?
+
+#+begin_src bash
+(venv) C:\Users\Donoras\Desktop\Projektas>pip install pyinstaller
+(venv) C:\Users\Donoras\Desktop\Projektas>pip list
+
+Package Version
+-------------- ---------
+altgraph 0.16.1
+future 0.17.1
+macholib 1.11
+pefile 2019.4.18
+pip 18.1
+PyInstaller 3.4
+pywin32-ctypes 0.2.0
+setuptools 40.6.2
+#+end_src
+
+*** Kaip sukurti reikalavimų failą?
+
+#+begin_src bash
+(venv) C:\Users\Donoras\Desktop\Projektas>pip freeze
+
+altgraph==0.16.1
+future==0.17.1
+macholib==1.11
+pefile==2019.4.18
+PyInstaller==3.4
+pywin32-ctypes==0.2.0
+#+end_src
+
+*** Tai išsaugome į failą requirements.txt:
+
+#+begin_src bash
+(venv) C:\Users\Donoras\Desktop\Projektas>pip freeze > requirements.txt
+#+end_src
+
+*** Kaip įdiegti paketus iš reikalavimų failo?
+Naujoje virtualioje aplinkoje (ištrinus venv katalogą):
+
+#+begin_src bash
+(venv) C:\Users\Donoras\Desktop\Projektas>pip install -r requirements.txt
+
+(venv) C:\Users\Donoras\Desktop\Projektas>pip list
+
+Package Version
+-------------- ---------
+altgraph 0.16.1
+future 0.17.1
+macholib 1.11
+pefile 2019.4.18
+pip 18.1
+PyInstaller 3.4
+pywin32-ctypes 0.2.0
+setuptools 40.6.2
+#+end_src
+
+*** Pastabos
+- Į virtualią aplinką nededame jokių projekto (.py ir kitų) failų
+
+- Virtualios aplinkos katalogo nededame į versijų valdymo sistemų
+repozitorijas
+
+-Bet dedame requirements failą, kad kiti kodu besinaudojantys asmenys
+galėtų susikurti savo virtualias aplinkas
+
+*** Kaip sukurti virtualią aplinką su paketais iš sistemos aplinkos?
+
+Naujoje virtualioje aplinkoje:
+
+#+begin_src bash
+C:\Users\Donoras\Desktop\Projektas>python -m venv venv --system-site-packages
+
+C:\Users\Donoras\Desktop\Projektas>venv\Scripts\activate.bat
+
+(venv) C:\Users\Donoras\Desktop\Projektas>pip list
+
+Package Version
+-------------- --------
+altgraph 0.16.1
+Babel 2.3.4
+decorator 4.0.10
+docutils 0.12
+future 0.17.1
+macholib 1.11
+pefile 2018.8.8
+pip 18.1
+PyInstaller 3.4
+pytz 2016.7
+pywin32-ctypes 0.2.0
+setuptools 40.6.2
+(venv) C:\Users\Donoras\Desktop\Projektas>pip install SQLAlchemy
+
+(venv) C:\Users\Donoras\Desktop\Projektas>pip list
+Package Version
+-------------- --------
+altgraph 0.16.1
+Babel 2.3.4
+decorator 4.0.10
+docutils 0.12
+future 0.17.1
+macholib 1.11
+pefile 2018.8.8
+pip 18.1
+PyInstaller 3.4
+pytz 2016.7
+pywin32-ctypes 0.2.0
+setuptools 40.6.2
+SQLAlchemy 1.3.3
+(venv) C:\Users\Donoras\Desktop\Projektas>pip list –local
+Package Version
+---------- -------
+pip 18.1
+setuptools 40.6.2
+SQLAlchemy 1.3.3
+(venv) C:\Users\Donoras\Desktop\Projektas>deactivate
+C:\Users\Donoras\Desktop\Projektas>pip list
+
+Package Version
+-------------- --------
+altgraph 0.16.1
+Babel 2.3.4
+decorator 4.0.10
+docutils 0.12
+future 0.17.1
+macholib 1.11
+pefile 2018.8.8
+pip 18.1
+PyInstaller 3.4
+pytz 2016.7
+pywin32-ctypes 0.2.0
+setuptools 40.6.2
+#+end_src
+
+** EXE failų kūrimas
+
+*** Pyinstaller diegimas Windows sistemoje
+Diegimas Windows komandinėje eilutėje:
+
+#+begin_src bash
+C:\Users\Donoras\Desktop\Projektas>pip install pyinstaller
+#+end_src
+
+*** Padarome EXE failą iš programos su konsole
+
+#+begin_src python
+print("Sveikas, pasauli!")
+#+end_src
+
+*** Atidarome terminalą:
+
+Paleidžiame terminale:
+
+#+begin_src bash
+pyinstaller --onefile sveiki.py
+#+end_src
+
+Problema: dukart spragtelėjus, langas iškart užsidaro
+
+Sprendimas:
+
+#+begin_src python
+print("Sveikas, pasauli!")
+input("Norėdami uždaryti spauskite ENTER")
+#+end_src
+
+*** Padarome EXE failą iš programos su grafine sąsaja
+
+#+begin_src python
+from tkinter import *
+
+pagrindinis = Tk()
+uzrasas = Label(pagrindinis, text="Sveikas,
+pasauli!")
+uzrasas.pack()
+pagrindinis.mainloop()
+#+end_src
+
+Paleidžiame terminale:
+
+#+begin_src bash
+pyinstaller --onefile -w sveiki2.py
+#+end_src
+
+*** Kaip pakeisti lango ikoną, pavadinimą, lango dydį
+Kaip gauti programos ikoną:
+
+Kaip gauti norimą ikoną (PNG, 32px): www.flaticon.com
+
+Kaip konvertuoti ikoną į norimą formatą: https://icoconvert.com/
+
+#+begin_src python
+from tkinter import *
+
+pagrindinis = Tk()
+uzrasas = Label(pagrindinis, width=40, height=10, text="Sveikas, pasauli!")
+pagrindinis.title("Mano programa")
+pagrindinis.iconbitmap(r'sveikinimasis.ico')
+uzrasas.pack()
+pagrindinis.mainloop()
+#+end_src
+
+Paleidžiame terminale:
+
+#+begin_src bash
+pyinstaller --onefile -w sveikinimas.py
+#+end_src
+
+Kaip pakeisti programos ikoną
+
+#+begin_src bash
+Paleidžiame terminale:
+pyinstaller --onefile -w --icon=sveikinimas.ico sveikinimas.py
+#+end_src
+
+** Užduotys
+
+# atsakymai https://github.com/CodeAcademy-Online/Python/tree/lesson-10/atsakymai
+
+*** 1 užduotis
+
+Išbandyti šioje pamokoje aprašytus žingsnius:
+
+Sukurti naują projektą su .py failu
+
+Jame sukurti virtualią aplinką
+
+Ją aktyvuoti
+
+Į ją įdiegti, pavyzdžiui, pyinstaller paketą
+
+Susikurti iš virtualios aplinkos requirements.txt failą
+
+**** Uzduotis-1.py
+
+#+begin_src python
+  import calendar
+
+  ivesti_metai_nuo = int(input("Įveskite datą nuo.. "))
+  ivesti_metai_iki = int(input("Įveskite datą iki.. "))
+
+  def keliamieji_metai(metai_nuo, metai_iki):
+      for metai in range(metai_nuo, metai_iki):
+          if calendar.isleap(metai):
+              print(metai)
+
+  keliamieji_metai(ivesti_metai_nuo, ivesti_metai_iki)
+
+  input("Norėdami uždaryti spauskite ENTER")
+#+end_src
+
+
+#+begin_src python
+blet
+#+end_src
+
+**** Uzduotis-1.spec
+
+#+begin_src
+# -*- mode: python -*-
+
+block_cipher = None
+
+
+a = Analysis(['uzduotis_13-1.py'],
+             pathex=['C:\\Users\\Donoras\\CodeAcademy\\Pamokos'],
+             binaries=[],
+             datas=[],
+             hiddenimports=[],
+             hookspath=[],
+             runtime_hooks=[],
+             excludes=[],
+             win_no_prefer_redirects=False,
+             win_private_assemblies=False,
+             cipher=block_cipher,
+             noarchive=False)
+pyz = PYZ(a.pure, a.zipped_data,
+             cipher=block_cipher)
+exe = EXE(pyz,
+          a.scripts,
+          a.binaries,
+          a.zipfiles,
+          a.datas,
+          [],
+          name='uzduotis_13-1',
+          debug=False,
+          bootloader_ignore_signals=False,
+          strip=False,
+          upx=True,
+          runtime_tmpdir=None,
+          console=True , icon='sveikinimas.ico')
+#+end_src
+
+*** 2 Užduotis - programa su konsole
+
+Sukurti paleidžiamąjį failą iš programos, kuri:
+
+Leistų vartotojui įvesti metus nuo ir metus iki
+
+Atspausdintų visus keliamuosius metus pagal duotą rėžį
+
+Paleidžiamasis failas turi turėti norimą ikoną
+
+Ikonos failą rasite čia
+
+**** Uzduotis-2.py
+
+#+begin_src python
+
+# Patobulinti 3 užduoties programą, kad ji:
+# Turėtų statuso juostą apačioje, kurioje:
+# Būtų rodoma "Sukurta", kai atspausdinamas pasisveikinimo tekstas
+# Būtų rodoma "Išvalyta", kai ištrinamas pasisveikinimo tekstas
+# Būtų rodoma "Atkurta", kai atkuriamas paskutinis pasisveikinimo tekstas
+# Nuspaudus klaviatūros mygtuką "Escape", uždarytų programos langą
+
+from tkinter import *
+
+import sys
+
+pagrindinis_langas = Tk()
+paskutinis = "Nebuvo įvesta"
+pagrindinis_langas.title("Sveikinimas")
+pagrindinis_langas.iconbitmap(r'sveikinimas.ico')
+
+def pasisveikinti(event):
+    ivesta = ivedimas1.get()
+    uzrasas2["text"] = (f"Labas, {ivesta}!")
+    global paskutinis
+    paskutinis = uzrasas2["text"]
+    status["text"] = "Sukurta"
+
+def isvalyti():
+    uzrasas2["text"] = ""
+    status["text"] = "Išvalyta"
+
+def atkurti():
+    uzrasas2["text"] = paskutinis
+    status["text"] = "Atkurta"
+
+def uzdaryti(event):
+    pagrindinis_langas.withdraw()
+    sys.exit()
+
+def uzdaryti2():
+    pagrindinis_langas.withdraw()
+    sys.exit()
+
+# Laukų, mygtukų formavimas
+uzrasas1 = Label(pagrindinis_langas, text="Įveskite vardą")
+ivedimas1 = Entry(pagrindinis_langas)
+mygtukas1 = Button(pagrindinis_langas, text="Patvirtinti")
+mygtukas1.bind("<Button-1>", pasisveikinti)
+ivedimas1.bind("<Return>", pasisveikinti)
+pagrindinis_langas.bind("<Escape>", uzdaryti)
+uzrasas2 = Label(pagrindinis_langas, text="")
+
+# Meniu:
+meniu = Menu(pagrindinis_langas)
+pagrindinis_langas.config(menu=meniu)
+submeniu = Menu(meniu, tearoff = 0)
+meniu.add_cascade(label="Meniu", menu=submeniu)
+
+submeniu.add_command(label="Išvalyti", command = isvalyti)
+submeniu.add_command(label="Atkurti paskutinį", command = atkurti)
+submeniu.add_separator()
+submeniu.add_command(label="Išeiti", command = uzdaryti2)
+
+# Status juosta
+status = Label(pagrindinis_langas, text="", bd=1, relief=SUNKEN, anchor=W)
+
+# Lango piešimas
+uzrasas1.grid(row=0, column=0)
+ivedimas1.grid(row=0, column=1)
+mygtukas1.grid(row=0, column=2)
+uzrasas2.grid(row=1, columnspan=3)
+status.grid(row=2, columnspan=3, sticky=W+E)
+pagrindinis_langas.mainloop()
+#+end_src
+
+**** Uzduotis-2.spec
+
+#+begin_src
+# -*- mode: python -*-
+
+block_cipher = None
+
+
+a = Analysis(['uzduotis_13-2.py'],
+             pathex=['C:\\Users\\Donoras\\CodeAcademy\\Pamokos'],
+             binaries=[],
+             datas=[],
+             hiddenimports=[],
+             hookspath=[],
+             runtime_hooks=[],
+             excludes=[],
+             win_no_prefer_redirects=False,
+             win_private_assemblies=False,
+             cipher=block_cipher,
+             noarchive=False)
+pyz = PYZ(a.pure, a.zipped_data,
+             cipher=block_cipher)
+exe = EXE(pyz,
+          a.scripts,
+          a.binaries,
+          a.zipfiles,
+          a.datas,
+          [],
+          name='uzduotis_13-2',
+          debug=False,
+          bootloader_ignore_signals=False,
+          strip=False,
+          upx=True,
+          runtime_tmpdir=None,
+          console=False , icon='sveikinimas.ico')
+#+end_src
+
+*** 3 Užduotis - programa su GUI (tkinter)
+
+Padaryti paleidžiamąjį failą iš praeitos paskaitos 4 užduoties
+programos (pilna programa su vartotojo sąsaja)
+
+Programa turi turėti programos lango ikoną ir norimą pavadinimą
+
+Paleidžiamasis failas turi turėti norimą ikoną
+
+* How this was exported
+
+Emacs Org-mode file exported with org-static-blog.el
