@@ -1,0 +1,2551 @@
+#+title: CodeAcademy JavaScript
+#+date: <2023-01-29 15:45>
+#+description: CodeAcademy javascript notes
+#+filetags: javascript codeacademy
+#+OPTIONS: toc:2
+#+OPTIONS: num:t
+
+* javascript export import
+
+jeigu nori import ar export - reikia parruninti live serveri, kitaip
+gausi cors policy error ar kazka pan
+
+#+begin_src javascript
+  // jeigu exportini daugiau nei vienas funkcija ar reiksme
+  export const xxx = "labas"
+
+  export const myfn = (num1, num2) => num1 + num2
+
+
+  import { xxx, myfn } = from "./xxx.js";
+
+  console.log(myfn(5,6));
+  console.log("xxx")
+#+end_src
+
+#+begin_src javascript
+  // tik viena funkcija exporins, sita funkcija gali naudoti kitas
+  // funkcijas is yyy failo
+
+  const fn
+
+  export default yyy
+
+  import dataFromYYYFile from "./yyy.js"
+  console.log("dataFromYYYFile")
+
+#+end_src
+
+nepamirsk skliausteliuose prideti kitu kintamuju (trip, bla,
+bla101234). paziurek ar funkcijoj reikia tam tikro failo ar ne ir
+jeigu reikia, ji paduok per skliaustelius ir pasiimk per kitus
+skliaustelius :)
+
+* api
+** create your own api
+
+can do that with [[https://mockapi.io/projects][mockapi]]
+
+* operators
+** logical operators equal greater less not equal
+** loginiai operatoriai - && || !==
+
+- pagrindiniai loginiai operatoriai
+  - && and
+  - || or
+  - catchy vieta - klausia intrviu sito:
+
+    0 yra kaip false
+    #+begin_src javascript
+      var age = 0;
+      if(age){
+      console.log('age exists');
+      }
+    #+end_src
+
+    jeigu musu amzius nera lygus undefined, tuomet salyga lygu true
+    #+begin_src javascript
+      if(age !== undefined){
+          console.log('age exists');
+      }
+    #+end_src
+
+    #+begin_src javascript
+      if(age >= 0){
+          console.log('age exists');
+      }
+    #+end_src
+
+    #+begin_src javascript
+      const  money = 50000
+
+      if (money > 11000) {
+          console.log('Enough money to buy a Honda');
+      } else if (money > 9000) {
+          console.log('Enough money to buy a Toyota');
+      } else if (money > 8000) {
+          console.log('Enough money to buy a Subaru');
+      } else {
+          console.log('Not enough money')
+      }
+    #+end_src
+** [[https://www.w3schools.com/js/js_comparisons.asp][comparison(lygybes) operatoriai ==== ===== !==]]
+Lygu
+#+begin_src javascript
+  alert(2 == 2)                   // TRUE. tikrina VERTES
+  alert(2 === 2)                  // TRUE. tikrina vertes IR DUOMENU TIPA. VISADA NAUDOJAM
+  alert(2 == "2")                 // TRUE
+  alert(2 == "paulius")           // FALSE
+#+end_src
+Nelygu
+#+begin_src javascript
+  alert(2 !== 2)                   // TRUE. tikrina VERTES
+  alert(2 === 2)                  // TRUE. tikrina vertes IR DUOMENU TIPA. VISADA NAUDOJAM
+  alert(2 == "2")                 // TRUE
+  alert(2 == "paulius")           // FALSE
+#+end_src
+
+#+begin_src javascript
+  alert(2 === 2 && 3 === 4)       // FALSE. AND abu statementai turi buti true
+  alert(2 === 2 || 3 === 4)       // FALSE. OR bent VIENAS statement turi true
+#+end_src
+
+* arrays
+** some method array object js
+
+#+begin_src javascript
+
+  const characters = [
+      {
+          name: 'Luke Skywalker',
+          height: '172',
+          mass: '77',
+          eye_color: 'blue',
+          gender: 'male',
+      },
+      {
+          name: 'Darth Vader',
+          height: '202',
+          mass: '136',
+          eye_color: 'yellow',
+          gender: 'male',
+      },
+      {
+          name: 'Leia Organa',
+          height: '150',
+          mass: '49',
+          eye_color: 'brown',
+          gender: 'female',
+      },
+      {
+          name: 'Anakin Skywalker',
+          height: '188',
+          mass: '84',
+          eye_color: 'blue',
+          gender: 'male',
+      },
+  ];
+
+
+  //***SOME***
+  //1. Is there at least one male character?
+  document.getElementById("starSome1").textContent = JSON.stringify(characters.some((character => {
+      return character.gender === 'male';
+  })));
+  //2. Is there at least one character with blue eyes?
+  document.getElementById("starSome2").textContent = JSON.stringify(characters.some((character => {
+      return character.eye_color === 'blue';
+  })));
+  //3. Is there at least one character taller than 210?
+  document.getElementById("starSome3").textContent = JSON.stringify(characters.some((character => {
+      return character.height > 210;
+  })));
+  //4. Is there at least one character that has mass less than 50?
+  document.getElementById("starSome4").textContent = JSON.stringify(characters.some((character => {
+      return character.mass < 50;
+  })));
+#+end_src
+** check if array includes a letter
+
+#+begin_src javascript
+  const letters = ['a', 'b', 'c', 'd']
+
+  console.log(letters)
+
+  // const checkALetter = (lettersArray) => {
+  //     console.log(lettersArray.includes('a'));
+  // }
+
+  checkALetter(letters)
+#+end_src
+* async await
+** fetch from api with async await
+
+#+begin_src javascript
+async function start() {
+    const response = await fetch("https://dog.ceo/api/breeds/list/all") // wait for a response
+    console.log(response)              // not human readable info
+    const data = await response.json() // take only json data of the response
+    console.log(data)                  // display the json data, vuolia
+}
+
+start()
+#+end_src
+** async await kada naudoti
+
+kai nori i kintamaji issaugoti fetch reiksme
+* arrow vs simple function
+
+#+begin_src javascript
+  // simple function
+  const checkALetter = function(lettersArray){
+      console.log(lettersArray.includes('a'));
+  }
+
+  // same arrow function
+  const checkALetter = (lettersArray) => {
+      console.log(lettersArray.includes('a'));
+  }
+#+end_src
+
+* Classes
+** classes js
+
+#+begin_src javascript
+// defininu klase Car
+function Car(brand, model, engine, price){
+    this.brand = brand;
+    this.model = model;
+    this.engine = engine;
+    this.basePrice = price;
+
+    this.getPrice = function(){
+        let additionalPrice = 0;
+        if(this.engine === "electric"){
+            additionalPrice = 10000;
+        } else if (this.engine === "diesel"){
+            additionalPrice = 5000;
+        }
+        return this.basePrice + additionalPrice;
+    }
+
+    this.wroom = function (){
+        console.log("wroom says " + this.model)
+    }
+}
+
+// susikuriu kelis objektus pagal klases template
+const audi = new Car("audi", "bulka", "electric", 40000);
+const bmw = new Car("bmw", "gt", "diesel", 20000);
+
+// consoleloginu
+
+document.getElementById("classAudi").textContent = "class 1 = " + JSON.stringify(audi)
+document.getElementById("classBmw").textContent = "class 2 = " + JSON.stringify(bmw)
+
+document.getElementById("classAudiPrice").textContent = "Class 1 basePrice + additionalPrice = "+ audi.getPrice();
+document.getElementById("classBmwPrice").textContent = "Class 2 basePrice + additionalPrice = "+ bmw.getPrice();
+
+audi.wroom();
+console.log(bmw.model);
+console.log(audi.getPrice());
+console.log(bmw.getPrice());
+#+end_src
+
+* Promise
+** simple promise
+
+promise advantage is that you can add .then as much as you like
+instead of nesting callback inside a callback.
+
+#+begin_src javascript
+let p = new Promise ((resolve, reject) => {
+    let a = 1 + 1
+    if (a == 2) {
+        resolve('success')
+    } else {
+        reject ('failed')
+    }
+});
+
+p.then ((message) => {
+    console.log("This is in the then " + message)
+}).catch ((message) => {
+    console.log("this is in the catch " + message)
+})
+#+end_src
+
+* fetch
+** fetch info from an api examples js
+
+#+begin_src javascript
+  // Example numero 32
+  // examples from Robertas class
+
+  ////////////////////////////////////////////////////////////////////////
+  // "gauname kruva neaiskiu dalyku, kuriu nemokame skaityti - Robertas"
+
+  fetch("https://thecocktaildb.com/api/json/v1/1/random.php")
+      .then((res) => {
+          console.log("first response is API - neaiskus", res); // neaisku
+          return res.json();      // konvertuojame sita result i json, kad butu readable
+      });
+
+  ////////////////////////////////////////////////////////////////////////
+  // pirmo .then rezultata konvertuojame i json, kad butu labiau
+  // readable o antru .then metodu, pasiimam value, kuris jau yra array.
+  // jeigu returnini viena dalka viename thene, jis persiduoda i kita
+  // thena.
+
+  fetch("https://thecocktaildb.com/api/json/v1/1/random.php")
+  // 1 then
+      .then((res) => {
+          return res.json();
+      })
+  // 2 then
+      .then((data) => {
+          console.log("second response is api - aiskus", data);      // aisku
+      });
+
+  ////////////////////////////////////////////////////////////////////////
+  // duodamas ne objektas su nereikalinga info, bet duodamas visas masyvas drinks..
+
+  fetch("https://thecocktaildb.com/api/json/v1/1/random.php")
+      .then((res) => {
+          return res.json();
+      })
+      .then((data) => {
+          console.log("third response is api", data.drinks);      // aisku
+      });
+
+  ////////////////////////////////////////////////////////////////////////
+  // atvaizduojame pirma dalyka masyve
+
+  fetch("https://thecocktaildb.com/api/json/v1/1/random.php")
+      .then((res) => {
+          return res.json();
+      })
+      .then((data) => {
+          console.log("third response is api", data.drinks[0].strDrink);      // aisku
+      });
+
+  ////////////////////////////////////////////////////////////////////////
+  // atvaizduojame info is api htmle
+  fetch("https://thecocktaildb.com/api/json/v1/1/random.php")
+      .then((res) => {
+          return res.json();
+      })
+      .then((data) => {
+          document.getElementById("en32_1").textContent = "Randomly chosen drink: " + data.drinks[0].strDrink;
+          document.getElementById("en32_2").textContent = "A most suitable glass for it: " + data.drinks[0].strGlass;
+      });
+
+  ////////////////////////////////////////////////////////////////////////
+  // atvaizduojame ARRAY in console log??
+  fetch("https://thecocktaildb.com/api/json/v1/1/random.php")
+      .then((res) => {
+          return res.json();
+      })
+      .then((data) => {
+          console.log("array oplia", {
+              name: data.drinks[0].strDrink,
+              glass: data.drinks[0].strGlass,
+          });
+      });
+
+  ////////////////////////////////////////////////////////////////////////
+  // atvaizduojame VISUS non alcoholic cocktails
+  // dont forget about HTTPS:// in the beginning!
+  fetch("https://thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic")
+      .then((res) => {
+          return res.json();
+      })
+      .then((data) => {
+          console.log("visi non alcoholic cocktails:", data.drinks);
+      });
+
+#+end_src
+** fetch from randomuser and display in html js
+
+#+begin_src javascript
+  // define where I want to place this card
+  const storeHere = document.getElementById("en33_1");
+
+  // define the card itself
+  const renderUserCard = (user) => {
+      // creating image
+      const img = document.createElement('img');
+      img.src = user.picture.large;
+      img.alt = `${user.name.first} profile picture`;
+
+      // creating intro
+      const intro = document.createElement('h4');
+      intro.innerText = `${user.name.first} ${user.name.last}, ${user.dob.age}`;
+
+      // creating contacts
+      const contacts = document.createElement('h5');
+      contacts.innerText = user.email;
+
+      // creating a card with all of the items
+      const card = document.createElement('div');
+      card.append(img, intro, contacts);
+      // document.body.append(card); // displays simply in body
+      storeHere.append(card);     // displays where I want it to display
+  };
+
+  //////////////////////////////////////////////////////////////////
+  // example according to codeacademy. stuff we haven't learned
+  // const fetchRandomUser = async () => {
+  //     try {
+  //         const response = await fetch('https://randomuser.me/api/');
+  //         if (response.ok) {
+  //             const data = await response.json();
+  //             renderUserCard(data.results[0]);
+  //         }
+  //     } catch(error) {
+  //         console.error(error);
+  //     }
+  // };
+
+  // fetchRandomUser();
+
+  //////////////////////////////////////////////////////////////////
+  // trying to do it by myself with the stuff that we learned
+
+  fetch("https://randomuser.me/api/")
+      .then((res) => {
+          return res.json();
+      })
+      .then((data) => {
+          // console.log(data.results[0]);
+          renderUserCard(data.results[0]);
+      });
+#+end_src
+** fetch from coingecko and display in html js
+
+#+begin_src javascript
+fetch(
+    "https://api.coingecko.com/api/v3/coins/markets?" +
+        new URLSearchParams({
+            vs_currency: "eur",
+            per_page: 250,
+        })
+)
+    .then((res) => {
+        return res.json();
+    })
+    .then((data) => {
+        console.log("data", data);
+        data.forEach((pointInsideData) => {
+            const element = document.createElement("div");
+            const img = document.createElement("img");
+            img.setAttribute("src", pointInsideData.image);
+            img.setAttribute("class", "img");
+
+            element.classList.add("child");
+            element.innerHTML = pointInsideData.symbol;
+            document.body.append(element);
+            element.append(img);
+        });
+    });
+#+end_src
+** fetch and post api flights vilnius js
+
+#+begin_src javascript
+////////////////////////////////////////////////////////
+// simply console log the api array
+
+// fetch("https://633487d3ea0de5318a04b500.mockapi.io/FlightsFromVilnius")
+//   .then((res) => {
+//     return res.json();
+//   })
+//   .then((data) => {
+//     console.log(data);
+//   });
+
+
+// fetch("https://633487d3ea0de5318a04b500.mockapi.io/FlightsFromVilnius")
+//     .then((res) => {
+//         return res.json();
+//     })
+//     .then((data) => {
+//         console.log("unfiltered", data);
+//         const filtered = data.filter(function(value) {
+//             return value.destination == "Panevezys";
+//         });
+//         console.log("filtered", filtered);
+//     });
+
+
+////////////////////////////////////////////////////////
+// visualize only the 10th item
+
+// const id = "1";
+
+// fetch("https://633487d3ea0de5318a04b500.mockapi.io/FlightsFromVilnius/" + id)
+//     .then((res) => {
+//         return res.json();
+//     })
+//     .then((data) => {
+//         console.log(data);
+
+//         const element = document.createElement("div");
+//         element.classList.add("child");
+//         element.innerHTML = data.destination;
+//         element.style.backgroundImage = "url(" + data.Image + ")";
+//         element.style.backgroundSize = "cover";
+
+//         document.body.append(element);
+//     });
+
+////////////////////////////////////////////////////////
+// same like above, get only 10th item, just with async ir await
+
+// const id = "2";
+// let data;
+// const fetchAndDisplayData = async () => {
+//   data = await fetch(
+//     "https://633487d3ea0de5318a04b500.mockapi.io/FlightsFromVilnius/" + id
+//   ).then((res) => {
+//     return res.json();
+//   });
+
+//   const element = document.createElement("div");
+//   element.classList.add("child");
+//   element.innerHTML = data.destination;
+//   element.style.backgroundImage = "url(" + data.Image + ")";
+//   element.style.backgroundSize = "cover";
+
+//   document.body.append(element);
+//   console.log("data 1", data);
+// };
+
+// console.log("data 2", data);    // undefined...
+
+// fetchAndDisplayData();
+
+// // https://www.coingecko.com/api/documentations/v3
+
+
+////////////////////////////////////////////////////////
+
+fetch("https://633487d3ea0de5318a04b500.mockapi.io/FlightsFromVilnius")
+    .then((res) => {
+        return res.json();
+    })
+    .then((data) => {
+        console.log(data);
+        data.forEach((pointInsideData) => {
+            const element = document.createElement("div");
+            element.classList.add("child");
+            element.innerHTML = pointInsideData.destination;
+            element.style.backgroundImage = "url(" + pointInsideData.Image + ")";
+            element.style.backgroundSize = "cover";
+
+            document.body.append(element);
+        });
+    });
+
+
+////////////////////////////////////////////////////////
+// strange example, posts each time upon refresh
+
+// const duomenys = {
+//     destination: "Cikaga",
+//     price: 999,
+//     Duration: "1.2h",
+//     Image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Panevezys-Senvages_panorama-2006_09.JPG/1200px-Panevezys-Senvages_panorama-2006_09.JPG",
+// };
+
+// fetch("https://633487d3ea0de5318a04b500.mockapi.io/FlightsFromVilnius", {
+//     method: "POST",
+//     headers: {
+//         Accept: "application/json",
+//         "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(duomenys),
+// })
+//     .then((res) => {
+//         return res.json();
+//     })
+//     .then((data) => {
+//         console.log(data);
+//     });
+#+end_src
+** fetch post matas masinytes js
+*** FETCH
+#+begin_src javascript
+const END_POINT = "https://olive-bead-glazer.glitch.me"; // defining endpoint of the api
+const carsData = {};                                     // creating an empty array to store data into
+const carsContainer = document.getElementById("cars");   // assigning an ID of a div to a variable
+
+const createCard = (car) => {
+    const div = document.createElement("div");
+    div.classList.add("car-card");
+    carsContainer.append(div);
+
+    const carBrand = document.createElement("h1");
+    carBrand.innerHTML = car.brand;
+    const carModel = document.createElement("h3");
+    carModel.innerHTML = car.model;
+
+    div.append(carBrand, carModel);
+};
+
+const fetchCars = async () => {
+    try {
+        const response = await fetch(END_POINT);
+        if (response.ok) {
+            carsData.cars = await response.json();
+            carsData.cars.forEach((car) => createCard(car));
+        }
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+fetchCars();
+#+end_src
+*** POST
+
+#+begin_src javascript
+const END_POINT = "https://olive-bead-glazer.glitch.me";
+const submitForm = document.querySelector("form"); // pasakau kas per forma
+
+const postData = async (car) => {
+    const alertMsg = document.getElementById("alert");
+    try {
+        const response = await fetch(END_POINT, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(car),
+        });
+        if (response.ok) {
+            alertMsg.innerHTML = "Data successfully sent!";
+        }
+    } catch (error) {
+        alertMsg.innerHTML = `There was an error!\n${error}`;
+    }
+};
+
+
+const addCar = (event) => {
+    event.preventDefault();
+    const carBrandInput = document.getElementById("car-brand");
+    const carModelInput = document.getElementById("car-model");
+    const car = {
+        brand: carBrandInput.value,
+        model: carModelInput.value,
+    };
+    postData(car);
+};
+
+submitForm.addEventListener("submit", addCar); // kai formoje paspaudziu submit, do addCar
+#+end_src
+* create html/css
+** create new css objects with js
+
+#+begin_src javascript
+const whereToAppend = document.getElementById("appendToMe");
+
+const element = document.createElement("div");
+
+element.setAttribute("class", "child"); // must define by yourself in css
+element.setAttribute("id", "someId"); // must define by yourself in css
+
+whereToAppend.append(element);
+element.style.color = "white"
+element.style.fontWeight = "900"
+element.style.textAlign = "center"
+element.style.background = "orange"
+
+
+element.textContent = "Cube created with JavaScipt";
+#+end_src
+
+#+begin_src javascript
+function addCube() {
+    const whereToAppend = document.getElementById("appendToMe2");
+    const cube = document.createElement("div");
+    cube.classList.add("child");
+    whereToAppend.append(cube);
+
+    // styling
+    cube.textContent = "Cube created with JavaScipt";
+    cube.style.color = "white"
+    cube.style.fontWeight = "900"
+    cube.style.textAlign = "center"
+    cube.style.background = "orange"
+}
+#+end_src
+** battery charge transition styles with js
+
+#+begin_src javascript
+function batteryCharge() {
+    const battery = document.getElementById("childBattery");
+    battery.style.width = "100%";
+    battery.style.backgroundColor = "green";
+}
+
+function batteryUse() {
+    const battery = document.getElementById("childBattery");
+    battery.style.width = "10%";
+    battery.style.backgroundColor = "red";
+}
+#+end_src
+
+#+begin_src javascript
+const childBattery2 = document.getElementById("childBattery2")
+childBattery2.setAttribute("charged", false);
+
+console.log(childBattery2.attributes.charged.value);
+console.log(typeof childBattery2.attributes.charged.value);
+
+function batteryCharge2() {
+    const battery2 = document.getElementById("childBattery2");
+    battery2.style.width = "100%";
+    battery2.style.backgroundColor = "green";
+    childBattery2.attributes.charged.value = true;
+}
+
+function batteryUse2() {
+    const battery2 = document.getElementById("childBattery2");
+    battery2.style.width = "10%";
+    battery2.style.backgroundColor = "red";
+    childBattery2.attributes.charged.value = false;
+}
+
+const isCharged = (status) => {
+    return status === "true" ? true : false;
+};
+
+const toggleBattery = () => {
+    if (isCharged(childBattery2.attributes.charged.value)) {
+        batteryUse2();
+    } else {
+        batteryCharge2();
+    }
+};
+#+end_src
+#+begin_src css
+#childBattery {
+    height: 200px;
+    width: 10%;
+    background-color: red;
+    transition: 2s;
+}
+
+#childBattery2 {
+    height: 200px;
+    width: 10%;
+    background-color: red;
+    transition: 2s;
+}
+#+end_src
+* Forms
+** take result from a form js
+
+#+begin_src javascript
+document.getElementById("form1").addEventListener("submit", myFunction);
+
+function myFunction(event){
+    event.preventDefault();
+    console.log(event);
+    console.log(event.target);
+    console.log(event.target.elements.abc);
+    console.log(document.querySelector("input[name=abc]"));
+    console.log(document.querySelector("input[name=abc]").value);
+    const result = document.querySelector("input[name=abc]").value;
+
+    document.getElementById("firstforma").textContent = "Tavo vardas: " + result;
+}
+#+end_src
+** if else form input js
+#+begin_src javascript
+const ageInput = document.getElementById("ticketAge"); // input laukelis
+const form = document.getElementById("form2");   // pasirenkame forma, del submit mygtuko
+const priceDisplay = document.getElementById("ticketPrice"); // place i kuria outputinsim
+
+const maxAge = 100
+const notAChildAnymore = 16
+const elderly = 60
+
+function handleFormSubmit(event) {
+    event.preventDefault()      // preventing refresh on submit, usually would go to db?
+    const price = 6;
+    const age = Number(ageInput.value);
+
+    if (age >= elderly && age <= maxAge) {
+        priceDisplay.textContent = "Ticket price: " + (0.5 * price).toFixed(2) +"$"+ " (Elderly)";
+    } else if (age < notAChildAnymore) {
+        priceDisplay.textContent = "Ticket price: " + (0.45 * price).toFixed(2) +"$"+ " (Child)";
+    } else if (age >= maxAge) {
+        priceDisplay.textContent = "Ticket price: Free for you, enjoy!";
+    } else {
+        priceDisplay.textContent = "Ticket price: " + price.toFixed(2) +"$"+ " (Adult)";
+    }
+}
+
+form.addEventListener("submit", handleFormSubmit)
+#+end_src
+** form checkbox input if else js
+
+#+begin_src javascript
+const armyAgeInput = document.getElementById("armyAgeInput");
+const armyAgeResult = document.getElementById("armyAgeResult");
+const tInput = document.querySelector("input[type=checkbox]");
+const armyForm = document.getElementById("armyForm");
+
+function armyCalculator(e) {
+    e.preventDefault()
+    const receivedAge = Number(armyAgeInput.value);
+    const isConvicted = tInput.checked;
+    // console.log(receivedAge)
+
+    if (receivedAge >= 18 && receivedAge <= 30 && !isConvicted){
+        armyAgeResult.textContent = "Welcome to army."
+    } else if (receivedAge < 18 && !isConvicted) {
+        armyAgeResult.textContent = "Army does not need you (too young)."
+    } else {
+        armyAgeResult.textContent = "Army does not need you (too convicted or too old)."
+    }
+}
+
+armyForm.addEventListener("submit", armyCalculator);
+#+end_src
+** form input convert to celsius js
+#+begin_src javascript
+const celsiusForm = document.getElementById("celsiusForm");
+const celsiusInput = document.getElementById("celsiusInput");
+const celsiusResult = document.getElementById("celsiusResult");
+
+function celsiusToFconverter(b) {
+    b.preventDefault()
+    const receivedCelsius = Number(celsiusInput.value);
+    // console.log(receivedCelsius)
+
+    const resultInFahrenheit = (receivedCelsius * 9/5) +32;
+    celsiusResult.textContent = receivedCelsius + "°C " + " is " + resultInFahrenheit + "°F."
+}
+
+celsiusForm.addEventListener("submit", celsiusToFconverter);
+
+//
+
+const fahrenheitForm = document.getElementById("fahrenheitForm");
+const fahrenheitInput = document.getElementById("fahrenheitInput");
+const fahrenheitResult = document.getElementById("fahrenheitResult");
+
+function fahrenheitToCconverter(b) {
+    b.preventDefault()
+    const receivedFahrenheit = Number(fahrenheitInput.value);
+    console.log(receivedFahrenheit)
+
+    const resultInCelsius = (receivedFahrenheit - 32) / (9/5);
+    fahrenheitResult.textContent = receivedFahrenheit + "°F " + " is " + resultInCelsius + "°C."
+}
+
+fahrenheitForm.addEventListener("submit", fahrenheitToCconverter);
+#+end_src
+** guess number from a form math random js
+
+#+begin_src javascript
+const guessInput = document.getElementById("guessInput");
+const guessResult = document.getElementById("guessResult");
+const guessSecret = document.getElementById("guessSecret");
+const guessForm = document.getElementById("guessForm");
+
+let randomNumber = Math.floor(Math.random() * 5) + 1;
+console.log(randomNumber);
+
+function guessNumber(event) {
+    event.preventDefault();
+    const guessedNumber = Number(document.getElementById('guess').value);
+    if (randomNumber === guessedNumber){
+        alert("atspejai")
+    }
+    else {
+        alert("neatspejai")
+        // guessResult.textContent = randomNumber
+        guessSecret.textContent = randomNumber
+    }
+}
+
+guessForm.addEventListener('submit', guessNumber);
+#+end_src
+** calculating and displaying input values from form js
+
+#+begin_src javascript
+document.getElementById("formGas").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    // Pasiimant input value, visada paduoda string. Nepamirštame konveruoti į skaičių su Number()
+    const price = Number(document.getElementById("kaina").value);
+    const quant = Number(document.getElementById("quant").value);
+
+    const total = price * quant;
+
+    const priceDisplay = document.createElement("h1");
+    const whereToDisplay = document.getElementById("priceDisplay");
+    priceDisplay.textContent = total.toFixed(2) + " money";
+    whereToDisplay.append(priceDisplay);
+});
+#+end_src
+
+* Basics
+** true/false
+
+#+begin_src javascript
+const year = 2021;
+
+const currentYear = year === 2021 ? "This year" : "last Year";
+
+console.log(currentYear)
+
+//
+
+const name = "Arvydas"
+
+const nameLength = name.length < 5 ? "short name" : "long name";
+
+console.log(nameLength)
+
+//
+
+const clientAge = 9
+const legalAge = 10
+
+const ageCheck = clientAge >= legalAge ? "can drive" : "cant drive";
+
+console.log(ageCheck)
+
+clientAge < 0 || clientAge > 120 ? console.log("Invalid age") : clientAge >= legalAge ? console.log("Can drive") : console.log("Can't drive");
+
+//
+
+const phone = "ble";
+const isIphoneUser = phone === 'iPhone';
+console.log(isIphoneUser)
+#+end_src
+
+** if/else
+
+#+begin_src javascript
+if(2===3 || "Petras"){
+    console.log("tiesa")
+} else{
+    console.log("lala")
+}
+
+if(2 < 5 && ("Petras" || 2 >3)){
+    console.log("what")
+}
+
+let number = 2
+
+if (number > 0){
+    console.log("mldc")
+}
+#+end_src
+
+** for loop
+
+#+begin_src javascript
+const vardas = "arvydas"
+const kartai = 20
+
+for(let i = 0; i < kartai; i++){
+    console.log(i + ' ' + vardas)
+}
+#+end_src
+#+begin_src javascript
+let number = 4;
+
+let asterisk = '*';
+
+for(let i=0; i < number -1; i++){
+    console.log(asterisk);
+}
+
+for(let i=0; i < number -1; i++){
+    asterisk = asterisk+'*';
+}
+
+console.log(asterisk);
+#+end_src
+
+** double for loop
+
+#+begin_src javascript
+const number = 5;
+
+for(let i = 1; i <= number; i++){
+    let asterisk='';
+
+    for(let j=0; j<i; j++){
+        asterisk = asterisk + '*';
+    }
+    console.log(asterisk);
+}
+#+end_src
+
+** else if
+
+#+begin_src javascript
+// else if - TOLIAU KODAS NERA PALEIDZIAMAS
+// gaves teisinga atsakyma - tolesniu eiluciu nebepaleis
+
+const abc = 4
+
+if (abc === 3){
+    console.log("3")
+}else if(abc === 4){
+    console.log("11111")
+}else if(abc === 4){            // sitos eilutes net nebenuskaiciuoja
+    console.log("9999")
+}else{
+    console.log("other")
+}
+#+end_src
+
+** do while
+
+#+begin_src javascript
+let i = 0;
+
+do{
+    console.log(i)
+    i++
+}while(i < 5)
+
+//
+
+let combo = '';
+const name = 'John';
+let times = 3;
+
+do {
+  combo += name;
+  times--;
+} while (times > 0);
+console.log(combo);
+#+end_src
+
+** switch
+*** names
+#+begin_src javascript
+  const name = "Ona"
+
+  switch(name){
+  case "Petras":
+      console.log("Vyras");
+      break;
+  case "Antanas":
+      console.log("Vyras");
+      break;
+  case "Kazys":
+      console.log("Vyras");
+      break;
+  case "Jevgenij":
+      console.log("Vyras");
+      break;
+  case "Ona":
+      console.log("moteris");
+      break;
+  }
+#+end_src
+#+begin_src javascript
+  const name = "danielius"
+
+  switch (name) {
+  case "Petras":
+  case "Antanas":
+  case "Kazys":
+  case "Jevgenij":
+      console.log("Vyras");
+      break;
+  case "Ona":
+  case "Nasa":
+  case "Rasa":
+      console.log("moteris");
+      break;
+  default:
+      console.log("nezinau tokio vardo")
+  }
+#+end_src
+*** cars
+#+begin_src javascript
+  const car = "audi"
+
+  switch (car){
+  case "vw":
+  case "audi":
+  case "bigatto":
+  case "porsche":
+      console.log("vw")
+      break;
+  case "mini":
+  case "rols":
+      console.log("BMW")
+  default:
+      console.log("nezinau tokios markes")
+  }
+#+end_src
+*** weekdays
+#+begin_src javascript
+  const weekDay = 2
+
+  switch (weekDay) {
+  case 0:
+      console.log("antradienis");
+      break;
+  case 1:
+      console.log("antradienis");
+      break;
+  case 2:
+      console.log("treciadienis");
+      break;
+
+  default:
+      console.log("unknown value");
+  }
+#+end_src
+
+** math random
+
+#+begin_src javascript
+
+  // const random = Math.random() * 10; // nuo 0 iki 9, neapvalintas
+
+  // console.log(Math.floor(random))
+
+  // console.log(random)
+  const random1 = Math.floor(Math.random() * 10)+1;
+
+  console.log(random1)
+
+  let i = 0
+
+  while(i <= 20){
+      console.log(random1)
+      i++;
+  }
+#+end_src
+
+** simplest while loop
+
+#+begin_src javascript
+let i = 0;
+while(i < 3) {
+    console.log("arvydas")
+    i++;
+}
+#+end_src
+
+** simple function js
+
+#+begin_src javascript
+function add (x, y) {
+    return x + y
+}
+
+console.log(add(3,5))
+
+const me = add
+console.log(me(4,5))
+
+const you = add
+console.log(you(660,7654))
+#+end_src
+** prevent copying
+
+#+begin_src javascript
+document.getElementById('dontcopy').addEventListener('copy', () => {
+  event.preventDefault();
+  alert("Don't copy this please. Thank you!")
+});
+#+end_src
+
+** generate random number on button click js
+
+#+begin_src javascript
+function generateRandomNumber() {
+    return Math.floor(Math.random() * 100) + 1;
+}
+
+document.getElementById('btnrandom').addEventListener('click', () => {
+    const randomNumber = generateRandomNumber();
+    document.getElementById('randomnumber').innerText = "Random number: " + randomNumber;
+})
+#+end_src
+** string methods js
+
+https://www.w3schools.com/js/js_string_methods.asp
+** number methods
+
+https://www.w3schools.com/js/js_number_methods.asp
+** regexp reference
+
+https://www.w3schools.com/jsref/jsref_obj_regexp.asp
+* Misc
+** live server
+#+begin_src shell
+  sudo apt install python3
+  sudo apt install pip
+  pip install simple_http_server
+#+end_src
+
+http://127.0.0.1:8000/
+
+#+begin_src shell
+  # used in python
+  python -m SimpleHTTPServer
+#+end_src
+
+#+begin_src shell
+  # used in python3
+  python3 -m http.server
+#+end_src
+
+AUTOMATICALLY REFRESH PAGE - two methods
+
+jeigu nematai pokyciu - refesh chrome hard!
+
+#+begin_src html
+  <!-- <script type="text/javascript" src="https://livejs.com/live.js"></script> -->
+  <meta http-equiv="refresh" content="3">
+#+end_src
+
+** website without css only javascipt styles js
+
+#+begin_src javascript
+const noHtmlWrapper = document.getElementById("noHtmlWrapper");
+
+noHtmlWrapper.style.background = "cyan";
+noHtmlWrapper.style.height = "100%";
+noHtmlWrapper.style.padding = "2rem";
+
+// main block
+
+const noHtmlMain = document.createElement("div");
+// noHtmlMain.textContent = "zdrvaa";
+noHtmlMain.style.background = "white";
+noHtmlMain.style.width = "70%";
+noHtmlMain.style.margin = "5rem auto 0 auto";
+noHtmlMain.style.padding = "1rem";
+noHtmlMain.style.borderRadius = "0.5rem";
+noHtmlMain.style.textAlign = "center"
+
+noHtmlWrapper.append(noHtmlMain);
+
+// image
+
+const noHtmlImg = document.createElement("img");
+noHtmlImg.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUgfR2dYfw4VgOHE19fAFBmC5ShphZQ-bs--9YfDXy5eNSWeoRoTo_sbaoj7BA4U-wrBs&usqp=CAU"
+noHtmlImg.style.width = "10rem";
+noHtmlImg.style.borderRadius = "50%"
+noHtmlImg.style.padding = "o.5rem";
+noHtmlImg.style.border = "1px solid #eee"
+noHtmlImg.style.marginTop = "-100px"
+noHtmlMain.append(noHtmlImg);
+
+// text
+
+const noHtmlName = document.createElement("h2");
+noHtmlName.textContent = "Arvydas";
+noHtmlMain.append(noHtmlName);
+
+// text
+
+const noHtmlEmail = document.createElement("p");
+noHtmlEmail.textContent = "arvydas.email@gmail.com";
+noHtmlEmail.style.color = "#888";
+noHtmlMain.append(noHtmlEmail);
+#+end_src
+** has been blocked by CORS policy
+https://www.youtube.com/watch?v=PNtFSVU-YTI&ab_channel=WebDevSimplified
+
+* idk
+** fetch is not defined
+
+- https://stackoverflow.com/questions/48433783/referenceerror-fetch-is-not-defined
+- npm install node-fetch
+- import fetch from "node-fetch";
+** axios instead of fetch
+*** axios instead of fetch
+
+- how to use https://badcodernocookie.com/fetch-is-not-defined/
+- a tutorial using it - https://www.youtube.com/watch?v=li7FzDHYZpc&ab_channel=RobertsDevTalk
+- works perfectly, can fetch into console now, wee
+
+*** little code example below
+**** 1
+#+begin_src javascript
+// code executes SEQUENTIALLY, everything is nice and simple
+// but when we work with larger projects, we might:
+// speak to databases, open files, work with apis
+// Longer running tasks will not return results straight away
+// they will rather return a PROMISE
+
+// the PROMISE object represents EVENTUAL completion (or failure) of an asynchronous operation and its resulting value.
+
+let question = "Life, the universe and everything?"
+let answer = 42
+console.log(`${question} ${answer}`)
+#+end_src
+**** 2
+#+begin_src javascript
+// example - an app that suggest things to do when we are bored.
+
+// get request returns IMMEDIATELY but it doesn't mean it has finished PROCESSING
+// we have a promise, that the request will be fulfilled in the future
+
+// this code FAILS, because the response object is not what we are
+// expecting, data and activity properties DO NOT EXIST
+
+const axiosRequest = require('axios')
+
+let response = axiosRequest.get("https://www.boredapi.com/api/activity")
+console.log(`You could ${response.data.activity}`)
+#+end_src
+**** 3
+#+begin_src javascript
+  // WAITING until a task is finished or CATCH any errors that occur
+
+  const axiosRequest = require("axios");
+
+  axiosRequest
+      .get("https://www.boredapi.com/api/activity")
+  // .get("https://httpstat.us/404")
+      .then((response) => {
+          console.log(`You could ${response.data.activity}`);
+      })
+      .catch((error) => {
+          console.log(`ERROR! ${error}`)
+      });
+
+  // EVERY PIECE OF CODE placed FROM HERE will be executed  IMMEDIATELY
+
+  console.log("why am I here?")   // expected this to be written out AFTER the request returns, but NOT!!!
+#+end_src
+**** 4
+#+begin_src javascript
+  // the AWAIT operator WAITS until the promise is COMPLETED before
+  // moving on to the next line. makes code neater and easier to read
+  // requires ASYNC keyword
+
+  const axiosRequest = require("axios");
+
+  async function getActivity() {
+      let response = await axiosRequest.get("https://www.boredapi.com/api/activity") // AWAIT KEYWORD very important
+      // this line below WILL NOT RUN until the promise resolves
+      console.log(`You could ${response.data.activity}`); // IMMEDIATELY after can cl the suggested activity
+  }
+
+  getActivity()
+
+
+  // same as above, just use TRY/CATCH block to catch the errors
+
+  async function getActivity2() {
+      try {
+          let response = await axiosRequest.get("https://www.boredapi.com/api/activity") // AWAIT KEYWORD very important
+          // this line below WILL NOT RUN until the promise resolves
+          console.log(`You could ${response.data.activity}`); // IMMEDIATELY after can cl the suggested activity
+      } catch (error) {
+          console.log(`ERROR! ${error}`)
+      }
+
+  }
+
+  getActivity2()
+
+  // console.log("why am I here?")   // expected this to be written out AFTER the request returns, but NOT!!!
+#+end_src
+* Callbacks
+** the most basic callback function js
+
+#+begin_src javascript
+let pirmaFunkcija = function(){
+    console.log("I am called from inside the first function")
+}
+
+let antraFunkcija = function(idekIManeKazka){
+    console.log("I am called from inside the second function");
+    idekIManeKazka();
+}
+
+antraFunkcija(pirmaFunkcija)
+#+end_src
+** working callback function
+
+#+begin_src javascript
+// callback example of above, bringing add and multiple OUTSIDE of the function
+
+let add = function(a, b){
+    return a + b
+}
+
+let multiply = function(a, b){
+    return a * b
+}
+
+let showNumbers = function (a, b){
+    console.log(`here are your two numbers ${a}, ${b}`)
+}
+
+// THE MAIN FUNCTION
+let calc = function(num1, num2, callback){
+    return callback(num1, num2)
+}
+
+// galim dar siek tiek validacijos prideti
+// let calc = function(num1, num2, callback){
+//     if (typeof callback === "function"){
+//         return callback(num1, num2)
+//     } else {
+//         console.log("ka cia irasei")
+//     }
+// }
+
+// so we have defined above the functions and calling them now in calc function
+console.log(calc(5,6, showNumbers));
+console.log(calc(5,6, add));
+console.log(calc(5,6, multiply));
+
+// ANONYMOUS FUNCTION. oh, cool, creating a function on the spot
+// when you want to use something only ONCE and dont want to define it
+console.log(calc(5,6, function(a,b) {
+    return a/b;
+}));
+#+end_src
+
+** works, but not the best way
+
+#+begin_src javascript
+  let calc = function(num1, num2, calcType){
+      if(calcType === "add"){
+          return num1 + num2;
+      } else if (calcType === "multiply"){
+          return num1 * num2;
+      }
+  }
+
+  console.log(calc(5, 6, 'add'));
+#+end_src
+
+* Sort
+** sort an array of objects js
+
+#+begin_src javascript
+  var myArr = [{
+      num: 5,
+      str: 'apple'
+  }, {
+      num: 7,
+      str: 'cabbage'
+  }, {
+      num: 1,
+      str: 'ban'
+  }]
+
+  myArr.sort(function(val1, val2) {
+      if (val1.num > val2.num) {
+          return -1;
+      } else {
+          return 1;
+      }
+  })
+
+  console.log(myArr)
+#+end_src
+
+** sort array alphabetically js
+
+#+begin_src javascript
+const arrayExample = ["Jack", "Mike", "Steven", "Arvydas"];
+
+const sortArrayButton = document.getElementById("sortArray1");
+
+document.getElementById("arrayExample").innerHTML = "Array nr.1 = " + arrayExample;
+
+function sortArray(){
+    arrayExampleSorted = arrayExample.sort()
+    document.getElementById("arrayExample").innerHTML = "Array nr.1 = " +  arrayExampleSorted;
+}
+
+
+sortArrayButton.addEventListener('click', sortArray)
+
+
+// example with numbers
+
+const arrayExample2 = [8, 44, 23, 12, 685, 3];
+
+document.getElementById("arrayExample2").innerHTML = "Array nr.2 = " + arrayExample2;
+
+function sortArray2(){
+    arrayExampleSorted2 = arrayExample2.sort(function(a,b){return a-b});
+    document.getElementById("arrayExample2").innerHTML = "Array nr.2 = " +  arrayExampleSorted2;
+}
+
+const sortArrayButton3 = document.getElementById("sortArray2");
+
+sortArrayButton3.addEventListener('click', sortArray2)
+#+end_src
+
+** sort method array object js
+
+#+begin_src javascript
+
+  const characters = [
+      {
+          name: 'Luke Skywalker',
+          height: '172',
+          mass: '77',
+          eye_color: 'blue',
+          gender: 'male',
+      },
+      {
+          name: 'Darth Vader',
+          height: '202',
+          mass: '136',
+          eye_color: 'yellow',
+          gender: 'male',
+      },
+      {
+          name: 'Leia Organa',
+          height: '150',
+          mass: '49',
+          eye_color: 'brown',
+          gender: 'female',
+      },
+      {
+          name: 'Anakin Skywalker',
+          height: '188',
+          mass: '84',
+          eye_color: 'blue',
+          gender: 'male',
+      },
+  ];
+
+
+  //***SORT***
+  //1. Sort by mass - COMPARE FUNCTION
+  document.getElementById("starSort1").textContent = JSON.stringify(characters.sort((a, b) => {
+      return a.mass - b.mass;
+  }));
+  //2. Sort by height - shorter syntax of the one above
+  document.getElementById("starSort2").textContent = JSON.stringify(characters.sort((a, b) => a.height + b.height));
+  //3. Sort by name
+  document.getElementById("starSort3").textContent = JSON.stringify(characters.sort((a, b) => {
+      if(a.name < b.name) return -1;
+      return 1;
+  }));
+  //4. Sort by gender
+  document.getElementById("starSort4").textContent = JSON.stringify(characters.sort((a, b) => {
+      if(a.gender === "female") return -1;
+      return 1;
+  }));
+#+end_src
+
+* settimeout
+
+#+begin_src javascript
+  function populateDiv(property) {
+      propertyContainer.innerHTML = '';
+      console.log("istrinta info")
+  }
+
+  setTimeout(populateDiv, 5000);
+#+end_src
+
+#+begin_src javascript
+  console.log("2")
+
+  setTimeout(() => {
+      console.log("1")
+  }, 3000)
+#+end_src
+
+** settimeout element changes size js
+
+#+begin_src javascript
+const en21Button = document.getElementById('en21')
+
+function en21Toggle() {
+    en21Button.classList.toggle('en21Color')
+    setTimeout(en21Toggle2, 2000)
+}
+
+function en21Toggle2() {
+    en21Button.classList.toggle('en21Color2')
+}
+
+// call the function upon page load
+// en21Toggle()
+
+// add just a function name
+en21Button.addEventListener('click', en21Toggle)
+#+end_src
+** settimeout promise resolves in 5 seconds js
+
+#+begin_src javascript
+const pazadas = new Promise((resolve, reject) => {
+    setTimeout(() => resolve(), 5000);
+});
+
+pazadas.then(() =>{
+    document.getElementById("noHtmlWrapper3").textContent = "example 6";
+});
+
+console.log("Šitas kodas pasileis pirmas, nors ir yra paskutinis. Tai būtent mūsų asinchroniškumas");
+#+end_src
+
+* reduce
+** pick highest number from array reduce js
+
+#+begin_src javascript
+const numbersArray = [1, -1, 4, 8];
+
+// let sum = 0;
+// for (let n of numbersArray)
+//     sum +=n;
+
+// console.log(sum)
+
+
+document.getElementById("numbersArray").innerHTML = "Array nr.1 = " + numbersArray;
+
+function highest() {
+    const result = numbersArray.reduce((a,b)=>{ return (a>b) ? a : b })
+    // console.log(result)
+    document.getElementById("highestNumbersArray").innerHTML = "highest = " + result;
+}
+#+end_src
+** reduce method get total of array objects js
+#+begin_src javascript
+  const characters = [
+      {
+          name: 'Luke Skywalker',
+          height: '172',
+          mass: '77',
+          eye_color: 'blue',
+          gender: 'male',
+      },
+      {
+          name: 'Darth Vader',
+          height: '202',
+          mass: '136',
+          eye_color: 'yellow',
+          gender: 'male',
+      },
+      {
+          name: 'Leia Organa',
+          height: '150',
+          mass: '49',
+          eye_color: 'brown',
+          gender: 'female',
+      },
+      {
+          name: 'Anakin Skywalker',
+          height: '188',
+          mass: '84',
+          eye_color: 'blue',
+          gender: 'male',
+      },
+  ];
+
+  //***REDUCE***
+  //1. Get total mass of all characters
+  document.getElementById("starReduce1").textContent = characters.reduce((acc, cur) => {
+      return acc + cur.mass;
+  }, 0);
+  //2. Get total height of all characters
+  const totalHeight = characters.reduce((acc, cur) => acc + cur.height, 0);
+  document.getElementById("starReduce2").textContent = totalHeight;
+  //3. Get total number of characters by eye color
+  document.getElementById("starReduce3").textContent = JSON.stringify(characters.reduce((acc, cur) => {
+      if(acc[cur.eye_color]) {
+          acc[cur.eye_color]++;
+      }else {
+          acc[cur.eye_color] = 1;
+      }
+      return acc;
+  }, {}));
+  //4. Get total number of characters in all the character names
+  document.getElementById("starReduce4").textContent = characters.reduce((acc, cur) => acc + cur.name.length, 0);
+#+end_src
+
+** find biggest smallest value with reduce
+
+rasti viena diziausia, maziausia reiksme masyve
+
+#+begin_src javascript
+  const numbers = [2,455,6634,634,1312]
+  // pirmas acc bus 2
+  // pirmas value bus 455
+  // ir taip rollins vienas po kito, atims, atims ir ras maziausia
+
+  // maziausias value
+  numbers.reduce((acc,value) => {
+      if(value > acc) {
+          return value
+      }
+      return acc;
+  })
+
+  // suma
+  numbers.reduce((acc,value) => {
+      return acc + value
+  })
+
+  // plius 1000 at the end
+  numbers.reduce((acc,value) => {
+          return acc + value
+  }, 1000)
+#+end_src
+
+* on click
+** color text on click js
+
+#+begin_src javascript
+  document.getElementById('john').addEventListener('click', (event) => {
+      event.target.style.fontSize = "4rem";
+      event.target.style.color = "red";
+#+end_src
+
+#+begin_src javascript
+document.getElementById("btnColorChange").addEventListener("click", () => {
+    document.getElementById("colorChange").style.color = "red";
+})
+
+document.getElementById("btnColorRevert").addEventListener("click", () => {
+    document.getElementById("colorChange").style.color = "black";
+})
+#+end_src
+
+** change position on a button click js
+#+begin_src javascript
+const button99 = document.getElementById("button99");
+button99.style.cssText = 'position:absolute; top:0; left:0;'
+
+let isInOriginalPosition = true;
+function changePosition() {
+  event.target.style.cssText = isInOriginalPosition ? 'position:absolute; bottom:0; right:0;' : 'position:absolute; top:0; left:0;';
+  isInOriginalPosition = !isInOriginalPosition;
+}
+
+button99.addEventListener('click', changePosition);
+#+end_src
+** display text on button click js
+
+#+begin_src javascript
+document.getElementById("btn0").addEventListener("click", sayBye);
+document.getElementById("btnabout").addEventListener("click", sayAboutMe);
+
+function sayHello() {
+    // alert("Hello!");
+    document.getElementById("greeting").textContent = "Hello"
+}
+
+function sayBye() {
+    document.getElementById("greeting").textContent = "Good bye"
+}
+
+function sayAboutMe() {
+    // alert("Hello!");
+    document.getElementById("aboutme").textContent = "Quis vel eros donec ac odio tempor orci dapibus ultrices in iaculis nunc sed augue lacus, viverra vitae congue eu."
+}
+#+end_src
+** increase by one on button click js
+#+begin_src javascript
+let counter = 0;
+
+document.getElementById('btnplusone').addEventListener('click', () => {
+    counter++;
+    document.getElementById('plusone').innerText = "Increasing by one: " + counter;
+});
+#+end_src
+** move element on click repeating pattern js
+
+#+begin_src javascript
+const button100 = document.getElementById("button100");
+button100.style.cssText = 'position:absolute; top:0; left:0';
+
+let corner = 0
+const cornerStyles = ['position:absolute; top:0; right:0;', 'position:absolute; bottom:0; right:0;', 'position:absolute; bottom:0; left:0;', 'position:absolute; top:0; left:0;'];
+
+function changePosition1(event) {
+    if (corner < cornerStyles.length){
+        event.target.style.cssText = cornerStyles[corner];
+        corner++;
+    }
+    if (corner === cornerStyles.length) {
+        corner = 0;
+    }
+}
+
+button100.addEventListener('click', changePosition1);
+#+end_src
+
+* filter
+** filter with array
+** filter method array of objects js
+
+#+begin_src javascript
+  const characters = [
+      {
+          name: 'Luke Skywalker',
+          height: '172',
+          mass: '77',
+          eye_color: 'blue',
+          gender: 'male',
+      },
+      {
+          name: 'Darth Vader',
+          height: '202',
+          mass: '136',
+          eye_color: 'yellow',
+          gender: 'male',
+      },
+      {
+          name: 'Leia Organa',
+          height: '150',
+          mass: '49',
+          eye_color: 'brown',
+          gender: 'female',
+      },
+      {
+          name: 'Anakin Skywalker',
+          height: '188',
+          mass: '84',
+          eye_color: 'blue',
+          gender: 'male',
+      },
+  ];
+
+
+  //***FILTER***
+  //1. Get characters with mass greater than 100
+  document.getElementById("starFilter1").textContent = JSON.stringify(characters.filter( character => {
+      return character.mass > 100;
+  }));
+  //2. Get characters with height less than 200
+  document.getElementById("starFilter2").textContent = JSON.stringify(characters.filter( character => {
+      return character.height < 170;
+  }));
+  //3. Get all male characters
+  document.getElementById("starFilter3").textContent = JSON.stringify(characters.filter( character => {
+      return character.gender === "male";
+  }));
+  //4. Get all female characters
+  document.getElementById("starFilter4").textContent = JSON.stringify(characters.filter(
+      character => character.gender === "female"));
+#+end_src
+** filter fetched
+#+begin_src javascript
+  const END_POINT = "./data/kolegijos.json";
+
+  fetch(END_POINT)
+      .then((res) => {
+          return res.json();
+      })
+      .then((data) => {
+          const praeitiMetai = data.filter(function (el){
+              return el.Laikotarpis == 2021
+          })
+          console.log(praeitiMetai)
+      });
+#+end_src
+** filter fetched su stat.gov.api
+
+#+begin_src javascript
+  const END_POINT = "https://get.data.gov.lt/datasets/gov/aaa/juros_mariu_bukle/KursiuMariuBaltijosJurosBukle"
+
+  fetch(END_POINT)
+      .then((res) => {
+          return res.json();
+      })
+      .then((data) => {
+          const praeitiMetai = data._data.filter(function (el){ // _data - nes api taip nurodyta, otherwise meta filter is not a function
+              return el.eko_bukle == "bloga"
+          })
+          console.log(praeitiMetai)
+          // console.log(data)
+      });
+#+end_src
+
+** filter out elements by type from array
+
+#+begin_src javascript
+const filterOutLetters = (arr) => arr.filter(element => typeof element === "number");
+
+console.log(filterOutLetters(['a', 's', 12, 54]))
+#+end_src
+
+* storage
+** store value to localstorage from form submit
+
+#+begin_src javascript
+// https://www.youtube.com/watch?v=CUNy0FRkP1s&ab_channel=CodeExpress
+
+// simple localstorage example start
+// localStorage.setItem("userName", "cneiuceruonc owefu ouwe");
+
+// const token = localStorage.getItem("userName");
+// console.log(token);
+// localStorage.removeItem("userName");
+// simple localstorage example end
+
+// get all values from HTML
+const form28submit = document.getElementById("form28submit");
+const form28reset = document.getElementById("form28reset");
+const form28 = document.getElementById("form28");
+
+// prevent form refresh on submit
+// if I dont do this, the browser refreshes instead of adding values to local storage
+form28.addEventListener('submit', (e) => {
+    e.preventDefault();
+});
+
+// creating reset button
+form28reset.addEventListener('click', (e) => {
+    let name = document.getElementById('form28input');
+
+    // set value
+    name.value = "";
+})
+
+// creating submit button
+
+form28submit.addEventListener('click', (e) => {
+    let name = document.getElementById('form28input');
+
+    // get value
+    name = name.value;
+    console.log(name)
+
+    // localstorage
+    localStorage.setItem('name', name);
+})
+#+end_src
+** store and take info from localstorage array object js
+
+#+begin_src javascript
+const profileInfo = {
+  firstName: 'John',
+  lastName: 'Snow',
+  picture: 'https://tele1.com.tr/wp-content/uploads/2019/05/john-snow.jpg',
+  description: 'Jon Snow is a fictional character in the A Song of Ice and Fire series of fantasy novels by American author George R. R. Martin, and its television adaptation Game of Thrones, in which he is portrayed by English actor Kit Harington. In the novels, he is a prominent point of view character.'
+}
+
+// adding data to localstorage. jei be json.stringify - returns object object
+localStorage.setItem('profile', JSON.stringify(profileInfo));
+
+// defining a variable with a html div ID in which I want to store the data
+const noHtmlWrapper2 = document.getElementById("noHtmlWrapper2");
+
+const renderProfileCard = (profile) => {
+    const img29 = document.createElement('img');
+    img29.width = '200';
+    img29.src = profile.picture;
+    img29.alt = `${profile.firstName} ${profile.lastName} profile picture`;
+
+    const name29 = document.createElement('h4');
+    name29.innerText = `${profile.firstName} ${profile.firstName}`;
+
+    const description29 = document.createElement('h5');
+    description29.innerText = profile.description;
+
+
+    const card29 = document.createElement('div');
+    card29.append(img29, name29, description29);
+    noHtmlWrapper2.append(card29);
+};
+
+const profileInfoFromLocalStorage = JSON.parse(localStorage.getItem('profile'));
+renderProfileCard(profileInfoFromLocalStorage);
+#+end_src
+** localstorage input store data and display
+
+#+begin_src javascript
+// code too difficult to look into now, copying it and keeping as a reference
+
+// "Sukurkite puslapį, kuriame būtų forma su vienu input - fullName.
+// Įvedus vardą ir pavardę, juos padalina į dvi dalis (name ir
+// surname). Vardą ir pavardę įdeda į objektą, o objektą - į array. Šį
+// array išsaugo localStorage. Po forma sukurkite lentelę joje
+// atvaizduokite informaciją iš localStorage.".
+
+const LOCAL_STORAGE_ITEM_KEY = 'users';
+
+const renderUsersTable = () => {
+    const users = JSON.parse(localStorage.getItem(LOCAL_STORAGE_ITEM_KEY));
+    const tbody = document.querySelector('tbody');
+    tbody.innerHTML = '';
+    users && users.forEach(user => {
+        const name = document.createElement('td');
+        name.innerText = user.name;
+
+        const surname = document.createElement('td');
+        surname.innerText = user.surname;
+
+        const tr = document.createElement('tr');
+        tr.append(name, surname);
+        tbody.append(tr);
+    })
+};
+
+document.querySelector('form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const fullName = event.target.querySelector('input[name="name"]').value;
+    const [name, surname] = fullName.split(' ');
+
+    const usersInlocalStorage = JSON.parse(localStorage.getItem(LOCAL_STORAGE_ITEM_KEY));
+    if (usersInlocalStorage && usersInlocalStorage.length) {
+        localStorage.setItem(LOCAL_STORAGE_ITEM_KEY, JSON.stringify([...usersInlocalStorage, { name, surname }]));
+    } else {
+        localStorage.setItem(LOCAL_STORAGE_ITEM_KEY, JSON.stringify([{ name, surname }]));
+    }
+    renderUsersTable();
+});
+
+renderUsersTable();
+#+end_src
+
+* data examples
+** characters
+#+begin_src javascript
+  const characters = [
+      {
+          name: 'Luke Skywalker',
+          height: '172',
+          mass: '77',
+          eye_color: 'blue',
+          gender: 'male',
+      },
+      {
+          name: 'Darth Vader',
+          height: '202',
+          mass: '136',
+          eye_color: 'yellow',
+          gender: 'male',
+      },
+      {
+          name: 'Leia Organa',
+          height: '150',
+          mass: '49',
+          eye_color: 'brown',
+          gender: 'female',
+      },
+      {
+          name: 'Anakin Skywalker',
+          height: '188',
+          mass: '84',
+          eye_color: 'blue',
+          gender: 'male',
+      },
+  ];
+#+end_src
+** cars small
+#+begin_src javascript
+  const cars = [
+      {
+          Name: "chevrolet chevelle concours (sw)",
+          Miles_per_Gallon: null,
+          Cylinders: 8,
+          Displacement: 350,
+          Horsepower: 165,
+          Weight_in_lbs: 4142,
+          Acceleration: 11.5,
+          Year: "1970-01-01",
+          Origin: "USA",
+      },
+      {
+          Name: "ford torino (sw)",
+          Miles_per_Gallon: null,
+          Cylinders: 8,
+          Displacement: 351,
+          Horsepower: 153,
+          Weight_in_lbs: 4034,
+          Acceleration: 11,
+          Year: "1970-01-01",
+          Origin: "USA",
+      },
+      {
+          Name: "plymouth satellite (sw)",
+          Miles_per_Gallon: null,
+          Cylinders: 8,
+          Displacement: 383,
+          Horsepower: 175,
+          Weight_in_lbs: 4166,
+          Acceleration: 10.5,
+          Year: "1970-01-01",
+          Origin: "USA",
+      },
+  ];
+#+end_src
+* map
+** map assign a value to each object
+
+ #+begin_src javascript
+   // su react render each element of the array in a p tag
+   const thingsArray = ["Thing 1", "Thing 2"]
+   const thingsElemenst = thingsArray.map(thing => <p>{thing}</p>)
+ #+end_src
+
+#+begin_src javascript
+const cars = [
+    {
+        Name: "chevrolet chevelle concours (sw)",
+        Miles_per_Gallon: null,
+        Cylinders: 8,
+        Displacement: 350,
+        Horsepower: 165,
+        Weight_in_lbs: 4142,
+        Acceleration: 11.5,
+        Year: "1970-01-01",
+        Origin: "USA",
+    },
+    {
+        Name: "ford torino (sw)",
+        Miles_per_Gallon: null,
+        Cylinders: 8,
+        Displacement: 351,
+        Horsepower: 153,
+        Weight_in_lbs: 4034,
+        Acceleration: 11,
+        Year: "1970-01-01",
+        Origin: "USA",
+    },
+    {
+        Name: "plymouth satellite (sw)",
+        Miles_per_Gallon: null,
+        Cylinders: 8,
+        Displacement: 383,
+        Horsepower: 175,
+        Weight_in_lbs: 4166,
+        Acceleration: 10.5,
+        Year: "1970-01-01",
+        Origin: "USA",
+    },
+];
+
+console.log(cars)
+
+const carsWithHp = cars.map((car) => {
+    return{...car, kilowatts: car.Horsepower * 0.7457}
+})
+
+console.log(carsWithHp)
+#+end_src
+
+* jsx/react
+* jsx
+
+After compilation, ~JSX expressions become regular JavaScript function
+calls~ and evaluate to JavaScript objects.
+
+This means that you can use JSX inside of if statements and for loops,
+assign it to variables, accept it as arguments, and return it from
+functions:
+
+#+begin_src javascript
+function getGreeting(user) {
+  if (user) {
+    return <h1>Hello, {formatName(user)}!</h1>;
+  }
+  return <h1>Hello, Stranger.</h1>;
+}
+#+end_src
+
+** its safe
+It is safe to embed user input in JSX:
+
+#+begin_src javascript
+const title = response.potentiallyMaliciousInput;
+// This is safe:
+const element = <h1>{title}</h1>;
+#+end_src
+
+By default, React DOM escapes any values embedded in JSX before
+rendering them. Thus it ensures that you can never inject anything
+that’s not explicitly written in your application. Everything is
+converted to a string before being rendered. This helps prevent XSS
+(cross-site-scripting) attacks.
+
+** put anything inside jsx
+
+#+begin_src javascript
+  // You can put any valid JavaScript expression inside the curly braces in
+  // JSX. For example, 2 + 2, user.firstName, or formatName(user) are all
+  // valid JavaScript expressions.
+  const name = 'Josh Perez';
+  const element = <h1>Hello, {name}</h1>;
+#+end_src
+
+#+begin_src javascript
+function formatName(user) {
+  return user.firstName + ' ' + user.lastName;
+}
+
+const user = {
+  firstName: 'Harper',
+  lastName: 'Perez'
+};
+
+const element = (
+  <h1>
+    Hello, {formatName(user)}!
+  </h1>
+);
+#+end_src
+
+** jsx rendering example with babel
+
+Babel compiles JSX down to React.createElement() calls.
+
+These two examples are identical:
+
+#+begin_src javascript
+const element = (
+  <h1 className="greeting">
+    Hello, world!
+  </h1>
+);
+#+end_src
+
+#+begin_src javascript
+const element = React.createElement(
+  'h1',
+  {className: 'greeting'},
+  'Hello, world!'
+);
+#+end_src
+
+React.createElement() performs a few checks to help you write bug-free
+code but essentially it creates an object like this:
+
+#+begin_src javascript
+// Note: this structure is simplified
+const element = {
+  type: 'h1',
+  props: {
+    className: 'greeting',
+    children: 'Hello, world!'
+  }
+};
+#+end_src
+
+** react elements are immutable
+
+React elements are ~immutable~. Once you create an element, you ~can’t
+change its children or attributes~. An element is like a single frame
+in a movie: it represents the UI at a certain point in time.
+
+** render h1 with react
+
+#+begin_src javascript
+  ReactDOM.render(<h1>One lineris</h1>, document.getElementById("root"))
+#+end_src
+
+#+begin_src javascript
+  ReactDOM.render(
+          <div>
+          <h1 className="header">This is JSX</h1>
+          <p>This is a paragraph</p>
+          </div>,
+      document.getElementById("root")
+  )
+#+end_src
+
+#+begin_src javascript
+const page = (
+    <div>
+        <h1 className="header">This is JSX</h1>
+        <p>This is a paragraph</p>
+    </div>
+)
+
+ReactDOM.render(
+    page,
+    document.getElementById("root")
+)
+#+end_src
+
+** render h1 with values react
+
+#+begin_src javascript
+const name = 'Arvydas'
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<h1>Du plius du lygu kam? - {2 + 2}!</h1>);
+
+const root2 = ReactDOM.createRoot(document.getElementById('root2'));
+root2.render(<h1>Tavo vardas yra - {name}!</h1>);
+#+end_src
+
+** render array object keys with react
+
+#+begin_src javascript
+  function formatName(user) {
+      return user.firstName + ' ' + user.lastName + "!!";
+  }
+
+  const user = {
+      firstName: 'Harper',
+      lastName: 'Perez'
+  };
+
+  const element = (
+          <h1>
+          Hello, {formatName(user)}?
+          </h1>
+  );
+
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(element);
+#+end_src
+
+** render ticking clock in react
+
+#+begin_src javascript
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+
+  function tick() {
+      const clock = (
+              <div>
+              <h2>It is {new Date().toLocaleTimeString()}.</h2>
+              </div>
+      );
+      root.render(clock);
+  }
+
+  setInterval(tick, 1000);
+#+end_src
+
+** render component with prop in react
+
+#+begin_src javascript
+  function Welcome(props) {
+      return <h1>Hello, {props.name}</h1>;
+  }
+
+  const element = <Welcome name="Sara" />;
+
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(element);
+#+end_src
+
+** render a component inside a component in react
+
+#+begin_src javascript
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+function App() {
+  return (
+    <div>
+      <Welcome name="Sara" />
+      <Welcome name="Cahal" />
+      <Welcome name="Edite" />
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+#+end_src
+
+** create and append to div vanilla javascript
+
+#+begin_src javascript
+  const element = document.createElement("h1");
+  element.textContent = "This is an imperative way to program"
+  element.className = "header"
+  const whereToAppend = document.getElementById("root").append(element);
+#+end_src
+
+** declarative vs imperative react vs vanilla javascript
+
+Here is same code written in and in vanilla javascript
+
+** Imperative - HOW it should be done?
+
+"describe me every step on how to do someting, and I'll do it"
+
+#+begin_src javascript
+
+  // vanilla javascript
+
+  const element = document.createElement("h1");
+  element.textContent = "This is an imperative way to program"
+  element.className = "header"
+  const whereToAppend = document.getElementById("root").append(element);
+#+end_src
+
+** Delcarative - WHAT should be done?
+
+"Just tell me what do do, and I'll worry about how I get it done"
+
+#+begin_src javascript
+
+  // REACT
+
+  ReactDOM.render(<h1 className="header">Hello, React!</h1>, document.getElementById("root"))
+#+end_src
+
+** console log react element jsx understanding
+
+we write jsx, which then is converted into plain javascript
+
+#+begin_src javascript
+
+  // const h1 = document.createElement("h1");
+  // h1.textContent = "Hello World"
+  // h1.className = "header"
+  // console.log("h1")
+
+  const element = <h1 className="header">This is JSX</h1>
+  console.log(element)
+
+  ReactDOM.render(element, document.getElementById("root"))
+
+  // when consolle log the element - we get this
+
+  /*
+    {
+    "type": "h1",
+    "key": null,
+    "ref": null,
+    "props": {
+    "className": "header",
+    "children": "This is JSX"
+    },
+    "_owner": null,
+    "_store": {}
+    }
+  ,*/
+#+end_src
+
+** render simple static page with react
+
+#+begin_src javascript
+
+const page = (
+    <root>
+        <nav>
+            <img src="./react-logo.png" width="40px" />
+        </nav>
+        <div>
+            <h1>Fun facts about React</h1>
+            <ul>
+                <li>Was first released in 2013</li>
+                <li>Was originally created by Jordan Walke</li>
+                <li>Has well over 100K stars on Github</li>
+                <li>Is maintained by Facebook</li>
+                <li>Powers thousands of enterprise apps, including mobile apps</li>
+            </ul>
+        </div>
+    </root>
+)
+
+ReactDOM.render(page, document.getElementById("root"))
+
+#+end_src
+
+** single component to function to multiple components in react
+
+1. Create a return function
+2. Put all code in return function
+3. reactDOM.render(functionName(), document.getelementbyid....)
+4. make function name from "pascal case" - meaning first letter capital
+5. add <FunctionName /> in render
+
+*** First - basic way
+#+begin_src javascript
+
+const page = (
+    <root>
+        <nav>
+            <img src="./react-logo.png" width="40px" />
+        </nav>
+        <div>
+            <h1>Fun facts about React</h1>
+            <ul>
+                <li>Was first released in 2013</li>
+                <li>Was originally created by Jordan Walke</li>
+                <li>Has well over 100K stars on Github</li>
+                <li>Is maintained by Facebook</li>
+                <li>Powers thousands of enterprise apps, including mobile apps</li>
+            </ul>
+        </div>
+    </root>
+)
+
+ReactDOM.render(page, document.getElementById("root"))
+
+#+end_src
+*** Second - function way
+#+begin_src javascript
+function temporaryName() {
+    return (
+        <root>
+            <nav>
+                <img src="./react-logo.png" width="40px" />
+            </nav>
+            <div>
+                <h1>Fun facts about React</h1>
+                <ul>
+                    <li>Was first released in 2013</li>
+                    <li>Was originally created by Jordan Walke</li>
+                    <li>Has well over 100K stars on Github</li>
+                    <li>Is maintained by Facebook</li>
+                    <li>Powers thousands of enterprise apps, including mobile apps</li>
+                </ul>
+            </div>
+        </root>
+    )
+}
+
+ReactDOM.render(temporaryName(),document.getElementById("root"))
+#+end_src
+*** Third - component way
+#+begin_src javascript
+function TemporaryName() {
+    return (
+        <root>
+            <nav>
+                <img src="./react-logo.png" width="40px" />
+            </nav>
+            <div>
+                <h1>Fun facts about React</h1>
+                <ul>
+                    <li>Was first released in 2013</li>
+                    <li>Was originally created by Jordan Walke</li>
+                    <li>Has well over 100K stars on Github</li>
+                    <li>Is maintained by Facebook</li>
+                    <li>Powers thousands of enterprise apps, including mobile apps</li>
+                </ul>
+            </div>
+        </root>
+    )
+}
+
+ReactDOM.render(<TemporaryName />,document.getElementById("root"))
+#+end_src
+** push in react/javascript
+
+#+begin_src javascript
+  const thingsArray = ["Thing 1", "Thing 2"]
+  function addItem(){
+      const newThingText = `Thing ${thingsArray.length + 1}`
+      thingsArray.push(newThingText)
+      console.log(thingsArray)
+  }
+  <button onClick={addItem}>Add item</button>
+#+end_src
