@@ -771,3 +771,11 @@ SQLAlchemy==1.4.46
 Werkzeug==2.2.2
 zipp==3.11.0
 #+end_src
+
+* Flask 1 dalis
+** Class notes
+
+#+begin_src python
+if __name__ == '__main__':
+  app.run(host='127.0.0.1', port=8000, debug=True)
+#+end_src
