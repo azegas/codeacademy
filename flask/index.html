@@ -3,106 +3,244 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="CodeAcademy Flask notes">
-        <link rel="alternate"
-              type="application/rss+xml"
-              href="https://arvydasg.github.io/rss.xml"
-              title="RSS feed for https://arvydasg.github.io/">
-        <title>CodeAcademy Flask</title>
-        <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                                                              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                                                                                                        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                                                                                                            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-         })(window,document,'script','dataLayer','GTM-MC4ZQHP');</script>
-        <!-- End Google Tag Manager -->
-        <meta name="author" content="Arvydas Gasparavicius">
-        <meta name="referrer" content="no-referrer">
-        <meta name="viewport" content="initial-scale=1,width=device-width,minimum-scale=1">
-        <link href= "../readtheorg.css" rel="stylesheet" type="text/css" />
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-            crossorigin="anonymous"
-        />
-        <script src="static/lightbox.js"></script>
-        <script src="static/auto-render.min.js"></script>
-        <link rel="icon" href="static/ag.ico"></head>
-        <body>
-            <!-- Google Tag Manager (noscript) -->
-            <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MC4ZQHP"
-                              height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-            <!-- End Google Tag Manager (noscript) -->
-            <nav class="text-center navbar navbar-expand-lg navbar-light bg-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div style="justify-content:center" class="collapse navbar-collapse " id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://arvydas.dev/codeacademy/">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://arvydas.dev/codeacademy/html_css/index.html">HTML/CSS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://arvydas.dev/codeacademy/javascript/index.html">JavaScript</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="https://arvydas.dev/codeacademy/python/index.html">Python</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="https://arvydas.dev/codeacademy/databases/index.html">Databases</a>
-                    </li>
+<!-- 2023-02-07 Tue 18:05 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CodeAcademy Flask</title>
+<meta name="author" content="arvydas" />
+<meta name="description" content="CodeAcademy Flask notes" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
-                    <li class="nav-item">
-                        <a class="nav-link active " href="https://arvydas.dev/codeacademy/flask/index.html">Flask</a>
-                    </li>
-                </ul>
-            </div>
-    </nav>
-    <div id="content" class="content">
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">CodeAcademy Flask</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8129e90">1. Įžanga į Flask</a>
+<li><a href="#orgb4635f3">1. Įžanga į Flask</a>
 <ul>
-<li><a href="#orgac9e766">1.1. Kaip sukurti minimalią svetainę:</a></li>
-<li><a href="#org599fa74">1.2. Kaip puslapyje atvaizduoti įvestą kintamąjį:</a></li>
-<li><a href="#org11b6bcb">1.3. Kaip sukurti ir panaudoti HTML šabloną:</a></li>
-<li><a href="#org29556be">1.4. Kaip kintamuosius perkelti į šabloną:</a></li>
-<li><a href="#org1225a4a">1.5. Kaip perduoti duomenis iš svetainės į programą:</a></li>
-<li><a href="#org8115a71">1.6. Naudojame base.html šabloną:</a></li>
-<li><a href="#org9e59c28">1.7. Stiliui panaudojame "Bootstrap":</a></li>
-<li><a href="#org0523129">1.8. Užduotys</a></li>
+<li><a href="#org1b60804">1.1. Kaip sukurti minimalią svetainę:</a></li>
+<li><a href="#org0c1a923">1.2. Kaip puslapyje atvaizduoti įvestą kintamąjį:</a></li>
+<li><a href="#orgf00c41c">1.3. Kaip sukurti ir panaudoti HTML šabloną:</a></li>
+<li><a href="#orgeba88b1">1.4. Kaip kintamuosius perkelti į šabloną:</a></li>
+<li><a href="#orgffd78ca">1.5. Kaip perduoti duomenis iš svetainės į programą:</a></li>
+<li><a href="#org4895e8d">1.6. Naudojame base.html šabloną:</a></li>
+<li><a href="#org2e8dc2c">1.7. Stiliui panaudojame "Bootstrap":</a></li>
+<li><a href="#orge1e30a3">1.8. Užduotys</a></li>
+</ul>
+</li>
+<li><a href="#org0442876">2. Flask 1 dalis</a>
+<ul>
+<li><a href="#org2daede8">2.1. Susikurkime paprastą flask aplikaciją</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8129e90" class="outline-2">
-    <h2 id="org8129e90"><span class="section-number-2">1.</span> Įžanga į Flask</h2>
-    <p>
-        Flask yra populiariausias Python microframework. Jeigu projektas nėra
-        labai didelis, arba tiesiog norime pasidaryti kažkokį GUI per
-        naršyklę, kažką greitai prototipuoti, Flask yra labai geras
-        pasirinkimas. Su flask yra pakankamai paprasta kurti API's. Ši
-        paskaita bus greita įžanga, kitose nagrinėsime išsamiau.
-    </p>
+<div id="outline-container-orgb4635f3" class="outline-2">
+<h2 id="orgb4635f3"><span class="section-number-2">1.</span> Įžanga į Flask</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Flask yra populiariausias Python microframework. Jeigu projektas nėra
+labai didelis, arba tiesiog norime pasidaryti kažkokį GUI per
+naršyklę, kažką greitai prototipuoti, Flask yra labai geras
+pasirinkimas. Su flask yra pakankamai paprasta kurti API's. Ši
+paskaita bus greita įžanga, kitose nagrinėsime išsamiau.
+</p>
 
-    <p>
-        Flask galima įdiegti su pip naudojant <code>pip install flask</code>.
-    </p>
-
-
-    <div class="outline-text-2" id="text-1">
+<p>
+Flask galima įdiegti su pip naudojant <code>pip install flask</code>.
+</p>
 </div>
-<div id="outline-container-orgac9e766" class="outline-3">
-<h3 id="orgac9e766"><span class="section-number-3">1.1.</span> Kaip sukurti minimalią svetainę:</h3>
+
+<div id="outline-container-org1b60804" class="outline-3">
+<h3 id="org1b60804"><span class="section-number-3">1.1.</span> Kaip sukurti minimalią svetainę:</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #fb4934;">from</span> flask <span style="color: #fb4934;">import</span> Flask
@@ -120,8 +258,8 @@
 </div>
 </div>
 
-<div id="outline-container-org599fa74" class="outline-3">
-<h3 id="org599fa74"><span class="section-number-3">1.2.</span> Kaip puslapyje atvaizduoti įvestą kintamąjį:</h3>
+<div id="outline-container-org0c1a923" class="outline-3">
+<h3 id="org0c1a923"><span class="section-number-3">1.2.</span> Kaip puslapyje atvaizduoti įvestą kintamąjį:</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #fb4934;">from</span> flask <span style="color: #fb4934;">import</span> Flask
@@ -139,8 +277,8 @@
 </div>
 </div>
 
-<div id="outline-container-org11b6bcb" class="outline-3">
-<h3 id="org11b6bcb"><span class="section-number-3">1.3.</span> Kaip sukurti ir panaudoti HTML šabloną:</h3>
+<div id="outline-container-orgf00c41c" class="outline-3">
+<h3 id="orgf00c41c"><span class="section-number-3">1.3.</span> Kaip sukurti ir panaudoti HTML šabloną:</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 main.py:
@@ -203,8 +341,8 @@ templates/index.html:
 </div>
 </div>
 
-<div id="outline-container-org29556be" class="outline-3">
-<h3 id="org29556be"><span class="section-number-3">1.4.</span> Kaip kintamuosius perkelti į šabloną:</h3>
+<div id="outline-container-orgeba88b1" class="outline-3">
+<h3 id="orgeba88b1"><span class="section-number-3">1.4.</span> Kaip kintamuosius perkelti į šabloną:</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 main.py
@@ -248,8 +386,8 @@ templates/index.html
 </div>
 </div>
 
-<div id="outline-container-org1225a4a" class="outline-3">
-<h3 id="org1225a4a"><span class="section-number-3">1.5.</span> Kaip perduoti duomenis iš svetainės į programą:</h3>
+<div id="outline-container-orgffd78ca" class="outline-3">
+<h3 id="orgffd78ca"><span class="section-number-3">1.5.</span> Kaip perduoti duomenis iš svetainės į programą:</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 main.py
@@ -316,8 +454,8 @@ templates/greetings.html
 </div>
 </div>
 
-<div id="outline-container-org8115a71" class="outline-3">
-<h3 id="org8115a71"><span class="section-number-3">1.6.</span> Naudojame base.html šabloną:</h3>
+<div id="outline-container-org4895e8d" class="outline-3">
+<h3 id="org4895e8d"><span class="section-number-3">1.6.</span> Naudojame base.html šabloną:</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 Failas templates/base.html:
@@ -372,8 +510,8 @@ Failas templates/greetings.html:
 </div>
 </div>
 
-<div id="outline-container-org9e59c28" class="outline-3">
-<h3 id="org9e59c28"><span class="section-number-3">1.7.</span> Stiliui panaudojame "Bootstrap":</h3>
+<div id="outline-container-org2e8dc2c" class="outline-3">
+<h3 id="org2e8dc2c"><span class="section-number-3">1.7.</span> Stiliui panaudojame "Bootstrap":</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 Faile base.html:
@@ -427,12 +565,12 @@ Faile base.html:
 </div>
 </div>
 
-<div id="outline-container-org0523129" class="outline-3">
-<h3 id="org0523129"><span class="section-number-3">1.8.</span> Užduotys</h3>
+<div id="outline-container-orge1e30a3" class="outline-3">
+<h3 id="orge1e30a3"><span class="section-number-3">1.8.</span> Užduotys</h3>
 <div class="outline-text-3" id="text-1-8">
 </div>
-<div id="outline-container-org0e2e6ff" class="outline-4">
-<h4 id="org0e2e6ff"><span class="section-number-4">1.8.1.</span> 1 užduotis</h4>
+<div id="outline-container-org2494b50" class="outline-4">
+<h4 id="org2494b50"><span class="section-number-4">1.8.1.</span> 1 užduotis</h4>
 <div class="outline-text-4" id="text-1-8-1">
 <p>
 Sukurti programą, kuri turėtų statinį puslapį, pvz. localhost:5000 su
@@ -476,15 +614,15 @@ template/home.html
 </div>
 
 
-<div id="org190a47d" class="figure">
-<p><img src="./images/1.png" alt="1.png" width="600px" />
+<div id="org71e0498" class="figure">
+<p><img src="./static/images/1.png" alt="1.png" width="600px" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgc92fc6f" class="outline-4">
-<h4 id="orgc92fc6f"><span class="section-number-4">1.8.2.</span> 2 užduotis</h4>
+<div id="outline-container-org2a3e080" class="outline-4">
+<h4 id="org2a3e080"><span class="section-number-4">1.8.2.</span> 2 užduotis</h4>
 <div class="outline-text-4" id="text-1-8-2">
 <p>
 Sukurti programą, kuri įvedus norimą žodį adreso eilutėje (po /
@@ -535,15 +673,15 @@ templates/word.html
 
 
 
-<div id="org5d8d4dd" class="figure">
-<p><img src="./images/2.png" alt="2.png" width="600px" />
+<div id="org916618d" class="figure">
+<p><img src="./static/images/2.png" alt="2.png" width="600px" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgec25e25" class="outline-4">
-<h4 id="orgec25e25"><span class="section-number-4">1.8.3.</span> 3 užduotis</h4>
+<div id="outline-container-org2999409" class="outline-4">
+<h4 id="org2999409"><span class="section-number-4">1.8.3.</span> 3 užduotis</h4>
 <div class="outline-text-4" id="text-1-8-3">
 <p>
 Sukurti programą, kuri puslapyje localhost:5000/keliamieji parodytų
@@ -596,15 +734,15 @@ templates/leap.html
 </div>
 
 
-<div id="org86d950a" class="figure">
-<p><img src="./images/3.png" alt="3.png" width="600px" />
+<div id="org173720b" class="figure">
+<p><img src="./static/images/3.png" alt="3.png" width="600px" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgbb33a91" class="outline-4">
-<h4 id="orgbb33a91"><span class="section-number-4">1.8.4.</span> 4 užduotis</h4>
+<div id="outline-container-orgf5357e8" class="outline-4">
+<h4 id="orgf5357e8"><span class="section-number-4">1.8.4.</span> 4 užduotis</h4>
 <div class="outline-text-4" id="text-1-8-4">
 <p>
 Sukurti programą, kuri leistų įvesti metus ir paspaudus patvirtinimo
@@ -686,16 +824,16 @@ templates/isleap.html
 </div>
 
 
-<div id="org26ca9d9" class="figure">
-<p><img src="./images/4.gif" alt="4.gif" width="600px" />
+<div id="org005fb7c" class="figure">
+<p><img src="./static/images/4.gif" alt="4.gif" width="600px" />
 </p>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org8657f3b" class="outline-4">
-<h4 id="org8657f3b"><span class="section-number-4">1.8.5.</span> 5 užduotis (papildomai)</h4>
+<div id="outline-container-org81590e1" class="outline-4">
+<h4 id="org81590e1"><span class="section-number-4">1.8.5.</span> 5 užduotis (papildomai)</h4>
 <div class="outline-text-4" id="text-1-8-5">
 <p>
 Patobulinti anksčiau kurtą biudžeto programą, panaudojant Flask
@@ -975,8 +1113,8 @@ Run main.py and open <a href="http://127.0.0.1:5000">http://127.0.0.1:5000</a>, 
 </p>
 
 
-<div id="orga35fd56" class="figure">
-<p><img src="./images/5.gif" alt="5.gif" width="600px" />
+<div id="orgba5688e" class="figure">
+<p><img src="./static/images/5.gif" alt="5.gif" width="600px" />
 </p>
 </div>
 
@@ -1033,6 +1171,439 @@ importlib-metadata==6.0.0
 </div>
 </div>
 </div>
+
+<div id="outline-container-org0442876" class="outline-2">
+<h2 id="org0442876"><span class="section-number-2">2.</span> Flask 1 dalis</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org2daede8" class="outline-3">
+<h3 id="org2daede8"><span class="section-number-3">2.1.</span> Susikurkime paprastą flask aplikaciją</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+app.py:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fb4934;">from</span> flask <span style="color: #fb4934;">import</span> Flask, render_template
+<span style="color: #928374;"># </span><span style="color: #928374;">i&#353; flask bibliotekos importuojame klas&#281; Flask ir f-j&#261; render_template.</span>
+<span style="color: #83a598;">app</span> = Flask<span style="color: #fe8019;">(</span><span style="color: #fe8019;">__name__</span><span style="color: #fe8019;">)</span>
+<span style="color: #928374;"># </span><span style="color: #928374;">inicijuojame klas&#279;s Flask objekt&#261;, priskiriame kintam&#261;jam app.</span>
+
+<span style="color: #fabd2f;">@app.route</span><span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'/'</span><span style="color: #fe8019;">)</span>
+<span style="color: #928374;"># </span><span style="color: #928374;">&#303;velkame f-j&#261; &#303; flask dekoratori&#371;. Be jo  funkcija b&#363;t&#371; bereik&#353;m&#279;. Dekorato riaus parametruose nurodome, kad nor&#279;sime rezultato 127.0.0.1:8000/ url adrese."""</span>
+
+<span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">index</span><span style="color: #fe8019;">()</span>:
+    <span style="color: #fb4934;">return</span> render_template<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'index.html'</span><span style="color: #fe8019;">)</span>
+<span style="color: #928374;"># </span><span style="color: #928374;">funkcijoje index nurodome, kad nor&#279;sime sugeneruoti index.html</span>
+
+<span style="color: #fb4934;">if</span> <span style="color: #fe8019;">__name__</span> == <span style="color: #b8bb26;">'__main__'</span>:
+  app.run<span style="color: #fe8019;">(</span>host=<span style="color: #b8bb26;">'127.0.0.1'</span>, port=8000, debug=<span style="color: #d3869b;">True</span><span style="color: #fe8019;">)</span>
+
+<span style="color: #928374;"># </span><span style="color: #928374;">patikrin&#281;, ar programa leid&#382;iama ne i&#353; kito failo, leid&#382;iame m&#363;s&#371; app, su parametrais. debug = True klaidos atveju mums rodys informatyvias &#382;inutes nar&#353;ykl&#279;je.</span>
+</pre>
+</div>
+
+<p>
+Komentaruose šiek tiek informacijos, kas vyksta. Dabar mums reikės
+susikurti html šabloną. Flask šablonų ieško templates kataloge. :
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #fb4934;">!DOCTYPE</span> html&gt;
+&lt;<span style="color: #b8bb26;">html</span> <span style="color: #83a598;">lang</span>=<span style="color: #b8bb26;">"en"</span>&gt;
+&lt;<span style="color: #b8bb26;">head</span>&gt;
+    &lt;<span style="color: #b8bb26;">meta</span> <span style="color: #83a598;">charset</span>=<span style="color: #b8bb26;">"UTF-8"</span>&gt;
+    &lt;<span style="color: #b8bb26;">meta</span> <span style="color: #83a598;">name</span>=<span style="color: #b8bb26;">"viewport"</span> <span style="color: #83a598;">content</span>=<span style="color: #b8bb26;">"width=device-width, initial-scale=1.0"</span>&gt;
+    &lt;<span style="color: #b8bb26;">meta</span> <span style="color: #83a598;">http-equiv</span>=<span style="color: #b8bb26;">"X-UA-Compatible"</span> <span style="color: #83a598;">content</span>=<span style="color: #b8bb26;">"ie=edge"</span>&gt;
+    &lt;<span style="color: #b8bb26;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Demo</span>&lt;/<span style="color: #b8bb26;">title</span>&gt;
+&lt;/<span style="color: #b8bb26;">head</span>&gt;
+&lt;<span style="color: #b8bb26;">body</span>&gt;
+    &lt;<span style="color: #b8bb26;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Flask Flask Flask</span>&lt;/<span style="color: #b8bb26;">h1</span>&gt;
+&lt;/<span style="color: #b8bb26;">body</span>&gt;
+&lt;/<span style="color: #b8bb26;">html</span>&gt;
+</pre>
+</div>
+
+<p>
+Patikrinkime, ar veikia:
+</p>
+
+
+<div id="org8c0e4ed" class="figure">
+<p><img src="./static/images/flask1_1.png" alt="flask1_1.png" width="600px" />
+</p>
+</div>
+
+
+<p>
+Logikos naudojimas šablonuose:
+</p>
+
+<p>
+Už logiką šablonuose atsako Jinja2 šablonų generatorius (templating
+engine), jis per savo sintaksę leidžia mums įterpti kintamuosius ir
+logiką į html failus.
+</p>
+
+<p>
+paruoškime paprastą žodynų sąrašą, kuris galės būti mūsų duomenų bazės
+imitacija:
+</p>
+
+<p>
+dictionary.py:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #83a598;">data</span> =<span style="color: #fe8019;">[</span><span style="color: #cc241d;">{</span>
+    <span style="color: #b8bb26;">'data'</span>:<span style="color: #b8bb26;">'2020 01 01'</span>,
+    <span style="color: #b8bb26;">'autorius'</span>: <span style="color: #b8bb26;">'Autorius 1'</span>,
+    <span style="color: #b8bb26;">'pavadinimas'</span>: <span style="color: #b8bb26;">'Apie niek&#261;'</span>,
+    <span style="color: #b8bb26;">'tekstas'</span>: <span style="color: #b8bb26;">'Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit&#8203;&#8203;, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris.'</span>
+<span style="color: #cc241d;">}</span>,
+<span style="color: #cc241d;">{</span>
+    <span style="color: #b8bb26;">'data'</span>:<span style="color: #b8bb26;">'2020 02 01'</span>,
+    <span style="color: #b8bb26;">'autorius'</span>: <span style="color: #b8bb26;">'KITAS AUTORIUS'</span>,
+    <span style="color: #b8bb26;">'pavadinimas'</span>: <span style="color: #b8bb26;">'Apie zombius'</span>,
+    <span style="color: #b8bb26;">'tekstas'</span>: <span style="color: #b8bb26;">'Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit&#8203;&#8203;, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. '</span>
+<span style="color: #cc241d;">}</span>,
+<span style="color: #cc241d;">{</span>
+    <span style="color: #b8bb26;">'data'</span>:<span style="color: #b8bb26;">'2020 03 01'</span>,
+    <span style="color: #b8bb26;">'autorius'</span>: <span style="color: #b8bb26;">'Dar ka&#382;kas'</span>,
+    <span style="color: #b8bb26;">'pavadinimas'</span>: <span style="color: #b8bb26;">'Braiiins!'</span>,
+    <span style="color: #b8bb26;">'tekstas'</span>: <span style="color: #b8bb26;">'Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit&#8203;&#8203;, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris.'</span>
+<span style="color: #cc241d;">}</span><span style="color: #fe8019;">]</span>
+</pre>
+</div>
+
+
+<p>
+Pagrindiniame faile importuokime šį kintamąjį ir perduokime į šabloną:
+</p>
+
+<p>
+app.py:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fb4934;">from</span> flask <span style="color: #fb4934;">import</span> Flask, render_template
+<span style="color: #fb4934;">from</span> dictionary <span style="color: #fb4934;">import</span> data <span style="color: #928374;"># </span><span style="color: #928374;">IMPORTUOJAME</span>
+<span style="color: #83a598;">app</span> = Flask<span style="color: #fe8019;">(</span><span style="color: #fe8019;">__name__</span><span style="color: #fe8019;">)</span>
+
+
+<span style="color: #fabd2f;">@app.route</span><span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'/'</span><span style="color: #fe8019;">)</span>
+
+<span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">index</span><span style="color: #fe8019;">()</span>:
+    <span style="color: #fb4934;">return</span> render_template<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'index.html'</span>, data=data<span style="color: #fe8019;">)</span> <span style="color: #928374;"># </span><span style="color: #928374;">PERDUODAME &#302; &#352;ABLON&#260;</span>
+
+<span style="color: #fb4934;">if</span> <span style="color: #fe8019;">__name__</span> == <span style="color: #b8bb26;">'__main__'</span>:
+  app.run<span style="color: #fe8019;">(</span>host=<span style="color: #b8bb26;">'127.0.0.1'</span>, port=8000, debug=<span style="color: #d3869b;">True</span><span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+<p>
+Dabar dirbsime su šablonu. Pradžiai tiesiog perduokime kintamąjį į
+body:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #b8bb26;">body</span>&gt;
+    &lt;<span style="color: #b8bb26;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Straipsniai:</span>&lt;/<span style="color: #b8bb26;">h1</span>&gt;
+    {{ data }}
+&lt;/<span style="color: #b8bb26;">body</span>&gt;
+</pre>
+</div>
+
+
+<div id="org7de1b6e" class="figure">
+<p><img src="./static/images/flask1_2.png" alt="flask1_2.png" width="600px" />
+</p>
+</div>
+
+<p>
+Čia yra grubus žodynų sąrašo perdavimas, jį ir matome. Pabandykime tai
+paversti straipsnių puslapiu:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #b8bb26;">body</span>&gt;
+    &lt;<span style="color: #b8bb26;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Straipsniai</span>&lt;/<span style="color: #b8bb26;">h1</span>&gt;
+    &lt;<span style="color: #b8bb26;">br</span>&gt;&lt;<span style="color: #b8bb26;">br</span>&gt;
+    {% for straipsnis in data %}
+    &lt;<span style="color: #b8bb26;">h3</span>&gt;<span style="font-style: italic; text-decoration: underline;">{{ straipsnis['pavadinimas'] }}</span>&lt;/<span style="color: #b8bb26;">h3</span>&gt;
+    &lt;<span style="color: #b8bb26;">p</span>&gt;{{ straipsnis['data'] }}, {{ straipsnis['autorius'] }}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+    &lt;<span style="color: #b8bb26;">hr</span>&gt;
+    &lt;<span style="color: #b8bb26;">p</span>&gt;{{ straipsnis['tekstas'] }}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+    &lt;<span style="color: #b8bb26;">hr</span>&gt;
+    {% endfor %}
+&lt;/<span style="color: #b8bb26;">body</span>&gt;
+</pre>
+</div>
+
+
+<div id="org1654398" class="figure">
+<p><img src="./static/images/flask1_3.png" alt="flask1_3.png" width="600px" />
+</p>
+</div>
+
+<p>
+Matome, kaip galime iteruoti per duomenis html'e. Pamėginkime įtraukti
+if logiką. Pradžiai papildykime 'duomenų bazę'. Kiekviename žodyne
+įtraukime 'status'. Dalies statusas bus 'published', dalies
+'unpublished':
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fe8019;">{</span>
+    <span style="color: #b8bb26;">'data'</span>:<span style="color: #b8bb26;">'2020 01 01'</span>,
+    <span style="color: #b8bb26;">'autorius'</span>: <span style="color: #b8bb26;">'Autorius 1'</span>,
+    <span style="color: #b8bb26;">'pavadinimas'</span>: <span style="color: #b8bb26;">'Apie niek&#261;'</span>,
+    <span style="color: #b8bb26;">'tekstas'</span>: <span style="color: #b8bb26;">'Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit&#8203;&#8203;, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris.'</span>,
+    <span style="color: #b8bb26;">'status'</span>: <span style="color: #b8bb26;">'published'</span>
+<span style="color: #fe8019;">}</span>, <span style="color: #928374;"># </span><span style="color: #928374;">ir t.t.</span>
+</pre>
+</div>
+
+<p>
+įtraukime if logiką į šabloną:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #b8bb26;">body</span>&gt;
+    &lt;<span style="color: #b8bb26;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Straipsniai</span>&lt;/<span style="color: #b8bb26;">h1</span>&gt;
+    &lt;<span style="color: #b8bb26;">br</span>&gt;
+    {% for straipsnis in data %}
+    {% if straipsnis['status'] == 'published' %}
+    &lt;<span style="color: #b8bb26;">h3</span>&gt;<span style="font-style: italic; text-decoration: underline;">{{ straipsnis['pavadinimas'] }}</span>&lt;/<span style="color: #b8bb26;">h3</span>&gt;
+    &lt;<span style="color: #b8bb26;">p</span>&gt;{{ straipsnis['data'] }}, &lt;<span style="color: #b8bb26;">i</span>&gt;<span style="font-style: italic;">{{ straipsnis['autorius'] }}</span>&lt;/<span style="color: #b8bb26;">i</span>&gt;&lt;/<span style="color: #b8bb26;">p</span>&gt;
+    &lt;<span style="color: #b8bb26;">hr</span>&gt;
+    &lt;<span style="color: #b8bb26;">p</span>&gt;{{ straipsnis['tekstas'] }}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+    &lt;<span style="color: #b8bb26;">br</span>&gt;&lt;<span style="color: #b8bb26;">br</span>&gt;
+    {% endif %}
+    {% endfor %}
+&lt;/<span style="color: #b8bb26;">body</span>&gt;
+</pre>
+</div>
+
+
+<div id="orge48430d" class="figure">
+<p><img src="./static/images/flask1_4.png" alt="flask1_4.png" width="600px" />
+</p>
+</div>
+
+<p>
+Matome, kad straipsnis su statusu != 'published' nebuvo publikuotas.
+Kaip ir python'e, galima naudoti {%elif %} ir {% else %}. Pvz.:
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #b8bb26;">body</span>&gt;
+    &lt;<span style="color: #b8bb26;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Straipsniai</span>&lt;/<span style="color: #b8bb26;">h1</span>&gt;
+    &lt;<span style="color: #b8bb26;">br</span>&gt;
+    {% for straipsnis in data %}
+    {% if straipsnis['status'] == 'published' %}
+    &lt;<span style="color: #b8bb26;">h3</span>&gt;<span style="font-style: italic; text-decoration: underline;">{{ straipsnis['pavadinimas'] }}</span>&lt;/<span style="color: #b8bb26;">h3</span>&gt;
+    &lt;<span style="color: #b8bb26;">p</span>&gt;{{ straipsnis['data'] }}, &lt;<span style="color: #b8bb26;">i</span>&gt;<span style="font-style: italic;">{{ straipsnis['autorius'] }}</span>&lt;/<span style="color: #b8bb26;">i</span>&gt;&lt;/<span style="color: #b8bb26;">p</span>&gt;
+    &lt;<span style="color: #b8bb26;">hr</span>&gt;
+    &lt;<span style="color: #b8bb26;">p</span>&gt;{{ straipsnis['tekstas'] }}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+    &lt;<span style="color: #b8bb26;">br</span>&gt;&lt;<span style="color: #b8bb26;">br</span>&gt;
+    {% else %}
+    &lt;<span style="color: #b8bb26;">h3</span>&gt;{{ straipsnis['pavadinimas'] }} - &lt;<span style="color: #b8bb26;">i</span>&gt;<span style="font-style: italic;">Publikavimas laikinai i&#353;jungtas</span>&lt;/<span style="color: #b8bb26;">i</span>&gt;&lt;/<span style="color: #b8bb26;">h3</span>&gt;
+    &lt;<span style="color: #b8bb26;">br</span>&gt;&lt;<span style="color: #b8bb26;">br</span>&gt;
+    {% endif %}
+    {% endfor %}
+&lt;/<span style="color: #b8bb26;">body</span>&gt;
+</pre>
+</div>
+
+
+<div id="orgc30a230" class="figure">
+<p><img src="./static/images/flask1_5.png" alt="flask1_5.png" width="600px" />
+</p>
+</div>
+
+<p>
+Paveldėjimas šablonuose
+</p>
+
+<p>
+Dažniausiai interneto svetainės turi struktūrą, kai kiekviename
+puslapyje atsikartoja tam tikri komponentai. Tai gali būti titulinė
+puslapio dalis, &lt;head&gt; komponentai, navigacijos panelė, footer'is,
+nuorodos į CSS, JavaScript ir pan. Jinja2 turi mechanizmą, leidžiantį
+mums kiekvieną kartą nerašyti į šabloną šių komponentų, t.y. išsaugoti
+juos atskirai ir naudoti tik nuorodas į juos. Pabandykime pritaikyti
+praktikoje.
+</p>
+
+<p>
+Pasiskolinkime standartinį išdėstymą iš <a href="https://github.com/StartBootstrap/startbootstrap-bare/blob/master/dist/index.html">čia</a>.
+</p>
+
+<p>
+Tam, kad veiktų mobiliosios versijos navigacija, data-toggle ir
+data-target reikia pakeisti data-bs-toggle ir data-bs-target.
+</p>
+
+<p>
+Nusikopijuokime nuorodos HTML'ą į kokį nors html failą.
+</p>
+
+<p>
+Pakeiskime lokalias css ir JavaScript nuorodas į <a href="https://getbootstrap.com/docs/4.3/getting-started/introduction/">Bootstrap CDN</a>
+</p>
+
+<p>
+Perkelkime savo &lt;body&gt; dalį vietoje tos dalies, kuri yra po komentaru
+&lt;!&#x2013; Page Content &#x2013;&gt;
+</p>
+
+<p>
+senąjį failą pervadinkime backup.html, naująjį - index html.
+</p>
+
+<p>
+Rezultatas atrodys maždaug taip:
+</p>
+
+
+<div id="org9298a87" class="figure">
+<p><img src="./static/images/flask1_6.png" alt="flask1_6.png" width="600px" />
+</p>
+</div>
+
+<p>
+Įsivaizduokime, kad mums reikės dar puslapio 'apie', galbūt dar keleto
+puslapių ateityje. Visi jie turės tą patį bootstrap'ą, ir tą pačią
+navigacijos panelę.
+</p>
+
+<p>
+templates kataloge susikurkime failą base.html
+</p>
+
+<p>
+visą turinį iš index.html nukopijuokime į naują base.html.
+</p>
+
+<p>
+tuomet viską kas yra &lt;div class="container"&gt; viduje, triname ir
+pakeičiame į {% block content %}{% endblock %}:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">          &lt;/<span style="color: #b8bb26;">ul</span>&gt;
+        &lt;/<span style="color: #b8bb26;">div</span>&gt;
+    &lt;/<span style="color: #b8bb26;">div</span>&gt;
+&lt;/<span style="color: #b8bb26;">nav</span>&gt;
+
+<span style="color: #928374;">&lt;!-- </span><span style="color: #928374;">Page Content</span><span style="color: #928374;"> --&gt;</span>
+
+&lt;<span style="color: #b8bb26;">body</span>&gt;
+    &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"container"</span>&gt;
+        {% block content %}
+        {% endblock %}
+    &lt;/<span style="color: #b8bb26;">div</span>&gt;
+&lt;/<span style="color: #b8bb26;">body</span>&gt;
+
+
+<span style="color: #928374;">&lt;!-- </span><span style="color: #928374;">Bootstrap core JavaScript</span><span style="color: #928374;"> --&gt;</span>
+&lt;<span style="color: #b8bb26;">script</span> <span style="color: #83a598;">src</span>=<span style="color: #b8bb26;">"https://code.jquery.com/jquery-3.3.1.slim.min.js"</span>
+    <span style="color: #83a598;">integrity</span>=<span style="color: #b8bb26;">"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"</span>
+    <span style="color: #83a598;">crossorigin</span>=<span style="color: #b8bb26;">"anonymous"</span>&gt;&lt;/<span style="color: #b8bb26;">script</span>&gt;
+</pre>
+</div>
+
+<p>
+Išsaugokime base.html.
+</p>
+
+<p>
+index.html pertvarkykime taip:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">{% extends "base.html" %}
+
+{% block content %}
+
+&lt;<span style="color: #b8bb26;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Straipsniai</span>&lt;/<span style="color: #b8bb26;">h1</span>&gt;
+&lt;<span style="color: #b8bb26;">br</span>&gt;
+{% for straipsnis in data %}
+{% if straipsnis['status'] == 'published' %}
+&lt;<span style="color: #b8bb26;">h3</span>&gt;<span style="font-style: italic; text-decoration: underline;">{{ straipsnis['pavadinimas'] }}</span>&lt;/<span style="color: #b8bb26;">h3</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{ straipsnis['data'] }}, &lt;<span style="color: #b8bb26;">i</span>&gt;<span style="font-style: italic;">{{ straipsnis['autorius'] }}</span>&lt;/<span style="color: #b8bb26;">i</span>&gt;&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">hr</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{ straipsnis['tekstas'] }}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">br</span>&gt;&lt;<span style="color: #b8bb26;">br</span>&gt;
+{% else %}
+&lt;<span style="color: #b8bb26;">h3</span>&gt;{{ straipsnis['pavadinimas'] }} - &lt;<span style="color: #b8bb26;">i</span>&gt;<span style="font-style: italic;">Publikavimas laikinai i&#353;jungtas</span>&lt;/<span style="color: #b8bb26;">i</span>&gt;&lt;/<span style="color: #b8bb26;">h3</span>&gt;
+&lt;<span style="color: #b8bb26;">br</span>&gt;&lt;<span style="color: #b8bb26;">br</span>&gt;
+{% endif %}
+{% endfor %}
+
+{% endblock %}
+</pre>
+</div>
+
+
+<p>
+papildykime savo app.py nauju maršrutu:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fabd2f;">@app.route</span><span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'/about'</span><span style="color: #fe8019;">)</span>
+<span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">about</span><span style="color: #fe8019;">()</span>:
+    <span style="color: #fb4934;">return</span> render_template<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'about.html'</span><span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+<p>
+base.html susiraskime navigacijoje nuorodą 'About', ir nukreipkime į
+savo naująjį maršrutą:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #b8bb26;">li</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"nav-item"</span>&gt;
+    &lt;<span style="color: #b8bb26;">a</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"nav-link"</span> <span style="color: #83a598;">href</span>=<span style="color: #b8bb26;">"/about"</span>&gt;About&lt;/<span style="color: #b8bb26;">a</span>&gt;
+&lt;/<span style="color: #b8bb26;">li</span>&gt;
+susikurkime dar vien&#261; &#353;ablon&#261;, about.html:
+
+
+{% extends "base.html" %}
+
+{% block content %}
+
+&lt;<span style="color: #b8bb26;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Apie</span>&lt;/<span style="color: #b8bb26;">h1</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;&#352;iame puslapyje rasite labai daug naudingos informacijos apie beveik visk&#261;&lt;/<span style="color: #b8bb26;">p</span>&gt;
+
+{% endblock %}
+</pre>
+</div>
+
+<p>
+Svetainėje, paspaudę nuorodą atsidursime puslapyje "Apie":
+</p>
+
+
+<div id="org9194eef" class="figure">
+<p><img src="./static/images/flask1_7.png" alt="flask1_7.png" width="600px" />
+</p>
+</div>
+
+<p>
+<a href="https://github.com/CodeAcademy-Online/Python/tree/lesson-14">result here</a>.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2023-01-30 Mon 19:48</p>
+<p class="author">Author: arvydas</p>
+<p class="date">Created: 2023-02-07 Tue 18:05</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>
