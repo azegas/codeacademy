@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-02-07 Tue 18:05 -->
+<!-- 2023-02-08 Wed 17:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>CodeAcademy Flask</title>
@@ -202,29 +202,35 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb4635f3">1. Įžanga į Flask</a>
+<li><a href="#org7c7daf0">1. Įžanga į Flask</a>
 <ul>
-<li><a href="#org1b60804">1.1. Kaip sukurti minimalią svetainę:</a></li>
-<li><a href="#org0c1a923">1.2. Kaip puslapyje atvaizduoti įvestą kintamąjį:</a></li>
-<li><a href="#orgf00c41c">1.3. Kaip sukurti ir panaudoti HTML šabloną:</a></li>
-<li><a href="#orgeba88b1">1.4. Kaip kintamuosius perkelti į šabloną:</a></li>
-<li><a href="#orgffd78ca">1.5. Kaip perduoti duomenis iš svetainės į programą:</a></li>
-<li><a href="#org4895e8d">1.6. Naudojame base.html šabloną:</a></li>
-<li><a href="#org2e8dc2c">1.7. Stiliui panaudojame "Bootstrap":</a></li>
-<li><a href="#orge1e30a3">1.8. Užduotys</a></li>
+<li><a href="#orge89a9c8">1.1. Kaip sukurti minimalią svetainę:</a></li>
+<li><a href="#org63c5700">1.2. Kaip puslapyje atvaizduoti įvestą kintamąjį:</a></li>
+<li><a href="#org952a695">1.3. Kaip sukurti ir panaudoti HTML šabloną:</a></li>
+<li><a href="#orgf790ead">1.4. Kaip kintamuosius perkelti į šabloną:</a></li>
+<li><a href="#org2894bbb">1.5. Kaip perduoti duomenis iš svetainės į programą:</a></li>
+<li><a href="#org4691c5c">1.6. Naudojame base.html šabloną:</a></li>
+<li><a href="#org433e541">1.7. Stiliui panaudojame "Bootstrap":</a></li>
+<li><a href="#org2bcb336">1.8. Užduotys</a></li>
 </ul>
 </li>
-<li><a href="#org0442876">2. Flask 1 dalis</a>
+<li><a href="#org0022060">2. Flask 1 dalis</a>
 <ul>
-<li><a href="#org2daede8">2.1. Susikurkime paprastą flask aplikaciją</a></li>
+<li><a href="#org7ef39ef">2.1. Susikurkime paprastą flask aplikaciją</a></li>
+</ul>
+</li>
+<li><a href="#orge6053bb">3. Flask 2 dalis</a>
+<ul>
+<li><a href="#org708b6af">3.1. Dinaminiai maršrutai ir formos</a></li>
+<li><a href="#orgfbf0c58">3.2. Uzduotis</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb4635f3" class="outline-2">
-<h2 id="orgb4635f3"><span class="section-number-2">1.</span> Įžanga į Flask</h2>
+<div id="outline-container-org7c7daf0" class="outline-2">
+<h2 id="org7c7daf0"><span class="section-number-2">1.</span> Įžanga į Flask</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Flask yra populiariausias Python microframework. Jeigu projektas nėra
@@ -239,8 +245,8 @@ Flask galima įdiegti su pip naudojant <code>pip install flask</code>.
 </p>
 </div>
 
-<div id="outline-container-org1b60804" class="outline-3">
-<h3 id="org1b60804"><span class="section-number-3">1.1.</span> Kaip sukurti minimalią svetainę:</h3>
+<div id="outline-container-orge89a9c8" class="outline-3">
+<h3 id="orge89a9c8"><span class="section-number-3">1.1.</span> Kaip sukurti minimalią svetainę:</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #fb4934;">from</span> flask <span style="color: #fb4934;">import</span> Flask
@@ -258,8 +264,8 @@ Flask galima įdiegti su pip naudojant <code>pip install flask</code>.
 </div>
 </div>
 
-<div id="outline-container-org0c1a923" class="outline-3">
-<h3 id="org0c1a923"><span class="section-number-3">1.2.</span> Kaip puslapyje atvaizduoti įvestą kintamąjį:</h3>
+<div id="outline-container-org63c5700" class="outline-3">
+<h3 id="org63c5700"><span class="section-number-3">1.2.</span> Kaip puslapyje atvaizduoti įvestą kintamąjį:</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #fb4934;">from</span> flask <span style="color: #fb4934;">import</span> Flask
@@ -277,8 +283,8 @@ Flask galima įdiegti su pip naudojant <code>pip install flask</code>.
 </div>
 </div>
 
-<div id="outline-container-orgf00c41c" class="outline-3">
-<h3 id="orgf00c41c"><span class="section-number-3">1.3.</span> Kaip sukurti ir panaudoti HTML šabloną:</h3>
+<div id="outline-container-org952a695" class="outline-3">
+<h3 id="org952a695"><span class="section-number-3">1.3.</span> Kaip sukurti ir panaudoti HTML šabloną:</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 main.py:
@@ -341,8 +347,8 @@ templates/index.html:
 </div>
 </div>
 
-<div id="outline-container-orgeba88b1" class="outline-3">
-<h3 id="orgeba88b1"><span class="section-number-3">1.4.</span> Kaip kintamuosius perkelti į šabloną:</h3>
+<div id="outline-container-orgf790ead" class="outline-3">
+<h3 id="orgf790ead"><span class="section-number-3">1.4.</span> Kaip kintamuosius perkelti į šabloną:</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 main.py
@@ -386,8 +392,8 @@ templates/index.html
 </div>
 </div>
 
-<div id="outline-container-orgffd78ca" class="outline-3">
-<h3 id="orgffd78ca"><span class="section-number-3">1.5.</span> Kaip perduoti duomenis iš svetainės į programą:</h3>
+<div id="outline-container-org2894bbb" class="outline-3">
+<h3 id="org2894bbb"><span class="section-number-3">1.5.</span> Kaip perduoti duomenis iš svetainės į programą:</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 main.py
@@ -454,8 +460,8 @@ templates/greetings.html
 </div>
 </div>
 
-<div id="outline-container-org4895e8d" class="outline-3">
-<h3 id="org4895e8d"><span class="section-number-3">1.6.</span> Naudojame base.html šabloną:</h3>
+<div id="outline-container-org4691c5c" class="outline-3">
+<h3 id="org4691c5c"><span class="section-number-3">1.6.</span> Naudojame base.html šabloną:</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 Failas templates/base.html:
@@ -510,8 +516,8 @@ Failas templates/greetings.html:
 </div>
 </div>
 
-<div id="outline-container-org2e8dc2c" class="outline-3">
-<h3 id="org2e8dc2c"><span class="section-number-3">1.7.</span> Stiliui panaudojame "Bootstrap":</h3>
+<div id="outline-container-org433e541" class="outline-3">
+<h3 id="org433e541"><span class="section-number-3">1.7.</span> Stiliui panaudojame "Bootstrap":</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 Faile base.html:
@@ -565,12 +571,12 @@ Faile base.html:
 </div>
 </div>
 
-<div id="outline-container-orge1e30a3" class="outline-3">
-<h3 id="orge1e30a3"><span class="section-number-3">1.8.</span> Užduotys</h3>
+<div id="outline-container-org2bcb336" class="outline-3">
+<h3 id="org2bcb336"><span class="section-number-3">1.8.</span> Užduotys</h3>
 <div class="outline-text-3" id="text-1-8">
 </div>
-<div id="outline-container-org2494b50" class="outline-4">
-<h4 id="org2494b50"><span class="section-number-4">1.8.1.</span> 1 užduotis</h4>
+<div id="outline-container-org0f4765e" class="outline-4">
+<h4 id="org0f4765e"><span class="section-number-4">1.8.1.</span> 1 užduotis</h4>
 <div class="outline-text-4" id="text-1-8-1">
 <p>
 Sukurti programą, kuri turėtų statinį puslapį, pvz. localhost:5000 su
@@ -614,15 +620,15 @@ template/home.html
 </div>
 
 
-<div id="org71e0498" class="figure">
+<div id="org914c8cc" class="figure">
 <p><img src="./static/images/1.png" alt="1.png" width="600px" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org2a3e080" class="outline-4">
-<h4 id="org2a3e080"><span class="section-number-4">1.8.2.</span> 2 užduotis</h4>
+<div id="outline-container-orgbbee68b" class="outline-4">
+<h4 id="orgbbee68b"><span class="section-number-4">1.8.2.</span> 2 užduotis</h4>
 <div class="outline-text-4" id="text-1-8-2">
 <p>
 Sukurti programą, kuri įvedus norimą žodį adreso eilutėje (po /
@@ -673,15 +679,15 @@ templates/word.html
 
 
 
-<div id="org916618d" class="figure">
+<div id="orgbb7aa6c" class="figure">
 <p><img src="./static/images/2.png" alt="2.png" width="600px" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org2999409" class="outline-4">
-<h4 id="org2999409"><span class="section-number-4">1.8.3.</span> 3 užduotis</h4>
+<div id="outline-container-org615fafc" class="outline-4">
+<h4 id="org615fafc"><span class="section-number-4">1.8.3.</span> 3 užduotis</h4>
 <div class="outline-text-4" id="text-1-8-3">
 <p>
 Sukurti programą, kuri puslapyje localhost:5000/keliamieji parodytų
@@ -734,15 +740,15 @@ templates/leap.html
 </div>
 
 
-<div id="org173720b" class="figure">
+<div id="org29d5548" class="figure">
 <p><img src="./static/images/3.png" alt="3.png" width="600px" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgf5357e8" class="outline-4">
-<h4 id="orgf5357e8"><span class="section-number-4">1.8.4.</span> 4 užduotis</h4>
+<div id="outline-container-org4df710c" class="outline-4">
+<h4 id="org4df710c"><span class="section-number-4">1.8.4.</span> 4 užduotis</h4>
 <div class="outline-text-4" id="text-1-8-4">
 <p>
 Sukurti programą, kuri leistų įvesti metus ir paspaudus patvirtinimo
@@ -824,7 +830,7 @@ templates/isleap.html
 </div>
 
 
-<div id="org005fb7c" class="figure">
+<div id="org49c50c6" class="figure">
 <p><img src="./static/images/4.gif" alt="4.gif" width="600px" />
 </p>
 </div>
@@ -832,8 +838,8 @@ templates/isleap.html
 </div>
 
 
-<div id="outline-container-org81590e1" class="outline-4">
-<h4 id="org81590e1"><span class="section-number-4">1.8.5.</span> 5 užduotis (papildomai)</h4>
+<div id="outline-container-org766c699" class="outline-4">
+<h4 id="org766c699"><span class="section-number-4">1.8.5.</span> 5 užduotis (papildomai)</h4>
 <div class="outline-text-4" id="text-1-8-5">
 <p>
 Patobulinti anksčiau kurtą biudžeto programą, panaudojant Flask
@@ -1113,7 +1119,7 @@ Run main.py and open <a href="http://127.0.0.1:5000">http://127.0.0.1:5000</a>, 
 </p>
 
 
-<div id="orgba5688e" class="figure">
+<div id="org8b1aed7" class="figure">
 <p><img src="./static/images/5.gif" alt="5.gif" width="600px" />
 </p>
 </div>
@@ -1172,12 +1178,12 @@ importlib-metadata==6.0.0
 </div>
 </div>
 
-<div id="outline-container-org0442876" class="outline-2">
-<h2 id="org0442876"><span class="section-number-2">2.</span> Flask 1 dalis</h2>
+<div id="outline-container-org0022060" class="outline-2">
+<h2 id="org0022060"><span class="section-number-2">2.</span> Flask 1 dalis</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org2daede8" class="outline-3">
-<h3 id="org2daede8"><span class="section-number-3">2.1.</span> Susikurkime paprastą flask aplikaciją</h3>
+<div id="outline-container-org7ef39ef" class="outline-3">
+<h3 id="org7ef39ef"><span class="section-number-3">2.1.</span> Susikurkime paprastą flask aplikaciją</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 app.py:
@@ -1229,7 +1235,7 @@ Patikrinkime, ar veikia:
 </p>
 
 
-<div id="org8c0e4ed" class="figure">
+<div id="orga05c3ac" class="figure">
 <p><img src="./static/images/flask1_1.png" alt="flask1_1.png" width="600px" />
 </p>
 </div>
@@ -1315,7 +1321,7 @@ body:
 </div>
 
 
-<div id="org7de1b6e" class="figure">
+<div id="orgd685c30" class="figure">
 <p><img src="./static/images/flask1_2.png" alt="flask1_2.png" width="600px" />
 </p>
 </div>
@@ -1341,7 +1347,7 @@ paversti straipsnių puslapiu:
 </div>
 
 
-<div id="org1654398" class="figure">
+<div id="org781f7d5" class="figure">
 <p><img src="./static/images/flask1_3.png" alt="flask1_3.png" width="600px" />
 </p>
 </div>
@@ -1386,7 +1392,7 @@ if logiką. Pradžiai papildykime 'duomenų bazę'. Kiekviename žodyne
 </div>
 
 
-<div id="orge48430d" class="figure">
+<div id="orga844c6c" class="figure">
 <p><img src="./static/images/flask1_4.png" alt="flask1_4.png" width="600px" />
 </p>
 </div>
@@ -1418,7 +1424,7 @@ Kaip ir python'e, galima naudoti {%elif %} ir {% else %}. Pvz.:
 </div>
 
 
-<div id="orgc30a230" class="figure">
+<div id="org7bc4dcd" class="figure">
 <p><img src="./static/images/flask1_5.png" alt="flask1_5.png" width="600px" />
 </p>
 </div>
@@ -1468,7 +1474,7 @@ Rezultatas atrodys maždaug taip:
 </p>
 
 
-<div id="org9298a87" class="figure">
+<div id="orgc2004e0" class="figure">
 <p><img src="./static/images/flask1_6.png" alt="flask1_6.png" width="600px" />
 </p>
 </div>
@@ -1587,7 +1593,7 @@ Svetainėje, paspaudę nuorodą atsidursime puslapyje "Apie":
 </p>
 
 
-<div id="org9194eef" class="figure">
+<div id="orgcc3b7ed" class="figure">
 <p><img src="./static/images/flask1_7.png" alt="flask1_7.png" width="600px" />
 </p>
 </div>
@@ -1598,11 +1604,692 @@ Svetainėje, paspaudę nuorodą atsidursime puslapyje "Apie":
 </div>
 </div>
 </div>
+
+<div id="outline-container-orge6053bb" class="outline-2">
+<h2 id="orge6053bb"><span class="section-number-2">3.</span> Flask 2 dalis</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org708b6af" class="outline-3">
+<h3 id="org708b6af"><span class="section-number-3">3.1.</span> Dinaminiai maršrutai ir formos</h3>
+<div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-org94d7aaf" class="outline-4">
+<h4 id="org94d7aaf"><span class="section-number-4">3.1.1.</span> Dinaminiai maršrutai</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+Tęskime su praeitos paskaitos medžiaga. Įsivaizduokime, kad mums
+reikės straipsnių sąrašo, su dalimi teksto, ir po kiekvienu sąrašo
+elementu nuorodos 'skaityti toliau&#x2026;'. Tokiose situacijose labai
+praverčia dinaminiai maršrutai. Susikurkime naują maršrutą app.py:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fabd2f;">@app.route</span><span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'/&lt;string:title&gt;'</span><span style="color: #fe8019;">)</span> <span style="color: #928374;"># </span><span style="color: #928374;">parametruose nurodomas kintamasis (title) ir jo tipas (string)</span>
+<span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">article</span><span style="color: #fe8019;">(</span>title<span style="color: #fe8019;">)</span>: <span style="color: #928374;"># </span><span style="color: #928374;">kintam1j&#303; b&#363;tinai nurodykite ir funkcijos parametruose</span>
+    <span style="color: #fb4934;">return</span> render_template<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'article.html'</span>, title=title, data=data<span style="color: #fe8019;">)</span> <span style="color: #928374;"># </span><span style="color: #928374;">taip pat ir &#269;ia reikia j&#303; perduoti</span>
+</pre>
+</div>
+
+<p>
+dabar pakoreguokime mūsų index.html:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">{% extends "base.html" %}
+
+{% block content %}
+
+&lt;<span style="color: #b8bb26;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Straipsniai</span>&lt;/<span style="color: #b8bb26;">h1</span>&gt;
+&lt;<span style="color: #b8bb26;">br</span>&gt;
+{% for straipsnis in data %}
+&lt;<span style="color: #b8bb26;">h3</span>&gt;<span style="font-style: italic; text-decoration: underline;">{{ straipsnis['pavadinimas'] }}</span>&lt;/<span style="color: #b8bb26;">h3</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{ straipsnis['data'] }}, &lt;<span style="color: #b8bb26;">i</span>&gt;<span style="font-style: italic;">{{ straipsnis['autorius'] }}</span>&lt;/<span style="color: #b8bb26;">i</span>&gt;&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">hr</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{ straipsnis['tekstas'][:30] }}&lt;<span style="color: #b8bb26;">a</span> <span style="color: #83a598;">href</span>=<span style="color: #b8bb26;">"{{ url_for('article', title=straipsnis['pavadinimas']) }}"</span>&gt;...skaityti toliau&lt;/<span style="color: #b8bb26;">a</span>&gt;&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">br</span>&gt;&lt;<span style="color: #b8bb26;">br</span>&gt;
+{% endfor %}
+
+{% endblock %}
+</pre>
+</div>
+
+<p>
+panagrinėkime &lt;p&gt; bloką.
+</p>
+
+<ul class="org-ul">
+<li>{{ straipsnis['tekstas'][:30] }} - vietoje pilno teksto pasiliekame
+ištrauką pirmų 30ties simbolių</li>
+
+<li>nuorodoje naudojama url<sub>for</sub>() yra pagalbinė Jinja funkcija. Į
+parametrus priima maršruto funkcijos pavadinimą. Paprastesniu
+atveju, url<sub>for</sub>('about') nukreiptų į mūsų 'Apie' puslapį.</li>
+
+<li>{{ url<sub>for</sub>('article', title=straipsnis['pavadinimas']) }} - šiuo
+atveju mes nurodėme, kad norime į 'article' ir kad jo parametruose
+esantis title būtų prilygintas straipsnio pavadinimui.</li>
+</ul>
+
+<p>
+Mūsų straipsnių puslapis dabar atrodo taip:
+</p>
+
+
+<div id="org708a55f" class="figure">
+<p><img src="./static/images/flask2_1.png" alt="flask2_1.png" width="300px" />
+</p>
+</div>
+
+<p>
+Susikurkime tuščią article.html ir pažiūrėkime, kas vyksta:
+</p>
+
+<p>
+article.html tuščias, todėl nėra jokio turinio. Tačiau URL eilutėje
+matome, kad puslaio endpoint'as yra straipsnio pavadinimas. Padarykime
+taip, kad matytumėm straipsnio turinį
+</p>
+
+<p>
+article.html:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fe8019;">{</span>% extends <span style="color: #b8bb26;">"base.html"</span> %<span style="color: #fe8019;">}</span>
+
+<span style="color: #fe8019;">{</span>% block content %<span style="color: #fe8019;">}</span>
+
+<span style="color: #fe8019;">{</span>% <span style="color: #fb4934;">for</span> straipsnis <span style="color: #fb4934;">in</span> data %<span style="color: #fe8019;">}</span>
+<span style="color: #fe8019;">{</span>% <span style="color: #fb4934;">if</span> straipsnis<span style="color: #cc241d;">[</span><span style="color: #b8bb26;">'pavadinimas'</span><span style="color: #cc241d;">]</span> == title %<span style="color: #fe8019;">}</span>
+
+&lt;h1&gt;<span style="color: #fe8019;">{</span><span style="color: #cc241d;">{</span> straipsnis<span style="color: #b8bb26;">[</span><span style="color: #b8bb26;">'pavadinimas'</span><span style="color: #b8bb26;">]</span> <span style="color: #cc241d;">}</span><span style="color: #fe8019;">}</span>&lt;/h1&gt;
+&lt;p&gt;<span style="color: #fe8019;">{</span><span style="color: #cc241d;">{</span> straipsnis<span style="color: #b8bb26;">[</span><span style="color: #b8bb26;">'data'</span><span style="color: #b8bb26;">]</span> <span style="color: #cc241d;">}</span><span style="color: #fe8019;">}</span>, &lt;i&gt;<span style="color: #fe8019;">{</span><span style="color: #cc241d;">{</span> straipsnis<span style="color: #b8bb26;">[</span><span style="color: #b8bb26;">'autorius'</span><span style="color: #b8bb26;">]</span> <span style="color: #cc241d;">}</span><span style="color: #fe8019;">}</span>&lt;/i&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;<span style="color: #fe8019;">{</span><span style="color: #cc241d;">{</span> straipsnis<span style="color: #b8bb26;">[</span><span style="color: #b8bb26;">'tekstas'</span><span style="color: #b8bb26;">]</span> <span style="color: #cc241d;">}</span><span style="color: #fe8019;">}</span>&lt;/p&gt;
+&lt;br&gt;&lt;br&gt;
+
+<span style="color: #fe8019;">{</span>% endif %<span style="color: #fe8019;">}</span>
+<span style="color: #fe8019;">{</span>% endfor %<span style="color: #fe8019;">}</span>
+
+<span style="color: #fe8019;">{</span>% endblock %<span style="color: #fe8019;">}</span>
+</pre>
+</div>
+
+<p>
+išbandykime:
+</p>
+
+
+<div id="org3cb0ade" class="figure">
+<p><img src="./static/images/flask2_2.png" alt="flask2_2.png" width="800px" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org394cd70" class="outline-4">
+<h4 id="org394cd70"><span class="section-number-4">3.1.2.</span> Formos</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<p>
+Formas flaske galima kurti dviem būdais. Aptarsime abu. Pirmas iš jų
+būtų paprastos formos iš HTML duomenų surinkimas. Tinka įvairiems
+testavimams, ne kritiniams duomenims apdoroti. Veikimo principas buvo
+glaustai pademonstruotas įžangos skyriuje. Žinoma, tas formas galima
+privesti iki profesionalaus lygmens, tačiau reikės nemažai papildomo
+darbo.
+</p>
+
+<p>
+sukurkime naują maršrutą:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fabd2f;">@app.route</span><span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'/add_article'</span><span style="color: #fe8019;">)</span>
+<span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">add_article</span><span style="color: #fe8019;">()</span>:
+    <span style="color: #fb4934;">return</span> render_template<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'add_article.html'</span><span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+<p>
+papildykime index.html nuoroda po straipsniais "Rašyti straipsnį"
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">{% extends "base.html" %}
+
+{% block content %}
+
+&lt;<span style="color: #b8bb26;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Straipsniai</span>&lt;/<span style="color: #b8bb26;">h1</span>&gt;
+&lt;<span style="color: #b8bb26;">br</span>&gt;
+{% for straipsnis in data %}
+&lt;<span style="color: #b8bb26;">h3</span>&gt;<span style="font-style: italic; text-decoration: underline;">{{ straipsnis['pavadinimas'] }}</span>&lt;/<span style="color: #b8bb26;">h3</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{ straipsnis['data'] }}, &lt;<span style="color: #b8bb26;">i</span>&gt;<span style="font-style: italic;">{{ straipsnis['autorius'] }}</span>&lt;/<span style="color: #b8bb26;">i</span>&gt;&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">hr</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{ straipsnis['tekstas'][:30] }}&lt;<span style="color: #b8bb26;">a</span> <span style="color: #83a598;">href</span>=<span style="color: #b8bb26;">"{{ url_for('article', title=straipsnis['pavadinimas']) }}"</span>&gt;...skaityti toliau&lt;/<span style="color: #b8bb26;">a</span>&gt;&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">br</span>&gt;&lt;<span style="color: #b8bb26;">br</span>&gt;
+{% endfor %}
+&lt;<span style="color: #b8bb26;">h1</span>&gt;&lt;<span style="color: #b8bb26;">a</span> <span style="color: #83a598;">href</span>=<span style="color: #b8bb26;">"{{ url_for('add_article') }}"</span>&gt; Ra&#353;yti straipsn&#303;&lt;/<span style="color: #b8bb26;">a</span>&gt;&lt;/<span style="color: #b8bb26;">h1</span>&gt;
+{% endblock %}
+</pre>
+</div>
+
+<p>
+sukurkime naują šabloną add<sub>article.html</sub>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">{% extends "base.html" %}
+
+{% block content %}
+
+&lt;<span style="color: #b8bb26;">form</span> <span style="color: #83a598;">action</span>=<span style="color: #b8bb26;">"/"</span>, <span style="color: #83a598;">method</span>=<span style="color: #b8bb26;">"post"</span>&gt;
+  &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+    &lt;<span style="color: #b8bb26;">label</span> <span style="color: #83a598;">for</span>=<span style="color: #b8bb26;">"autorius"</span>&gt;Autorius&lt;/<span style="color: #b8bb26;">label</span>&gt;
+    &lt;<span style="color: #b8bb26;">input</span> <span style="color: #83a598;">type</span>=<span style="color: #b8bb26;">"text"</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-control"</span> <span style="color: #83a598;">id</span>=<span style="color: #b8bb26;">"autorius"</span> <span style="color: #83a598;">name</span>=<span style="color: #b8bb26;">"autorius"</span>&gt;
+  &lt;/<span style="color: #b8bb26;">div</span>&gt;
+  &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+    &lt;<span style="color: #b8bb26;">label</span> <span style="color: #83a598;">for</span>=<span style="color: #b8bb26;">"pavadinimas"</span>&gt;Pavadinimas&lt;/<span style="color: #b8bb26;">label</span>&gt;
+    &lt;<span style="color: #b8bb26;">input</span> <span style="color: #83a598;">type</span>=<span style="color: #b8bb26;">"text"</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-control"</span> <span style="color: #83a598;">id</span>=<span style="color: #b8bb26;">"pavadinimas"</span> <span style="color: #83a598;">name</span>=<span style="color: #b8bb26;">"pavadinimas"</span>&gt;
+  &lt;/<span style="color: #b8bb26;">div</span>&gt;
+  &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+    &lt;<span style="color: #b8bb26;">label</span> <span style="color: #83a598;">for</span>=<span style="color: #b8bb26;">"date"</span>&gt;Data&lt;/<span style="color: #b8bb26;">label</span>&gt;
+    &lt;<span style="color: #b8bb26;">input</span> <span style="color: #83a598;">type</span>=<span style="color: #b8bb26;">"text"</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-control"</span> <span style="color: #83a598;">id</span>=<span style="color: #b8bb26;">"date"</span> <span style="color: #83a598;">name</span>=<span style="color: #b8bb26;">"date"</span>&gt;
+  &lt;/<span style="color: #b8bb26;">div</span>&gt;
+  &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+    &lt;<span style="color: #b8bb26;">label</span> <span style="color: #83a598;">for</span>=<span style="color: #b8bb26;">"tekstas"</span>&gt;Example textarea&lt;/<span style="color: #b8bb26;">label</span>&gt;
+    &lt;<span style="color: #b8bb26;">textarea</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-control"</span> <span style="color: #83a598;">id</span>=<span style="color: #b8bb26;">"tekstas"</span> <span style="color: #83a598;">name</span>=<span style="color: #b8bb26;">"tekstas"</span> <span style="color: #83a598;">rows</span>=<span style="color: #b8bb26;">"3"</span>&gt;&lt;/<span style="color: #b8bb26;">textarea</span>&gt;
+  &lt;/<span style="color: #b8bb26;">div</span>&gt;
+  &lt;<span style="color: #b8bb26;">button</span> <span style="color: #83a598;">type</span>=<span style="color: #b8bb26;">"submit"</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"btn btn-primary"</span>&gt;I&#353;saugoti&lt;/<span style="color: #b8bb26;">button</span>&gt;
+&lt;/<span style="color: #b8bb26;">form</span>&gt;
+
+{% endblock %}
+</pre>
+</div>
+
+
+<p>
+užeikime į "Rašyti straipsnį" nuorodą:
+</p>
+
+
+<div id="orga7cfae0" class="figure">
+<p><img src="./static/images/flask2_3.png" alt="flask2_3.png" width="600px" />
+</p>
+</div>
+
+<p>
+Turime neveikiančią formą.
+</p>
+
+<p>
+Prie importų iš flask pridėkime <code>request</code>. Pakoreguokime index()
+funkciją:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fabd2f;">@app.route</span><span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'/'</span>, methods=<span style="color: #cc241d;">[</span><span style="color: #b8bb26;">'GET'</span>, <span style="color: #b8bb26;">'POST'</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+<span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">index</span><span style="color: #fe8019;">()</span>:
+    <span style="color: #fb4934;">if</span> request.method == <span style="color: #b8bb26;">'POST'</span>:
+        date = request.form<span style="color: #fe8019;">[</span><span style="color: #b8bb26;">'date'</span><span style="color: #fe8019;">]</span>
+        autorius = request.form<span style="color: #fe8019;">[</span><span style="color: #b8bb26;">'autorius'</span><span style="color: #fe8019;">]</span>
+        tekstas = request.form<span style="color: #fe8019;">[</span><span style="color: #b8bb26;">'tekstas'</span><span style="color: #fe8019;">]</span>
+        pavadinimas = request.form<span style="color: #fe8019;">[</span><span style="color: #b8bb26;">'pavadinimas'</span><span style="color: #fe8019;">]</span>
+        data.append<span style="color: #fe8019;">(</span><span style="color: #cc241d;">{</span>
+            <span style="color: #b8bb26;">'data'</span>: date,
+            <span style="color: #b8bb26;">'autorius'</span>: autorius,
+            <span style="color: #b8bb26;">'pavadinimas'</span>: pavadinimas,
+            <span style="color: #b8bb26;">'tekstas'</span>: tekstas,
+            <span style="color: #b8bb26;">'status'</span>: <span style="color: #b8bb26;">'published'</span>
+        <span style="color: #cc241d;">}</span><span style="color: #fe8019;">)</span>
+    <span style="color: #fb4934;">return</span> render_template<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'index.html'</span>, data=data<span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+
+<p>
+funkcijoje pasitikriname, ar yra 'post' užklausa, jeigu yra, tai
+papildome mūsų "duomenų bazę" naujais duomenimis:
+</p>
+
+
+<div id="org3c97754" class="figure">
+<p><img src="./static/images/flask2_4.png" alt="flask2_4.png" width="600px" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6125f23" class="outline-4">
+<h4 id="org6125f23"><span class="section-number-4">3.1.3.</span> flask-wtf</h4>
+<div class="outline-text-4" id="text-3-1-3">
+<p>
+Antras būdas tvarkytis su formomis yra trečios šalies bibliotekos
+<code>flask_wtf</code> naudojimas. Ji pasirūpina saugumo klausimais "out of the
+box" ir yra industrijos standartas dirbant su flask. Pamėginsime
+kontaktuose sukurti paprastą formą. Reikia šiek tiek pasiruošti:
+</p>
+
+<ul class="org-ul">
+<li>sukurkime naują tuščią maršrutą contact<sub>us</sub></li>
+
+<li>sukurkime naują tuščią šabloną tam maršrutui</li>
+
+<li>navigacijoje aktyvuokime nuorodą į contact<sub>us</sub></li>
+
+<li>sukurkime naują failą forms.py</li>
+
+<li>įsidiekime flask-wtf biblioteką (pip install flask-wtf)</li>
+</ul>
+
+<p>
+forms.py:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fb4934;">from</span> flask_wtf <span style="color: #fb4934;">import</span> FlaskForm
+<span style="color: #fb4934;">from</span> wtforms <span style="color: #fb4934;">import</span> StringField, TextAreaField, SubmitField
+<span style="color: #fb4934;">from</span> wtforms.validators <span style="color: #fb4934;">import</span> DataRequired, Length, Email
+
+
+<span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">ContactForm</span><span style="color: #fe8019;">(</span>FlaskForm<span style="color: #fe8019;">)</span>:
+    <span style="color: #83a598;">name</span> = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Vardas'</span>, <span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">()</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    <span style="color: #83a598;">email</span> = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'El.pa&#353;tas'</span>, <span style="color: #cc241d;">[</span>Email<span style="color: #b8bb26;">(</span>message=<span style="color: #83a598;">(</span><span style="color: #b8bb26;">'Neteisingas adresas.'</span><span style="color: #83a598;">)</span><span style="color: #b8bb26;">)</span>, DataRequired<span style="color: #b8bb26;">()</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    body = TextAreaField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'J&#363;s&#371; prane&#353;imas'</span>, <span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">()</span>,
+                                        Length<span style="color: #b8bb26;">(</span><span style="color: #fe8019;">min</span>=10,
+                                        message=<span style="color: #83a598;">(</span><span style="color: #b8bb26;">'Per trumpas tekstas.'</span><span style="color: #83a598;">)</span><span style="color: #b8bb26;">)</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    submit = SubmitField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Submit'</span><span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+<p>
+Šį kartą mūsų forma aprašoma, kaip klasė. Visus laukų tipus ir
+validatorius (patvirtintojus?..) reikia importuotis atskirai. Pvz.:
+eilutę priskirtą kintamąjam body galima dekonstruoti taip:
+</p>
+
+<p>
+TextAreaField - nurodome, kokio tipo formos lauką generuoti.
+</p>
+
+<p>
+'Jūsų pranešimas' - formos lauko pavadinimas (label).
+</p>
+
+<p>
+[DataRequired(), Length(min=10, message=('Per trumpas tekstas.'))]) -
+sąraše yra validators - Nurodome kad laukas būtinas užpildyti, kad
+minimum 10 simbolių, ir kokia klaidos žinutė.
+</p>
+
+<p>
+Kokie yra galimi laukai, galima pažiūrėti <a href="https://wtforms.readthedocs.io/en/stable/fields/">čia</a>. Kokie yra galimi
+validators, galima pažiūrėti <a href="https://wtforms.readthedocs.io/en/stable/validators/">čia</a>.
+</p>
+
+<p>
+pakoreguokime maršrutą:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fabd2f;">@app.route</span><span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'/contact_us'</span>, methods=<span style="color: #cc241d;">[</span><span style="color: #b8bb26;">'GET'</span>, <span style="color: #b8bb26;">'POST'</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+<span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">contact_us</span><span style="color: #fe8019;">()</span>:
+    form = ContactForm<span style="color: #fe8019;">()</span>
+    <span style="color: #fb4934;">if</span> form.validate_on_submit<span style="color: #fe8019;">()</span>:
+        <span style="color: #fb4934;">return</span> render_template<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'contact_success.html'</span>, form=form<span style="color: #fe8019;">)</span>
+    <span style="color: #fb4934;">return</span> render_template<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'contact_us.html'</span>, form=form<span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+<p>
+Pakoregavome contact<sub>us</sub> maršrutą taip, kad jeigu forma sėkmingai
+praėjo validaciją, nukreiptų mus į sėkmės puslapį.
+</p>
+
+<p>
+pasidarykime šablonus - contact<sub>us.html</sub>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">{% extends "base.html" %}
+
+{% block content %}
+
+  &lt;<span style="color: #b8bb26;">form</span> <span style="color: #83a598;">method</span>=<span style="color: #b8bb26;">"post"</span> <span style="color: #83a598;">action</span>=<span style="color: #b8bb26;">"{{ url_for('contact_success') }}"</span>&gt;
+      {{ form.hidden_tag() }}
+      &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+      {{ form.name.label(class="form-control-label") }}
+      {{ form.name(class="form-control") }}
+      &lt;/<span style="color: #b8bb26;">div</span>&gt;
+      &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+      {{ form.email.label(class="form-control-label") }}
+      {{ form.email(class="form-control") }}
+      &lt;/<span style="color: #b8bb26;">div</span>&gt;
+      &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+      {{ form.body.label(class="form-control-label") }}
+      {{ form.body(class="form-control", <span style="color: #83a598;">rows</span>="5") }}
+      &lt;/<span style="color: #b8bb26;">div</span>&gt;
+      {{ form.submit }}
+  &lt;/<span style="color: #b8bb26;">form</span>&gt;
+{% endblock %}
+</pre>
+</div>
+
+<p>
+reikėtų atkreipti dėmesį, kad Bootstrap klasės rašomos į kintamųjų
+parametrus
+</p>
+
+<p>
+ir sėkmės puslapiui - contact<sub>success.html</sub>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">{% extends "base.html" %}
+
+{% block content %}
+
+&lt;<span style="color: #b8bb26;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Forma u&#382;pildyta s&#279;kmingai!</span>&lt;/<span style="color: #b8bb26;">h1</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;Vardas: {{form.name.data}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;El. pa&#353;tas: {{form.email.data}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;Tekstas:&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{form.body.data}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+
+{% endblock %}
+</pre>
+</div>
+
+<p>
+kadangi apie duomenų bazes kalbėsime sekančioje paskaitoje, su šiuo
+labai nesistengėme, išgaudysime formos reikšmes į pliką HTML.
+</p>
+
+
+<div id="orgdbe0a49" class="figure">
+<p><img src="./static/images/flask2_5.png" alt="flask2_5.png" width="600px" />
+</p>
+</div>
+
+<p>
+paspaudus 'Submit' mygtuką, mes niekur nenukreipiami, nes forma
+nepraėjo validacijos filtrų. Būtų gerai, jeigu mus informuotų, kas
+atsitiko. Reikia koreguoti formos šabloną:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">{% extends "base.html" %}
+
+{% block content %}
+
+  &lt;<span style="color: #b8bb26;">form</span> <span style="color: #83a598;">method</span>=<span style="color: #b8bb26;">"post"</span> <span style="color: #83a598;">action</span>=<span style="color: #b8bb26;">"#"</span>&gt;
+      {{ form.csrf_token }}
+      &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+      {{ form.name.label(class="form-control-label") }}
+      {{ form.name(class="form-control") }}
+      {% if form.name.errors %}
+        {% for error in form.name.errors %}
+          &lt;<span style="color: #b8bb26;">small</span>&gt;&lt;<span style="color: #b8bb26;">font</span> <span style="color: #83a598;">color</span>=<span style="color: #b8bb26;">"red"</span>&gt;{{ error }}&lt;/<span style="color: #b8bb26;">font</span>&gt;&lt;/<span style="color: #b8bb26;">small</span>&gt;
+        {% endfor %}
+      {% endif %}
+      &lt;/<span style="color: #b8bb26;">div</span>&gt;
+      &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+      {{ form.email.label(class="form-control-label") }}
+      {{ form.email(class="form-control") }}
+      {% if form.email.errors %}
+        {% for error in form.email.errors %}
+          &lt;<span style="color: #b8bb26;">small</span>&gt;&lt;<span style="color: #b8bb26;">font</span> <span style="color: #83a598;">color</span>=<span style="color: #b8bb26;">"red"</span>&gt;{{ error }}&lt;/<span style="color: #b8bb26;">font</span>&gt;&lt;/<span style="color: #b8bb26;">small</span>&gt;
+        {% endfor %}
+      {% endif %}
+      &lt;/<span style="color: #b8bb26;">div</span>&gt;
+      &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+      {{ form.body.label(class="form-control-label") }}
+      {{ form.body(class="form-control", <span style="color: #83a598;">rows</span>="5") }}
+      {% if form.body.errors %}
+        {% for error in form.body.errors %}
+          &lt;<span style="color: #b8bb26;">small</span>&gt;&lt;<span style="color: #b8bb26;">font</span> <span style="color: #83a598;">color</span>=<span style="color: #b8bb26;">"red"</span>&gt;{{ error }}&lt;/<span style="color: #b8bb26;">font</span>&gt;&lt;/<span style="color: #b8bb26;">small</span>&gt;
+        {% endfor %}
+      {% endif %}
+      &lt;/<span style="color: #b8bb26;">div</span>&gt;
+      {{ form.submit }}
+  &lt;/<span style="color: #b8bb26;">form</span>&gt;
+
+{% endblock %}
+</pre>
+</div>
+
+<p>
+Atrodo painiai :) Tai tik po kiekvienu lauku nurodyta sąlyga, kad
+jeigu tam laukui yra kažkokios klaidos, praiteruojame jas, ir
+parašome, kas tai per klaida:
+</p>
+
+
+<div id="orgdcc6c42" class="figure">
+<p><img src="./static/images/flask2_6.png" alt="flask2_6.png" width="600px" />
+</p>
+</div>
+
+<p>
+Na ir pagaliau pabandykime teisingai suvesti:
+</p>
+
+
+<div id="orgbc1c717" class="figure">
+<p><img src="./static/images/flask2_7.png" alt="flask2_7.png" width="600px" />
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfbf0c58" class="outline-3">
+<h3 id="orgfbf0c58"><span class="section-number-3">3.2.</span> Uzduotis</h3>
+<div class="outline-text-3" id="text-3-2">
+</div>
+<div id="outline-container-org36d87a9" class="outline-4">
+<h4 id="org36d87a9"><span class="section-number-4">3.2.1.</span> app.py</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fb4934;">from</span> flask <span style="color: #fb4934;">import</span> Flask, render_template, request, redirect, url_for, flash
+<span style="color: #fb4934;">from</span> form <span style="color: #fb4934;">import</span> ContactForm
+
+
+<span style="color: #83a598;">app</span> = Flask<span style="color: #fe8019;">(</span><span style="color: #fe8019;">__name__</span><span style="color: #fe8019;">)</span>
+app.<span style="color: #83a598;">config</span><span style="color: #fe8019;">[</span><span style="color: #b8bb26;">'SECRET_KEY'</span><span style="color: #fe8019;">]</span> = <span style="color: #b8bb26;">'bet kokia simboli&#371; eilut&#279;'</span>
+
+<span style="color: #fabd2f;">@app.route</span><span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'/'</span>, methods=<span style="color: #cc241d;">[</span><span style="color: #b8bb26;">'GET'</span>, <span style="color: #b8bb26;">'POST'</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+<span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">form</span><span style="color: #fe8019;">()</span>:
+    form = ContactForm<span style="color: #fe8019;">()</span>
+    <span style="color: #fb4934;">if</span> form.validate_on_submit<span style="color: #fe8019;">()</span>:
+        <span style="color: #fb4934;">return</span> render_template<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'success.html'</span>, form=form<span style="color: #fe8019;">)</span>
+    <span style="color: #fb4934;">return</span> render_template<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'form.html'</span>, form=form<span style="color: #fe8019;">)</span>
+
+
+<span style="color: #fb4934;">if</span> <span style="color: #fe8019;">__name__</span> == <span style="color: #b8bb26;">'__main__'</span>:
+  app.run<span style="color: #fe8019;">(</span>host=<span style="color: #b8bb26;">'127.0.0.1'</span>, port=8000, debug=<span style="color: #d3869b;">True</span><span style="color: #fe8019;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org91464fd" class="outline-4">
+<h4 id="org91464fd"><span class="section-number-4">3.2.2.</span> form.py</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fb4934;">from</span> flask_wtf <span style="color: #fb4934;">import</span> FlaskForm
+<span style="color: #fb4934;">from</span> wtforms <span style="color: #fb4934;">import</span> StringField, PasswordField, SelectField, SubmitField, BooleanField
+<span style="color: #fb4934;">from</span> wtforms.validators <span style="color: #fb4934;">import</span> DataRequired, Length, Email, InputRequired
+
+
+<span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">ContactForm</span><span style="color: #fe8019;">(</span>FlaskForm<span style="color: #fe8019;">)</span>:
+
+    <span style="color: #83a598;">email</span> = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Vardas'</span>, <span style="color: #cc241d;">[</span>Email<span style="color: #b8bb26;">(</span>message=<span style="color: #83a598;">(</span><span style="color: #b8bb26;">'Neteisingas adresas.'</span><span style="color: #83a598;">)</span><span style="color: #b8bb26;">)</span>, DataRequired<span style="color: #b8bb26;">(</span>message=<span style="color: #b8bb26;">'Lauk&#261; b&#363;tina u&#382;pildyti'</span><span style="color: #b8bb26;">)</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    password = PasswordField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Slapta&#382;odis'</span>, validators=<span style="color: #cc241d;">[</span>Length<span style="color: #b8bb26;">(</span><span style="color: #fe8019;">min</span>=8, message=<span style="color: #83a598;">(</span><span style="color: #b8bb26;">'Per ma&#382;ai simboli&#371;!'</span><span style="color: #83a598;">)</span><span style="color: #b8bb26;">)</span>, DataRequired<span style="color: #b8bb26;">(</span>message=<span style="color: #b8bb26;">'Lauk&#261; b&#363;tina u&#382;pildyti'</span><span style="color: #b8bb26;">)</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    address1 = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Adresas (pirma eilut&#279;)'</span>, validators=<span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">(</span>message=<span style="color: #83a598;">(</span><span style="color: #b8bb26;">'Lauk&#261; b&#363;tina u&#382;pildyti'</span><span style="color: #83a598;">)</span><span style="color: #b8bb26;">)</span>, Length<span style="color: #b8bb26;">(</span><span style="color: #fe8019;">min</span>=4, message=<span style="color: #83a598;">(</span><span style="color: #b8bb26;">'Per ma&#382;ai simboli&#371;!'</span><span style="color: #83a598;">)</span><span style="color: #b8bb26;">)</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    address2 = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Adresas (antra eilut&#279;)'</span>, validators=<span style="color: #cc241d;">[</span>Length<span style="color: #b8bb26;">(</span><span style="color: #fe8019;">min</span>=4, message=<span style="color: #83a598;">(</span><span style="color: #b8bb26;">'Per ma&#382;ai simboli&#371;'</span><span style="color: #83a598;">)</span><span style="color: #b8bb26;">)</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    city = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Miestas'</span>, validators=<span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">(</span>message=<span style="color: #b8bb26;">'Lauk&#261; b&#363;tina u&#382;pildyti'</span><span style="color: #b8bb26;">)</span>, Length<span style="color: #b8bb26;">(</span><span style="color: #fe8019;">min</span>=4, message=<span style="color: #83a598;">(</span><span style="color: #b8bb26;">'Per ma&#382;ai simboli&#371;'</span><span style="color: #83a598;">)</span><span style="color: #b8bb26;">)</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    state = SelectField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Rajonas'</span>, choices=<span style="color: #cc241d;">[</span><span style="color: #b8bb26;">(</span><span style="color: #b8bb26;">'vln'</span>, <span style="color: #b8bb26;">'Vilniaus'</span><span style="color: #b8bb26;">)</span>, <span style="color: #b8bb26;">(</span><span style="color: #b8bb26;">'kns'</span>, <span style="color: #b8bb26;">'Kauno'</span><span style="color: #b8bb26;">)</span>, <span style="color: #b8bb26;">(</span><span style="color: #b8bb26;">'klp'</span>, <span style="color: #b8bb26;">'Klaip&#279;dos'</span><span style="color: #b8bb26;">)</span><span style="color: #cc241d;">]</span>, validators=<span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">(</span>message=<span style="color: #b8bb26;">'Lauk&#261; b&#363;tina u&#382;pildyti'</span><span style="color: #b8bb26;">)</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    zip_code = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Pa&#353;to kodas'</span>, validators=<span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">(</span>message=<span style="color: #b8bb26;">'Lauk&#261; b&#363;tina u&#382;pildyti'</span><span style="color: #b8bb26;">)</span>, Length<span style="color: #b8bb26;">(</span><span style="color: #fe8019;">min</span>=4, message=<span style="color: #83a598;">(</span><span style="color: #b8bb26;">'Per ma&#382;ai simboli&#371;'</span><span style="color: #83a598;">)</span><span style="color: #b8bb26;">)</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    agree = BooleanField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Sutinku gauti &#353;lam&#353;t&#261;'</span><span style="color: #fe8019;">)</span>
+    submit = SubmitField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Submit'</span><span style="color: #fe8019;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgaa913d4" class="outline-4">
+<h4 id="orgaa913d4"><span class="section-number-4">3.2.3.</span> templates/base.html</h4>
+<div class="outline-text-4" id="text-3-2-3">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="color: #fb4934;">!doctype</span> html&gt;
+&lt;<span style="color: #b8bb26;">html</span> <span style="color: #83a598;">lang</span>=<span style="color: #b8bb26;">"en"</span>&gt;
+  &lt;<span style="color: #b8bb26;">head</span>&gt;
+    <span style="color: #928374;">&lt;!-- </span><span style="color: #928374;">Required meta tags</span><span style="color: #928374;"> --&gt;</span>
+    &lt;<span style="color: #b8bb26;">meta</span> <span style="color: #83a598;">charset</span>=<span style="color: #b8bb26;">"utf-8"</span>&gt;
+    &lt;<span style="color: #b8bb26;">meta</span> <span style="color: #83a598;">name</span>=<span style="color: #b8bb26;">"viewport"</span> <span style="color: #83a598;">content</span>=<span style="color: #b8bb26;">"width=device-width, initial-scale=1, shrink-to-fit=no"</span>&gt;
+
+    <span style="color: #928374;">&lt;!-- </span><span style="color: #928374;">Bootstrap CSS</span><span style="color: #928374;"> --&gt;</span>
+    &lt;<span style="color: #b8bb26;">link</span> <span style="color: #83a598;">rel</span>=<span style="color: #b8bb26;">"stylesheet"</span> <span style="color: #83a598;">href</span>=<span style="color: #b8bb26;">"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"</span> <span style="color: #83a598;">integrity</span>=<span style="color: #b8bb26;">"sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"</span> <span style="color: #83a598;">crossorigin</span>=<span style="color: #b8bb26;">"anonymous"</span>&gt;
+
+    &lt;<span style="color: #b8bb26;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Superform</span>&lt;/<span style="color: #b8bb26;">title</span>&gt;
+  &lt;/<span style="color: #b8bb26;">head</span>&gt;
+  &lt;<span style="color: #b8bb26;">body</span>&gt;
+    &lt;<span style="color: #b8bb26;">br</span>&gt;
+        &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"container"</span>&gt;
+            {% block content %}
+            {% endblock %}
+        &lt;/<span style="color: #b8bb26;">div</span>&gt;
+
+    <span style="color: #928374;">&lt;!-- </span><span style="color: #928374;">Optional JavaScript</span><span style="color: #928374;"> --&gt;</span>
+    <span style="color: #928374;">&lt;!-- </span><span style="color: #928374;">jQuery first, then Popper.js, then Bootstrap JS</span><span style="color: #928374;"> --&gt;</span>
+    &lt;<span style="color: #b8bb26;">script</span> <span style="color: #83a598;">src</span>=<span style="color: #b8bb26;">"https://code.jquery.com/jquery-3.4.1.slim.min.js"</span> <span style="color: #83a598;">integrity</span>=<span style="color: #b8bb26;">"sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"</span> <span style="color: #83a598;">crossorigin</span>=<span style="color: #b8bb26;">"anonymous"</span>&gt;&lt;/<span style="color: #b8bb26;">script</span>&gt;
+    &lt;<span style="color: #b8bb26;">script</span> <span style="color: #83a598;">src</span>=<span style="color: #b8bb26;">"https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"</span> <span style="color: #83a598;">integrity</span>=<span style="color: #b8bb26;">"sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"</span> <span style="color: #83a598;">crossorigin</span>=<span style="color: #b8bb26;">"anonymous"</span>&gt;&lt;/<span style="color: #b8bb26;">script</span>&gt;
+    &lt;<span style="color: #b8bb26;">script</span> <span style="color: #83a598;">src</span>=<span style="color: #b8bb26;">"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"</span> <span style="color: #83a598;">integrity</span>=<span style="color: #b8bb26;">"sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"</span> <span style="color: #83a598;">crossorigin</span>=<span style="color: #b8bb26;">"anonymous"</span>&gt;&lt;/<span style="color: #b8bb26;">script</span>&gt;
+  &lt;/<span style="color: #b8bb26;">body</span>&gt;
+&lt;/<span style="color: #b8bb26;">html</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgaa48fdc" class="outline-4">
+<h4 id="orgaa48fdc"><span class="section-number-4">3.2.4.</span> templates/form.html</h4>
+<div class="outline-text-4" id="text-3-2-4">
+<div class="org-src-container">
+<pre class="src src-html">{% extends "base.html" %}
+{% block content %}
+
+&lt;<span style="color: #b8bb26;">form</span> <span style="color: #83a598;">method</span>=<span style="color: #b8bb26;">"post"</span> <span style="color: #83a598;">action</span>=<span style="color: #b8bb26;">"#"</span>&gt;
+    {{ form.csrf_token }}
+    &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-row"</span>&gt;
+      &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group col-md-6"</span>&gt;
+        {{ form.email.label(class="form-control-label") }}
+        {{ form.email(class="form-control") }}
+        {% if form.email.errors %}
+        {% for error in form.email.errors %}
+          &lt;<span style="color: #b8bb26;">small</span>&gt;&lt;<span style="color: #b8bb26;">font</span> <span style="color: #83a598;">color</span>=<span style="color: #b8bb26;">"red"</span>&gt;{{ error }}&lt;/<span style="color: #b8bb26;">font</span>&gt;&lt;/<span style="color: #b8bb26;">small</span>&gt;
+        {% endfor %}
+        {% endif %}
+      &lt;/<span style="color: #b8bb26;">div</span>&gt;
+      &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group col-md-6"</span>&gt;
+        {{ form.password.label(class="form-control-label") }}
+        {{ form.password(class="form-control") }}
+        {% if form.password.errors %}
+        {% for error in form.password.errors %}
+          &lt;<span style="color: #b8bb26;">small</span>&gt;&lt;<span style="color: #b8bb26;">font</span> <span style="color: #83a598;">color</span>=<span style="color: #b8bb26;">"red"</span>&gt;{{ error }}&lt;/<span style="color: #b8bb26;">font</span>&gt;&lt;/<span style="color: #b8bb26;">small</span>&gt;
+        {% endfor %}
+        {% endif %}
+      &lt;/<span style="color: #b8bb26;">div</span>&gt;
+    &lt;/<span style="color: #b8bb26;">div</span>&gt;
+    &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+        {{ form.address1.label(class="form-control-label") }}
+        {{ form.address1(class="form-control") }}
+        {% if form.address1.errors %}
+        {% for error in form.address1.errors %}
+          &lt;<span style="color: #b8bb26;">small</span>&gt;&lt;<span style="color: #b8bb26;">font</span> <span style="color: #83a598;">color</span>=<span style="color: #b8bb26;">"red"</span>&gt;{{ error }}&lt;/<span style="color: #b8bb26;">font</span>&gt;&lt;/<span style="color: #b8bb26;">small</span>&gt;
+        {% endfor %}
+        {% endif %}
+    &lt;/<span style="color: #b8bb26;">div</span>&gt;
+    &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+        {{ form.address2.label(class="form-control-label") }}
+        {{ form.address2(class="form-control") }}
+        {% if form.address2.errors %}
+        {% for error in form.address2.errors %}
+          &lt;<span style="color: #b8bb26;">small</span>&gt;&lt;<span style="color: #b8bb26;">font</span> <span style="color: #83a598;">color</span>=<span style="color: #b8bb26;">"red"</span>&gt;{{ error }}&lt;/<span style="color: #b8bb26;">font</span>&gt;&lt;/<span style="color: #b8bb26;">small</span>&gt;
+        {% endfor %}
+        {% endif %}
+    &lt;/<span style="color: #b8bb26;">div</span>&gt;
+    &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-row"</span>&gt;
+      &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group col-md-6"</span>&gt;
+            {{ form.city.label(class="form-control-label") }}
+            {{ form.city(class="form-control") }}
+            {% if form.city.errors %}
+            {% for error in form.city.errors %}
+                &lt;<span style="color: #b8bb26;">small</span>&gt;&lt;<span style="color: #b8bb26;">font</span> <span style="color: #83a598;">color</span>=<span style="color: #b8bb26;">"red"</span>&gt;{{ error }}&lt;/<span style="color: #b8bb26;">font</span>&gt;&lt;/<span style="color: #b8bb26;">small</span>&gt;
+            {% endfor %}
+            {% endif %}
+      &lt;/<span style="color: #b8bb26;">div</span>&gt;
+      &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group col-md-4"</span>&gt;
+            {{ form.state.label(class="form-control-label") }}
+            {{ form.state(class="form-control") }}
+            {% if form.state.errors %}
+            {% for error in form.state.errors %}
+                &lt;<span style="color: #b8bb26;">small</span>&gt;&lt;<span style="color: #b8bb26;">font</span> <span style="color: #83a598;">color</span>=<span style="color: #b8bb26;">"red"</span>&gt;{{ error }}&lt;/<span style="color: #b8bb26;">font</span>&gt;&lt;/<span style="color: #b8bb26;">small</span>&gt;
+            {% endfor %}
+            {% endif %}
+      &lt;/<span style="color: #b8bb26;">div</span>&gt;
+      &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group col-md-2"</span>&gt;
+            {{ form.zip_code.label(class="form-control-label") }}
+            {{ form.zip_code(class="form-control") }}
+            {% if form.zip_code.errors %}
+            {% for error in form.zip_code.errors %}
+                &lt;<span style="color: #b8bb26;">small</span>&gt;&lt;<span style="color: #b8bb26;">font</span> <span style="color: #83a598;">color</span>=<span style="color: #b8bb26;">"red"</span>&gt;{{ error }}&lt;/<span style="color: #b8bb26;">font</span>&gt;&lt;/<span style="color: #b8bb26;">small</span>&gt;
+            {% endfor %}
+            {% endif %}
+      &lt;/<span style="color: #b8bb26;">div</span>&gt;
+    &lt;/<span style="color: #b8bb26;">div</span>&gt;
+    &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-check"</span>&gt;
+            {{ form.agree(class="form-check-input") }}
+            {{ form.agree.label(class="form-check-label") }}
+            {% if form.agree.errors %}
+            {% for error in form.agree.errors %}
+                &lt;<span style="color: #b8bb26;">small</span>&gt;&lt;<span style="color: #b8bb26;">font</span> <span style="color: #83a598;">color</span>=<span style="color: #b8bb26;">"red"</span>&gt;{{ error }}&lt;/<span style="color: #b8bb26;">font</span>&gt;&lt;/<span style="color: #b8bb26;">small</span>&gt;
+            {% endfor %}
+            {% endif %}
+    &lt;/<span style="color: #b8bb26;">div</span>&gt;
+    &lt;<span style="color: #b8bb26;">br</span>&gt;
+    {{ form.submit }}
+  &lt;/<span style="color: #b8bb26;">form</span>&gt;
+
+{% endblock %}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org743fd2a" class="outline-4">
+<h4 id="org743fd2a"><span class="section-number-4">3.2.5.</span> templates/success.html</h4>
+<div class="outline-text-4" id="text-3-2-5">
+<div class="org-src-container">
+<pre class="src src-html">{% extends "base.html" %}
+{% block content %}
+
+&lt;<span style="color: #b8bb26;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Forma u&#382;pildyta s&#279;kmingai!</span>&lt;/<span style="color: #b8bb26;">h1</span>&gt;&lt;<span style="color: #b8bb26;">br</span>&gt;&lt;<span style="color: #b8bb26;">br</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;Email: {{form.email.data}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;Password: {{form.password.data}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;Adresas:&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{form.address1.data}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{form.address2.data}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{form.zip_code.data}} {{form.city.data}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{form.state.data}} raj.&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{form.agree.data}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+
+{% endblock %}
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2023-01-30 Mon 19:48</p>
 <p class="author">Author: arvydas</p>
-<p class="date">Created: 2023-02-07 Tue 18:05</p>
+<p class="date">Created: 2023-02-08 Wed 17:03</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

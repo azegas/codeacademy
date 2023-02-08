@@ -1098,3 +1098,545 @@ Svetainėje, paspaudę nuorodą atsidursime puslapyje "Apie":
 [[./static/images/flask1_7.png]]
 
 [[https://github.com/CodeAcademy-Online/Python/tree/lesson-14][result here]].
+
+* Flask 2 dalis
+** Dinaminiai maršrutai ir formos
+*** Dinaminiai maršrutai
+
+Tęskime su praeitos paskaitos medžiaga. Įsivaizduokime, kad mums
+reikės straipsnių sąrašo, su dalimi teksto, ir po kiekvienu sąrašo
+elementu nuorodos 'skaityti toliau...'. Tokiose situacijose labai
+praverčia dinaminiai maršrutai. Susikurkime naują maršrutą app.py:
+
+#+begin_src python
+@app.route('/<string:title>') # parametruose nurodomas kintamasis (title) ir jo tipas (string)
+def article(title): # kintam1jį būtinai nurodykite ir funkcijos parametruose
+    return render_template('article.html', title=title, data=data) # taip pat ir čia reikia jį perduoti
+#+end_src
+
+dabar pakoreguokime mūsų index.html:
+
+#+begin_src html
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Straipsniai</h1>
+<br>
+{% for straipsnis in data %}
+<h3>{{ straipsnis['pavadinimas'] }}</h3>
+<p>{{ straipsnis['data'] }}, <i>{{ straipsnis['autorius'] }}</i></p>
+<hr>
+<p>{{ straipsnis['tekstas'][:30] }}<a href="{{ url_for('article', title=straipsnis['pavadinimas']) }}">...skaityti toliau</a></p>
+<br><br>
+{% endfor %}
+
+{% endblock %}
+#+end_src
+
+panagrinėkime <p> bloką.
+
+- {{ straipsnis['tekstas'][:30] }} - vietoje pilno teksto pasiliekame
+  ištrauką pirmų 30ties simbolių
+
+- nuorodoje naudojama url_for() yra pagalbinė Jinja funkcija. Į
+  parametrus priima maršruto funkcijos pavadinimą. Paprastesniu
+  atveju, url_for('about') nukreiptų į mūsų 'Apie' puslapį.
+
+- {{ url_for('article', title=straipsnis['pavadinimas']) }} - šiuo
+  atveju mes nurodėme, kad norime į 'article' ir kad jo parametruose
+  esantis title būtų prilygintas straipsnio pavadinimui.
+
+Mūsų straipsnių puslapis dabar atrodo taip:
+
+#+attr_html: :width 300px
+#+ATTR_ORG: :width 300
+[[./static/images/flask2_1.png]]
+
+Susikurkime tuščią article.html ir pažiūrėkime, kas vyksta:
+
+article.html tuščias, todėl nėra jokio turinio. Tačiau URL eilutėje
+matome, kad puslaio endpoint'as yra straipsnio pavadinimas. Padarykime
+taip, kad matytumėm straipsnio turinį
+
+article.html:
+
+#+begin_src python
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for straipsnis in data %}
+{% if straipsnis['pavadinimas'] == title %}
+
+<h1>{{ straipsnis['pavadinimas'] }}</h1>
+<p>{{ straipsnis['data'] }}, <i>{{ straipsnis['autorius'] }}</i></p>
+<hr>
+<p>{{ straipsnis['tekstas'] }}</p>
+<br><br>
+
+{% endif %}
+{% endfor %}
+
+{% endblock %}
+#+end_src
+
+išbandykime:
+
+#+attr_html: :width 800px
+#+ATTR_ORG: :width 600
+[[./static/images/flask2_2.png]]
+*** Formos
+
+Formas flaske galima kurti dviem būdais. Aptarsime abu. Pirmas iš jų
+būtų paprastos formos iš HTML duomenų surinkimas. Tinka įvairiems
+testavimams, ne kritiniams duomenims apdoroti. Veikimo principas buvo
+glaustai pademonstruotas įžangos skyriuje. Žinoma, tas formas galima
+privesti iki profesionalaus lygmens, tačiau reikės nemažai papildomo
+darbo.
+
+sukurkime naują maršrutą:
+
+#+begin_src python
+@app.route('/add_article')
+def add_article():
+    return render_template('add_article.html')
+#+end_src
+
+papildykime index.html nuoroda po straipsniais "Rašyti straipsnį"
+
+#+begin_src html
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Straipsniai</h1>
+<br>
+{% for straipsnis in data %}
+<h3>{{ straipsnis['pavadinimas'] }}</h3>
+<p>{{ straipsnis['data'] }}, <i>{{ straipsnis['autorius'] }}</i></p>
+<hr>
+<p>{{ straipsnis['tekstas'][:30] }}<a href="{{ url_for('article', title=straipsnis['pavadinimas']) }}">...skaityti toliau</a></p>
+<br><br>
+{% endfor %}
+<h1><a href="{{ url_for('add_article') }}"> Rašyti straipsnį</a></h1>
+{% endblock %}
+#+end_src
+
+sukurkime naują šabloną add_article.html:
+
+#+begin_src html
+{% extends "base.html" %}
+
+{% block content %}
+
+<form action="/", method="post">
+  <div class="form-group">
+    <label for="autorius">Autorius</label>
+    <input type="text" class="form-control" id="autorius" name="autorius">
+  </div>
+  <div class="form-group">
+    <label for="pavadinimas">Pavadinimas</label>
+    <input type="text" class="form-control" id="pavadinimas" name="pavadinimas">
+  </div>
+  <div class="form-group">
+    <label for="date">Data</label>
+    <input type="text" class="form-control" id="date" name="date">
+  </div>
+  <div class="form-group">
+    <label for="tekstas">Example textarea</label>
+    <textarea class="form-control" id="tekstas" name="tekstas" rows="3"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Išsaugoti</button>
+</form>
+
+{% endblock %}
+#+end_src
+
+
+užeikime į "Rašyti straipsnį" nuorodą:
+
+#+attr_html: :width 600px
+#+ATTR_ORG: :width 600
+[[./static/images/flask2_3.png]]
+
+Turime neveikiančią formą.
+
+Prie importų iš flask pridėkime ~request~. Pakoreguokime index()
+funkciją:
+
+#+begin_src python
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        date = request.form['date']
+        autorius = request.form['autorius']
+        tekstas = request.form['tekstas']
+        pavadinimas = request.form['pavadinimas']
+        data.append({
+            'data': date,
+            'autorius': autorius,
+            'pavadinimas': pavadinimas,
+            'tekstas': tekstas,
+            'status': 'published'
+        })
+    return render_template('index.html', data=data)
+#+end_src
+
+
+funkcijoje pasitikriname, ar yra 'post' užklausa, jeigu yra, tai
+papildome mūsų "duomenų bazę" naujais duomenimis:
+
+#+attr_html: :width 600px
+#+ATTR_ORG: :width 600
+[[./static/images/flask2_4.png]]
+
+*** flask-wtf
+
+Antras būdas tvarkytis su formomis yra trečios šalies bibliotekos
+~flask_wtf~ naudojimas. Ji pasirūpina saugumo klausimais "out of the
+box" ir yra industrijos standartas dirbant su flask. Pamėginsime
+kontaktuose sukurti paprastą formą. Reikia šiek tiek pasiruošti:
+
+- sukurkime naują tuščią maršrutą contact_us
+
+- sukurkime naują tuščią šabloną tam maršrutui
+
+- navigacijoje aktyvuokime nuorodą į contact_us
+
+- sukurkime naują failą forms.py
+
+- įsidiekime flask-wtf biblioteką (pip install flask-wtf)
+
+forms.py:
+
+#+begin_src python
+from flask_wtf import FlaskForm
+from wtforms import StringField, TextAreaField, SubmitField
+from wtforms.validators import DataRequired, Length, Email
+
+
+class ContactForm(FlaskForm):
+    name = StringField('Vardas', [DataRequired()])
+    email = StringField('El.paštas', [Email(message=('Neteisingas adresas.')), DataRequired()])
+    body = TextAreaField('Jūsų pranešimas', [DataRequired(),
+                                        Length(min=10,
+                                        message=('Per trumpas tekstas.'))])
+    submit = SubmitField('Submit')
+#+end_src
+
+Šį kartą mūsų forma aprašoma, kaip klasė. Visus laukų tipus ir
+validatorius (patvirtintojus?..) reikia importuotis atskirai. Pvz.:
+eilutę priskirtą kintamąjam body galima dekonstruoti taip:
+
+TextAreaField - nurodome, kokio tipo formos lauką generuoti.
+
+'Jūsų pranešimas' - formos lauko pavadinimas (label).
+
+[DataRequired(), Length(min=10, message=('Per trumpas tekstas.'))]) -
+sąraše yra validators - Nurodome kad laukas būtinas užpildyti, kad
+minimum 10 simbolių, ir kokia klaidos žinutė.
+
+Kokie yra galimi laukai, galima pažiūrėti [[https://wtforms.readthedocs.io/en/stable/fields/][čia]]. Kokie yra galimi
+validators, galima pažiūrėti [[https://wtforms.readthedocs.io/en/stable/validators/][čia]].
+
+pakoreguokime maršrutą:
+
+#+begin_src python
+@app.route('/contact_us', methods=['GET', 'POST'])
+def contact_us():
+    form = ContactForm()
+    if form.validate_on_submit():
+        return render_template('contact_success.html', form=form)
+    return render_template('contact_us.html', form=form)
+#+end_src
+
+Pakoregavome contact_us maršrutą taip, kad jeigu forma sėkmingai
+praėjo validaciją, nukreiptų mus į sėkmės puslapį.
+
+pasidarykime šablonus - contact_us.html:
+
+#+begin_src html
+  {% extends "base.html" %}
+
+  {% block content %}
+
+    <form method="post" action="{{ url_for('contact_success') }}">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+        {{ form.name.label(class="form-control-label") }}
+        {{ form.name(class="form-control") }}
+        </div>
+        <div class="form-group">
+        {{ form.email.label(class="form-control-label") }}
+        {{ form.email(class="form-control") }}
+        </div>
+        <div class="form-group">
+        {{ form.body.label(class="form-control-label") }}
+        {{ form.body(class="form-control", rows="5") }}
+        </div>
+        {{ form.submit }}
+    </form>
+  {% endblock %}
+#+end_src
+
+reikėtų atkreipti dėmesį, kad Bootstrap klasės rašomos į kintamųjų
+parametrus
+
+ir sėkmės puslapiui - contact_success.html
+
+#+begin_src html
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Forma užpildyta sėkmingai!</h1>
+<p>Vardas: {{form.name.data}}</p>
+<p>El. paštas: {{form.email.data}}</p>
+<p>Tekstas:</p>
+<p>{{form.body.data}}</p>
+
+{% endblock %}
+#+end_src
+
+kadangi apie duomenų bazes kalbėsime sekančioje paskaitoje, su šiuo
+labai nesistengėme, išgaudysime formos reikšmes į pliką HTML.
+
+#+attr_html: :width 600px
+#+ATTR_ORG: :width 600
+[[./static/images/flask2_5.png]]
+
+paspaudus 'Submit' mygtuką, mes niekur nenukreipiami, nes forma
+nepraėjo validacijos filtrų. Būtų gerai, jeigu mus informuotų, kas
+atsitiko. Reikia koreguoti formos šabloną:
+
+#+begin_src html
+{% extends "base.html" %}
+
+{% block content %}
+
+  <form method="post" action="#">
+      {{ form.csrf_token }}
+      <div class="form-group">
+      {{ form.name.label(class="form-control-label") }}
+      {{ form.name(class="form-control") }}
+      {% if form.name.errors %}
+        {% for error in form.name.errors %}
+          <small><font color="red">{{ error }}</font></small>
+        {% endfor %}
+      {% endif %}
+      </div>
+      <div class="form-group">
+      {{ form.email.label(class="form-control-label") }}
+      {{ form.email(class="form-control") }}
+      {% if form.email.errors %}
+        {% for error in form.email.errors %}
+          <small><font color="red">{{ error }}</font></small>
+        {% endfor %}
+      {% endif %}
+      </div>
+      <div class="form-group">
+      {{ form.body.label(class="form-control-label") }}
+      {{ form.body(class="form-control", rows="5") }}
+      {% if form.body.errors %}
+        {% for error in form.body.errors %}
+          <small><font color="red">{{ error }}</font></small>
+        {% endfor %}
+      {% endif %}
+      </div>
+      {{ form.submit }}
+  </form>
+
+{% endblock %}
+#+end_src
+
+Atrodo painiai :) Tai tik po kiekvienu lauku nurodyta sąlyga, kad
+jeigu tam laukui yra kažkokios klaidos, praiteruojame jas, ir
+parašome, kas tai per klaida:
+
+#+attr_html: :width 600px
+#+ATTR_ORG: :width 600
+[[./static/images/flask2_6.png]]
+
+Na ir pagaliau pabandykime teisingai suvesti:
+
+#+attr_html: :width 600px
+#+ATTR_ORG: :width 600
+[[./static/images/flask2_7.png]]
+
+** Uzduotis
+*** app.py
+
+#+begin_src python
+from flask import Flask, render_template, request, redirect, url_for, flash
+from form import ContactForm
+
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'bet kokia simbolių eilutė'
+
+@app.route('/', methods=['GET', 'POST'])
+def form():
+    form = ContactForm()
+    if form.validate_on_submit():
+        return render_template('success.html', form=form)
+    return render_template('form.html', form=form)
+
+
+if __name__ == '__main__':
+  app.run(host='127.0.0.1', port=8000, debug=True)
+#+end_src
+*** form.py
+#+begin_src python
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SelectField, SubmitField, BooleanField
+from wtforms.validators import DataRequired, Length, Email, InputRequired
+
+
+class ContactForm(FlaskForm):
+
+    email = StringField('Vardas', [Email(message=('Neteisingas adresas.')), DataRequired(message='Lauką būtina užpildyti')])
+    password = PasswordField('Slaptažodis', validators=[Length(min=8, message=('Per mažai simbolių!')), DataRequired(message='Lauką būtina užpildyti')])
+    address1 = StringField('Adresas (pirma eilutė)', validators=[DataRequired(message=('Lauką būtina užpildyti')), Length(min=4, message=('Per mažai simbolių!'))])
+    address2 = StringField('Adresas (antra eilutė)', validators=[Length(min=4, message=('Per mažai simbolių'))])
+    city = StringField('Miestas', validators=[DataRequired(message='Lauką būtina užpildyti'), Length(min=4, message=('Per mažai simbolių'))])
+    state = SelectField('Rajonas', choices=[('vln', 'Vilniaus'), ('kns', 'Kauno'), ('klp', 'Klaipėdos')], validators=[DataRequired(message='Lauką būtina užpildyti')])
+    zip_code = StringField('Pašto kodas', validators=[DataRequired(message='Lauką būtina užpildyti'), Length(min=4, message=('Per mažai simbolių'))])
+    agree = BooleanField('Sutinku gauti šlamštą')
+    submit = SubmitField('Submit')
+#+end_src
+*** templates/base.html
+#+begin_src html
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Superform</title>
+  </head>
+  <body>
+    <br>
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
+#+end_src
+*** templates/form.html
+#+begin_src html
+{% extends "base.html" %}
+{% block content %}
+
+<form method="post" action="#">
+    {{ form.csrf_token }}
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        {{ form.email.label(class="form-control-label") }}
+        {{ form.email(class="form-control") }}
+        {% if form.email.errors %}
+        {% for error in form.email.errors %}
+          <small><font color="red">{{ error }}</font></small>
+        {% endfor %}
+        {% endif %}
+      </div>
+      <div class="form-group col-md-6">
+        {{ form.password.label(class="form-control-label") }}
+        {{ form.password(class="form-control") }}
+        {% if form.password.errors %}
+        {% for error in form.password.errors %}
+          <small><font color="red">{{ error }}</font></small>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="form-group">
+        {{ form.address1.label(class="form-control-label") }}
+        {{ form.address1(class="form-control") }}
+        {% if form.address1.errors %}
+        {% for error in form.address1.errors %}
+          <small><font color="red">{{ error }}</font></small>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.address2.label(class="form-control-label") }}
+        {{ form.address2(class="form-control") }}
+        {% if form.address2.errors %}
+        {% for error in form.address2.errors %}
+          <small><font color="red">{{ error }}</font></small>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+            {{ form.city.label(class="form-control-label") }}
+            {{ form.city(class="form-control") }}
+            {% if form.city.errors %}
+            {% for error in form.city.errors %}
+                <small><font color="red">{{ error }}</font></small>
+            {% endfor %}
+            {% endif %}
+      </div>
+      <div class="form-group col-md-4">
+            {{ form.state.label(class="form-control-label") }}
+            {{ form.state(class="form-control") }}
+            {% if form.state.errors %}
+            {% for error in form.state.errors %}
+                <small><font color="red">{{ error }}</font></small>
+            {% endfor %}
+            {% endif %}
+      </div>
+      <div class="form-group col-md-2">
+            {{ form.zip_code.label(class="form-control-label") }}
+            {{ form.zip_code(class="form-control") }}
+            {% if form.zip_code.errors %}
+            {% for error in form.zip_code.errors %}
+                <small><font color="red">{{ error }}</font></small>
+            {% endfor %}
+            {% endif %}
+      </div>
+    </div>
+    <div class="form-check">
+            {{ form.agree(class="form-check-input") }}
+            {{ form.agree.label(class="form-check-label") }}
+            {% if form.agree.errors %}
+            {% for error in form.agree.errors %}
+                <small><font color="red">{{ error }}</font></small>
+            {% endfor %}
+            {% endif %}
+    </div>
+    <br>
+    {{ form.submit }}
+  </form>
+
+{% endblock %}
+#+end_src
+*** templates/success.html
+#+begin_src html
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Forma užpildyta sėkmingai!</h1><br><br>
+<p>Email: {{form.email.data}}</p>
+<p>Password: {{form.password.data}}</p>
+<p>Adresas:</p>
+<p>{{form.address1.data}}</p>
+<p>{{form.address2.data}}</p>
+<p>{{form.zip_code.data}} {{form.city.data}}</p>
+<p>{{form.state.data}} raj.</p>
+<p>{{form.agree.data}}</p>
+
+{% endblock %}
+#+end_src
