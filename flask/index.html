@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-02-15 Wed 05:27 -->
+<!-- 2023-02-22 Wed 19:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>CodeAcademy Flask</title>
@@ -202,41 +202,51 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org327db99">1. Įžanga į Flask</a>
+<li><a href="#org7cf8bbd">1. Įžanga į Flask</a>
 <ul>
-<li><a href="#orgcd9a3d3">1.1. Kaip sukurti minimalią svetainę:</a></li>
-<li><a href="#org0a99cc3">1.2. Kaip puslapyje atvaizduoti įvestą kintamąjį:</a></li>
-<li><a href="#orgd026e10">1.3. Kaip sukurti ir panaudoti HTML šabloną:</a></li>
-<li><a href="#org41d12e6">1.4. Kaip kintamuosius perkelti į šabloną:</a></li>
-<li><a href="#org994d667">1.5. Kaip perduoti duomenis iš svetainės į programą:</a></li>
-<li><a href="#org09e2d16">1.6. Naudojame base.html šabloną:</a></li>
-<li><a href="#orge79663e">1.7. Stiliui panaudojame "Bootstrap":</a></li>
-<li><a href="#org4fedeaa">1.8. Užduotys</a></li>
+<li><a href="#org008f098">1.1. Kaip sukurti minimalią svetainę:</a></li>
+<li><a href="#org20ad674">1.2. Kaip puslapyje atvaizduoti įvestą kintamąjį:</a></li>
+<li><a href="#org8fe5f62">1.3. Kaip sukurti ir panaudoti HTML šabloną:</a></li>
+<li><a href="#org797a742">1.4. Kaip kintamuosius perkelti į šabloną:</a></li>
+<li><a href="#org3126a4d">1.5. Kaip perduoti duomenis iš svetainės į programą:</a></li>
+<li><a href="#orgf4d13b6">1.6. Naudojame base.html šabloną:</a></li>
+<li><a href="#org5c592c9">1.7. Stiliui panaudojame "Bootstrap":</a></li>
+<li><a href="#org6e02deb">1.8. Užduotys</a></li>
 </ul>
 </li>
-<li><a href="#org486139d">2. Flask 1 dalis</a>
+<li><a href="#org261fd96">2. Flask 1 dalis</a>
 <ul>
-<li><a href="#orgffabccc">2.1. Susikurkime paprastą flask aplikaciją</a></li>
+<li><a href="#org0826bd9">2.1. Susikurkime paprastą flask aplikaciją</a></li>
 </ul>
 </li>
-<li><a href="#org2e0c903">3. Flask 2 dalis</a>
+<li><a href="#org3d6d855">3. Flask 2 dalis</a>
 <ul>
-<li><a href="#org52621a0">3.1. Dinaminiai maršrutai ir formos</a></li>
-<li><a href="#orgc4c649a">3.2. Uzduotis</a></li>
+<li><a href="#orgbb1fbe8">3.1. Dinaminiai maršrutai ir formos</a></li>
+<li><a href="#orge14d2da">3.2. Uzduotis</a></li>
 </ul>
 </li>
-<li><a href="#orgc8ded4c">4. Flask 3 dalis</a>
+<li><a href="#orga352e92">4. Flask 3 dalis</a>
 <ul>
-<li><a href="#org0f74cbb">4.1. Duomenų bazės sukūrimas</a></li>
-<li><a href="#org0f7d951">4.2. Duomenų bazės migracija</a></li>
+<li><a href="#org2d2ce98">4.1. Duomenų bazės sukūrimas</a></li>
+<li><a href="#orgf4fd6bc">4.2. Duomenų bazės migracija</a></li>
+<li><a href="#org886b244">4.3. Uzduotis</a></li>
+</ul>
+</li>
+<li><a href="#org5a5b87a">5. Flask 4 dalis</a>
+<ul>
+<li><a href="#org7e904f0">5.1. One2Many</a></li>
+<li><a href="#org9afe2d2">5.2. Many2Many</a></li>
+<li><a href="#org5c4c7fe">5.3. Many2One ryšio įgyvendinimas su Flask</a></li>
+<li><a href="#org788562b">5.4. One2Many ryšio įgyvendinimas su Flask</a></li>
+<li><a href="#org55c833f">5.5. Many2Many ryšio įgyvendinimas su Flask</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org327db99" class="outline-2">
-<h2 id="org327db99"><span class="section-number-2">1.</span> Įžanga į Flask</h2>
+<div id="outline-container-org7cf8bbd" class="outline-2">
+<h2 id="org7cf8bbd"><span class="section-number-2">1.</span> Įžanga į Flask</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Flask yra populiariausias Python microframework. Jeigu projektas nėra
@@ -251,8 +261,8 @@ Flask galima įdiegti su pip naudojant <code>pip install flask</code>.
 </p>
 </div>
 
-<div id="outline-container-orgcd9a3d3" class="outline-3">
-<h3 id="orgcd9a3d3"><span class="section-number-3">1.1.</span> Kaip sukurti minimalią svetainę:</h3>
+<div id="outline-container-org008f098" class="outline-3">
+<h3 id="org008f098"><span class="section-number-3">1.1.</span> Kaip sukurti minimalią svetainę:</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #fb4934;">from</span> flask <span style="color: #fb4934;">import</span> Flask
@@ -270,8 +280,8 @@ Flask galima įdiegti su pip naudojant <code>pip install flask</code>.
 </div>
 </div>
 
-<div id="outline-container-org0a99cc3" class="outline-3">
-<h3 id="org0a99cc3"><span class="section-number-3">1.2.</span> Kaip puslapyje atvaizduoti įvestą kintamąjį:</h3>
+<div id="outline-container-org20ad674" class="outline-3">
+<h3 id="org20ad674"><span class="section-number-3">1.2.</span> Kaip puslapyje atvaizduoti įvestą kintamąjį:</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #fb4934;">from</span> flask <span style="color: #fb4934;">import</span> Flask
@@ -289,8 +299,8 @@ Flask galima įdiegti su pip naudojant <code>pip install flask</code>.
 </div>
 </div>
 
-<div id="outline-container-orgd026e10" class="outline-3">
-<h3 id="orgd026e10"><span class="section-number-3">1.3.</span> Kaip sukurti ir panaudoti HTML šabloną:</h3>
+<div id="outline-container-org8fe5f62" class="outline-3">
+<h3 id="org8fe5f62"><span class="section-number-3">1.3.</span> Kaip sukurti ir panaudoti HTML šabloną:</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 main.py:
@@ -353,8 +363,8 @@ templates/index.html:
 </div>
 </div>
 
-<div id="outline-container-org41d12e6" class="outline-3">
-<h3 id="org41d12e6"><span class="section-number-3">1.4.</span> Kaip kintamuosius perkelti į šabloną:</h3>
+<div id="outline-container-org797a742" class="outline-3">
+<h3 id="org797a742"><span class="section-number-3">1.4.</span> Kaip kintamuosius perkelti į šabloną:</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 main.py
@@ -398,8 +408,8 @@ templates/index.html
 </div>
 </div>
 
-<div id="outline-container-org994d667" class="outline-3">
-<h3 id="org994d667"><span class="section-number-3">1.5.</span> Kaip perduoti duomenis iš svetainės į programą:</h3>
+<div id="outline-container-org3126a4d" class="outline-3">
+<h3 id="org3126a4d"><span class="section-number-3">1.5.</span> Kaip perduoti duomenis iš svetainės į programą:</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 main.py
@@ -466,8 +476,8 @@ templates/greetings.html
 </div>
 </div>
 
-<div id="outline-container-org09e2d16" class="outline-3">
-<h3 id="org09e2d16"><span class="section-number-3">1.6.</span> Naudojame base.html šabloną:</h3>
+<div id="outline-container-orgf4d13b6" class="outline-3">
+<h3 id="orgf4d13b6"><span class="section-number-3">1.6.</span> Naudojame base.html šabloną:</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 Failas templates/base.html:
@@ -522,8 +532,8 @@ Failas templates/greetings.html:
 </div>
 </div>
 
-<div id="outline-container-orge79663e" class="outline-3">
-<h3 id="orge79663e"><span class="section-number-3">1.7.</span> Stiliui panaudojame "Bootstrap":</h3>
+<div id="outline-container-org5c592c9" class="outline-3">
+<h3 id="org5c592c9"><span class="section-number-3">1.7.</span> Stiliui panaudojame "Bootstrap":</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 Faile base.html:
@@ -577,12 +587,12 @@ Faile base.html:
 </div>
 </div>
 
-<div id="outline-container-org4fedeaa" class="outline-3">
-<h3 id="org4fedeaa"><span class="section-number-3">1.8.</span> Užduotys</h3>
+<div id="outline-container-org6e02deb" class="outline-3">
+<h3 id="org6e02deb"><span class="section-number-3">1.8.</span> Užduotys</h3>
 <div class="outline-text-3" id="text-1-8">
 </div>
-<div id="outline-container-org1c885b4" class="outline-4">
-<h4 id="org1c885b4"><span class="section-number-4">1.8.1.</span> 1 užduotis</h4>
+<div id="outline-container-orgace3491" class="outline-4">
+<h4 id="orgace3491"><span class="section-number-4">1.8.1.</span> 1 užduotis</h4>
 <div class="outline-text-4" id="text-1-8-1">
 <p>
 Sukurti programą, kuri turėtų statinį puslapį, pvz. localhost:5000 su
@@ -626,15 +636,15 @@ template/home.html
 </div>
 
 
-<div id="org4e5275a" class="figure">
+<div id="orgc4d5829" class="figure">
 <p><img src="./static/images/1.png" alt="1.png" width="600px" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgaefea49" class="outline-4">
-<h4 id="orgaefea49"><span class="section-number-4">1.8.2.</span> 2 užduotis</h4>
+<div id="outline-container-org7abd602" class="outline-4">
+<h4 id="org7abd602"><span class="section-number-4">1.8.2.</span> 2 užduotis</h4>
 <div class="outline-text-4" id="text-1-8-2">
 <p>
 Sukurti programą, kuri įvedus norimą žodį adreso eilutėje (po /
@@ -685,15 +695,15 @@ templates/word.html
 
 
 
-<div id="org80bf056" class="figure">
+<div id="org1963937" class="figure">
 <p><img src="./static/images/2.png" alt="2.png" width="600px" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgaf6126e" class="outline-4">
-<h4 id="orgaf6126e"><span class="section-number-4">1.8.3.</span> 3 užduotis</h4>
+<div id="outline-container-orgef30a06" class="outline-4">
+<h4 id="orgef30a06"><span class="section-number-4">1.8.3.</span> 3 užduotis</h4>
 <div class="outline-text-4" id="text-1-8-3">
 <p>
 Sukurti programą, kuri puslapyje localhost:5000/keliamieji parodytų
@@ -746,15 +756,15 @@ templates/leap.html
 </div>
 
 
-<div id="org524375d" class="figure">
+<div id="org8b81375" class="figure">
 <p><img src="./static/images/3.png" alt="3.png" width="600px" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org065538d" class="outline-4">
-<h4 id="org065538d"><span class="section-number-4">1.8.4.</span> 4 užduotis</h4>
+<div id="outline-container-org81b860a" class="outline-4">
+<h4 id="org81b860a"><span class="section-number-4">1.8.4.</span> 4 užduotis</h4>
 <div class="outline-text-4" id="text-1-8-4">
 <p>
 Sukurti programą, kuri leistų įvesti metus ir paspaudus patvirtinimo
@@ -836,7 +846,7 @@ templates/isleap.html
 </div>
 
 
-<div id="org9a0bbc8" class="figure">
+<div id="orgabdb928" class="figure">
 <p><img src="./static/images/4.gif" alt="4.gif" width="600px" />
 </p>
 </div>
@@ -844,8 +854,8 @@ templates/isleap.html
 </div>
 
 
-<div id="outline-container-orga235b90" class="outline-4">
-<h4 id="orga235b90"><span class="section-number-4">1.8.5.</span> 5 užduotis (papildomai)</h4>
+<div id="outline-container-org5d25279" class="outline-4">
+<h4 id="org5d25279"><span class="section-number-4">1.8.5.</span> 5 užduotis (papildomai)</h4>
 <div class="outline-text-4" id="text-1-8-5">
 <p>
 Patobulinti anksčiau kurtą biudžeto programą, panaudojant Flask
@@ -1125,7 +1135,7 @@ Run main.py and open <a href="http://127.0.0.1:5000">http://127.0.0.1:5000</a>, 
 </p>
 
 
-<div id="orgbd0f41f" class="figure">
+<div id="orgf0c85b0" class="figure">
 <p><img src="./static/images/5.gif" alt="5.gif" width="600px" />
 </p>
 </div>
@@ -1184,12 +1194,12 @@ importlib-metadata==6.0.0
 </div>
 </div>
 
-<div id="outline-container-org486139d" class="outline-2">
-<h2 id="org486139d"><span class="section-number-2">2.</span> Flask 1 dalis</h2>
+<div id="outline-container-org261fd96" class="outline-2">
+<h2 id="org261fd96"><span class="section-number-2">2.</span> Flask 1 dalis</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgffabccc" class="outline-3">
-<h3 id="orgffabccc"><span class="section-number-3">2.1.</span> Susikurkime paprastą flask aplikaciją</h3>
+<div id="outline-container-org0826bd9" class="outline-3">
+<h3 id="org0826bd9"><span class="section-number-3">2.1.</span> Susikurkime paprastą flask aplikaciją</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 app.py:
@@ -1241,7 +1251,7 @@ Patikrinkime, ar veikia:
 </p>
 
 
-<div id="orgdc326f3" class="figure">
+<div id="orge4563aa" class="figure">
 <p><img src="./static/images/flask1_1.png" alt="flask1_1.png" width="600px" />
 </p>
 </div>
@@ -1327,7 +1337,7 @@ body:
 </div>
 
 
-<div id="org2eec2c5" class="figure">
+<div id="orgfb1e433" class="figure">
 <p><img src="./static/images/flask1_2.png" alt="flask1_2.png" width="600px" />
 </p>
 </div>
@@ -1353,7 +1363,7 @@ paversti straipsnių puslapiu:
 </div>
 
 
-<div id="org0447e99" class="figure">
+<div id="org2857ccd" class="figure">
 <p><img src="./static/images/flask1_3.png" alt="flask1_3.png" width="600px" />
 </p>
 </div>
@@ -1398,7 +1408,7 @@ if logiką. Pradžiai papildykime 'duomenų bazę'. Kiekviename žodyne
 </div>
 
 
-<div id="org3e6d1b7" class="figure">
+<div id="org1f2a049" class="figure">
 <p><img src="./static/images/flask1_4.png" alt="flask1_4.png" width="600px" />
 </p>
 </div>
@@ -1430,7 +1440,7 @@ Kaip ir python'e, galima naudoti {%elif %} ir {% else %}. Pvz.:
 </div>
 
 
-<div id="orge3107d8" class="figure">
+<div id="orga3f6853" class="figure">
 <p><img src="./static/images/flask1_5.png" alt="flask1_5.png" width="600px" />
 </p>
 </div>
@@ -1480,7 +1490,7 @@ Rezultatas atrodys maždaug taip:
 </p>
 
 
-<div id="orge963663" class="figure">
+<div id="org4c90f57" class="figure">
 <p><img src="./static/images/flask1_6.png" alt="flask1_6.png" width="600px" />
 </p>
 </div>
@@ -1599,7 +1609,7 @@ Svetainėje, paspaudę nuorodą atsidursime puslapyje "Apie":
 </p>
 
 
-<div id="org503bf43" class="figure">
+<div id="orgc8f4643" class="figure">
 <p><img src="./static/images/flask1_7.png" alt="flask1_7.png" width="600px" />
 </p>
 </div>
@@ -1611,16 +1621,16 @@ Svetainėje, paspaudę nuorodą atsidursime puslapyje "Apie":
 </div>
 </div>
 
-<div id="outline-container-org2e0c903" class="outline-2">
-<h2 id="org2e0c903"><span class="section-number-2">3.</span> Flask 2 dalis</h2>
+<div id="outline-container-org3d6d855" class="outline-2">
+<h2 id="org3d6d855"><span class="section-number-2">3.</span> Flask 2 dalis</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org52621a0" class="outline-3">
-<h3 id="org52621a0"><span class="section-number-3">3.1.</span> Dinaminiai maršrutai ir formos</h3>
+<div id="outline-container-orgbb1fbe8" class="outline-3">
+<h3 id="orgbb1fbe8"><span class="section-number-3">3.1.</span> Dinaminiai maršrutai ir formos</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-orgb6b4531" class="outline-4">
-<h4 id="orgb6b4531"><span class="section-number-4">3.1.1.</span> Dinaminiai maršrutai</h4>
+<div id="outline-container-org4362e68" class="outline-4">
+<h4 id="org4362e68"><span class="section-number-4">3.1.1.</span> Dinaminiai maršrutai</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 Tęskime su praeitos paskaitos medžiaga. Įsivaizduokime, kad mums
@@ -1681,7 +1691,7 @@ Mūsų straipsnių puslapis dabar atrodo taip:
 </p>
 
 
-<div id="org92f53fc" class="figure">
+<div id="org931b91b" class="figure">
 <p><img src="./static/images/flask2_1.png" alt="flask2_1.png" width="300px" />
 </p>
 </div>
@@ -1726,14 +1736,14 @@ išbandykime:
 </p>
 
 
-<div id="orgd965e68" class="figure">
+<div id="orgeb244f0" class="figure">
 <p><img src="./static/images/flask2_2.png" alt="flask2_2.png" width="800px" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgeb8264a" class="outline-4">
-<h4 id="orgeb8264a"><span class="section-number-4">3.1.2.</span> Formos</h4>
+<div id="outline-container-orgc250644" class="outline-4">
+<h4 id="orgc250644"><span class="section-number-4">3.1.2.</span> Formos</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <p>
 Formas flaske galima kurti dviem būdais. Aptarsime abu. Pirmas iš jų
@@ -1817,7 +1827,7 @@ užeikime į "Rašyti straipsnį" nuorodą:
 </p>
 
 
-<div id="org0b268f5" class="figure">
+<div id="org78cda47" class="figure">
 <p><img src="./static/images/flask2_3.png" alt="flask2_3.png" width="600px" />
 </p>
 </div>
@@ -1857,15 +1867,15 @@ papildome mūsų "duomenų bazę" naujais duomenimis:
 </p>
 
 
-<div id="org97e8bf4" class="figure">
+<div id="orgd3f8655" class="figure">
 <p><img src="./static/images/flask2_4.png" alt="flask2_4.png" width="600px" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3093888" class="outline-4">
-<h4 id="org3093888"><span class="section-number-4">3.1.3.</span> flask-wtf</h4>
+<div id="outline-container-org013d325" class="outline-4">
+<h4 id="org013d325"><span class="section-number-4">3.1.3.</span> flask-wtf</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <p>
 Antras būdas tvarkytis su formomis yra trečios šalies bibliotekos
@@ -2009,7 +2019,7 @@ labai nesistengėme, išgaudysime formos reikšmes į pliką HTML.
 </p>
 
 
-<div id="orgf8585e0" class="figure">
+<div id="org3b178e4" class="figure">
 <p><img src="./static/images/flask2_5.png" alt="flask2_5.png" width="600px" />
 </p>
 </div>
@@ -2068,7 +2078,7 @@ parašome, kas tai per klaida:
 </p>
 
 
-<div id="org8f2d4ab" class="figure">
+<div id="orgc639bb2" class="figure">
 <p><img src="./static/images/flask2_6.png" alt="flask2_6.png" width="600px" />
 </p>
 </div>
@@ -2078,7 +2088,7 @@ Na ir pagaliau pabandykime teisingai suvesti:
 </p>
 
 
-<div id="org3111eaf" class="figure">
+<div id="orgfa023e5" class="figure">
 <p><img src="./static/images/flask2_7.png" alt="flask2_7.png" width="600px" />
 </p>
 </div>
@@ -2086,12 +2096,12 @@ Na ir pagaliau pabandykime teisingai suvesti:
 </div>
 </div>
 
-<div id="outline-container-orgc4c649a" class="outline-3">
-<h3 id="orgc4c649a"><span class="section-number-3">3.2.</span> Uzduotis</h3>
+<div id="outline-container-orge14d2da" class="outline-3">
+<h3 id="orge14d2da"><span class="section-number-3">3.2.</span> Uzduotis</h3>
 <div class="outline-text-3" id="text-3-2">
 </div>
-<div id="outline-container-org5eccf17" class="outline-4">
-<h4 id="org5eccf17"><span class="section-number-4">3.2.1.</span> app.py</h4>
+<div id="outline-container-org33efde4" class="outline-4">
+<h4 id="org33efde4"><span class="section-number-4">3.2.1.</span> app.py</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #fb4934;">from</span> flask <span style="color: #fb4934;">import</span> Flask, render_template, request, redirect, url_for, flash
@@ -2115,8 +2125,8 @@ app.<span style="color: #83a598;">config</span><span style="color: #fe8019;">[</
 </div>
 </div>
 </div>
-<div id="outline-container-orgaeaa603" class="outline-4">
-<h4 id="orgaeaa603"><span class="section-number-4">3.2.2.</span> form.py</h4>
+<div id="outline-container-orgeb22b15" class="outline-4">
+<h4 id="orgeb22b15"><span class="section-number-4">3.2.2.</span> form.py</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #fb4934;">from</span> flask_wtf <span style="color: #fb4934;">import</span> FlaskForm
@@ -2139,8 +2149,8 @@ app.<span style="color: #83a598;">config</span><span style="color: #fe8019;">[</
 </div>
 </div>
 </div>
-<div id="outline-container-orgfb4dcff" class="outline-4">
-<h4 id="orgfb4dcff"><span class="section-number-4">3.2.3.</span> templates/base.html</h4>
+<div id="outline-container-org6c6eb92" class="outline-4">
+<h4 id="org6c6eb92"><span class="section-number-4">3.2.3.</span> templates/base.html</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <div class="org-src-container">
 <pre class="src src-html">&lt;<span style="color: #fb4934;">!doctype</span> html&gt;
@@ -2173,8 +2183,8 @@ app.<span style="color: #83a598;">config</span><span style="color: #fe8019;">[</
 </div>
 </div>
 </div>
-<div id="outline-container-org44caffa" class="outline-4">
-<h4 id="org44caffa"><span class="section-number-4">3.2.4.</span> templates/form.html</h4>
+<div id="outline-container-orgc7fe0b1" class="outline-4">
+<h4 id="orgc7fe0b1"><span class="section-number-4">3.2.4.</span> templates/form.html</h4>
 <div class="outline-text-4" id="text-3-2-4">
 <div class="org-src-container">
 <pre class="src src-html">{% extends "base.html" %}
@@ -2267,8 +2277,8 @@ app.<span style="color: #83a598;">config</span><span style="color: #fe8019;">[</
 </div>
 </div>
 </div>
-<div id="outline-container-org1ac0cce" class="outline-4">
-<h4 id="org1ac0cce"><span class="section-number-4">3.2.5.</span> templates/success.html</h4>
+<div id="outline-container-org2e2018b" class="outline-4">
+<h4 id="org2e2018b"><span class="section-number-4">3.2.5.</span> templates/success.html</h4>
 <div class="outline-text-4" id="text-3-2-5">
 <div class="org-src-container">
 <pre class="src src-html">{% extends "base.html" %}
@@ -2291,8 +2301,8 @@ app.<span style="color: #83a598;">config</span><span style="color: #fe8019;">[</
 </div>
 </div>
 </div>
-<div id="outline-container-orgc8ded4c" class="outline-2">
-<h2 id="orgc8ded4c"><span class="section-number-2">4.</span> Flask 3 dalis</h2>
+<div id="outline-container-orga352e92" class="outline-2">
+<h2 id="orga352e92"><span class="section-number-2">4.</span> Flask 3 dalis</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 once again, do pip install flask-sqlalchemy==2.5.1
@@ -2304,8 +2314,8 @@ listed below to work.
 </p>
 </div>
 
-<div id="outline-container-org0f74cbb" class="outline-3">
-<h3 id="org0f74cbb"><span class="section-number-3">4.1.</span> Duomenų bazės sukūrimas</h3>
+<div id="outline-container-org2d2ce98" class="outline-3">
+<h3 id="org2d2ce98"><span class="section-number-3">4.1.</span> Duomenų bazės sukūrimas</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Flask leidžia mums dirbti su duomenų bazėmis, praktiškai nesitepant
@@ -2397,8 +2407,8 @@ sugeneruoti automatiškai.
 </p>
 </div>
 
-<div id="outline-container-orgc80e367" class="outline-4">
-<h4 id="orgc80e367"><span class="section-number-4">4.1.1.</span> Paprastos CRUD operacijos</h4>
+<div id="outline-container-orgf1c24e6" class="outline-4">
+<h4 id="orgf1c24e6"><span class="section-number-4">4.1.1.</span> Paprastos CRUD operacijos</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <p>
 Susikurkime dar vieną failą, crud operacijų demonstracijai.
@@ -2476,8 +2486,8 @@ db.session.commit<span style="color: #fe8019;">()</span>
 </div>
 </div>
 
-<div id="outline-container-org0f7d951" class="outline-3">
-<h3 id="org0f7d951"><span class="section-number-3">4.2.</span> Duomenų bazės migracija</h3>
+<div id="outline-container-orgf4fd6bc" class="outline-3">
+<h3 id="orgf4fd6bc"><span class="section-number-3">4.2.</span> Duomenų bazės migracija</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 Jeigu mums prireiktų papildyti savo lentelę papildomu stulpeliu,
@@ -2642,12 +2652,1417 @@ Jeigu atkreipėte dėmesį, migracijų procesas labai panašus į GIT procesus.
 </p>
 </div>
 </div>
+
+<div id="outline-container-org886b244" class="outline-3">
+<h3 id="org886b244"><span class="section-number-3">4.3.</span> Uzduotis</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+Sukurkite peticijos puslapį. Gali pažiūrėti <a href="https://github.com/robotautas/kursas/blob/master/Flask/Flask_3_uzduotis/Uzduotis/take1.mkv">demonstraciją</a>, kaip turėtų
+atrodyti galutinis rezultatas.
+</p>
+
+<p>
+Šiame puslapyje turėtų būti išpildyti žemiau išvardinti reikalavimai:
+</p>
+
+<p>
+Puslapio navigacijoje turi būti nuorodos į pagrindinį puslapį ir
+/about.
+</p>
+
+<p>
+Pagrindiniame puslapyje turi būti forma, kurioje reikia įvesti vardą,
+pavardę ir komentarą. Po ja - pasirašiusiųjų sąrašas: eil.nr, vardas
+pavardė, data ir komentaras
+</p>
+
+<p>
+Jeigu forma užpildyta sėkmingai, sąrašas papildomas paskutiniu įrašu,
+o vietoje formos atsiranda padėkos žinutė (angl. success message).
+</p>
+
+<p>
+Įrašus saugokite sqlite duomenų bazėjė.
+</p>
+
+<p>
+Jums reikės atrasti būdą, kaip prieš sugeneruojant šabloną į duomenų
+bazę perkelti formos duomenis
+</p>
+
+<p>
+Pavienės wtf-formos reikšmės traukiamos taip, pvz: form.name.data
+</p>
+
+<p>
+Padaryti formos validaciją (šitą galite pasilikti pabaigai ir
+padaryti, jeigu liks laiko)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #928374;"># </span><span style="color: #928374;">app.py</span>
+
+<span style="color: #fb4934;">import</span> os
+<span style="color: #fb4934;">from</span> datetime <span style="color: #fb4934;">import</span> datetime
+<span style="color: #fb4934;">from</span> flask <span style="color: #fb4934;">import</span> Flask, render_template
+<span style="color: #fb4934;">from</span> flask_migrate <span style="color: #fb4934;">import</span> Migrate
+<span style="color: #fb4934;">from</span> flask_sqlalchemy <span style="color: #fb4934;">import</span> SQLAlchemy
+<span style="color: #fb4934;">from</span> form <span style="color: #fb4934;">import</span> MessageForm
+
+
+<span style="color: #83a598;">basedir</span> = os.path.abspath<span style="color: #fe8019;">(</span>os.path.dirname<span style="color: #cc241d;">(</span>__file__<span style="color: #cc241d;">)</span><span style="color: #fe8019;">)</span>
+<span style="color: #83a598;">app</span> = Flask<span style="color: #fe8019;">(</span><span style="color: #fe8019;">__name__</span><span style="color: #fe8019;">)</span>
+app.<span style="color: #83a598;">config</span><span style="color: #fe8019;">[</span><span style="color: #b8bb26;">'SECRET_KEY'</span><span style="color: #fe8019;">]</span> = <span style="color: #b8bb26;">'bet kokia simboli&#371; eilut&#279;'</span>
+app.<span style="color: #83a598;">config</span><span style="color: #fe8019;">[</span><span style="color: #b8bb26;">'SQLALCHEMY_DATABASE_URI'</span><span style="color: #fe8019;">]</span> = <span style="color: #b8bb26;">'sqlite:///'</span>+os.path.join<span style="color: #fe8019;">(</span>basedir, <span style="color: #b8bb26;">'data.sqlite'</span><span style="color: #fe8019;">)</span>
+
+app.<span style="color: #83a598;">config</span><span style="color: #fe8019;">[</span><span style="color: #b8bb26;">'SQLALCHEMY_TRACK_MODIFICATIONS'</span><span style="color: #fe8019;">]</span> = <span style="color: #d3869b;">False</span>
+<span style="color: #83a598;">db</span> = SQLAlchemy<span style="color: #fe8019;">(</span>app<span style="color: #fe8019;">)</span>
+Migrate<span style="color: #fe8019;">(</span>app, db<span style="color: #fe8019;">)</span>
+
+
+<span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">Message</span><span style="color: #fe8019;">(</span>db.Model<span style="color: #fe8019;">)</span>:
+    <span style="color: #83a598;">__tablename__</span> = <span style="color: #b8bb26;">'messages'</span>
+    <span style="color: #fe8019;">id</span> = db.Column<span style="color: #fe8019;">(</span>db.Integer, primary_key=<span style="color: #d3869b;">True</span><span style="color: #fe8019;">)</span>
+    fname = db.Column<span style="color: #fe8019;">(</span>db.String<span style="color: #cc241d;">(</span>80<span style="color: #cc241d;">)</span>, nullable=<span style="color: #d3869b;">False</span><span style="color: #fe8019;">)</span>
+    lname = db.Column<span style="color: #fe8019;">(</span>db.String<span style="color: #cc241d;">(</span>80<span style="color: #cc241d;">)</span>, nullable=<span style="color: #d3869b;">False</span><span style="color: #fe8019;">)</span>
+    date = db.Column<span style="color: #fe8019;">(</span>db.String<span style="color: #cc241d;">(</span>80<span style="color: #cc241d;">)</span><span style="color: #fe8019;">)</span>
+    comment = db.Column<span style="color: #fe8019;">(</span>db.Text, nullable=<span style="color: #d3869b;">False</span><span style="color: #fe8019;">)</span>
+
+    <span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">__init__</span><span style="color: #fe8019;">(</span><span style="color: #fb4934;">self</span>, fname, lname, comment, date<span style="color: #fe8019;">)</span>:
+        <span style="color: #fb4934;">self</span>.fname = fname
+        <span style="color: #fb4934;">self</span>.lname = lname
+        <span style="color: #fb4934;">self</span>.comment = comment
+        <span style="color: #fb4934;">self</span>.date = date
+
+    <span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">__repr__</span><span style="color: #fe8019;">(</span><span style="color: #fb4934;">self</span><span style="color: #fe8019;">)</span>:
+        <span style="color: #fb4934;">return</span> f<span style="color: #b8bb26;">'</span>{<span style="color: #fb4934;">self</span>.fname}<span style="color: #b8bb26;"> - </span>{<span style="color: #fb4934;">self</span>.lname}<span style="color: #b8bb26;">'</span>
+
+
+<span style="color: #fabd2f;">@app.route</span><span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'/'</span>, methods=<span style="color: #cc241d;">[</span><span style="color: #b8bb26;">'GET'</span>, <span style="color: #b8bb26;">'POST'</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+<span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">index</span><span style="color: #fe8019;">()</span>:
+    data = Message.query.<span style="color: #fe8019;">all</span><span style="color: #fe8019;">()[</span>::-1<span style="color: #fe8019;">]</span>
+    form = MessageForm<span style="color: #fe8019;">()</span>
+    <span style="color: #fb4934;">if</span> form.validate_on_submit<span style="color: #fe8019;">()</span>:
+        fname = form.fname.data
+        lname = form.lname.data
+        comment = form.comment.data
+        now = datetime.now<span style="color: #fe8019;">()</span>
+        date = now.strftime<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"%d/%m/%Y %H:%M:%S"</span><span style="color: #fe8019;">)</span>
+        entry = Message<span style="color: #fe8019;">(</span>fname=fname, lname=lname, comment=comment, date=date<span style="color: #fe8019;">)</span>
+        db.session.add<span style="color: #fe8019;">(</span>entry<span style="color: #fe8019;">)</span>
+        db.session.commit<span style="color: #fe8019;">()</span>
+        data = Message.query.<span style="color: #fe8019;">all</span><span style="color: #fe8019;">()[</span>::-1<span style="color: #fe8019;">]</span>
+        stats = 20000 - <span style="color: #fe8019;">len</span><span style="color: #fe8019;">(</span>data<span style="color: #fe8019;">)</span>
+        <span style="color: #fb4934;">return</span> render_template<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'index.html'</span>, form=<span style="color: #d3869b;">False</span>, data=data, stats = stats<span style="color: #fe8019;">)</span>
+    <span style="color: #fb4934;">return</span> render_template<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'index.html'</span>, form=form, data=data<span style="color: #fe8019;">)</span>
+
+
+<span style="color: #fabd2f;">@app.route</span><span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'/about'</span><span style="color: #fe8019;">)</span>
+<span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">about</span><span style="color: #fe8019;">()</span>:
+    <span style="color: #fb4934;">return</span> render_template<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'about.html'</span><span style="color: #fe8019;">)</span>
+
+
+<span style="color: #fb4934;">if</span> <span style="color: #fe8019;">__name__</span> == <span style="color: #b8bb26;">'__main__'</span>:
+  app.run<span style="color: #fe8019;">(</span>host=<span style="color: #b8bb26;">'127.0.0.1'</span>, port=8000, debug=<span style="color: #d3869b;">True</span><span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #928374;"># </span><span style="color: #928374;">form.py</span>
+<span style="color: #fb4934;">from</span> flask_wtf <span style="color: #fb4934;">import</span> FlaskForm
+<span style="color: #fb4934;">from</span> wtforms <span style="color: #fb4934;">import</span> StringField, TextAreaField, SubmitField
+<span style="color: #fb4934;">from</span> wtforms.validators <span style="color: #fb4934;">import</span> DataRequired
+
+
+<span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">MessageForm</span><span style="color: #fe8019;">(</span>FlaskForm<span style="color: #fe8019;">)</span>:
+    <span style="color: #83a598;">fname</span> = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Vardas'</span>, <span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">()</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    <span style="color: #83a598;">lname</span> = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Pavard&#279;'</span>, <span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">()</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    <span style="color: #83a598;">comment</span> = TextAreaField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Komentaras'</span><span style="color: #fe8019;">)</span>
+    <span style="color: #83a598;">submit</span> = SubmitField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Pasira&#353;yti'</span><span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #928374;">&lt;!-- </span><span style="color: #928374;">about.html</span><span style="color: #928374;"> --&gt;</span>
+{% extends "base.html" %}
+
+{% block content %}
+&lt;<span style="color: #b8bb26;">img</span> <span style="color: #83a598;">src</span>=<span style="color: #b8bb26;">"https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555446335/shape/mentalfloss/istock_000019974211_small.jpg"</span> /&gt;
+&lt;<span style="color: #b8bb26;">br</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis.
+  Summus brains sit&#8203;&#8203;, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless
+  mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium.
+  Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat
+  mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an
+  Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.
+&lt;/<span style="color: #b8bb26;">p</span>&gt;
+{% endblock %}
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #928374;">&lt;!-- </span><span style="color: #928374;">base.html</span><span style="color: #928374;"> --&gt;</span>
+
+&lt;<span style="color: #fb4934;">!DOCTYPE</span> html&gt;
+&lt;<span style="color: #b8bb26;">html</span> <span style="color: #83a598;">lang</span>=<span style="color: #b8bb26;">"en"</span>&gt;
+
+&lt;<span style="color: #b8bb26;">head</span>&gt;
+
+  &lt;<span style="color: #b8bb26;">meta</span> <span style="color: #83a598;">charset</span>=<span style="color: #b8bb26;">"utf-8"</span>&gt;
+  &lt;<span style="color: #b8bb26;">meta</span> <span style="color: #83a598;">name</span>=<span style="color: #b8bb26;">"viewport"</span> <span style="color: #83a598;">content</span>=<span style="color: #b8bb26;">"width=device-width, initial-scale=1, shrink-to-fit=no"</span>&gt;
+  &lt;<span style="color: #b8bb26;">meta</span> <span style="color: #83a598;">name</span>=<span style="color: #b8bb26;">"description"</span> <span style="color: #83a598;">content</span>=<span style="color: #b8bb26;">""</span>&gt;
+  &lt;<span style="color: #b8bb26;">meta</span> <span style="color: #83a598;">name</span>=<span style="color: #b8bb26;">"author"</span> <span style="color: #83a598;">content</span>=<span style="color: #b8bb26;">""</span>&gt;
+
+  &lt;<span style="color: #b8bb26;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Bare - Start Bootstrap Template</span>&lt;/<span style="color: #b8bb26;">title</span>&gt;
+
+  <span style="color: #928374;">&lt;!-- </span><span style="color: #928374;">Bootstrap core CSS</span><span style="color: #928374;"> --&gt;</span>
+  &lt;<span style="color: #b8bb26;">link</span> <span style="color: #83a598;">rel</span>=<span style="color: #b8bb26;">"stylesheet"</span> <span style="color: #83a598;">href</span>=<span style="color: #b8bb26;">"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"</span> <span style="color: #83a598;">integrity</span>=<span style="color: #b8bb26;">"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"</span> <span style="color: #83a598;">crossorigin</span>=<span style="color: #b8bb26;">"anonymous"</span>&gt;
+
+
+&lt;/<span style="color: #b8bb26;">head</span>&gt;
+
+&lt;<span style="color: #b8bb26;">body</span>&gt;
+
+  <span style="color: #928374;">&lt;!-- </span><span style="color: #928374;">Navigation</span><span style="color: #928374;"> --&gt;</span>
+  &lt;<span style="color: #b8bb26;">nav</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"navbar navbar-expand-lg navbar-dark bg-primary static-top"</span>&gt;
+    &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"container"</span>&gt;
+      &lt;<span style="color: #b8bb26;">a</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"navbar-brand"</span> <span style="color: #83a598;">href</span>=<span style="color: #b8bb26;">"/"</span>&gt;Bebr&#371; med&#382;ioklei NE!&lt;/<span style="color: #b8bb26;">a</span>&gt;
+      &lt;<span style="color: #b8bb26;">button</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"navbar-toggler"</span> <span style="color: #83a598;">type</span>=<span style="color: #b8bb26;">"button"</span> <span style="color: #83a598;">data-toggle</span>=<span style="color: #b8bb26;">"collapse"</span> <span style="color: #83a598;">data-target</span>=<span style="color: #b8bb26;">"#navbarResponsive"</span> <span style="color: #83a598;">aria-controls</span>=<span style="color: #b8bb26;">"navbarResponsive"</span> <span style="color: #83a598;">aria-expanded</span>=<span style="color: #b8bb26;">"false"</span> <span style="color: #83a598;">aria-label</span>=<span style="color: #b8bb26;">"Toggle navigation"</span>&gt;
+        &lt;<span style="color: #b8bb26;">span</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"navbar-toggler-icon"</span>&gt;&lt;/<span style="color: #b8bb26;">span</span>&gt;
+      &lt;/<span style="color: #b8bb26;">button</span>&gt;
+      &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"collapse navbar-collapse"</span> <span style="color: #83a598;">id</span>=<span style="color: #b8bb26;">"navbarResponsive"</span>&gt;
+        &lt;<span style="color: #b8bb26;">ul</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"navbar-nav ml-auto"</span>&gt;
+          &lt;<span style="color: #b8bb26;">li</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"nav-item"</span>&gt;
+            &lt;<span style="color: #b8bb26;">a</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"nav-link"</span> <span style="color: #83a598;">href</span>=<span style="color: #b8bb26;">"/"</span>&gt;Peticija&lt;/<span style="color: #b8bb26;">a</span>&gt;
+          &lt;/<span style="color: #b8bb26;">li</span>&gt;
+          &lt;<span style="color: #b8bb26;">li</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"nav-item"</span>&gt;
+            &lt;<span style="color: #b8bb26;">a</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"nav-link"</span> <span style="color: #83a598;">href</span>=<span style="color: #b8bb26;">"/about"</span>&gt;Apie&lt;/<span style="color: #b8bb26;">a</span>&gt;
+          &lt;/<span style="color: #b8bb26;">li</span>&gt;
+        &lt;/<span style="color: #b8bb26;">ul</span>&gt;
+      &lt;/<span style="color: #b8bb26;">div</span>&gt;
+    &lt;/<span style="color: #b8bb26;">div</span>&gt;
+  &lt;/<span style="color: #b8bb26;">nav</span>&gt;
+
+  <span style="color: #928374;">&lt;!-- </span><span style="color: #928374;">Page Content</span><span style="color: #928374;"> --&gt;</span>
+&lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"container"</span>&gt;
+  &lt;<span style="color: #b8bb26;">br</span>&gt;
+{% block content %}
+{% endblock %}
+&lt;/<span style="color: #b8bb26;">div</span>&gt;
+
+
+  <span style="color: #928374;">&lt;!-- </span><span style="color: #928374;">Bootstrap core JavaScript</span><span style="color: #928374;"> --&gt;</span>
+&lt;<span style="color: #b8bb26;">script</span> <span style="color: #83a598;">src</span>=<span style="color: #b8bb26;">"https://code.jquery.com/jquery-3.3.1.slim.min.js"</span> <span style="color: #83a598;">integrity</span>=<span style="color: #b8bb26;">"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"</span> <span style="color: #83a598;">crossorigin</span>=<span style="color: #b8bb26;">"anonymous"</span>&gt;&lt;/<span style="color: #b8bb26;">script</span>&gt;
+&lt;<span style="color: #b8bb26;">script</span> <span style="color: #83a598;">src</span>=<span style="color: #b8bb26;">"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"</span> <span style="color: #83a598;">integrity</span>=<span style="color: #b8bb26;">"sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"</span> <span style="color: #83a598;">crossorigin</span>=<span style="color: #b8bb26;">"anonymous"</span>&gt;&lt;/<span style="color: #b8bb26;">script</span>&gt;
+&lt;<span style="color: #b8bb26;">script</span> <span style="color: #83a598;">src</span>=<span style="color: #b8bb26;">"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"</span> <span style="color: #83a598;">integrity</span>=<span style="color: #b8bb26;">"sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"</span> <span style="color: #83a598;">crossorigin</span>=<span style="color: #b8bb26;">"anonymous"</span>&gt;&lt;/<span style="color: #b8bb26;">script</span>&gt;
+
+&lt;/<span style="color: #b8bb26;">body</span>&gt;
+
+&lt;/<span style="color: #b8bb26;">html</span>&gt;
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-html"><span style="color: #928374;">&lt;!-- </span><span style="color: #928374;">index.html</span><span style="color: #928374;"> --&gt;</span>
+
+{% extends "base.html" %}
+
+{% block content %}
+{% if form %}
+&lt;<span style="color: #b8bb26;">h4</span>&gt;<span style="text-decoration: underline;">M&#363;s&#371; &#353;ventas tikslas yra u&#382;kirsti keli&#261; barbari&#353;kai bebr&#371; med&#382;ioklei. Pra&#353;ome pasira&#353;yti peticij&#261;!</span>&lt;/<span style="color: #b8bb26;">h4</span>&gt;
+&lt;<span style="color: #b8bb26;">br</span>&gt;
+
+&lt;<span style="color: #b8bb26;">form</span> <span style="color: #83a598;">method</span>=<span style="color: #b8bb26;">"post"</span> <span style="color: #83a598;">action</span>=<span style="color: #b8bb26;">"#"</span>&gt;
+      {{ form.hidden_tag() }}
+      &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+      {{ form.fname.label(class="form-control-label") }}
+      {{ form.fname(class="form-control") }}
+      &lt;/<span style="color: #b8bb26;">div</span>&gt;
+      &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+      {{ form.lname.label(class="form-control-label") }}
+      {{ form.lname(class="form-control") }}
+      &lt;/<span style="color: #b8bb26;">div</span>&gt;
+      &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+      {{ form.comment.label(class="form-control-label") }}
+      {{ form.comment(class="form-control", <span style="color: #83a598;">rows</span>="5") }}
+      &lt;/<span style="color: #b8bb26;">div</span>&gt;
+      {{ form.submit }}
+  &lt;/<span style="color: #b8bb26;">form</span>&gt;
+{% else %}
+
+&lt;<span style="color: #b8bb26;">h3</span>&gt;<span style="font-style: italic; text-decoration: underline;">A&#269;i&#363;, kad pasira&#353;&#279;te. Mums liko surinkti {{stats}} para&#353;&#371;!</span>&lt;/<span style="color: #b8bb26;">h3</span>&gt;
+
+{% endif %}
+{% for i in data %}
+&lt;<span style="color: #b8bb26;">hr</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{i.id}}. {{i.fname}} {{i.lname}}, {{i.date}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{i.comment}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+
+
+{% endfor %}
+{% endblock %}
+</pre>
+</div>
+
+
+<p>
+<a href="https://github.com/CodeAcademy-Online/Python/tree/lesson-16">Atsakymai</a>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5a5b87a" class="outline-2">
+<h2 id="org5a5b87a"><span class="section-number-2">5.</span> Flask 4 dalis</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org7e904f0" class="outline-3">
+<h3 id="org7e904f0"><span class="section-number-3">5.1.</span> One2Many</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Dauguma programų turi po daugiau negu vieną duomenų bazės modelį.
+Įsivaizduokime, kad turime du modelius - knyga ir leidykla:
+</p>
+
+<ul class="org-ul">
+<li>Knyga
+<ul class="org-ul">
+<li>ISBN (Primary Key)</li>
+<li>Autorius</li>
+<li>Pavadinimas</li>
+<li>Leidyklos ID (Foreign Key)</li>
+</ul></li>
+
+<li>Leidykla
+<ul class="org-ul">
+<li>ID (Primary Key)</li>
+<li>Pavadinimas</li>
+<li>Adresas</li>
+</ul></li>
+</ul>
+
+<p>
+Viena leidykla gali turėti daug knygų, pabandykime sumodeliuoti
+duomenų bazę šiam atvejui.
+</p>
+
+<p>
+Susikurkime app.py:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fb4934;">import</span> os
+<span style="color: #fb4934;">from</span> flask <span style="color: #fb4934;">import</span> Flask
+<span style="color: #fb4934;">from</span> flask_sqlalchemy <span style="color: #fb4934;">import</span> SQLAlchemy
+<span style="color: #fb4934;">from</span> flask_migrate <span style="color: #fb4934;">import</span> Migrate
+
+<span style="color: #83a598;">basedir</span> = os.path.abspath<span style="color: #fe8019;">(</span>os.path.dirname<span style="color: #cc241d;">(</span>__file__<span style="color: #cc241d;">)</span><span style="color: #fe8019;">)</span>
+
+<span style="color: #83a598;">app</span> = Flask<span style="color: #fe8019;">(</span><span style="color: #fe8019;">__name__</span><span style="color: #fe8019;">)</span>
+app.app_context<span style="color: #fe8019;">()</span>.push<span style="color: #fe8019;">()</span>
+
+app.<span style="color: #83a598;">config</span><span style="color: #fe8019;">[</span><span style="color: #b8bb26;">'SQLALCHEMY_DATABASE_URI'</span><span style="color: #fe8019;">]</span> = <span style="color: #b8bb26;">'sqlite:///'</span> + os.path.join<span style="color: #fe8019;">(</span>basedir, <span style="color: #b8bb26;">'data.sqlite'</span><span style="color: #fe8019;">)</span>
+app.<span style="color: #83a598;">config</span><span style="color: #fe8019;">[</span><span style="color: #b8bb26;">'SQLALCHEMY_TRACK_MODIFICATIONS'</span><span style="color: #fe8019;">]</span> = <span style="color: #d3869b;">False</span>
+
+<span style="color: #83a598;">db</span> = SQLAlchemy<span style="color: #fe8019;">(</span>app<span style="color: #fe8019;">)</span>
+Migrate<span style="color: #fe8019;">(</span>app, db<span style="color: #fe8019;">)</span>
+
+<span style="color: #b8bb26;">'''</span>
+<span style="color: #b8bb26;">Klas&#279;je Book mus domina publisher_id kintamasis. Jis susieja klas&#281; Book su klase Publisher per ForeignKey,</span>
+<span style="color: #b8bb26;">kuriame parametruose nurodytas kitos lentel&#279;s pavadinimas ir prie kurio lauko ri&#353;ame, t.y. prie id,</span>
+<span style="color: #b8bb26;">kuris publishers lentel&#279;je yra primary_key.</span>
+<span style="color: #b8bb26;">'''</span>
+<span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">Book</span><span style="color: #fe8019;">(</span>db.Model<span style="color: #fe8019;">)</span>:
+
+    <span style="color: #83a598;">__tablename__</span> = <span style="color: #b8bb26;">'books'</span>
+    <span style="color: #fe8019;">id</span> = db.Column<span style="color: #fe8019;">(</span>db.Integer, primary_key=<span style="color: #d3869b;">True</span><span style="color: #fe8019;">)</span>
+    author = db.Column<span style="color: #fe8019;">(</span>db.String<span style="color: #cc241d;">(</span>150<span style="color: #cc241d;">)</span><span style="color: #fe8019;">)</span>
+    title = db.Column<span style="color: #fe8019;">(</span>db.String<span style="color: #cc241d;">(</span>300<span style="color: #cc241d;">)</span><span style="color: #fe8019;">)</span>
+    publisher_id = db.Column<span style="color: #fe8019;">(</span>db.Integer, db.ForeignKey<span style="color: #cc241d;">(</span><span style="color: #b8bb26;">'publishers.id'</span><span style="color: #cc241d;">)</span><span style="color: #fe8019;">)</span>
+
+    <span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">__init__</span><span style="color: #fe8019;">(</span><span style="color: #fb4934;">self</span>, author, title, publisher_id<span style="color: #fe8019;">)</span>:
+        <span style="color: #fb4934;">self</span>.author = author
+        <span style="color: #fb4934;">self</span>.title = title
+        <span style="color: #fb4934;">self</span>.publisher_id = publisher_id
+
+    <span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">__repr__</span><span style="color: #fe8019;">(</span><span style="color: #fb4934;">self</span><span style="color: #fe8019;">)</span>:
+        <span style="color: #fb4934;">return</span> <span style="color: #fb4934;">self</span>.title
+
+<span style="color: #b8bb26;">'''</span>
+<span style="color: #b8bb26;">Klas&#279;je Publisher, atgalin&#303; ry&#353;&#303; su Books klase sukuria books kintam&#261;jam priskirta eilut&#279;.</span>
+<span style="color: #b8bb26;">Parametruose nurodyta klas&#279;, su kuria siejame ir backref - kol kas &#382;i&#363;r&#279;kite, kaip &#303; papildom&#261;</span>
+<span style="color: #b8bb26;">sait&#261; tarp python klasi&#371;.</span>
+<span style="color: #b8bb26;">'''</span>
+<span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">Publisher</span><span style="color: #fe8019;">(</span>db.Model<span style="color: #fe8019;">)</span>:
+
+    __tablename__ = <span style="color: #b8bb26;">'publishers'</span>
+    <span style="color: #fe8019;">id</span> = db.Column<span style="color: #fe8019;">(</span>db.Integer, primary_key=<span style="color: #d3869b;">True</span><span style="color: #fe8019;">)</span>
+    name = db.Column<span style="color: #fe8019;">(</span>db.String<span style="color: #cc241d;">(</span>100<span style="color: #cc241d;">)</span>, unique=<span style="color: #d3869b;">True</span><span style="color: #fe8019;">)</span>
+    books = db.relationship<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Book'</span>, backref=<span style="color: #b8bb26;">'publisher'</span><span style="color: #fe8019;">)</span>
+
+    <span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">__init__</span><span style="color: #fe8019;">(</span><span style="color: #fb4934;">self</span>, name<span style="color: #fe8019;">)</span>:
+        <span style="color: #fb4934;">self</span>.name = name
+
+    <span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">__repr__</span><span style="color: #fe8019;">(</span><span style="color: #fb4934;">self</span><span style="color: #fe8019;">)</span>:
+        <span style="color: #fb4934;">return</span> <span style="color: #fb4934;">self</span>.name
+</pre>
+</div>
+
+<p>
+Sukūrėme du modelius, šiek tiek detalių rasite komentaruose.
+Išbandykime, ar veikia:
+</p>
+
+<p>
+terminale -
+</p>
+<ul class="org-ul">
+<li>set FLASK_APP=app.py,</li>
+<li>flask db init,</li>
+<li>flask db migrate -m "pirma migracija",</li>
+<li>flask db upgrade.</li>
+</ul>
+
+<p>
+šį kartą dirbsime iš python konsolės:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">Python 3.7.3 <span style="color: #fe8019;">(</span>default, Mar 27 2019, 22:11:17<span style="color: #fe8019;">)</span>
+<span style="color: #fe8019;">[</span>GCC 7.3.0<span style="color: #fe8019;">]</span> :: Anaconda, Inc. on linux
+Type <span style="color: #b8bb26;">"help"</span>, <span style="color: #b8bb26;">"copyright"</span>, <span style="color: #b8bb26;">"credits"</span> <span style="color: #fb4934;">or</span> <span style="color: #b8bb26;">"license"</span> <span style="color: #fb4934;">for</span> more information.
+&gt;&gt;&gt; <span style="color: #fb4934;">from</span> app <span style="color: #fb4934;">import</span> db, Book, Publisher
+&gt;&gt;&gt; <span style="color: #83a598;">pub1</span> = Publisher<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Baltos Lankos'</span><span style="color: #fe8019;">)</span>
+&gt;&gt;&gt; <span style="color: #83a598;">pub2</span> = Publisher<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Alma Littera'</span><span style="color: #fe8019;">)</span>
+&gt;&gt;&gt; db.session.add_all<span style="color: #fe8019;">(</span><span style="color: #cc241d;">[</span>pub1, pub2<span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+&gt;&gt;&gt; db.session.commit<span style="color: #fe8019;">()</span>
+&gt;&gt;&gt; <span style="color: #83a598;">book1</span> = Book<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Bili&#363;nas'</span>, <span style="color: #b8bb26;">'Kliud&#382;iau'</span>, 1<span style="color: #fe8019;">)</span>
+&gt;&gt;&gt; <span style="color: #83a598;">book2</span> = Book<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'&#381;emait&#279;'</span>, <span style="color: #b8bb26;">'Marti'</span>, 1<span style="color: #fe8019;">)</span>
+&gt;&gt;&gt; <span style="color: #83a598;">book3</span> = Book<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Ma&#382;vydas'</span>, <span style="color: #b8bb26;">'Katekizmas'</span>, 2<span style="color: #fe8019;">)</span>
+&gt;&gt;&gt; db.session.add_all<span style="color: #fe8019;">(</span><span style="color: #cc241d;">[</span>book1, book2, book3<span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+&gt;&gt;&gt; db.session.commit<span style="color: #fe8019;">()</span>
+</pre>
+</div>
+
+<p>
+Susikūrėme bandomuosius duomenis. Patikrinkime, ar pavyko:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #83a598;">books</span> = Book.query.<span style="color: #fe8019;">all</span><span style="color: #fe8019;">()</span>
+&gt;&gt;&gt; books
+<span style="color: #fe8019;">[</span>Kliud&#382;iau, Marti, Katekizmas<span style="color: #fe8019;">]</span>
+&gt;&gt;&gt; <span style="color: #83a598;">pubs</span> = Publisher.query.<span style="color: #fe8019;">all</span><span style="color: #fe8019;">()</span>
+&gt;&gt;&gt; pubs
+<span style="color: #fe8019;">[</span>Baltos Lankos, Alma Littera<span style="color: #fe8019;">]</span>
+&gt;&gt;&gt; <span style="color: #fb4934;">for</span> i <span style="color: #fb4934;">in</span> books:
+...     <span style="color: #fe8019;">print</span><span style="color: #fe8019;">(</span>i, i.publisher<span style="color: #fe8019;">)</span>
+...
+Kliud&#382;iau Baltos Lankos
+Marti Baltos Lankos
+Katekizmas Alma Littera
+&gt;&gt;&gt; <span style="color: #fb4934;">for</span> i <span style="color: #fb4934;">in</span> pubs:
+...     <span style="color: #fe8019;">print</span><span style="color: #fe8019;">(</span>i, i.books<span style="color: #fe8019;">)</span>
+...
+Baltos Lankos <span style="color: #fe8019;">[</span>Kliud&#382;iau, Marti<span style="color: #fe8019;">]</span>
+Alma Littera <span style="color: #fe8019;">[</span>Katekizmas<span style="color: #fe8019;">]</span>
+&gt;&gt;&gt;
+</pre>
+</div>
+
+<p>
+Matome, kad įrašai kuriasi, ryšiai veikia. Atkreipkite dėmesį, kai
+iteravome knygas, nurodėme spausdinti i.publisher, nors tokio
+stulpelio ir nėra. Tai reikšmė iš back reference parametro, galima ją
+taip naudoti.
+</p>
+</div>
+</div>
+<div id="outline-container-org9afe2d2" class="outline-3">
+<h3 id="org9afe2d2"><span class="section-number-3">5.2.</span> Many2Many</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+Pasitaiko, kad knygos turi ne po vieną autorių. Gaunasi situacija,
+daug knygų - daug autorių. Pabandykime sumodeliuoti:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #83a598;">helper_table</span> = db.Table<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'helper'</span>,
+                        db.Column<span style="color: #cc241d;">(</span><span style="color: #b8bb26;">'book_id'</span>, db.Integer, db.ForeignKey<span style="color: #b8bb26;">(</span><span style="color: #b8bb26;">'books.id'</span><span style="color: #b8bb26;">)</span><span style="color: #cc241d;">)</span>,
+                        db.Column<span style="color: #cc241d;">(</span><span style="color: #b8bb26;">'author_id'</span>, db.Integer, db.ForeignKey<span style="color: #b8bb26;">(</span><span style="color: #b8bb26;">'authors.id'</span><span style="color: #b8bb26;">)</span><span style="color: #cc241d;">)</span><span style="color: #fe8019;">)</span>
+
+
+<span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">Book</span><span style="color: #fe8019;">(</span>db.Model<span style="color: #fe8019;">)</span>:
+
+    <span style="color: #83a598;">__tablename__</span> = <span style="color: #b8bb26;">'books'</span>
+    <span style="color: #fe8019;">id</span> = db.Column<span style="color: #fe8019;">(</span>db.Integer, primary_key=<span style="color: #d3869b;">True</span><span style="color: #fe8019;">)</span>
+    title = db.Column<span style="color: #fe8019;">(</span>db.String<span style="color: #cc241d;">(</span>300<span style="color: #cc241d;">)</span><span style="color: #fe8019;">)</span>
+    publisher_id = db.Column<span style="color: #fe8019;">(</span>db.Integer, db.ForeignKey<span style="color: #cc241d;">(</span><span style="color: #b8bb26;">'publishers.id'</span><span style="color: #cc241d;">)</span><span style="color: #fe8019;">)</span>
+    authors = db.relationship<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Author'</span>, secondary=helper_table, backref=<span style="color: #b8bb26;">'books'</span><span style="color: #fe8019;">)</span>
+
+    <span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">__init__</span><span style="color: #fe8019;">(</span><span style="color: #fb4934;">self</span>, title, publisher_id<span style="color: #fe8019;">)</span>:
+        <span style="color: #fb4934;">self</span>.title = title
+        <span style="color: #fb4934;">self</span>.publisher_id = publisher_id
+
+    <span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">__repr__</span><span style="color: #fe8019;">(</span><span style="color: #fb4934;">self</span><span style="color: #fe8019;">)</span>:
+        <span style="color: #fb4934;">return</span> <span style="color: #fb4934;">self</span>.title
+
+
+<span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">Publisher</span><span style="color: #fe8019;">(</span>db.Model<span style="color: #fe8019;">)</span>:
+
+    __tablename__ = <span style="color: #b8bb26;">'publishers'</span>
+    <span style="color: #fe8019;">id</span> = db.Column<span style="color: #fe8019;">(</span>db.Integer, primary_key=<span style="color: #d3869b;">True</span><span style="color: #fe8019;">)</span>
+    name = db.Column<span style="color: #fe8019;">(</span>db.String<span style="color: #cc241d;">(</span>100<span style="color: #cc241d;">)</span>, unique=<span style="color: #d3869b;">True</span><span style="color: #fe8019;">)</span>
+    books = db.relationship<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Book'</span>, backref=<span style="color: #b8bb26;">'publisher'</span><span style="color: #fe8019;">)</span>
+
+    <span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">__init__</span><span style="color: #fe8019;">(</span><span style="color: #fb4934;">self</span>, name<span style="color: #fe8019;">)</span>:
+        <span style="color: #fb4934;">self</span>.name = name
+
+    <span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">__repr__</span><span style="color: #fe8019;">(</span><span style="color: #fb4934;">self</span><span style="color: #fe8019;">)</span>:
+        <span style="color: #fb4934;">return</span> <span style="color: #fb4934;">self</span>.name
+
+
+<span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">Author</span><span style="color: #fe8019;">(</span>db.Model<span style="color: #fe8019;">)</span>:
+
+    __tablename__ = <span style="color: #b8bb26;">'authors'</span>
+    <span style="color: #fe8019;">id</span> = db.Column<span style="color: #fe8019;">(</span>db.Integer, primary_key=<span style="color: #d3869b;">True</span><span style="color: #fe8019;">)</span>
+    fname = db.Column<span style="color: #fe8019;">(</span>db.String<span style="color: #cc241d;">(</span>150<span style="color: #cc241d;">)</span><span style="color: #fe8019;">)</span>
+    lname = db.Column<span style="color: #fe8019;">(</span>db.String<span style="color: #cc241d;">(</span>300<span style="color: #cc241d;">)</span><span style="color: #fe8019;">)</span>
+
+    <span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">__init__</span><span style="color: #fe8019;">(</span><span style="color: #fb4934;">self</span>, fname, lname<span style="color: #fe8019;">)</span>:
+        <span style="color: #fb4934;">self</span>.fname = fname
+        <span style="color: #fb4934;">self</span>.lname = lname
+
+    <span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">__repr__</span><span style="color: #fe8019;">(</span><span style="color: #fb4934;">self</span><span style="color: #fe8019;">)</span>:
+        <span style="color: #fb4934;">return</span> f<span style="color: #b8bb26;">'</span>{<span style="color: #fb4934;">self</span>.fname}<span style="color: #b8bb26;"> </span>{<span style="color: #fb4934;">self</span>.lname}<span style="color: #b8bb26;">'</span>
+</pre>
+</div>
+
+<p>
+Pirmiausiai sukūrėme helper_table. Tai ne modelis, o tiesiog pagalbinė
+lentelė duomenų bazėje, apjungianti modelius Book ir Author.
+</p>
+
+<p>
+Modelyje Books vietoje seno author, sukūrėme naują authors stulpelį.
+Nurodėme, kad kreipsimės į Author modelį, per pagalbinę lentelę.
+Nurodėme backref='books'. Per šio parametro reikšmę vėliau galėsime
+kreiptis iš autoriaus į knygos modelį.
+</p>
+
+<p>
+Sukūrėme modelį Author. Jame jokiais ryšiais rūpintis nereikia, tai
+padaryta ankstesniuose punktuose.
+</p>
+
+<p>
+Viską inicijavus, ir DB atidarius per duombazių administravimo
+programą (dbeaver), matome tokią schemą:
+</p>
+
+
+<div id="orga268691" class="figure">
+<p><img src="./static/images/flask4_1.png" alt="flask4_1.png" width="800px" />
+</p>
+</div>
+
+<p>
+Patikrinimui suvedėme šiek tiek duomenų bandymams:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; books
+<span style="color: #fe8019;">[</span>M&#363;s&#371; bendra knyga, Knyga apie gyvenim&#261;, Kaip mes kartu tarnavome<span style="color: #fe8019;">]</span>
+&gt;&gt;&gt; pubs
+<span style="color: #fe8019;">[</span>Baltos Lankos, Alma Littera<span style="color: #fe8019;">]</span>
+&gt;&gt;&gt; authors
+<span style="color: #fe8019;">[</span>Valdas Adamkus, Algimantas &#268;ekuolis, Andrius Mamontovas, Antanas Baranauskas<span style="color: #fe8019;">]</span>
+</pre>
+</div>
+
+<p>
+Pažiūrėkime, kaip veikia many2many mechanizmas flask aplinkoje:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #83a598;">bendra_knyga</span> = Book.query.filter_by<span style="color: #fe8019;">(</span>title=<span style="color: #b8bb26;">'M&#363;s&#371; bendra knyga'</span><span style="color: #fe8019;">)</span>.first<span style="color: #fe8019;">()</span>
+&gt;&gt;&gt; bendra_knyga
+M&#363;s&#371; bendra knyga
+&gt;&gt;&gt; v_adamkus = Author.query.filter_by<span style="color: #fe8019;">(</span>fname=<span style="color: #b8bb26;">'Valdas'</span><span style="color: #fe8019;">)</span>.first<span style="color: #fe8019;">()</span>
+&gt;&gt;&gt; v_adamkus
+Valdas Adamkus
+&gt;&gt;&gt; a_chuck = Author.query.filter_by<span style="color: #fe8019;">(</span>fname = <span style="color: #b8bb26;">'Algimantas'</span><span style="color: #fe8019;">)</span>.first<span style="color: #fe8019;">()</span>
+&gt;&gt;&gt; a_chuck
+Algimantas &#268;ekuolis
+&gt;&gt;&gt; bendra_knyga.authors.append<span style="color: #fe8019;">(</span>v_adamkus<span style="color: #fe8019;">)</span>
+&gt;&gt;&gt; bendra_knyga.authors.append<span style="color: #fe8019;">(</span>a_chuck<span style="color: #fe8019;">)</span>
+&gt;&gt;&gt; bendra_knyga.authors
+<span style="color: #fe8019;">[</span>Valdas Adamkus, Algimantas &#268;ekuolis<span style="color: #fe8019;">]</span>
+</pre>
+</div>
+
+<p>
+Vienai knygai priskyrėme porą autorių. Pabandykime atvirkštinį
+veiksmą:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #83a598;">knyga_ag</span> = Book.query.filter_by<span style="color: #fe8019;">(</span>title=<span style="color: #b8bb26;">'Knyga apie gyvenim&#261;'</span><span style="color: #fe8019;">)</span>.first<span style="color: #fe8019;">()</span>
+&gt;&gt;&gt; knyga_ag
+Knyga apie gyvenim&#261;
+&gt;&gt;&gt; knyga_tarnavome = Book.query.filter_by<span style="color: #fe8019;">(</span>title=<span style="color: #b8bb26;">'Kaip mes kartu tarnavome'</span><span style="color: #fe8019;">)</span>.first<span style="color: #fe8019;">()</span>
+&gt;&gt;&gt; knyga_tarnavome
+Kaip mes kartu tarnavome
+&gt;&gt;&gt; a_chuck.books.append<span style="color: #fe8019;">(</span>knyga_tarnavome<span style="color: #fe8019;">)</span>
+&gt;&gt;&gt; a_chuck.books.append<span style="color: #fe8019;">(</span>knyga_ag<span style="color: #fe8019;">)</span>
+&gt;&gt;&gt; a_chuck.books
+<span style="color: #fe8019;">[</span>M&#363;s&#371; bendra knyga, Knyga apie gyvenim&#261;, Kaip mes kartu tarnavome<span style="color: #fe8019;">]</span>
+</pre>
+</div>
+
+<p>
+Pavyko. Čekuolis parašė tris knygas, vieną iš kurių su bendraautoriumi
+:) Dar kartą akcentuosiu, kad iš Author į Book modelį kreipiamasi per
+backref, šiuo atveju 'books'.
+</p>
+
+
+<div id="org448ad2e" class="figure">
+<p><img src="./static/images/flask4_2.png" alt="flask4_2.png" width="800px" />
+</p>
+</div>
+
+<p>
+Taip atrodo helper lentelė - tiesiog knygų ID sąsajos su autorių ID.
+</p>
+</div>
+</div>
+<div id="outline-container-org5c4c7fe" class="outline-3">
+<h3 id="org5c4c7fe"><span class="section-number-3">5.3.</span> Many2One ryšio įgyvendinimas su Flask</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+<code>Sqlalchemy dalis</code>:
+</p>
+
+<p>
+Vienas tėvas gali turėti vieną vaiką. Vaikas gali turėti kelis tėvus.
+Šiam ryšiui tėvo klasėje sukuriamas vaiko id (foreign key) ir vaiko
+objektas (relationship laukas). Iš vaiko pusės ryšio laukai nebūtini.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">Tevas</span><span style="color: #fe8019;">(</span>db.Model<span style="color: #fe8019;">)</span>:
+    <span style="color: #83a598;">__tablename__</span> = <span style="color: #b8bb26;">"tevas"</span>
+    <span style="color: #fe8019;">id</span> = db.Column<span style="color: #fe8019;">(</span>db.Integer, primary_key=<span style="color: #d3869b;">True</span><span style="color: #fe8019;">)</span>
+    vardas = db.Column<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"Vardas"</span>, db.String<span style="color: #fe8019;">)</span>
+    pavarde = db.Column<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"Pavard&#279;"</span>, db.String<span style="color: #fe8019;">)</span>
+    vaikas_id = db.Column<span style="color: #fe8019;">(</span>db.Integer, db.ForeignKey<span style="color: #cc241d;">(</span><span style="color: #b8bb26;">"vaikas.id"</span><span style="color: #cc241d;">)</span><span style="color: #fe8019;">)</span>
+    vaikas = db.relationship<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"Vaikas"</span><span style="color: #fe8019;">)</span>
+
+
+<span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">Vaikas</span><span style="color: #fe8019;">(</span>db.Model<span style="color: #fe8019;">)</span>:
+    __tablename__ = <span style="color: #b8bb26;">"vaikas"</span>
+    <span style="color: #fe8019;">id</span> = db.Column<span style="color: #fe8019;">(</span>db.Integer, primary_key=<span style="color: #d3869b;">True</span><span style="color: #fe8019;">)</span>
+    vardas = db.Column<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"Vardas"</span>, db.String<span style="color: #fe8019;">)</span>
+    pavarde = db.Column<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"Pavard&#279;"</span>, db.String<span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+<p>
+<code>Formos python failas</code>:
+</p>
+
+<p>
+Tam, kad tėvo formoje galėtume turėti pasirenkamą vaiko lauką, turime
+panaudoti QuerySelectField lauką. Atkreipkite dėmesį, kad jį reikia
+importuoti iš wtforms_sqlalchemy.fields, o ne wtforms. Štai ką reiškia
+šio lauko argumentai:
+</p>
+
+<p>
+query_factory nurodome funkciją su gražinama vaikų užklausa
+(Vaikas.query, priekyje pridėtas app, nes importuotas visas app
+failas, kad pasiektume vaiko ir tėvo objektus).
+</p>
+
+<p>
+allow_blank nustatome reikšmę True. Tai reiškia, kad tėvui leidžiama
+ir nepasirinkti jokio vaiko.
+</p>
+
+<p>
+get_label nurodoma, kokį vaiko lauką norime matyti, pasirinkdami vaiką
+tėvo formoje.
+</p>
+
+<p>
+get_pk nurodome, kad laukas pasiimtų vaiko id, kaip stringą. Tam
+parašome lambda funkciją (lambda obj: str(obj)). Čia galima naudoti ir
+paprastą funkciją.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fb4934;">from</span> flask_wtf <span style="color: #fb4934;">import</span> FlaskForm
+<span style="color: #fb4934;">from</span> wtforms <span style="color: #fb4934;">import</span> StringField, SubmitField
+<span style="color: #fb4934;">from</span> wtforms.validators <span style="color: #fb4934;">import</span> DataRequired
+<span style="color: #fb4934;">from</span> wtforms_sqlalchemy.fields <span style="color: #fb4934;">import</span> QuerySelectField
+<span style="color: #fb4934;">import</span> app
+
+<span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">vaikas_query</span><span style="color: #fe8019;">()</span>:
+    <span style="color: #fb4934;">return</span> app.Vaikas.query
+
+<span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">TevasForm</span><span style="color: #fe8019;">(</span>FlaskForm<span style="color: #fe8019;">)</span>:
+    <span style="color: #83a598;">vardas</span> = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Numeris'</span>, <span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">()</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    <span style="color: #83a598;">pavarde</span> = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Pavard&#279;'</span>, <span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">()</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    <span style="color: #83a598;">vaikas</span> = QuerySelectField<span style="color: #fe8019;">(</span>query_factory=vaikas_query, allow_blank=<span style="color: #d3869b;">True</span>, get_label=<span style="color: #b8bb26;">"vardas"</span>, get_pk=<span style="color: #fb4934;">lambda</span> obj: <span style="color: #fe8019;">str</span><span style="color: #cc241d;">(</span>obj<span style="color: #cc241d;">)</span><span style="color: #fe8019;">)</span>
+    submit = SubmitField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'&#302;vesti'</span><span style="color: #fe8019;">)</span>
+
+
+<span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">VaikasForm</span><span style="color: #fe8019;">(</span>FlaskForm<span style="color: #fe8019;">)</span>:
+    vardas = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Numeris'</span>, <span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">()</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    pavarde = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Pavard&#279;'</span>, <span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">()</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    submit = SubmitField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'&#302;vesti'</span><span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+<p>
+<code>Formos html failas:</code>
+</p>
+
+<p>
+Formos html failas praktiškai nesiskiria nuo įprasto neryšinio objekto
+įvedimo formos. Vaiko laukas įvedamas, kaip bet kuris kitas laukas. Jo
+logika pasiimama iš formos python failo ir vietoje įprasto įvedimo
+lauko, jis tampa pasirinkimų lauku.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">{% extends "base.html" %}
+
+{% block content %}
+
+&lt;<span style="color: #b8bb26;">form</span> <span style="color: #83a598;">method</span>=<span style="color: #b8bb26;">"post"</span> <span style="color: #83a598;">action</span>=<span style="color: #b8bb26;">"#"</span>&gt;
+    {{ form.hidden_tag() }}
+    &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+        {{ form.vardas.label(class="form-control-label") }}
+        {{ form.vardas(class="form-control") }}
+    &lt;/<span style="color: #b8bb26;">div</span>&gt;
+    &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+        {{ form.pavarde.label(class="form-control-label") }}
+        {{ form.pavarde(class="form-control") }}
+    &lt;/<span style="color: #b8bb26;">div</span>&gt;
+    &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+        {{ form.vaikas.label(class="form-control-label") }}
+        {{ form.vaikas(class="form-control") }}
+    &lt;/<span style="color: #b8bb26;">div</span>&gt;
+    {{ form.submit }}
+&lt;/<span style="color: #b8bb26;">form</span>&gt;
+{% endblock %}
+</pre>
+</div>
+
+<p>
+<code>Tėvų atvaizdavimo html kodas:</code>
+</p>
+
+<p>
+Kadangi tėvas gali turėti vaiką (laukas vaikas), kas tiesiog yra
+objektas, kiekvieną kartą tikriname, ar šis laukas užpildytas. Jei jis
+ne tuščias, atvaizduojame tėvui priskirto vaiko vardą
+(tevas.vaikas.vardas) ir pavardę (tevas.vaikas.pavarde).
+</p>
+
+<p>
+Žemiau yra nuorodos į flask metodus, skirtus tėvo įrašo ištrynimui ir
+redagavimui, taip pat – naujo tėvo įvedimui.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">{% extends "base.html" %}
+
+{% block content %}
+
+{% if visi_tevai %}
+{% for tevas in visi_tevai %}
+&lt;<span style="color: #b8bb26;">hr</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{tevas.vardas}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{tevas.pavarde}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+{% if tevas.vaikas %}
+&lt;<span style="color: #b8bb26;">p</span>&gt;Vaikas:&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{tevas.vaikas.vardas}} {{tevas.vaikas.pavarde}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+{% endif %}
+&lt;<span style="color: #b8bb26;">a</span> <span style="color: #83a598;">href</span>=<span style="color: #b8bb26;">"{{ url_for('delete', id=tevas['id']) }}"</span>&gt;I&#353;trinti&lt;/<span style="color: #b8bb26;">a</span>&gt;
+&lt;<span style="color: #b8bb26;">a</span> <span style="color: #83a598;">href</span>=<span style="color: #b8bb26;">"{{ url_for('update', id=tevas['id']) }}"</span>&gt;Redaguoti&lt;/<span style="color: #b8bb26;">a</span>&gt;
+{% endfor %}
+{% endif %}
+&lt;<span style="color: #b8bb26;">hr</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;&lt;<span style="color: #b8bb26;">a</span> <span style="color: #83a598;">href</span>=<span style="color: #b8bb26;">"{{ url_for('new_parent')}}"</span>&gt;Naujas t&#279;vas&lt;/<span style="color: #b8bb26;">a</span>&gt;&lt;/<span style="color: #b8bb26;">p</span>&gt;
+
+{% endblock %}
+</pre>
+</div>
+
+<p>
+<code>Flask funkcijos:</code>
+</p>
+
+<p>
+<code>Tėvų atvaizdavimo:</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fabd2f;">@app.route</span><span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"/tevai"</span><span style="color: #fe8019;">)</span>
+<span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">parents</span><span style="color: #fe8019;">()</span>:
+    <span style="color: #fb4934;">try</span>:
+        visi_tevai = Tevas.query.<span style="color: #fe8019;">all</span><span style="color: #fe8019;">()</span>
+    <span style="color: #fb4934;">except</span>:
+        visi_tevai = <span style="color: #fe8019;">[]</span>
+    <span style="color: #fb4934;">return</span> render_template<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"tevai.html"</span>, visi_tevai=visi_tevai<span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+<p>
+<code>Tėvų pridėjimo:</code>
+</p>
+
+<p>
+Dekoratoriuje aprašome, kad funkcija naudos ir GET ir POST metodus
+(duomenų priėjimui iš formos).
+</p>
+
+<p>
+Funkcijos pradžioje inicijuojame duomenų bazę (db.create_all()). Tai
+reikalinga norint sukurti duomenų bazę, kai jos nėra.
+</p>
+
+<p>
+Inicijuojamas tėvo formos objektas (forma = forms.TevasForm(),
+pradžioje rašoma forms, nes failo pradžioje yra importuota forms
+klasė).
+</p>
+
+<p>
+Patvirtinus formą (if forma.validate_on_submit()), inicijuojamas tėvo
+objektas su duomenimis iš formos. Atkreipkite dėmesį, kad vaiko
+objektas priskiriamas ne tiesiogiai, o per vaikas_id lauką).
+</p>
+
+<p>
+Tėvo objektas pridedamas į sesiją (db.session.add(naujas_tevas)) ir
+sesija išsaugoma (db.session.commit()).
+</p>
+
+<p>
+Galiausiai nukreipiama į parents funkciją (return
+redirect(url_for('parents'))), kuri atidaro tėvų puslapį.
+</p>
+
+<p>
+Pagrindinis (apatinis) return nukreipia į tėvo pridėjimo puslapį,
+pasiimdamas formos duomenis (render_template("prideti_teva.html",
+form=forma)).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fabd2f;">@app.route</span><span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"/naujas_tevas"</span>, methods=<span style="color: #cc241d;">[</span><span style="color: #b8bb26;">"GET"</span>, <span style="color: #b8bb26;">"POST"</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+<span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">new_parent</span><span style="color: #fe8019;">()</span>:
+    db.create_all<span style="color: #fe8019;">()</span>
+    forma = forms.TevasForm<span style="color: #fe8019;">()</span>
+    <span style="color: #fb4934;">if</span> forma.validate_on_submit<span style="color: #fe8019;">()</span>:
+        naujas_tevas = Tevas<span style="color: #fe8019;">(</span>vardas=forma.vardas.data, pavarde=forma.pavarde.data, vaikas_id=forma.vaikas.data.<span style="color: #fe8019;">id</span><span style="color: #fe8019;">)</span>
+        db.session.add<span style="color: #fe8019;">(</span>naujas_tevas<span style="color: #fe8019;">)</span>
+        db.session.commit<span style="color: #fe8019;">()</span>
+        <span style="color: #fb4934;">return</span> redirect<span style="color: #fe8019;">(</span>url_for<span style="color: #cc241d;">(</span><span style="color: #b8bb26;">'parents'</span><span style="color: #cc241d;">)</span><span style="color: #fe8019;">)</span>
+    <span style="color: #fb4934;">return</span> render_template<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"prideti_teva.html"</span>, form=forma<span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+<p>
+Pilnas kodas:
+</p>
+
+<p>
+<a href="https://github.com/DonatasNoreika/flask-tevas-vaikas">flask-tevas-vaikas</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org788562b" class="outline-3">
+<h3 id="org788562b"><span class="section-number-3">5.4.</span> One2Many ryšio įgyvendinimas su Flask</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+<code>Sqlalchemy dalis:</code>
+</p>
+
+<p>
+Vienas tėvas gali turėti daug vaikų. Vaikas gali turėti vieną tėvą
+(atvirkščiai, nei Many2one). Šiam ryšiui tėvo klasėje sukuriamas vaikų
+vaiko objektas (relationship laukas). Iš vaiko pusės sukuriamas tėvo
+id (foreign key) ir tėvo objektas (relationship laukas).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">Tevas</span><span style="color: #fe8019;">(</span>db.Model<span style="color: #fe8019;">)</span>:
+    <span style="color: #83a598;">__tablename__</span> = <span style="color: #b8bb26;">"tevas"</span>
+    <span style="color: #fe8019;">id</span> = db.Column<span style="color: #fe8019;">(</span>db.Integer, primary_key=<span style="color: #d3869b;">True</span><span style="color: #fe8019;">)</span>
+    vardas = db.Column<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"Vardas"</span>, db.String<span style="color: #fe8019;">)</span>
+    pavarde = db.Column<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"Pavard&#279;"</span>, db.String<span style="color: #fe8019;">)</span>
+    vaikai = db.relationship<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"Vaikas"</span><span style="color: #fe8019;">)</span>
+
+
+<span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">Vaikas</span><span style="color: #fe8019;">(</span>db.Model<span style="color: #fe8019;">)</span>:
+    __tablename__ = <span style="color: #b8bb26;">"vaikas"</span>
+    <span style="color: #fe8019;">id</span> = db.Column<span style="color: #fe8019;">(</span>db.Integer, primary_key=<span style="color: #d3869b;">True</span><span style="color: #fe8019;">)</span>
+    vardas = db.Column<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"Vardas"</span>, db.String<span style="color: #fe8019;">)</span>
+    pavarde = db.Column<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"Pavard&#279;"</span>, db.String<span style="color: #fe8019;">)</span>
+    tevas_id = db.Column<span style="color: #fe8019;">(</span>db.Integer, db.ForeignKey<span style="color: #cc241d;">(</span><span style="color: #b8bb26;">"tevas.id"</span><span style="color: #cc241d;">)</span><span style="color: #fe8019;">)</span>
+    tevas = db.relationship<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"Tevas"</span><span style="color: #fe8019;">)</span>p
+</pre>
+</div>
+
+<p>
+<code>Formos python failas:</code>
+</p>
+
+<p>
+Tam, kad tėvo formoje galėtume turėti pasirenkamą vaikų lauką, turime
+panaudoti QuerySelectMultipleField lauką (panašus, kaip Many2one
+atveju naudojamas QuerySelectField). Atkreipkite dėmesį, kad jį reikia
+importuoti iš wtforms_sqlalchemy.fields, o ne wtforms. Štai ką reiškia
+šio lauko argumentai:
+</p>
+
+<p>
+query_factory nurodome visų vaikų užklausą (app.Vaikas.query.all,
+priekyje pridėtas app, nes importuotas visas app failas, kad
+pasiektume vaiko ir tėvo objektus).
+</p>
+
+<p>
+get_label nurodoma, kokį vaiko lauką norime matyti, pasirinkdami vaiką
+tėvo formoje.
+</p>
+
+<p>
+get_pk nurodome, kad laukas pasiimtų vaiko id, kaip stringą. Tam
+parašome lambda funkciją (lambda obj: str(obj)). Čia galima naudoti ir
+paprastą funkciją.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fb4934;">from</span> flask_wtf <span style="color: #fb4934;">import</span> FlaskForm
+<span style="color: #fb4934;">from</span> wtforms <span style="color: #fb4934;">import</span> StringField, IntegerField, SubmitField, SelectField
+<span style="color: #fb4934;">from</span> wtforms.validators <span style="color: #fb4934;">import</span> DataRequired, Email, InputRequired
+<span style="color: #fb4934;">from</span> wtforms_sqlalchemy.fields <span style="color: #fb4934;">import</span> QuerySelectField, QuerySelectMultipleField
+<span style="color: #fb4934;">import</span> app
+
+<span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">TevasForm</span><span style="color: #fe8019;">(</span>FlaskForm<span style="color: #fe8019;">)</span>:
+    <span style="color: #83a598;">vardas</span> = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Numeris'</span>, <span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">()</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    <span style="color: #83a598;">pavarde</span> = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Pavard&#279;'</span>, <span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">()</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    <span style="color: #83a598;">vaikai</span> = QuerySelectMultipleField<span style="color: #fe8019;">(</span>query_factory=app.Vaikas.query.<span style="color: #fe8019;">all</span>, get_label=<span style="color: #b8bb26;">"vardas"</span>, get_pk=<span style="color: #fb4934;">lambda</span> obj: <span style="color: #fe8019;">str</span><span style="color: #cc241d;">(</span>obj<span style="color: #cc241d;">)</span><span style="color: #fe8019;">)</span>
+    submit = SubmitField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'&#302;vesti'</span><span style="color: #fe8019;">)</span>
+
+<span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">VaikasForm</span><span style="color: #fe8019;">(</span>FlaskForm<span style="color: #fe8019;">)</span>:
+    vardas = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Numeris'</span>, <span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">()</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    pavarde = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Pavard&#279;'</span>, <span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">()</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    submit = SubmitField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'&#302;vesti'</span><span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+
+<p>
+<code>Formos html failas:</code>
+</p>
+
+<p>
+Formos html failas praktiškai nesiskiria nuo įprasto neryšinio objekto
+įvedimo formos. Vaikų laukas įvedamas, kaip bet kuris kitas laukas. Jo
+logika pasiimama iš formos python failo ir vietoje įprasto įvedimo
+lauko, jis tampa kelių pasirinkimų lauku (kelis variantus formoje
+galima pasirinkti laikant nuspaustą klaviatūros mygtuką CTRL).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">{% extends "base.html" %}
+
+{% block content %}
+
+&lt;<span style="color: #b8bb26;">form</span> <span style="color: #83a598;">method</span>=<span style="color: #b8bb26;">"post"</span> <span style="color: #83a598;">action</span>=<span style="color: #b8bb26;">"#"</span>&gt;
+    {{ form.hidden_tag() }}
+    &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+        {{ form.vardas.label(class="form-control-label") }}
+        {{ form.vardas(class="form-control") }}
+    &lt;/<span style="color: #b8bb26;">div</span>&gt;
+    &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+        {{ form.pavarde.label(class="form-control-label") }}
+        {{ form.pavarde(class="form-control") }}
+    &lt;/<span style="color: #b8bb26;">div</span>&gt;
+    &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+        {{ form.vaikai.label(class="form-control-label") }}
+        {{ form.vaikai(class="form-control") }}
+    &lt;/<span style="color: #b8bb26;">div</span>&gt;
+    {{ form.submit }}
+&lt;/<span style="color: #b8bb26;">form</span>&gt;
+{% endblock %}
+</pre>
+</div>
+
+<p>
+Tėvų atvaizdavimo html kodas:
+</p>
+
+<p>
+Kadangi tėvas gali daug vaikų (laukas vaikas), kas tiesiog yra
+objektai, kiekvieną kartą tikriname, ar šis laukas užpildytas. Jei jis
+ne tuščias, praiteruojame (prasukame for ciklą) per visus tėvo vaikus
+(per tėvo lauką vaikai tevas.vaikai) ir atvaizduojame kiekvieno vaiko
+vardą (vaikas.vardas) ir pavardę (vaikas.pavarde).
+</p>
+
+<p>
+Žemiau yra nuorodos į flask metodus, skirtus tėvo įrašo ištrynimui ir
+redagavimui, taip pat – naujo tėvo įvedimui.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">{% extends "base.html" %}
+
+{% block content %}
+
+{% if visi_tevai %}
+{% for tevas in visi_tevai %}
+&lt;<span style="color: #b8bb26;">hr</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{tevas.vardas}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{tevas.pavarde}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+{% if tevas.vaikai %}
+&lt;<span style="color: #b8bb26;">p</span>&gt;Vaikai:&lt;/<span style="color: #b8bb26;">p</span>&gt;
+{% for vaikas in tevas.vaikai %}
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{vaikas.vardas}} {{vaikas.pavarde}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+{% endfor %}
+{% endif %}
+
+{% endfor %}
+{% endif %}
+&lt;<span style="color: #b8bb26;">hr</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;&lt;<span style="color: #b8bb26;">a</span> <span style="color: #83a598;">href</span>=<span style="color: #b8bb26;">"{{ url_for('new_parent')}}"</span>&gt;Naujas t&#279;vas&lt;/<span style="color: #b8bb26;">a</span>&gt;&lt;/<span style="color: #b8bb26;">p</span>&gt;
+
+{% endblock %}
+</pre>
+</div>
+
+<p>
+<code>Flask funkcijos:</code>
+</p>
+
+<p>
+Pradžioje truputį pakeičiama DB nuorodos nurodymo kodą. Tai reikalinga
+tam, kad nemestų thread klaidų:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">app.<span style="color: #83a598;">config</span><span style="color: #fe8019;">[</span><span style="color: #b8bb26;">'SQLALCHEMY_DATABASE_URI'</span><span style="color: #fe8019;">]</span> = <span style="color: #b8bb26;">'sqlite:///'</span> + os.path.join<span style="color: #fe8019;">(</span>basedir, <span style="color: #b8bb26;">'data.sqlite?check_same_thread=False'</span><span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+<p>
+<code>Tėvų atvaizdavimo:</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fabd2f;">@app.route</span><span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"/tevai"</span><span style="color: #fe8019;">)</span>
+<span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">parents</span><span style="color: #fe8019;">()</span>:
+    <span style="color: #fb4934;">try</span>:
+        visi_tevai = Tevas.query.<span style="color: #fe8019;">all</span><span style="color: #fe8019;">()</span>
+    <span style="color: #fb4934;">except</span>:
+        visi_tevai = <span style="color: #fe8019;">[]</span>
+    <span style="color: #fb4934;">return</span> render_template<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"tevai.html"</span>, visi_tevai=visi_tevai<span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+<p>
+<code>Tėvų pridėjimo:</code>
+</p>
+
+<p>
+Dekoratoriuje aprašome, kad funkcija naudos ir GET ir POST metodus
+(duomenų priėjimui iš formos).
+</p>
+
+<p>
+Funkcijos pradžioje inicijuojame duomenų bazę (db.create_all()). Tai
+reikalinga norint sukurti duomenų bazę, kai jos nėra.
+</p>
+
+<p>
+Inicijuojamas tėvo formos objektas (forma = forms.TevasForm(),
+pradžioje rašoma forms, nes failo pradžioje yra importuota forms
+klasė).
+</p>
+
+<p>
+Patvirtinus formą (if forma.validate_on_submit()), inicijuojamas tėvo
+objektas su duomenimis iš formos. Kol kas vaikai nepriskiriami
+</p>
+
+<p>
+Iteruojama per tėvo vaikus iš formos (forma.vaikai.data), padaromos
+kiekvieno vaiko užklausos iš duomenų bazės ir jie pridedami prie tėvo
+vaikų objektų sąrašo (per metodą append). Taip išvengiama sesijų
+susidubliavimo klaida.
+</p>
+
+<p>
+Tėvo objektas pridedamas į sesiją (db.session.add(naujas_tevas)) ir
+sesija išsaugoma (db.session.commit()).
+</p>
+
+<p>
+Galiausiai nukreipiama į parents funkciją (return
+redirect(url_for('parents'))), kuri atidaro tėvų puslapį.
+</p>
+
+<p>
+Pagrindinis (apatinis) return nukreipia į tėvo pridėjimo puslapį,
+pasiimdamas formos duomenis (render_template("prideti_teva.html",
+form=forma)).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fabd2f;">@app.route</span><span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"/naujas_tevas"</span>, methods=<span style="color: #cc241d;">[</span><span style="color: #b8bb26;">"GET"</span>, <span style="color: #b8bb26;">"POST"</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+<span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">new_parent</span><span style="color: #fe8019;">()</span>:
+    db.create_all<span style="color: #fe8019;">()</span>
+    forma = forms.TevasForm<span style="color: #fe8019;">()</span>
+    <span style="color: #fb4934;">if</span> forma.validate_on_submit<span style="color: #fe8019;">()</span>:
+        naujas_tevas = Tevas<span style="color: #fe8019;">(</span>vardas=forma.vardas.data, pavarde=forma.pavarde.data<span style="color: #fe8019;">)</span>
+        <span style="color: #fb4934;">for</span> vaikas <span style="color: #fb4934;">in</span> forma.vaikai.data:
+            priskirtas_vaikas = Vaikas.query.get<span style="color: #fe8019;">(</span>vaikas.<span style="color: #fe8019;">id</span><span style="color: #fe8019;">)</span>
+            naujas_tevas.vaikai.append<span style="color: #fe8019;">(</span>priskirtas_vaikas<span style="color: #fe8019;">)</span>
+        db.session.add<span style="color: #fe8019;">(</span>naujas_tevas<span style="color: #fe8019;">)</span>
+        db.session.commit<span style="color: #fe8019;">()</span>
+        <span style="color: #fb4934;">return</span> redirect<span style="color: #fe8019;">(</span>url_for<span style="color: #cc241d;">(</span><span style="color: #b8bb26;">'parents'</span><span style="color: #cc241d;">)</span><span style="color: #fe8019;">)</span>
+    <span style="color: #fb4934;">return</span> render_template<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"prideti_teva.html"</span>, form=forma<span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+<p>
+Pilnas kodas:
+</p>
+
+<p>
+<a href="https://github.com/DonatasNoreika/tevas-vaikai-flask">tevas-vaikai-flask</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org55c833f" class="outline-3">
+<h3 id="org55c833f"><span class="section-number-3">5.5.</span> Many2Many ryšio įgyvendinimas su Flask</h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+<code>Sqlalchemy dalis:</code>
+</p>
+
+<p>
+Vienas tėvas gali turėti daug vaikų. Vaikas gali turėti daug tėvų.
+Šiam ryšiui tėvo ir vaiko klasėse atitinkamai sukuriami vaiko ir tėvo
+objektai (relationship laukai). Taip pat būtina tarpinė ryšių lentelė
+association_table, kurioje sukuriami tėvo ir vaiko id stulpeliai
+(foreign key).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #83a598;">association_table</span> = db.Table<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'association'</span>, db.metadata,
+    db.Column<span style="color: #cc241d;">(</span><span style="color: #b8bb26;">'tevas_id'</span>, db.Integer, db.ForeignKey<span style="color: #b8bb26;">(</span><span style="color: #b8bb26;">'tevas.id'</span><span style="color: #b8bb26;">)</span><span style="color: #cc241d;">)</span>,
+    db.Column<span style="color: #cc241d;">(</span><span style="color: #b8bb26;">'vaikas_id'</span>, db.Integer, db.ForeignKey<span style="color: #b8bb26;">(</span><span style="color: #b8bb26;">'vaikas.id'</span><span style="color: #b8bb26;">)</span><span style="color: #cc241d;">)</span>
+<span style="color: #fe8019;">)</span>
+
+<span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">Tevas</span><span style="color: #fe8019;">(</span>db.Model<span style="color: #fe8019;">)</span>:
+    <span style="color: #83a598;">__tablename__</span> = <span style="color: #b8bb26;">'tevas'</span>
+    <span style="color: #fe8019;">id</span> = db.Column<span style="color: #fe8019;">(</span>db.Integer, primary_key=<span style="color: #d3869b;">True</span><span style="color: #fe8019;">)</span>
+    vardas = db.Column<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"Vardas"</span>, db.String<span style="color: #fe8019;">)</span>
+    pavarde = db.Column<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"Pavard&#279;"</span>, db.String<span style="color: #fe8019;">)</span>
+    vaikai = db.relationship<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"Vaikas"</span>, secondary=association_table,
+                          back_populates=<span style="color: #b8bb26;">"tevai"</span><span style="color: #fe8019;">)</span>
+
+<span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">Vaikas</span><span style="color: #fe8019;">(</span>db.Model<span style="color: #fe8019;">)</span>:
+    __tablename__ = <span style="color: #b8bb26;">'vaikas'</span>
+    <span style="color: #fe8019;">id</span> = db.Column<span style="color: #fe8019;">(</span>db.Integer, primary_key=<span style="color: #d3869b;">True</span><span style="color: #fe8019;">)</span>
+    vardas = db.Column<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"Vardas"</span>, db.String<span style="color: #fe8019;">)</span>
+    pavarde = db.Column<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"Pavard&#279;"</span>, db.String<span style="color: #fe8019;">)</span>
+    tevai = db.relationship<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"Tevas"</span>, secondary=association_table,
+                         back_populates=<span style="color: #b8bb26;">"vaikai"</span><span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+
+<p>
+<code>Formos python failas:</code>
+</p>
+
+<p>
+Viskas praktiškai taip pat, kaip ir One2many atveju. Tam, kad tėvo
+formoje galėtume turėti pasirenkamą vaikų lauką, turime panaudoti
+QuerySelectMultipleField lauką. Atkreipkite dėmesį, kad jį reikia
+importuoti iš wtforms_sqlalchemy.fields, o ne wtforms. Štai ką reiškia
+šio lauko argumentai:
+</p>
+
+<p>
+query_factory nurodome visų vaikų užklausą (app.Vaikas.query.all,
+priekyje pridėtas app, nes importuotas visas app failas, kad
+pasiektume vaiko ir tėvo objektus).
+</p>
+
+<p>
+get_label nurodoma, kokį vaiko lauką norime matyti, pasirinkdami vaiką
+tėvo formoje.
+</p>
+
+<p>
+get_pk nurodome, kad laukas pasiimtų vaiko id, kaip stringą. Tam
+parašome lambda funkciją (lambda obj: str(obj)). Čia galima naudoti ir
+paprastą funkciją.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fb4934;">from</span> flask_wtf <span style="color: #fb4934;">import</span> FlaskForm
+<span style="color: #fb4934;">from</span> wtforms <span style="color: #fb4934;">import</span> StringField, IntegerField, SubmitField, SelectField
+<span style="color: #fb4934;">from</span> wtforms.validators <span style="color: #fb4934;">import</span> DataRequired, Email, InputRequired
+<span style="color: #fb4934;">from</span> wtforms_sqlalchemy.fields <span style="color: #fb4934;">import</span> QuerySelectField, QuerySelectMultipleField
+<span style="color: #fb4934;">import</span> app
+
+<span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">TevasForm</span><span style="color: #fe8019;">(</span>FlaskForm<span style="color: #fe8019;">)</span>:
+    <span style="color: #83a598;">vardas</span> = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Numeris'</span>, <span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">()</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    <span style="color: #83a598;">pavarde</span> = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Pavard&#279;'</span>, <span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">()</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    <span style="color: #83a598;">vaikai</span> = QuerySelectMultipleField<span style="color: #fe8019;">(</span>query_factory=app.Vaikas.query.<span style="color: #fe8019;">all</span>, get_label=<span style="color: #b8bb26;">"vardas"</span>, get_pk=<span style="color: #fb4934;">lambda</span> obj: <span style="color: #fe8019;">str</span><span style="color: #cc241d;">(</span>obj<span style="color: #cc241d;">)</span><span style="color: #fe8019;">)</span>
+    submit = SubmitField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'&#302;vesti'</span><span style="color: #fe8019;">)</span>
+
+<span style="color: #fb4934;">class</span> <span style="color: #fabd2f;">VaikasForm</span><span style="color: #fe8019;">(</span>FlaskForm<span style="color: #fe8019;">)</span>:
+    vardas = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Numeris'</span>, <span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">()</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    pavarde = StringField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'Pavard&#279;'</span>, <span style="color: #cc241d;">[</span>DataRequired<span style="color: #b8bb26;">()</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+    submit = SubmitField<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">'&#302;vesti'</span><span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+
+<p>
+<code>Formos html failas:</code>
+</p>
+
+<p>
+Viskas praktiškai taip pat, kaip ir One2many atveju. Formos html
+failas praktiškai nesiskiria nuo įprasto neryšinio objekto įvedimo
+formos. Vaikų laukas įvedamas, kaip bet kuris kitas laukas. Jo logika
+pasiimama iš formos python failo ir vietoje įprasto įvedimo lauko, jis
+tampa kelių pasirinkimų lauku (kelis variantus formoje galima
+pasirinkti laikant nuspaustą klaviatūros mygtuką CTRL).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">{% extends "base.html" %}
+
+{% block content %}
+
+&lt;<span style="color: #b8bb26;">form</span> <span style="color: #83a598;">method</span>=<span style="color: #b8bb26;">"post"</span> <span style="color: #83a598;">action</span>=<span style="color: #b8bb26;">"#"</span>&gt;
+    {{ form.hidden_tag() }}
+    &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+        {{ form.vardas.label(class="form-control-label") }}
+        {{ form.vardas(class="form-control") }}
+    &lt;/<span style="color: #b8bb26;">div</span>&gt;
+    &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+        {{ form.pavarde.label(class="form-control-label") }}
+        {{ form.pavarde(class="form-control") }}
+    &lt;/<span style="color: #b8bb26;">div</span>&gt;
+    &lt;<span style="color: #b8bb26;">div</span> <span style="color: #83a598;">class</span>=<span style="color: #b8bb26;">"form-group"</span>&gt;
+        {{ form.vaikai.label(class="form-control-label") }}
+        {{ form.vaikai(class="form-control") }}
+    &lt;/<span style="color: #b8bb26;">div</span>&gt;
+    {{ form.submit }}
+&lt;/<span style="color: #b8bb26;">form</span>&gt;
+{% endblock %}
+</pre>
+</div>
+
+<p>
+<code>Tėvų atvaizdavimo html kodas:</code>
+</p>
+
+<p>
+Viskas praktiškai taip pat, kaip ir One2many atveju. Kadangi tėvas
+gali daug vaikų (laukas vaikas), kas tiesiog yra objektai, kiekvieną
+kartą tikriname, ar šis laukas užpildytas. Jei jis ne tuščias,
+praiteruojame (prasukame for ciklą) per visus tėvo vaikus (per tėvo
+lauką vaikai tevas.vaikai) ir atvaizduojame kiekvieno vaiko vardą
+(vaikas.vardas) ir pavardę (vaikas.pavarde).
+</p>
+
+<p>
+Žemiau yra nuorodos į flask metodus, skirtus tėvo įrašo ištrynimui ir
+redagavimui, taip pat – naujo tėvo įvedimui.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">{% extends "base.html" %}
+
+{% block content %}
+
+{% if visi_tevai %}
+{% for tevas in visi_tevai %}
+&lt;<span style="color: #b8bb26;">hr</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{tevas.vardas}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{tevas.pavarde}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+{% if tevas.vaikai %}
+&lt;<span style="color: #b8bb26;">p</span>&gt;Vaikai:&lt;/<span style="color: #b8bb26;">p</span>&gt;
+{% for vaikas in tevas.vaikai %}
+&lt;<span style="color: #b8bb26;">p</span>&gt;{{vaikas.vardas}} {{vaikas.pavarde}}&lt;/<span style="color: #b8bb26;">p</span>&gt;
+{% endfor %}
+{% endif %}
+
+{% endfor %}
+{% endif %}
+&lt;<span style="color: #b8bb26;">hr</span>&gt;
+&lt;<span style="color: #b8bb26;">p</span>&gt;&lt;<span style="color: #b8bb26;">a</span> <span style="color: #83a598;">href</span>=<span style="color: #b8bb26;">"{{ url_for('new_parent')}}"</span>&gt;Naujas t&#279;vas&lt;/<span style="color: #b8bb26;">a</span>&gt;&lt;/<span style="color: #b8bb26;">p</span>&gt;
+
+{% endblock %}
+</pre>
+</div>
+
+<p>
+Pradžioje truputį pakeičiama DB nuorodos nurodymo kodą. Tai reikalinga
+tam, kad nemestų thread klaidų:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">app.<span style="color: #83a598;">config</span><span style="color: #fe8019;">[</span><span style="color: #b8bb26;">'SQLALCHEMY_DATABASE_URI'</span><span style="color: #fe8019;">]</span> = <span style="color: #b8bb26;">'sqlite:///'</span> + os.path.join<span style="color: #fe8019;">(</span>basedir, <span style="color: #b8bb26;">'data.sqlite?check_same_thread=False'</span><span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+<p>
+<code>Tėvų atvaizdavimo:</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fabd2f;">@app.route</span><span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"/tevai"</span><span style="color: #fe8019;">)</span>
+<span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">parents</span><span style="color: #fe8019;">()</span>:
+    <span style="color: #fb4934;">try</span>:
+        visi_tevai = Tevas.query.<span style="color: #fe8019;">all</span><span style="color: #fe8019;">()</span>
+    <span style="color: #fb4934;">except</span>:
+        visi_tevai = <span style="color: #fe8019;">[]</span>
+    <span style="color: #fb4934;">return</span> render_template<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"tevai.html"</span>, visi_tevai=visi_tevai<span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+<p>
+<code>Tėvų pridėjimo:</code>
+</p>
+
+<p>
+Dekoratoriuje aprašome, kad funkcija naudos ir GET ir POST metodus
+(duomenų priėjimui iš formos).
+</p>
+
+<p>
+Funkcijos pradžioje inicijuojame duomenų bazę (db.create_all()). Tai
+reikalinga norint sukurti duomenų bazę, kai jos nėra.
+</p>
+
+<p>
+Inicijuojamas tėvo formos objektas (forma = forms.TevasForm(),
+pradžioje rašoma forms, nes failo pradžioje yra importuota forms
+klasė).
+</p>
+
+<p>
+Patvirtinus formą (if forma.validate_on_submit()), inicijuojamas tėvo
+objektas su duomenimis iš formos. Kol kas vaikai nepriskiriami
+</p>
+
+<p>
+Iteruojama per tėvo vaikus iš formos (forma.vaikai.data), padaromos
+kiekvieno vaiko užklausos iš duomenų bazės ir jie pridedami prie tėvo
+vaikų objektų sąrašo (per metodą append). Taip išvengiama sesijų
+susidubliavimo klaida.
+</p>
+
+<p>
+Tėvo objektas pridedamas į sesiją (db.session.add(naujas_tevas)) ir
+sesija išsaugoma (db.session.commit()).
+</p>
+
+<p>
+Galiausiai nukreipiama į parents funkciją (return
+redirect(url_for('parents'))), kuri atidaro tėvų puslapį.
+</p>
+
+<p>
+Pagrindinis (apatinis) return nukreipia į tėvo pridėjimo puslapį,
+pasiimdamas formos duomenis (render_template("prideti_teva.html",
+form=forma)).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #fabd2f;">@app.route</span><span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"/naujas_tevas"</span>, methods=<span style="color: #cc241d;">[</span><span style="color: #b8bb26;">"GET"</span>, <span style="color: #b8bb26;">"POST"</span><span style="color: #cc241d;">]</span><span style="color: #fe8019;">)</span>
+<span style="color: #fb4934;">def</span> <span style="color: #b8bb26;">new_parent</span><span style="color: #fe8019;">()</span>:
+    db.create_all<span style="color: #fe8019;">()</span>
+    forma = forms.TevasForm<span style="color: #fe8019;">()</span>
+    <span style="color: #fb4934;">if</span> forma.validate_on_submit<span style="color: #fe8019;">()</span>:
+        naujas_tevas = Tevas<span style="color: #fe8019;">(</span>vardas=forma.vardas.data, pavarde=forma.pavarde.data<span style="color: #fe8019;">)</span>
+        <span style="color: #fb4934;">for</span> vaikas <span style="color: #fb4934;">in</span> forma.vaikai.data:
+            priskirtas_vaikas = Vaikas.query.get<span style="color: #fe8019;">(</span>vaikas.<span style="color: #fe8019;">id</span><span style="color: #fe8019;">)</span>
+            naujas_tevas.vaikai.append<span style="color: #fe8019;">(</span>priskirtas_vaikas<span style="color: #fe8019;">)</span>
+        db.session.add<span style="color: #fe8019;">(</span>naujas_tevas<span style="color: #fe8019;">)</span>
+        db.session.commit<span style="color: #fe8019;">()</span>
+        <span style="color: #fb4934;">return</span> redirect<span style="color: #fe8019;">(</span>url_for<span style="color: #cc241d;">(</span><span style="color: #b8bb26;">'parents'</span><span style="color: #cc241d;">)</span><span style="color: #fe8019;">)</span>
+    <span style="color: #fb4934;">return</span> render_template<span style="color: #fe8019;">(</span><span style="color: #b8bb26;">"prideti_teva.html"</span>, form=forma<span style="color: #fe8019;">)</span>
+</pre>
+</div>
+
+<p>
+<code>Pilnas kodas:</code>
+</p>
+
+<p>
+<a href="https://github.com/DonatasNoreika/tevai-vaikai-flask">tevai-vaikai-flask</a>
+</p>
+</div>
+
+<div id="outline-container-org8a0e68e" class="outline-4">
+<h4 id="org8a0e68e"><span class="section-number-4">5.5.1.</span> Užduotis</h4>
+<div class="outline-text-4" id="text-5-5-1">
+<p>
+Sukurti Flask programą, kuri leistų išsaugoti studentus, dėstytojus ir
+paskaitas
+</p>
+
+<p>
+Kiekvienam dėstytojui leistų priskirti jo paskaitas (one2many ryšys)
+</p>
+
+<p>
+Kiekvienam studentui leistų priskirti daug paskaitų (many2many ryšys)
+</p>
+
+
+<div id="org466964c" class="figure">
+<p><img src="./static/images/flask4_3.png" alt="flask4_3.png" width="800px" />
+</p>
+</div>
+
+<p>
+Atsakymas
+</p>
+
+<p>
+<a href="https://github.com/DonatasNoreika/studentai_destytojai_paskaitos_flask">Paskaitų programa</a>
+</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2023-01-30 Mon 19:48</p>
 <p class="author">Author: arvydas</p>
-<p class="date">Created: 2023-02-15 Wed 05:27</p>
+<p class="date">Created: 2023-02-22 Wed 19:33</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

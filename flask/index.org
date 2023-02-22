@@ -1916,3 +1916,1119 @@ for x in messages:
 #+end_src
 
 Jeigu atkreipėte dėmesį, migracijų procesas labai panašus į GIT procesus.
+
+** Uzduotis
+
+Sukurkite peticijos puslapį. Gali pažiūrėti [[https://github.com/robotautas/kursas/blob/master/Flask/Flask_3_uzduotis/Uzduotis/take1.mkv][demonstraciją]], kaip turėtų
+atrodyti galutinis rezultatas.
+
+Šiame puslapyje turėtų būti išpildyti žemiau išvardinti reikalavimai:
+
+Puslapio navigacijoje turi būti nuorodos į pagrindinį puslapį ir
+/about.
+
+Pagrindiniame puslapyje turi būti forma, kurioje reikia įvesti vardą,
+pavardę ir komentarą. Po ja - pasirašiusiųjų sąrašas: eil.nr, vardas
+pavardė, data ir komentaras
+
+Jeigu forma užpildyta sėkmingai, sąrašas papildomas paskutiniu įrašu,
+o vietoje formos atsiranda padėkos žinutė (angl. success message).
+
+Įrašus saugokite sqlite duomenų bazėjė.
+
+Jums reikės atrasti būdą, kaip prieš sugeneruojant šabloną į duomenų
+bazę perkelti formos duomenis
+
+Pavienės wtf-formos reikšmės traukiamos taip, pvz: form.name.data
+
+Padaryti formos validaciją (šitą galite pasilikti pabaigai ir
+padaryti, jeigu liks laiko)
+
+#+begin_src python
+  # app.py
+
+  import os
+  from datetime import datetime
+  from flask import Flask, render_template
+  from flask_migrate import Migrate
+  from flask_sqlalchemy import SQLAlchemy
+  from form import MessageForm
+
+
+  basedir = os.path.abspath(os.path.dirname(__file__))
+  app = Flask(__name__)
+  app.config['SECRET_KEY'] = 'bet kokia simbolių eilutė'
+  app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir, 'data.sqlite')
+
+  app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+  db = SQLAlchemy(app)
+  Migrate(app, db)
+
+
+  class Message(db.Model):
+      __tablename__ = 'messages'
+      id = db.Column(db.Integer, primary_key=True)
+      fname = db.Column(db.String(80), nullable=False)
+      lname = db.Column(db.String(80), nullable=False)
+      date = db.Column(db.String(80))
+      comment = db.Column(db.Text, nullable=False)
+
+      def __init__(self, fname, lname, comment, date):
+          self.fname = fname
+          self.lname = lname
+          self.comment = comment
+          self.date = date
+
+      def __repr__(self):
+          return f'{self.fname} - {self.lname}'
+
+
+  @app.route('/', methods=['GET', 'POST'])
+  def index():
+      data = Message.query.all()[::-1]
+      form = MessageForm()
+      if form.validate_on_submit():
+          fname = form.fname.data
+          lname = form.lname.data
+          comment = form.comment.data
+          now = datetime.now()
+          date = now.strftime("%d/%m/%Y %H:%M:%S")
+          entry = Message(fname=fname, lname=lname, comment=comment, date=date)
+          db.session.add(entry)
+          db.session.commit()
+          data = Message.query.all()[::-1]
+          stats = 20000 - len(data)
+          return render_template('index.html', form=False, data=data, stats = stats)
+      return render_template('index.html', form=form, data=data)
+
+
+  @app.route('/about')
+  def about():
+      return render_template('about.html')
+
+
+  if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=8000, debug=True)
+#+end_src
+
+#+begin_src python
+  # form.py
+  from flask_wtf import FlaskForm
+  from wtforms import StringField, TextAreaField, SubmitField
+  from wtforms.validators import DataRequired
+
+
+  class MessageForm(FlaskForm):
+      fname = StringField('Vardas', [DataRequired()])
+      lname = StringField('Pavardė', [DataRequired()])
+      comment = TextAreaField('Komentaras')
+      submit = SubmitField('Pasirašyti')
+#+end_src
+
+#+begin_src html
+  <!-- about.html -->
+  {% extends "base.html" %}
+
+  {% block content %}
+  <img src="https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555446335/shape/mentalfloss/istock_000019974211_small.jpg" />
+  <br>
+  <p>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis.
+    Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless
+    mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium.
+    Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat
+    mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an
+    Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.
+  </p>
+  {% endblock %}
+#+end_src
+
+#+begin_src html
+  <!-- base.html -->
+
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Bare - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary static-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">Bebrų medžioklei NE!</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Peticija</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about">Apie</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+  <div class="container">
+    <br>
+  {% block content %}
+  {% endblock %}
+  </div>
+
+
+    <!-- Bootstrap core JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  </body>
+
+  </html>
+#+end_src
+
+#+begin_src html
+  <!-- index.html -->
+
+  {% extends "base.html" %}
+
+  {% block content %}
+  {% if form %}
+  <h4>Mūsų šventas tikslas yra užkirsti kelią barbariškai bebrų medžioklei. Prašome pasirašyti peticiją!</h4>
+  <br>
+
+  <form method="post" action="#">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+        {{ form.fname.label(class="form-control-label") }}
+        {{ form.fname(class="form-control") }}
+        </div>
+        <div class="form-group">
+        {{ form.lname.label(class="form-control-label") }}
+        {{ form.lname(class="form-control") }}
+        </div>
+        <div class="form-group">
+        {{ form.comment.label(class="form-control-label") }}
+        {{ form.comment(class="form-control", rows="5") }}
+        </div>
+        {{ form.submit }}
+    </form>
+  {% else %}
+
+  <h3>Ačiū, kad pasirašėte. Mums liko surinkti {{stats}} parašų!</h3>
+
+  {% endif %}
+  {% for i in data %}
+  <hr>
+  <p>{{i.id}}. {{i.fname}} {{i.lname}}, {{i.date}}</p>
+  <p>{{i.comment}}</p>
+
+
+  {% endfor %}
+  {% endblock %}
+#+end_src
+
+
+[[https://github.com/CodeAcademy-Online/Python/tree/lesson-16][Atsakymai]]
+
+* Flask 4 dalis
+** One2Many
+
+Dauguma programų turi po daugiau negu vieną duomenų bazės modelį.
+Įsivaizduokime, kad turime du modelius - knyga ir leidykla:
+
+- Knyga
+  - ISBN (Primary Key)
+  - Autorius
+  - Pavadinimas
+  - Leidyklos ID (Foreign Key)
+
+- Leidykla
+  - ID (Primary Key)
+  - Pavadinimas
+  - Adresas
+
+Viena leidykla gali turėti daug knygų, pabandykime sumodeliuoti
+duomenų bazę šiam atvejui.
+
+Susikurkime app.py:
+
+#+begin_src python
+import os
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+
+app = Flask(__name__)
+app.app_context().push()
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+Migrate(app, db)
+
+'''
+Klasėje Book mus domina publisher_id kintamasis. Jis susieja klasę Book su klase Publisher per ForeignKey,
+kuriame parametruose nurodytas kitos lentelės pavadinimas ir prie kurio lauko rišame, t.y. prie id,
+kuris publishers lentelėje yra primary_key.
+'''
+class Book(db.Model):
+
+    __tablename__ = 'books'
+    id = db.Column(db.Integer, primary_key=True)
+    author = db.Column(db.String(150))
+    title = db.Column(db.String(300))
+    publisher_id = db.Column(db.Integer, db.ForeignKey('publishers.id'))
+
+    def __init__(self, author, title, publisher_id):
+        self.author = author
+        self.title = title
+        self.publisher_id = publisher_id
+
+    def __repr__(self):
+        return self.title
+
+'''
+Klasėje Publisher, atgalinį ryšį su Books klase sukuria books kintamąjam priskirta eilutė.
+Parametruose nurodyta klasė, su kuria siejame ir backref - kol kas žiūrėkite, kaip į papildomą
+saitą tarp python klasių.
+'''
+class Publisher(db.Model):
+
+    __tablename__ = 'publishers'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), unique=True)
+    books = db.relationship('Book', backref='publisher')
+
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return self.name
+#+end_src
+
+Sukūrėme du modelius, šiek tiek detalių rasite komentaruose.
+Išbandykime, ar veikia:
+
+terminale -
+- set FLASK_APP=app.py,
+- flask db init,
+- flask db migrate -m "pirma migracija",
+- flask db upgrade.
+
+šį kartą dirbsime iš python konsolės:
+
+#+begin_src python
+Python 3.7.3 (default, Mar 27 2019, 22:11:17)
+[GCC 7.3.0] :: Anaconda, Inc. on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from app import db, Book, Publisher
+>>> pub1 = Publisher('Baltos Lankos')
+>>> pub2 = Publisher('Alma Littera')
+>>> db.session.add_all([pub1, pub2])
+>>> db.session.commit()
+>>> book1 = Book('Biliūnas', 'Kliudžiau', 1)
+>>> book2 = Book('Žemaitė', 'Marti', 1)
+>>> book3 = Book('Mažvydas', 'Katekizmas', 2)
+>>> db.session.add_all([book1, book2, book3])
+>>> db.session.commit()
+#+end_src
+
+Susikūrėme bandomuosius duomenis. Patikrinkime, ar pavyko:
+
+#+begin_src python
+>>> books = Book.query.all()
+>>> books
+[Kliudžiau, Marti, Katekizmas]
+>>> pubs = Publisher.query.all()
+>>> pubs
+[Baltos Lankos, Alma Littera]
+>>> for i in books:
+...     print(i, i.publisher)
+...
+Kliudžiau Baltos Lankos
+Marti Baltos Lankos
+Katekizmas Alma Littera
+>>> for i in pubs:
+...     print(i, i.books)
+...
+Baltos Lankos [Kliudžiau, Marti]
+Alma Littera [Katekizmas]
+>>>
+#+end_src
+
+Matome, kad įrašai kuriasi, ryšiai veikia. Atkreipkite dėmesį, kai
+iteravome knygas, nurodėme spausdinti i.publisher, nors tokio
+stulpelio ir nėra. Tai reikšmė iš back reference parametro, galima ją
+taip naudoti.
+** Many2Many
+
+Pasitaiko, kad knygos turi ne po vieną autorių. Gaunasi situacija,
+daug knygų - daug autorių. Pabandykime sumodeliuoti:
+
+#+begin_src python
+helper_table = db.Table('helper',
+                        db.Column('book_id', db.Integer, db.ForeignKey('books.id')),
+                        db.Column('author_id', db.Integer, db.ForeignKey('authors.id')))
+
+
+class Book(db.Model):
+
+    __tablename__ = 'books'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(300))
+    publisher_id = db.Column(db.Integer, db.ForeignKey('publishers.id'))
+    authors = db.relationship('Author', secondary=helper_table, backref='books')
+
+    def __init__(self, title, publisher_id):
+        self.title = title
+        self.publisher_id = publisher_id
+
+    def __repr__(self):
+        return self.title
+
+
+class Publisher(db.Model):
+
+    __tablename__ = 'publishers'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), unique=True)
+    books = db.relationship('Book', backref='publisher')
+
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return self.name
+
+
+class Author(db.Model):
+
+    __tablename__ = 'authors'
+    id = db.Column(db.Integer, primary_key=True)
+    fname = db.Column(db.String(150))
+    lname = db.Column(db.String(300))
+
+    def __init__(self, fname, lname):
+        self.fname = fname
+        self.lname = lname
+
+    def __repr__(self):
+        return f'{self.fname} {self.lname}'
+#+end_src
+
+Pirmiausiai sukūrėme helper_table. Tai ne modelis, o tiesiog pagalbinė
+lentelė duomenų bazėje, apjungianti modelius Book ir Author.
+
+Modelyje Books vietoje seno author, sukūrėme naują authors stulpelį.
+Nurodėme, kad kreipsimės į Author modelį, per pagalbinę lentelę.
+Nurodėme backref='books'. Per šio parametro reikšmę vėliau galėsime
+kreiptis iš autoriaus į knygos modelį.
+
+Sukūrėme modelį Author. Jame jokiais ryšiais rūpintis nereikia, tai
+padaryta ankstesniuose punktuose.
+
+Viską inicijavus, ir DB atidarius per duombazių administravimo
+programą (dbeaver), matome tokią schemą:
+
+#+attr_html: :width 800px
+#+ATTR_ORG: :width 600
+[[./static/images/flask4_1.png]]
+
+Patikrinimui suvedėme šiek tiek duomenų bandymams:
+
+#+begin_src python
+>>> books
+[Mūsų bendra knyga, Knyga apie gyvenimą, Kaip mes kartu tarnavome]
+>>> pubs
+[Baltos Lankos, Alma Littera]
+>>> authors
+[Valdas Adamkus, Algimantas Čekuolis, Andrius Mamontovas, Antanas Baranauskas]
+#+end_src
+
+Pažiūrėkime, kaip veikia many2many mechanizmas flask aplinkoje:
+
+#+begin_src python
+>>> bendra_knyga = Book.query.filter_by(title='Mūsų bendra knyga').first()
+>>> bendra_knyga
+Mūsų bendra knyga
+>>> v_adamkus = Author.query.filter_by(fname='Valdas').first()
+>>> v_adamkus
+Valdas Adamkus
+>>> a_chuck = Author.query.filter_by(fname = 'Algimantas').first()
+>>> a_chuck
+Algimantas Čekuolis
+>>> bendra_knyga.authors.append(v_adamkus)
+>>> bendra_knyga.authors.append(a_chuck)
+>>> bendra_knyga.authors
+[Valdas Adamkus, Algimantas Čekuolis]
+#+end_src
+
+Vienai knygai priskyrėme porą autorių. Pabandykime atvirkštinį
+veiksmą:
+
+#+begin_src python
+>>> knyga_ag = Book.query.filter_by(title='Knyga apie gyvenimą').first()
+>>> knyga_ag
+Knyga apie gyvenimą
+>>> knyga_tarnavome = Book.query.filter_by(title='Kaip mes kartu tarnavome').first()
+>>> knyga_tarnavome
+Kaip mes kartu tarnavome
+>>> a_chuck.books.append(knyga_tarnavome)
+>>> a_chuck.books.append(knyga_ag)
+>>> a_chuck.books
+[Mūsų bendra knyga, Knyga apie gyvenimą, Kaip mes kartu tarnavome]
+#+end_src
+
+Pavyko. Čekuolis parašė tris knygas, vieną iš kurių su bendraautoriumi
+:) Dar kartą akcentuosiu, kad iš Author į Book modelį kreipiamasi per
+backref, šiuo atveju 'books'.
+
+#+attr_html: :width 800px
+#+ATTR_ORG: :width 600
+[[./static/images/flask4_2.png]]
+
+Taip atrodo helper lentelė - tiesiog knygų ID sąsajos su autorių ID.
+** Many2One ryšio įgyvendinimas su Flask
+
+~Sqlalchemy dalis~:
+
+Vienas tėvas gali turėti vieną vaiką. Vaikas gali turėti kelis tėvus.
+Šiam ryšiui tėvo klasėje sukuriamas vaiko id (foreign key) ir vaiko
+objektas (relationship laukas). Iš vaiko pusės ryšio laukai nebūtini.
+
+#+begin_src python
+class Tevas(db.Model):
+    __tablename__ = "tevas"
+    id = db.Column(db.Integer, primary_key=True)
+    vardas = db.Column("Vardas", db.String)
+    pavarde = db.Column("Pavardė", db.String)
+    vaikas_id = db.Column(db.Integer, db.ForeignKey("vaikas.id"))
+    vaikas = db.relationship("Vaikas")
+
+
+class Vaikas(db.Model):
+    __tablename__ = "vaikas"
+    id = db.Column(db.Integer, primary_key=True)
+    vardas = db.Column("Vardas", db.String)
+    pavarde = db.Column("Pavardė", db.String)
+#+end_src
+
+~Formos python failas~:
+
+Tam, kad tėvo formoje galėtume turėti pasirenkamą vaiko lauką, turime
+panaudoti QuerySelectField lauką. Atkreipkite dėmesį, kad jį reikia
+importuoti iš wtforms_sqlalchemy.fields, o ne wtforms. Štai ką reiškia
+šio lauko argumentai:
+
+query_factory nurodome funkciją su gražinama vaikų užklausa
+(Vaikas.query, priekyje pridėtas app, nes importuotas visas app
+failas, kad pasiektume vaiko ir tėvo objektus).
+
+allow_blank nustatome reikšmę True. Tai reiškia, kad tėvui leidžiama
+ir nepasirinkti jokio vaiko.
+
+get_label nurodoma, kokį vaiko lauką norime matyti, pasirinkdami vaiką
+tėvo formoje.
+
+get_pk nurodome, kad laukas pasiimtų vaiko id, kaip stringą. Tam
+parašome lambda funkciją (lambda obj: str(obj)). Čia galima naudoti ir
+paprastą funkciją.
+
+#+begin_src python
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
+from wtforms_sqlalchemy.fields import QuerySelectField
+import app
+
+def vaikas_query():
+    return app.Vaikas.query
+
+class TevasForm(FlaskForm):
+    vardas = StringField('Numeris', [DataRequired()])
+    pavarde = StringField('Pavardė', [DataRequired()])
+    vaikas = QuerySelectField(query_factory=vaikas_query, allow_blank=True, get_label="vardas", get_pk=lambda obj: str(obj))
+    submit = SubmitField('Įvesti')
+
+
+class VaikasForm(FlaskForm):
+    vardas = StringField('Numeris', [DataRequired()])
+    pavarde = StringField('Pavardė', [DataRequired()])
+    submit = SubmitField('Įvesti')
+#+end_src
+
+~Formos html failas:~
+
+Formos html failas praktiškai nesiskiria nuo įprasto neryšinio objekto
+įvedimo formos. Vaiko laukas įvedamas, kaip bet kuris kitas laukas. Jo
+logika pasiimama iš formos python failo ir vietoje įprasto įvedimo
+lauko, jis tampa pasirinkimų lauku.
+
+#+begin_src html
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="post" action="#">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.vardas.label(class="form-control-label") }}
+        {{ form.vardas(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.pavarde.label(class="form-control-label") }}
+        {{ form.pavarde(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.vaikas.label(class="form-control-label") }}
+        {{ form.vaikas(class="form-control") }}
+    </div>
+    {{ form.submit }}
+</form>
+{% endblock %}
+#+end_src
+
+~Tėvų atvaizdavimo html kodas:~
+
+Kadangi tėvas gali turėti vaiką (laukas vaikas), kas tiesiog yra
+objektas, kiekvieną kartą tikriname, ar šis laukas užpildytas. Jei jis
+ne tuščias, atvaizduojame tėvui priskirto vaiko vardą
+(tevas.vaikas.vardas) ir pavardę (tevas.vaikas.pavarde).
+
+Žemiau yra nuorodos į flask metodus, skirtus tėvo įrašo ištrynimui ir
+redagavimui, taip pat – naujo tėvo įvedimui.
+
+#+begin_src html
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if visi_tevai %}
+{% for tevas in visi_tevai %}
+<hr>
+<p>{{tevas.vardas}}</p>
+<p>{{tevas.pavarde}}</p>
+{% if tevas.vaikas %}
+<p>Vaikas:</p>
+<p>{{tevas.vaikas.vardas}} {{tevas.vaikas.pavarde}}</p>
+{% endif %}
+<a href="{{ url_for('delete', id=tevas['id']) }}">Ištrinti</a>
+<a href="{{ url_for('update', id=tevas['id']) }}">Redaguoti</a>
+{% endfor %}
+{% endif %}
+<hr>
+<p><a href="{{ url_for('new_parent')}}">Naujas tėvas</a></p>
+
+{% endblock %}
+#+end_src
+
+~Flask funkcijos:~
+
+~Tėvų atvaizdavimo:~
+
+#+begin_src python
+@app.route("/tevai")
+def parents():
+    try:
+        visi_tevai = Tevas.query.all()
+    except:
+        visi_tevai = []
+    return render_template("tevai.html", visi_tevai=visi_tevai)
+#+end_src
+
+~Tėvų pridėjimo:~
+
+Dekoratoriuje aprašome, kad funkcija naudos ir GET ir POST metodus
+(duomenų priėjimui iš formos).
+
+Funkcijos pradžioje inicijuojame duomenų bazę (db.create_all()). Tai
+reikalinga norint sukurti duomenų bazę, kai jos nėra.
+
+Inicijuojamas tėvo formos objektas (forma = forms.TevasForm(),
+pradžioje rašoma forms, nes failo pradžioje yra importuota forms
+klasė).
+
+Patvirtinus formą (if forma.validate_on_submit()), inicijuojamas tėvo
+objektas su duomenimis iš formos. Atkreipkite dėmesį, kad vaiko
+objektas priskiriamas ne tiesiogiai, o per vaikas_id lauką).
+
+Tėvo objektas pridedamas į sesiją (db.session.add(naujas_tevas)) ir
+sesija išsaugoma (db.session.commit()).
+
+Galiausiai nukreipiama į parents funkciją (return
+redirect(url_for('parents'))), kuri atidaro tėvų puslapį.
+
+Pagrindinis (apatinis) return nukreipia į tėvo pridėjimo puslapį,
+pasiimdamas formos duomenis (render_template("prideti_teva.html",
+form=forma)).
+
+#+begin_src python
+@app.route("/naujas_tevas", methods=["GET", "POST"])
+def new_parent():
+    db.create_all()
+    forma = forms.TevasForm()
+    if forma.validate_on_submit():
+        naujas_tevas = Tevas(vardas=forma.vardas.data, pavarde=forma.pavarde.data, vaikas_id=forma.vaikas.data.id)
+        db.session.add(naujas_tevas)
+        db.session.commit()
+        return redirect(url_for('parents'))
+    return render_template("prideti_teva.html", form=forma)
+#+end_src
+
+Pilnas kodas:
+
+[[https://github.com/DonatasNoreika/flask-tevas-vaikas][flask-tevas-vaikas]]
+
+** One2Many ryšio įgyvendinimas su Flask
+
+~Sqlalchemy dalis:~
+
+Vienas tėvas gali turėti daug vaikų. Vaikas gali turėti vieną tėvą
+(atvirkščiai, nei Many2one). Šiam ryšiui tėvo klasėje sukuriamas vaikų
+vaiko objektas (relationship laukas). Iš vaiko pusės sukuriamas tėvo
+id (foreign key) ir tėvo objektas (relationship laukas).
+
+#+begin_src python
+class Tevas(db.Model):
+    __tablename__ = "tevas"
+    id = db.Column(db.Integer, primary_key=True)
+    vardas = db.Column("Vardas", db.String)
+    pavarde = db.Column("Pavardė", db.String)
+    vaikai = db.relationship("Vaikas")
+
+
+class Vaikas(db.Model):
+    __tablename__ = "vaikas"
+    id = db.Column(db.Integer, primary_key=True)
+    vardas = db.Column("Vardas", db.String)
+    pavarde = db.Column("Pavardė", db.String)
+    tevas_id = db.Column(db.Integer, db.ForeignKey("tevas.id"))
+    tevas = db.relationship("Tevas")p
+#+end_src
+
+~Formos python failas:~
+
+Tam, kad tėvo formoje galėtume turėti pasirenkamą vaikų lauką, turime
+panaudoti QuerySelectMultipleField lauką (panašus, kaip Many2one
+atveju naudojamas QuerySelectField). Atkreipkite dėmesį, kad jį reikia
+importuoti iš wtforms_sqlalchemy.fields, o ne wtforms. Štai ką reiškia
+šio lauko argumentai:
+
+query_factory nurodome visų vaikų užklausą (app.Vaikas.query.all,
+priekyje pridėtas app, nes importuotas visas app failas, kad
+pasiektume vaiko ir tėvo objektus).
+
+get_label nurodoma, kokį vaiko lauką norime matyti, pasirinkdami vaiką
+tėvo formoje.
+
+get_pk nurodome, kad laukas pasiimtų vaiko id, kaip stringą. Tam
+parašome lambda funkciją (lambda obj: str(obj)). Čia galima naudoti ir
+paprastą funkciją.
+
+#+begin_src python
+from flask_wtf import FlaskForm
+from wtforms import StringField, IntegerField, SubmitField, SelectField
+from wtforms.validators import DataRequired, Email, InputRequired
+from wtforms_sqlalchemy.fields import QuerySelectField, QuerySelectMultipleField
+import app
+
+class TevasForm(FlaskForm):
+    vardas = StringField('Numeris', [DataRequired()])
+    pavarde = StringField('Pavardė', [DataRequired()])
+    vaikai = QuerySelectMultipleField(query_factory=app.Vaikas.query.all, get_label="vardas", get_pk=lambda obj: str(obj))
+    submit = SubmitField('Įvesti')
+
+class VaikasForm(FlaskForm):
+    vardas = StringField('Numeris', [DataRequired()])
+    pavarde = StringField('Pavardė', [DataRequired()])
+    submit = SubmitField('Įvesti')
+#+end_src
+
+
+~Formos html failas:~
+
+Formos html failas praktiškai nesiskiria nuo įprasto neryšinio objekto
+įvedimo formos. Vaikų laukas įvedamas, kaip bet kuris kitas laukas. Jo
+logika pasiimama iš formos python failo ir vietoje įprasto įvedimo
+lauko, jis tampa kelių pasirinkimų lauku (kelis variantus formoje
+galima pasirinkti laikant nuspaustą klaviatūros mygtuką CTRL).
+
+#+begin_src html
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="post" action="#">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.vardas.label(class="form-control-label") }}
+        {{ form.vardas(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.pavarde.label(class="form-control-label") }}
+        {{ form.pavarde(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.vaikai.label(class="form-control-label") }}
+        {{ form.vaikai(class="form-control") }}
+    </div>
+    {{ form.submit }}
+</form>
+{% endblock %}
+#+end_src
+
+Tėvų atvaizdavimo html kodas:
+
+Kadangi tėvas gali daug vaikų (laukas vaikas), kas tiesiog yra
+objektai, kiekvieną kartą tikriname, ar šis laukas užpildytas. Jei jis
+ne tuščias, praiteruojame (prasukame for ciklą) per visus tėvo vaikus
+(per tėvo lauką vaikai tevas.vaikai) ir atvaizduojame kiekvieno vaiko
+vardą (vaikas.vardas) ir pavardę (vaikas.pavarde).
+
+Žemiau yra nuorodos į flask metodus, skirtus tėvo įrašo ištrynimui ir
+redagavimui, taip pat – naujo tėvo įvedimui.
+
+#+begin_src html
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if visi_tevai %}
+{% for tevas in visi_tevai %}
+<hr>
+<p>{{tevas.vardas}}</p>
+<p>{{tevas.pavarde}}</p>
+{% if tevas.vaikai %}
+<p>Vaikai:</p>
+{% for vaikas in tevas.vaikai %}
+<p>{{vaikas.vardas}} {{vaikas.pavarde}}</p>
+{% endfor %}
+{% endif %}
+
+{% endfor %}
+{% endif %}
+<hr>
+<p><a href="{{ url_for('new_parent')}}">Naujas tėvas</a></p>
+
+{% endblock %}
+#+end_src
+
+~Flask funkcijos:~
+
+Pradžioje truputį pakeičiama DB nuorodos nurodymo kodą. Tai reikalinga
+tam, kad nemestų thread klaidų:
+
+#+begin_src python
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite?check_same_thread=False')
+#+end_src
+
+~Tėvų atvaizdavimo:~
+
+#+begin_src python
+@app.route("/tevai")
+def parents():
+    try:
+        visi_tevai = Tevas.query.all()
+    except:
+        visi_tevai = []
+    return render_template("tevai.html", visi_tevai=visi_tevai)
+#+end_src
+
+~Tėvų pridėjimo:~
+
+Dekoratoriuje aprašome, kad funkcija naudos ir GET ir POST metodus
+(duomenų priėjimui iš formos).
+
+Funkcijos pradžioje inicijuojame duomenų bazę (db.create_all()). Tai
+reikalinga norint sukurti duomenų bazę, kai jos nėra.
+
+Inicijuojamas tėvo formos objektas (forma = forms.TevasForm(),
+pradžioje rašoma forms, nes failo pradžioje yra importuota forms
+klasė).
+
+Patvirtinus formą (if forma.validate_on_submit()), inicijuojamas tėvo
+objektas su duomenimis iš formos. Kol kas vaikai nepriskiriami
+
+Iteruojama per tėvo vaikus iš formos (forma.vaikai.data), padaromos
+kiekvieno vaiko užklausos iš duomenų bazės ir jie pridedami prie tėvo
+vaikų objektų sąrašo (per metodą append). Taip išvengiama sesijų
+susidubliavimo klaida.
+
+Tėvo objektas pridedamas į sesiją (db.session.add(naujas_tevas)) ir
+sesija išsaugoma (db.session.commit()).
+
+Galiausiai nukreipiama į parents funkciją (return
+redirect(url_for('parents'))), kuri atidaro tėvų puslapį.
+
+Pagrindinis (apatinis) return nukreipia į tėvo pridėjimo puslapį,
+pasiimdamas formos duomenis (render_template("prideti_teva.html",
+form=forma)).
+
+#+begin_src python
+@app.route("/naujas_tevas", methods=["GET", "POST"])
+def new_parent():
+    db.create_all()
+    forma = forms.TevasForm()
+    if forma.validate_on_submit():
+        naujas_tevas = Tevas(vardas=forma.vardas.data, pavarde=forma.pavarde.data)
+        for vaikas in forma.vaikai.data:
+            priskirtas_vaikas = Vaikas.query.get(vaikas.id)
+            naujas_tevas.vaikai.append(priskirtas_vaikas)
+        db.session.add(naujas_tevas)
+        db.session.commit()
+        return redirect(url_for('parents'))
+    return render_template("prideti_teva.html", form=forma)
+#+end_src
+
+Pilnas kodas:
+
+[[https://github.com/DonatasNoreika/tevas-vaikai-flask][tevas-vaikai-flask]]
+
+** Many2Many ryšio įgyvendinimas su Flask
+
+~Sqlalchemy dalis:~
+
+Vienas tėvas gali turėti daug vaikų. Vaikas gali turėti daug tėvų.
+Šiam ryšiui tėvo ir vaiko klasėse atitinkamai sukuriami vaiko ir tėvo
+objektai (relationship laukai). Taip pat būtina tarpinė ryšių lentelė
+association_table, kurioje sukuriami tėvo ir vaiko id stulpeliai
+(foreign key).
+
+#+begin_src python
+association_table = db.Table('association', db.metadata,
+    db.Column('tevas_id', db.Integer, db.ForeignKey('tevas.id')),
+    db.Column('vaikas_id', db.Integer, db.ForeignKey('vaikas.id'))
+)
+
+class Tevas(db.Model):
+    __tablename__ = 'tevas'
+    id = db.Column(db.Integer, primary_key=True)
+    vardas = db.Column("Vardas", db.String)
+    pavarde = db.Column("Pavardė", db.String)
+    vaikai = db.relationship("Vaikas", secondary=association_table,
+                          back_populates="tevai")
+
+class Vaikas(db.Model):
+    __tablename__ = 'vaikas'
+    id = db.Column(db.Integer, primary_key=True)
+    vardas = db.Column("Vardas", db.String)
+    pavarde = db.Column("Pavardė", db.String)
+    tevai = db.relationship("Tevas", secondary=association_table,
+                         back_populates="vaikai")
+#+end_src
+
+
+~Formos python failas:~
+
+Viskas praktiškai taip pat, kaip ir One2many atveju. Tam, kad tėvo
+formoje galėtume turėti pasirenkamą vaikų lauką, turime panaudoti
+QuerySelectMultipleField lauką. Atkreipkite dėmesį, kad jį reikia
+importuoti iš wtforms_sqlalchemy.fields, o ne wtforms. Štai ką reiškia
+šio lauko argumentai:
+
+query_factory nurodome visų vaikų užklausą (app.Vaikas.query.all,
+priekyje pridėtas app, nes importuotas visas app failas, kad
+pasiektume vaiko ir tėvo objektus).
+
+get_label nurodoma, kokį vaiko lauką norime matyti, pasirinkdami vaiką
+tėvo formoje.
+
+get_pk nurodome, kad laukas pasiimtų vaiko id, kaip stringą. Tam
+parašome lambda funkciją (lambda obj: str(obj)). Čia galima naudoti ir
+paprastą funkciją.
+
+#+begin_src python
+from flask_wtf import FlaskForm
+from wtforms import StringField, IntegerField, SubmitField, SelectField
+from wtforms.validators import DataRequired, Email, InputRequired
+from wtforms_sqlalchemy.fields import QuerySelectField, QuerySelectMultipleField
+import app
+
+class TevasForm(FlaskForm):
+    vardas = StringField('Numeris', [DataRequired()])
+    pavarde = StringField('Pavardė', [DataRequired()])
+    vaikai = QuerySelectMultipleField(query_factory=app.Vaikas.query.all, get_label="vardas", get_pk=lambda obj: str(obj))
+    submit = SubmitField('Įvesti')
+
+class VaikasForm(FlaskForm):
+    vardas = StringField('Numeris', [DataRequired()])
+    pavarde = StringField('Pavardė', [DataRequired()])
+    submit = SubmitField('Įvesti')
+#+end_src
+
+
+~Formos html failas:~
+
+Viskas praktiškai taip pat, kaip ir One2many atveju. Formos html
+failas praktiškai nesiskiria nuo įprasto neryšinio objekto įvedimo
+formos. Vaikų laukas įvedamas, kaip bet kuris kitas laukas. Jo logika
+pasiimama iš formos python failo ir vietoje įprasto įvedimo lauko, jis
+tampa kelių pasirinkimų lauku (kelis variantus formoje galima
+pasirinkti laikant nuspaustą klaviatūros mygtuką CTRL).
+
+#+begin_src html
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="post" action="#">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.vardas.label(class="form-control-label") }}
+        {{ form.vardas(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.pavarde.label(class="form-control-label") }}
+        {{ form.pavarde(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.vaikai.label(class="form-control-label") }}
+        {{ form.vaikai(class="form-control") }}
+    </div>
+    {{ form.submit }}
+</form>
+{% endblock %}
+#+end_src
+
+~Tėvų atvaizdavimo html kodas:~
+
+Viskas praktiškai taip pat, kaip ir One2many atveju. Kadangi tėvas
+gali daug vaikų (laukas vaikas), kas tiesiog yra objektai, kiekvieną
+kartą tikriname, ar šis laukas užpildytas. Jei jis ne tuščias,
+praiteruojame (prasukame for ciklą) per visus tėvo vaikus (per tėvo
+lauką vaikai tevas.vaikai) ir atvaizduojame kiekvieno vaiko vardą
+(vaikas.vardas) ir pavardę (vaikas.pavarde).
+
+Žemiau yra nuorodos į flask metodus, skirtus tėvo įrašo ištrynimui ir
+redagavimui, taip pat – naujo tėvo įvedimui.
+
+#+begin_src html
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if visi_tevai %}
+{% for tevas in visi_tevai %}
+<hr>
+<p>{{tevas.vardas}}</p>
+<p>{{tevas.pavarde}}</p>
+{% if tevas.vaikai %}
+<p>Vaikai:</p>
+{% for vaikas in tevas.vaikai %}
+<p>{{vaikas.vardas}} {{vaikas.pavarde}}</p>
+{% endfor %}
+{% endif %}
+
+{% endfor %}
+{% endif %}
+<hr>
+<p><a href="{{ url_for('new_parent')}}">Naujas tėvas</a></p>
+
+{% endblock %}
+#+end_src
+
+Pradžioje truputį pakeičiama DB nuorodos nurodymo kodą. Tai reikalinga
+tam, kad nemestų thread klaidų:
+
+#+begin_src python
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite?check_same_thread=False')
+#+end_src
+
+~Tėvų atvaizdavimo:~
+
+#+begin_src python
+@app.route("/tevai")
+def parents():
+    try:
+        visi_tevai = Tevas.query.all()
+    except:
+        visi_tevai = []
+    return render_template("tevai.html", visi_tevai=visi_tevai)
+#+end_src
+
+~Tėvų pridėjimo:~
+
+Dekoratoriuje aprašome, kad funkcija naudos ir GET ir POST metodus
+(duomenų priėjimui iš formos).
+
+Funkcijos pradžioje inicijuojame duomenų bazę (db.create_all()). Tai
+reikalinga norint sukurti duomenų bazę, kai jos nėra.
+
+Inicijuojamas tėvo formos objektas (forma = forms.TevasForm(),
+pradžioje rašoma forms, nes failo pradžioje yra importuota forms
+klasė).
+
+Patvirtinus formą (if forma.validate_on_submit()), inicijuojamas tėvo
+objektas su duomenimis iš formos. Kol kas vaikai nepriskiriami
+
+Iteruojama per tėvo vaikus iš formos (forma.vaikai.data), padaromos
+kiekvieno vaiko užklausos iš duomenų bazės ir jie pridedami prie tėvo
+vaikų objektų sąrašo (per metodą append). Taip išvengiama sesijų
+susidubliavimo klaida.
+
+Tėvo objektas pridedamas į sesiją (db.session.add(naujas_tevas)) ir
+sesija išsaugoma (db.session.commit()).
+
+Galiausiai nukreipiama į parents funkciją (return
+redirect(url_for('parents'))), kuri atidaro tėvų puslapį.
+
+Pagrindinis (apatinis) return nukreipia į tėvo pridėjimo puslapį,
+pasiimdamas formos duomenis (render_template("prideti_teva.html",
+form=forma)).
+
+#+begin_src python
+@app.route("/naujas_tevas", methods=["GET", "POST"])
+def new_parent():
+    db.create_all()
+    forma = forms.TevasForm()
+    if forma.validate_on_submit():
+        naujas_tevas = Tevas(vardas=forma.vardas.data, pavarde=forma.pavarde.data)
+        for vaikas in forma.vaikai.data:
+            priskirtas_vaikas = Vaikas.query.get(vaikas.id)
+            naujas_tevas.vaikai.append(priskirtas_vaikas)
+        db.session.add(naujas_tevas)
+        db.session.commit()
+        return redirect(url_for('parents'))
+    return render_template("prideti_teva.html", form=forma)
+#+end_src
+
+~Pilnas kodas:~
+
+[[https://github.com/DonatasNoreika/tevai-vaikai-flask][tevai-vaikai-flask]]
+
+*** Užduotis
+
+Sukurti Flask programą, kuri leistų išsaugoti studentus, dėstytojus ir
+paskaitas
+
+Kiekvienam dėstytojui leistų priskirti jo paskaitas (one2many ryšys)
+
+Kiekvienam studentui leistų priskirti daug paskaitų (many2many ryšys)
+
+#+attr_html: :width 800px
+#+ATTR_ORG: :width 600
+[[./static/images/flask4_3.png]]
+
+Atsakymas
+
+[[https://github.com/DonatasNoreika/studentai_destytojai_paskaitos_flask][Paskaitų programa]]
