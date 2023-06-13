@@ -4,6 +4,7 @@
 #+filetags: python codeacademy
 #+OPTIONS: toc:2
 #+OPTIONS: num:t
+#+HTML_HEAD: <head> <meta charset="UTF-8"> <meta name="description" content="CodeAcademy Python notes"> <link rel="alternate" type="application/rss+xml" href="https://arvydasg.github.io/rss.xml" title="RSS feed for https://arvydasg.github.io/"> <title>CodeAcademy Python</title> <!-- Google Tag Manager --> <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-MC4ZQHP');</script> <!-- End Google Tag Manager --> <meta name="author" content="Arvydas Gasparavicius"> <meta name="referrer" content="no-referrer"> <meta name="viewport" content="initial-scale=1,width=device-width,minimum-scale=1"><link href= "../style-lightbox.css" rel="stylesheet" type="text/css" /> <link href= "../readtheorg.css" rel="stylesheet" type="text/css" /> <script src="../lightbox.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" /> <script src="static/lightbox.js"></script> <script src="static/auto-render.min.js"></script> <link rel="icon" href="static/ag.ico"></head>
 
 * Lesson1 Įvadas į Python
 ** Loginiai operatoriai ir sąlygos
