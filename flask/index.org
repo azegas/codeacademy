@@ -5,6 +5,7 @@
 #+OPTIONS: toc:2
 #+OPTIONS: num:t
 #+OPTIONS: ^:nil
+#+HTML_HEAD: <head> <meta charset="UTF-8"> <meta name="description" content="CodeAcademy Python notes"> <link rel="alternate" type="application/rss+xml" href="https://arvydasg.github.io/rss.xml" title="RSS feed for https://arvydasg.github.io/"> <title>CodeAcademy Python</title> <!-- Google Tag Manager --> <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-MC4ZQHP');</script> <!-- End Google Tag Manager --> <meta name="author" content="Arvydas Gasparavicius"> <meta name="referrer" content="no-referrer"> <meta name="viewport" content="initial-scale=1,width=device-width,minimum-scale=1"><link href= "../style-lightbox.css" rel="stylesheet" type="text/css" /> <link href= "../readtheorg.css" rel="stylesheet" type="text/css" /> <script src="../lightbox.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" /> <script src="static/lightbox.js"></script> <script src="static/auto-render.min.js"></script> <link rel="icon" href="static/ag.ico"></head>
 
 * Įžanga į Flask
 
@@ -3025,10 +3026,1640 @@ Kiekvienam dėstytojui leistų priskirti jo paskaitas (one2many ryšys)
 
 Kiekvienam studentui leistų priskirti daug paskaitų (many2many ryšys)
 
-#+attr_html: :width 800px
-#+ATTR_ORG: :width 600
-[[./static/images/flask4_3.png]]
+#+BEGIN_EXPORT html
+<figure>
+  <img src="./static/images/flask4_3.png" alt="flask4_3.png" width="800px">
+</figure>
+#+END_EXPORT
 
 Atsakymas
 
 [[https://github.com/DonatasNoreika/studentai_destytojai_paskaitos_flask][Paskaitų programa]]
+* REST API kūrimas su Flask
+** REST API su Flask
+*** REST API kūrimo kodas
+
+#+begin_src python
+  from flask import Flask, jsonify, request
+  from calendar import isleap
+
+  app = Flask(__name__)
+
+  @app.route("/", methods=['GET', 'POST'])
+  def index():
+      if (request.method == 'POST'):
+          some_json = request.get_json()
+          return jsonify({'you sent': some_json})
+      else:
+          return jsonify({'about': 'Hello World'})
+
+  @app.route("/keliamieji/<int:metai>", methods=['GET'])
+  def keliamieji(metai):
+      if isleap(metai):
+          return jsonify({'result': "Keliamieji"})
+      else:
+          return jsonify({'result': "NE Keliamieji"})
+
+  if __name__ == '__main__':
+      app.run()
+#+end_src
+
+*** REST API kūrimo kodas (antras būdas panaudojant flask_restful)
+
+#+begin_src python
+  from flask import Flask, request
+  from flask_restful import Resource, Api
+  from calendar import isleap
+
+  app = Flask(__name__)
+  api = Api(app)
+
+  class HelloWorld(Resource):
+      def get(self):
+          return{'about' :'Hello world!'}
+
+      def post(self):
+          some_json = request.get_json()
+          return {'you sent': some_json}, 201
+
+  class Keliamieji(Resource):
+      def get(self, metai):
+          if isleap(metai):
+              return {'result': "Keliamieji"}
+          else:
+              return {'result': "NE Keliamieji"}
+
+  api.add_resource(HelloWorld, '/')
+  api.add_resource(Keliamieji, '/keliamieji/<int:metai>')
+
+  if __name__ == '__main__':
+      app.run(debug=True)
+#+end_src
+
+*** Sukurto REST API panaudojimo kodas
+
+Šis kodas iliustruoja, kaip galėtume panaudoti API iš kitos Python
+programos. Tačiau taip pat, galite prasitestuoti ir su Postman ar
+alternatyviu įrankiu.
+
+#+begin_src python
+  import requests
+  import json
+
+  payload = {'vardas': 'Donatas', 'pavarde': 'Noreika', 'amzius': 2000}
+  r = requests.post('http://127.0.0.1:5000/', json=payload)
+  dictionary = json.loads(r.text)
+  print(dictionary)
+
+  # {'you sent': {'amzius': 2000, 'pavarde': 'Noreika', 'vardas': 'Donatas'}}
+  import requests
+  import json
+
+  r2 = requests.get('http://127.0.0.1:5000/keliamieji/2100')
+  dictionary2 = json.loads(r2.text)
+  print(dictionary2['result'])
+
+  # NE Keliamieji
+#+end_src
+
+** REST API su duomenų baze kūrimas
+
+#+begin_src python
+  from flask import Flask, request, jsonify
+  from flask_sqlalchemy import SQLAlchemy
+  from flask_marshmallow import Marshmallow
+  import os
+
+  basedir = os.path.abspath(os.path.dirname(__file__))
+  app = Flask(__name__)
+  app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'to_do.db')
+  app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+  db = SQLAlchemy(app)
+  ma = Marshmallow(app)
+
+  # DB objektas
+  class Uzduotis(db.Model):
+      __tablename__ = 'uzduotis'
+      id = db.Column(db.Integer, primary_key=True)
+      pavadinimas = db.Column("Pavadinimas", db.String)
+      atlikta = db.Column("Atlikta", db.Boolean)
+
+  # Užduoties schema
+  class UzduotisSchema(ma.Schema):
+      class Meta:
+          fields = ('id', 'pavadinimas', 'atlikta')
+
+  uzduotis_schema = UzduotisSchema()
+  uzduotys_schema = UzduotisSchema(many=True)
+
+
+  # Crud
+  @app.route('/uzduotis', methods=['POST'])
+  def prideti_uzduoti():
+      db.create_all()
+      pavadinimas = request.json['pavadinimas']
+      atlikta = request.json['atlikta']
+      nauja_uzduotis = Uzduotis(pavadinimas=pavadinimas, atlikta=atlikta)
+      db.session.add(nauja_uzduotis)
+      db.session.commit()
+      return uzduotis_schema.jsonify(nauja_uzduotis)
+
+  # cRud
+  @app.route('/uzduotis', methods=['GET'])
+  def gauti_visas_uzduotis():
+      visos_uzduotys = Uzduotis.query.all()
+      rezultatas = uzduotys_schema.dump(visos_uzduotys)
+      return jsonify(rezultatas)
+
+  # cRud
+  @app.route('/uzduotis/<id>', methods=['GET'])
+  def gauti_uzduoti(id):
+      uzduotis = Uzduotis.query.get(id)
+      return uzduotis_schema.jsonify(uzduotis)
+
+  # crUd
+  @app.route('/uzduotis/<id>', methods=['PUT'])
+  def pakeisti_uzduoti(id):
+      uzduotis = Uzduotis.query.get(id)
+      uzduotis.pavadinimas = request.json['pavadinimas']
+      uzduotis.atlikta = request.json['atlikta']
+      db.session.commit()
+      return uzduotis_schema.jsonify(uzduotis)
+
+  # cruD
+  @app.route('/uzduotis/<id>', methods=['DELETE'])
+  def istrinti_uzduoti(id):
+      uzduotis = Uzduotis.query.get(id)
+      db.session.delete(uzduotis)
+      db.session.commit()
+      return uzduotis_schema.jsonify(uzduotis)
+
+  if __name__ == '__main__':
+      app.run(host='127.0.0.1', port=8000, debug=True)
+      db.create_all()
+#+end_src
+
+
+*** Traukiame duomenis iš API su DB
+
+Įrašome užduotį:
+
+#+begin_src python
+  nauja_uzduotis = {
+      "pavadinimas": "Išplauti indus",
+      "atlikta": False
+  }
+
+  r = requests.post('http://127.0.0.1:8000/uzduotis', json=nauja_uzduotis)
+  print(json.loads(r.text))
+#+end_src
+
+Nuskaitome visas užduotis:
+
+#+begin_src python
+  r = requests.get('http://127.0.0.1:8000/uzduotis')
+  print(json.loads(r.text))
+#+end_src
+
+Nuskaitome vieną užduotį:
+
+#+begin_src python
+  r = requests.get('http://127.0.0.1:8000/uzduotis/2')
+  print(json.loads(r.text))
+#+end_src
+
+Pakeičiame vieną užduotį:
+
+#+begin_src python
+  nauja_uzduotis = {
+      "pavadinimas": "Išplauti grindis",
+      "atlikta": False
+  }
+
+  r = requests.put('http://127.0.0.1:8000/uzduotis/2', json=nauja_uzduotis)
+  print(json.loads(r.text))
+#+end_src
+
+Ištriname užduotį:
+
+#+begin_src python
+  r = requests.delete('http://127.0.0.1:8000/uzduotis/1')
+  print(json.loads(r.text))
+#+end_src
+
+** Užduotis: Flask API
+
+Sukurti Flask API programą, kuri:
+
+Per API (padavus JSON duomenis) leistų įvesti prekę į duomenų bazę
+(jos formavimui panaudoti SQLAlchemy ORM).
+
+Prekė turi turėti id, pavadinimą, kainą ir kiekį
+
+Per API leistų peržiūrėti visas įvestas prekes
+
+Per API leistų peržiūrėti vieną konkrečią prekę
+
+Per API leistų pakoreguoti prekę
+
+Per API leistų ištrinti prekę
+
+Paleisti sukurta Flask API programą
+
+Sukurti kitą Python programą (API klientą), kuris jungtųsi prie
+anksčiau sukurti prekių API ir leistų per naršyklę pridėti prekes, jas
+peržiūrėti, paredaguoti, ištrinti ir t.t. Pati kliento programa neturi
+saugoti jokių duomenų (DB nereikalinga).
+
+*** atsakymas
+
+https://github.com/CodeAcademy-Online/Python/tree/lesson-18
+* Vartotojų registravimas ir prisijungimas
+** Registracija
+*** Kaip padaryti, kad svetainėje būtų atvaizduojamos info žinutės
+
+Iš pradžių padarome, kad žinutės būtų atvaizduojamos pagrindiniame
+html (base.html). Vietoje, kur atvaizduojamas puslapio turinys (page
+content), prieš pat bloką "block content", įrašome šį kodą:
+
+#+begin_src html
+<!-- Page Content -->
+<div class="container">
+    <br>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    {% block content %}
+    {% endblock %}
+</div>
+#+end_src
+
+Šiame kode gaunamos visos žinutės (messages) kartu su kategorijomis
+(success, danger, error ir pan) ir atvaizduojamas jų tekstas, pagal
+kategoriją atitinkamai pritaikant bootstrap stilių (atitinkamą
+spalvą).
+
+Tuomet galime aktyvuoti pranešimo žinutes kode, pavyzdžiui:
+
+#+begin_src py
+flash('Sėkmingai prisiregistravote! Galite prisijungti', 'success')
+#+end_src
+
+Tam kviečiama flash funkcija ir į argumentus paduodamas žinutės
+tekstas (pirmas argumentas) ir kategorija.
+
+*** Kaip sukurti vartotojų registracijos formą
+
+**** Inicijuojame login_manager objektą
+
+Jis nuolatos saugos prisijungusį vartotoją ir leis juo operuoti:
+
+#+begin_src python
+from flask_login import LoginManager, UserMixin, current_user, logout_user, login_user, login_required
+
+login_manager = LoginManager(app)
+login_manager.login_view = 'registruotis'
+login_manager.login_message_category = 'info'
+#+end_src
+
+Viršuje iš flask_login modulio importuojame visus reikiamus objektus
+ir funkcijas
+
+Toliau: pirma eilutė inicijuoja patį objektą, antra - nurodo html
+puslapį, kuris bus naudojamas vartotojo įvedimui, trečia - nurodo, kad
+login_manageris gražintų info žinutes (kurias vėliau atvaizduosime
+puslapyje):
+
+**** Sukuriame vartotojo sqlalchemy klasę:
+
+#+begin_src python
+class Vartotojas(db.Model, UserMixin):
+    __tablename__ = "vartotojas"
+    id = db.Column(db.Integer, primary_key=True)
+    vardas = db.Column("Vardas", db.String(20), unique=True, nullable=False)
+    el_pastas = db.Column("El. pašto adresas", db.String(120), unique=True, nullable=False)
+    slaptazodis = db.Column("Slaptažodis", db.String(60), unique=True, nullable=False)
+#+end_src
+
+Nuo įprastos ji skiriasi tuo, kad papildomai paveldi importuotą UserMixin klasę.
+
+**** Sukuriame papildomą metodą:
+
+Kuriuo login_manageris pasiims iš duomenų bazės vartotojo objektą:
+
+#+begin_src python
+@login_manager.user_loader
+def load_user(vartotojo_id):
+    return Vartotojas.query.get(int(vartotojo_id))
+#+end_src
+
+**** Sukuriame formas:
+
+#+begin_src python
+from flask_wtf import FlaskForm
+from wtforms import SubmitField, BooleanField, StringField, PasswordField
+from wtforms.validators import DataRequired, ValidationError, EqualTo
+import app
+
+
+class RegistracijosForma(FlaskForm):
+    vardas = StringField('Vardas', [DataRequired()])
+    el_pastas = StringField('El. paštas', [DataRequired()])
+    slaptazodis = PasswordField('Slaptažodis', [DataRequired()])
+    patvirtintas_slaptazodis = PasswordField("Pakartokite slaptažodį", [EqualTo('slaptazodis', "Slaptažodis turi sutapti.")])
+    submit = SubmitField('Prisiregistruoti')
+
+    def tikrinti_varda(self, vardas):
+        vartotojas = app.Vartotojas.query.filter_by(vardas=vardas.data).first()
+        if vartotojas:
+            raise ValidationError('Šis vardas panaudotas. Pasirinkite kitą.')
+
+    def tikrinti_pasta(self, el_pastas):
+        vartotojas = app.Vartotojas.query.filter_by(el_pastas=el_pastas.data).first()
+        if vartotojas:
+            raise ValidationError('Šis el. pašto adresas panaudotas. Pasirinkite kitą.')
+
+
+class PrisijungimoForma(FlaskForm):
+    el_pastas = StringField('El. paštas', [DataRequired()])
+    slaptazodis = PasswordField('Slaptažodis', [DataRequired()])
+    prisiminti = BooleanField("Prisiminti mane")
+    submit = SubmitField('Prisijungti')
+#+end_src
+
+**** Paaiškinimai:
+
+- Slaptažodis saugomas specialiame PasswordField lauke, kad įvedant
+  jis būtų paslėpiamas.
+- patvirtintas_slaptazodis turi validatorių EqualTo, kuris validuoja
+  tik tada, kad šis laukas sutampa su slaptažodžio lauku.
+- Po registracijos yra du papildomi metodai, kurie yra meta klaidas,
+  jei įvedami vardai ir el. paštai jau yra duomenų bazėje.
+- Prisijungimo formoje yra Boolean tipo laukas prisiminti, kuris
+  vėliau perduos, ar prisijungtą vartotoją reikės prisiminti
+  kompiuteryje.
+
+**** Kuriame registracijos funkciją
+
+#+begin_src python
+from flask_bcrypt import Bcrypt
+
+bcrypt = Bcrypt(app)
+
+@app.route("/registruotis", methods=['GET', 'POST'])
+def registruotis():
+    db.create_all()
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = forms.RegistracijosForma()
+    if form.validate_on_submit():
+        koduotas_slaptazodis = bcrypt.generate_password_hash(form.slaptazodis.data).decode('utf-8')
+        vartotojas = Vartotojas(vardas=form.vardas.data, el_pastas=form.el_pastas.data, slaptazodis=koduotas_slaptazodis)
+        db.session.add(vartotojas)
+        db.session.commit()
+        flash('Sėkmingai prisiregistravote! Galite prisijungti', 'success')
+        return redirect(url_for('index'))
+    return render_template('registruotis.html', title='Register', form=form)
+#+end_src
+
+**** Paaiškinimai:
+
+- Pradžioje importuojamas flask_bcrypt ir sukuriamas bcrypt objektas,
+  kurio dėka vartotojo slaptažodį išsaugosime duomenų bazėje koduotą.
+- if current_user.is_authenticated reiškia, kad jei vartotojas jau
+  prisijungęs, vartotojas metamas į kitą puslapį.
+- Eilutėje koduotas_slaptazodis sukuriamas užkoduotas slaptažodis,
+  kuris vėliau išsaugomas duomenų bazėje kartu su kitais vartotojo
+  duomenimis.
+- flash išmeta žinutę apie pavykusią registraciją
+
+**** Registracijos html
+
+#+begin_src html
+{% extends "base.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Prisiregistruokite</legend>
+                <div class="form-group">
+                    {{ form.vardas.label(class="form-control-label") }}
+
+                    {% if form.vardas.errors %}
+                        {{ form.vardas(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.vardas.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.vardas(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.el_pastas.label(class="form-control-label") }}
+                    {% if form.el_pastas.errors %}
+                        {{ form.el_pastas(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.el_pastas.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.el_pastas(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.slaptazodis.label(class="form-control-label") }}
+                    {% if form.slaptazodis.errors %}
+                        {{ form.slaptazodis(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.slaptazodis.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.slaptazodis(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.patvirtintas_slaptazodis.label(class="form-control-label") }}
+                    {% if form.patvirtintas_slaptazodis.errors %}
+                        {{ form.patvirtintas_slaptazodis(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.patvirtintas_slaptazodis.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.patvirtintas_slaptazodis(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+<!--            Already Have An Account? <a class="ml-2" href="{{ url_for('index') }}">Sign In</a>-->
+        </small>
+    </div>
+{% endblock content %}
+#+end_src
+
+Panašu į tai, ką jau darėme anksčiau. Atvaizduojami visi formos laukai
+ir jų pavadinimai. Taip pat validatorių išmestos žinutės.
+** Prisijungimas
+*** Kuriame prisijungimo funkciją
+
+#+begin_src python
+@app.route("/prisijungti", methods=['GET', 'POST'])
+def prisijungti():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = forms.PrisijungimoForma()
+    if form.validate_on_submit():
+        user = Vartotojas.query.filter_by(el_pastas=form.el_pastas.data).first()
+        if user and bcrypt.check_password_hash(user.slaptazodis, form.slaptazodis.data):
+            login_user(user, remember=form.prisiminti.data)
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('index'))
+        else:
+            flash('Prisijungti nepavyko. Patikrinkite el. paštą ir slaptažodį', 'danger')
+    return render_template('prisijungti.html', title='Prisijungti', form=form)
+#+end_src
+
+*** Paaiškinimai:
+
+- bcrypt.check_password_hash tikrinta, ar formoje įrašytas slaptažodis
+  atitinka duomenų bazėje įrašytą hash kodą.
+- Jei taip, kviečia login_user funkciją, kuri aktyvuoja prisijungusį
+  vartotoją (jis tampa current_user, kurį galima visada pasiekti).
+  Funkcijai taip pat paduodamas remember= argumentas iš formos (jei
+  formoje varnelė pažymėta, vartotojas liks prisijungęs ir uždarius
+  interneto naršyklę).
+- return redirect(next_page) if next_page else
+  redirect(url_for('index')) nukreipia į puslapį, į kurį einant
+  reikėjo prisijungimo arba į index.
+
+*** Prisijungimo html
+
+#+begin_src html
+{% extends "base.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Prisijunkite</legend>
+                <div class="form-group">
+                    {{ form.el_pastas.label(class="form-control-label") }}
+                    {% if form.el_pastas.errors %}
+                        {{ form.el_pastas(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.el_pastas.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.el_pastas(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.slaptazodis.label(class="form-control-label") }}
+                    {% if form.slaptazodis.errors %}
+                        {{ form.slaptazodis(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.slaptazodis.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.slaptazodis(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-check">
+                    {{ form.prisiminti(class="form-check-input") }}
+                    {{ form.prisiminti.label(class="form-check-label") }}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+<!--            Already Have An Account? <a class="ml-2" href="{{ url_for('index') }}">Sign In</a>-->
+        </small>
+    </div>
+{% endblock content %}
+#+end_src
+
+*** Atsijungimo funkcija
+
+#+begin_src python
+@app.route("/atsijungti")
+def atsijungti():
+    logout_user()
+    return redirect(url_for('index'))
+#+end_src
+
+Viskas paprasta: logout_user() tiesiog atjungia prisijungusį vartotoją
+(current_user nuo šio yra None)
+
+*** Sutvarkome pagrindinį meniu:
+
+#+begin_src html
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary static-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">Vartotojai</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" >|</a>
+                </li>
+                {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/irasai">Įrašai</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/atsijungti">Atsijungti</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/registruotis">Registruotis</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/prisijungti">Prisijungti</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+#+end_src
+
+Padarome, kad meniu Įrašai ir Atsijungti būtų matomi tik vartotojui
+prisijungus, o Registruotis ir Prisijungti – tik atsijungus.
+** Vartotojo turinys
+*** Sukuriame vartotojo įrašų atvaizdavimo funkciją
+
+#+begin_src python
+@app.route("/irasai")
+@login_required
+def irasai():
+    return render_template('irasai.html', title='Įrašai')
+#+end_src
+
+Ji tiesiog nukelia į irasai.html puslapį. Atkreipkite dėmesį, kad ant
+funkcijos uždėtas dekoratorius @login_required, todėl puslapis bus
+atvaizduojamas tik prisijungus vartotojui.
+
+*** Įrašų puslapio html
+
+#+begin_src html
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Čia yra vartotojo {{ current_user.vardas}} įrašai</h1>
+
+{% endblock %}
+#+end_src
+
+Atvaizduojame puslapį, kuris gali būti rodomas tik vartotojui
+prisijungus. Jame, per current_user, galime pasiekti būtent
+prisijungusio vartotojo duomenis.
+
+Demo programos kodas - https://github.com/DonatasNoreika/vartotojai_demo
+** Užduotis: Biudžeto programa su vartotojais
+
+Perdaryti nesudėtingą biudžeto programą taip, kad būtų joje būtų
+atvaizduojami konkretaus vartotojo biudžeto įrašai ir jie būtų matomi
+tik jam prisijungus.
+
+*** Atsakymas
+
+Biudžetas demo su vartotojais - https://github.com/DonatasNoreika/biudzetas_demo_su_vartotojais
+* Nuotraukos pridėjimas, admin puslapis, puslapiavimas
+** Paskyros nuotraukos pridėjimas ir paskyros redagavimo puslapis
+*** Papildome sqlalchemy klasę:
+
+#+begin_src python
+class Vartotojas(db.Model, UserMixin):
+    __tablename__ = "vartotojas"
+    id = db.Column(db.Integer, primary_key=True)
+    vardas = db.Column("Vardas", db.String(20), unique=True, nullable=False)
+    el_pastas = db.Column("El. pašto adresas", db.String(120), unique=True, nullable=False)
+    nuotrauka = db.Column(db.String(20), nullable=False, default='default.jpg')
+    slaptazodis = db.Column("Slaptažodis", db.String(60), unique=True, nullable=False)
+#+end_src
+
+*** Pridedame paskyros redagavimo formą:
+
+#+begin_src python
+from flask_wtf.file import FileField, FileAllowed
+
+class PaskyrosAtnaujinimoForma(FlaskForm):
+    vardas = StringField('Vardas', [DataRequired()])
+    el_pastas = StringField('El. paštas', [DataRequired()])
+    nuotrauka = FileField('Atnaujinti profilio nuotrauką', validators=[FileAllowed(['jpg', 'png'])])
+    submit = SubmitField('Atnaujinti')
+
+    def tikrinti_varda(self, vardas):
+        if vardas.data != app.current_user.vardas:
+            vartotojas = app.Vartotojas.query.filter_by(vardas=vardas.data).first()
+            if vartotojas:
+                raise ValidationError('Šis vardas panaudotas. Pasirinkite kitą.')
+
+    def tikrinti_pasta(self, el_pastas):
+        if el_pastas.data != app.current_user.el_pastas:
+            vartotojas = app.Vartotojas.query.filter_by(el_pastas=el_pastas.data).first()
+            if vartotojas:
+                raise ValidationError('Šis el. pašto adresas panaudotas. Pasirinkite kitą.')
+#+end_src
+
+Panašiai, kaip ir registracijos formoje, tik vardo ir el. pašto
+tikrinimo metodai papildomai patikrina, ar įvestas vardas ar el.
+paštas nesutampa su prisijungtu vartotoju ir tik tada atlieka
+patikrinimus. Taip pat pridėtas FileField tipo nuotrauka laukas su
+FileAllowed validatoriumi. Juos reikia suimportuoti iš flask_wtf.file.
+
+*** Pakeičiame paskyros atvaizdavimo puslapį:
+
+#+begin_src html
+{% extends "base.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Paskyros informacija</legend>
+            <img class="rounded-circle account-img" src="{{ nuotrauka }}">
+            <div class="form-group">
+                {{ form.vardas.label(class="form-control-label") }}
+
+                {% if form.vardas.errors %}
+                {{ form.vardas(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.vardas.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.vardas(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.el_pastas.label(class="form-control-label") }}
+                {% if form.el_pastas.errors %}
+                {{ form.el_pastas(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.el_pastas.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.el_pastas(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.nuotrauka.label() }}
+                {{ form.nuotrauka(class="form-control-file") }}
+                {% if form.nuotrauka.errors %}
+                    {% for error in form.nuotrauka.errors %}
+                        <span class="text-danger">{{ error }}</span></br>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}
+#+end_src
+
+Panašus puslapis, kaip ir registracijos formoje, bet paliktas tik
+vardo ir el. pašto redagavimas. Taip pat įdėtas nuotraukos redagavimas
+ir atvaizdavimas (žr. img). Atkreipkite dėmesį, kad į formos žymą
+įdėtas parametras enctype="multipart/form-data", kad galėtume pridėti
+ir failą.
+
+*** Pakeičiame paskyros Flask funkciją:
+
+#+begin_src python
+@app.route("/paskyra", methods=['GET', 'POST'])
+@login_required
+def paskyra():
+    form = forms.PaskyrosAtnaujinimoForma()
+    if form.validate_on_submit():
+        if form.nuotrauka.data:
+            nuotrauka = save_picture(form.nuotrauka.data)
+            current_user.nuotrauka = nuotrauka
+        current_user.vardas = form.vardas.data
+        current_user.el_pastas = form.el_pastas.data
+        db.session.commit()
+        flash('Tavo paskyra atnaujinta!', 'success')
+        return redirect(url_for('paskyra'))
+    elif request.method == 'GET':
+        form.vardas.data = current_user.vardas
+        form.el_pastas.data = current_user.el_pastas
+    nuotrauka = url_for('static', filename='profilio_nuotraukos/' + current_user.nuotrauka)
+    return render_template('paskyra.html', title='Account', form=form, nuotrauka=nuotrauka)
+#+end_src
+
+Paaiškinimai:
+
+- Atkeipkite dėmesį, kad atnaujinant duomenis, vartotojas ne ieškomas
+  duomenų bazėje, o tiesiog pakeičiami prisijungto vartotojo
+  (current_user) duomenys ir padaromas db.session.commit(). To užtenka
+  norint atnaujinti vartotojo duomenis.
+- elif skiltyje formai prisikiriamas vartotojo vardas ir el. paštas,
+  kad redaguojamoje formoje šie laukai jau būtų užpildyti, beliktų
+  juos pakeisti redaguojant.
+- Jei formoje prisegama nuotrauka, ji pasiimama (jos pavadinimas),
+  priskiriama prisijungusiam vartotojui. Tuomet prieš return nuotrauka
+  pasiimama iš static katalogo ir paduodama atgal į formą.
+
+*** Pridėdame nuotraukos išsaugojimo funkciją:
+
+#+begin_src python
+import secrets
+from PIL import Image
+
+def save_picture(form_picture):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(app.root_path, 'static/profilio_nuotraukos', picture_fn)
+
+    output_size = (125, 125)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path)
+
+    return picture_fn
+#+end_src
+
+Paaiškinimai:
+
+- Ši funkcija pasiima nuotrauką (iš formos), išsaugo ją
+  'static/profilio_nuotraukos' kataloge ir gražina nuotraukos
+  pavadinimą, kuris vėliau išsaugomas vartotojo DB lentelėje.
+- random_hex sugeneruojamas atsitiktinis 8 simboliu stringas.
+- Kitoje eilutėje pasiimamas formoje išsaugoto failo plėtinys.
+- Vėliau prie sugeneruoto stringo prijungiamas plėtinys.
+- Nustatomas picture_path - pilnas kelias iki paveikslėlio
+- Kitose keturiose eilutėse nustatomas miniatiūros dydis, per Pillow
+  atidaroma nuotrauka, pamažinama nustatytu dydžiu ir išsaugoma prieš
+  tai sugeneruotu pavadinimu.
+- Funkcija gražina tą sugeneruotą pavadinimą.
+** Admin puslapis
+
+#+begin_src python
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
+
+class ManoModelView(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated and current_user.el_pastas == "el@pastas.lt"
+
+admin = Admin(app)
+admin.add_view(ModelView(Irasas, db.session))
+admin.add_view(ManoModelView(Vartotojas, db.session))
+#+end_src
+
+Paaiškinimai:
+
+- Importuojame Admin ir ModelView objektus iš flask_admin modulio
+- Inicijuojame Admin objektą ir priskiriame app.
+- Administratoriui priskiriame norimus administruoti sqlalchemy
+  objektus. Pirmu atveju daromas paprastas priskyrimas, antru –
+  priskirta paveldėtas ManoModelView objektas ir jame perrašomas
+  is_accesisible metodas taip, kad puslapis būtų rodomas tik tuo
+  atveju, kai vartotojas prisijungęs ir jo el. pašto adresas yra
+  el@pastas.lt (jį galima pakeisti).
+** Įrašų puslapiavimas svetainėje
+*** Pakoreguojame įrašų atvaizdavimą:
+
+#+begin_src python
+@app.route("/irasai")
+@login_required
+def records():
+    db.create_all()
+    page = request.args.get('page', 1, type=int)
+    visi_irasai = Irasas.query.filter_by(vartotojas_id=current_user.id).order_by(Irasas.data.desc()).paginate(page=page, per_page=5)
+    return render_template("irasai.html", visi_irasai=visi_irasai, datetime=datetime)
+#+end_src
+
+Paaiškinimai:
+
+- 'page' pasiima iš HTTP užklausos page objektą, pagal nutylėjimą
+  nustato 1 puslapį (jei nebūtų page objekto, rodys pirmo puslapio
+  rezultatus) ir nurodo integer tipą (type=int)
+- visi įrašai užklausoje kviečiame .paginate() funkciją ir jai
+  paduodame prieš tai gautą page objektą bei kiek įrašų norėsime
+  matyti viename puslapyje.
+- Įrašai taip pat rūšiuojami pagal datą atbulai, kad naujausi būtų
+  matomi pirmajame puslapyje.
+- Taip pat filtruojami, kad būtų rodomi tik priklausantys
+  prisijungusiam vartotojui.
+
+*** Pakeičiame susijusį html puslapį:
+
+#+begin_src python
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if visi_irasai %}
+{% for irasas in visi_irasai.items %}
+<hr>
+{% if irasas.pajamos %}
+<p>Pajamos: {{irasas.suma}}</p>
+<p>Data: {{ datetime.strftime(irasas.data, "%Y-%m-%d %H:%M:%S")}}</p>
+{% else %}
+<p>Išlaidos: {{irasas.suma}}</p>
+<p>Data: {{irasas.data}}</p>
+{% endif %}
+<a href="{{ url_for('delete', id=irasas['id']) }}">Ištrinti</a>
+<a href="{{ url_for('update', id=irasas['id']) }}">Redaguoti</a>
+{% endfor %}
+<hr>
+{% for page_num in visi_irasai.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+  {% if page_num %}
+    {% if visi_irasai.page == page_num %}
+      <a class="btn btn-info mb-4" href="{{ url_for('records', page=page_num) }}">{{ page_num }}</a>
+    {% else %}
+      <a class="btn btn-outline-info mb-4" href="{{ url_for('records', page=page_num) }}">{{ page_num }}</a>
+    {% endif %}
+  {% else %}
+    ...
+  {% endif %}
+{% endfor %}
+{% endif %}
+
+<p><a href="{{ url_for('new_record')}}">Naujas įrašas</a></p>
+
+{% endblock %}
+#+end_src
+
+Paaiškinimai:
+
+- Pirmame for cikle pakeičiame visi_irasai į visi_irasai.items. Taip
+  išvengsime iteravimo klaidos.
+- Po visų įrašų for ciklo, įdedame papildomą for ciklą per įrašus.
+  Iškviečiame funkciją .iter_pages() ir jai nurodome, kiek puslapių
+  mygtukų norėsime kairėje, dešinėje, prieš ir už aktyvaus puslapio.
+- Pirmas {% if page_num %} prafiltruoja tik aktyvius puslapius, nes
+  sąraše visi_irasai.iter_pages() lieka ir None objektų.
+- Antras {% if visi_irasai.page == page_num %} išfiltruoja aktyvaus
+  puslapio rodinį: jam pritaikytas kitoks stilius (spalva), nei
+  neaktyviems puslapiams, kurių rodinys atvaizduojamas {% else %}
+  skiltyje.
+
+** Užduotis: Biudžeto programa su nuotraukomis, admin ir puslapiavimu
+
+Į biudžeto programą įdėti šioje paskaitoje aptartas funkcijas:
+paskyros redagavimą su nuotraukos pridėjimu, admin puslapį, biudžeto
+įrašų puslapiavimą.
+
+Tuos pačius dalykus galima pritaikyti ir kitai kurtai Flask programai
+(pvz. prekių užsakymo, egzaminavimo).
+
+*** Atsakymas
+
+Biudžeto programa su nuotraukomis, admin ir puslapiavimu -
+https://github.com/DonatasNoreika/vartotojai_demo_su_admin
+* Slaptažodžio keitimas ir klaidų puslapiai
+** Slaptažodžio keitimas
+
+Tam, kad vartotojas galėtų pasikeisti pamirštą slaptažodį, sukursime
+jam laikinai veikiančią nuorodą ir išsiųsime el. paštu. Paspaudęs
+nuorodą, jis pateks į puslapį, kur pagal savo žetoną (token), galės
+atnaujinti slaptažodį.
+
+*** Į prisijungimo html failą įdedame nuorodą į slaptažodžio pakeitimo funkciją:
+
+#+begin_src html
+{% extends "base.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Prisijunkite</legend>
+                <div class="form-group">
+                    {{ form.el_pastas.label(class="form-control-label") }}
+                    {% if form.el_pastas.errors %}
+                        {{ form.el_pastas(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.el_pastas.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.el_pastas(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.slaptazodis.label(class="form-control-label") }}
+                    {% if form.slaptazodis.errors %}
+                        {{ form.slaptazodis(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.slaptazodis.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.slaptazodis(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-check">
+                    {{ form.prisiminti(class="form-check-input") }}
+                    {{ form.prisiminti.label(class="form-check-label") }}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+                <small class="text-muted ml-2">
+                    <a href="{{ url_for('reset_request') }}">Pamiršote slaptažodį?</a>
+                </small>
+            </div>
+        </form>
+    </div>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+<!--            Already Have An Account? <a class="ml-2" href="{{ url_for('index') }}">Sign In</a>-->
+        </small>
+    </div>
+{% endblock content %}
+#+end_src
+
+Nuoroda su tekstu “Pamiršote slaptažodį?” nukreipia į Flask funkciją
+`reset_request`.
+
+*** Pridedame slaptažodžio atnaujinimo Flask funkciją:
+
+#+begin_src python
+@app.route("/reset_password", methods=['GET', 'POST'])
+def reset_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = forms.UzklausosAtnaujinimoForma()
+    if form.validate_on_submit():
+        user = Vartotojas.query.filter_by(el_pastas=form.el_pastas.data).first()
+        send_reset_email(user)
+        flash('Jums išsiųstas el. laiškas su slaptažodžio atnaujinimo instrukcijomis.', 'info')
+        return redirect(url_for('prisijungti'))
+    return render_template('reset_request.html', title='Reset Password', form=form)
+#+end_src
+
+Paaiškinimai:
+
+- Funkcija atidaro reset_request.html failą, iš kurio pasiima įvestą
+  vartotojo el. pašto adresą.
+- Tam sukuriama papildoma flask-wtf forma.
+- Patvirtinus formą, kviečiama sent_reset_email funkcija su paduotu
+  vartotoju ir jam išsiunčiamas el. laiškas.
+- Parodoma flash žinutė ir gražinama į prisijungimo langą.
+
+*** Slaptažodžio atnaujinimo nuorodos html
+
+(kur vartotojas įveda savo el. pašto adresą): reset_request.html
+failas:
+
+#+begin_src python
+{% extends "base.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Slaptažodžio pakeitimas</legend>
+                <div class="form-group">
+                    {{ form.el_pastas.label(class="form-control-label") }}
+                    {% if form.el_pastas.errors %}
+                        {{ form.el_pastas(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.el_pastas.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.el_pastas(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}
+#+end_src
+
+*** Slaptažodžio atnaujinimo nuorodos forma
+
+#+begin_src python
+class UzklausosAtnaujinimoForma(FlaskForm):
+    el_pastas = StringField('El. paštas', validators=[DataRequired(), Email()])
+    submit = SubmitField('Gauti')
+
+    def validate_email(self, el_pastas):
+        user = app.Vartotojas.query.filter_by(el_pastas=el_pastas.data).first()
+        if user is None:
+            raise ValidationError('Nėra paskyros, registruotos šiuo el. pašto adresu. Registruokitės.')
+#+end_src
+
+Šiame etape pasiimamas tik vartotojo el. pašto adresas. Bet
+patikrinama, ar yra vartotojas su tokiu el. pašto adresu.
+
+*** Pridedame el. laiško siuntimo funkciją:
+
+(Jame siunčiama slaptažodžio atnaujinimo nuoroda)
+
+#+begin_src python
+from flask_mail import Message, Mail
+
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = MAIL_USERNAME
+app.config['MAIL_PASSWORD'] = MAIL_PASSWORD
+
+mail = Mail(app)
+
+def send_reset_email(user):
+    token = user.get_reset_token()
+    msg = Message('Slaptažodžio atnaujinimo užklausa',
+                  sender='el@pastas.lt',
+                  recipients=[user.el_pastas])
+    msg.body = f'''Norėdami atnaujinti slaptažodį, paspauskite nuorodą:
+    {url_for('reset_token', token=token, _external=True)}
+    Jei jūs nedarėte šios užklausos, nieko nedarykite ir slaptažodis nebus pakeistas.
+    '''
+    mail.send(msg)
+#+end_src
+
+Paaiškinimai:
+
+- Iš flask_mail importuojami reikiami dalykai
+- Inicijuojamas mail objektas
+- Per app sukonfiguruojamas el. pašto serveris (el. pašto dėžutė, per
+  kurią bus siunčiami laiškai). Jei tai gmail dėžutė, nepamirškite
+  įjungti leidimo mažiau saugioms programoms (žr. paskaitą apie el.
+  laiškų siuntimą per python). Taip pat gali būti, kad pašto serveris
+  laiškus iš jūsų programos blokuos.
+- Per vartotojo metodą get_reset_token() sugeneruojamas unikalus
+  atnaujinimo žetonas, kuris bus naudojamas slaptažodžio atnaujinimo
+  nuorodai suformuoti.
+- Sugeneruojamas el. laiškas su nuorodą į kitą Flask funkciją
+  reset_token() bei gautu žetonu.
+- aiškas išsiunčiamas per mail objektą.
+- SVARBU: mail = Mail(app) objektą inicijuokite po konfiguracijos
+  nustatymo, o ne prieš (nes kitaip siuntimas neveiks).
+
+*** Žetono (token) sugeneravimo metodas:
+
+#+begin_src python
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+
+class Vartotojas(db.Model, UserMixin):
+    __tablename__ = "vartotojas"
+    id = db.Column(db.Integer, primary_key=True)
+    vardas = db.Column("Vardas", db.String(20), unique=True, nullable=False)
+    el_pastas = db.Column("El. pašto adresas", db.String(120), unique=True, nullable=False)
+    nuotrauka = db.Column(db.String(20), nullable=False, default='default.jpg')
+    slaptazodis = db.Column("Slaptažodis", db.String(60), unique=True, nullable=False)
+
+    def get_reset_token(self, expires_sec=1800):
+        s = Serializer(app.config['SECRET_KEY'], expires_sec)
+        return s.dumps({'user_id': self.id}).decode('utf-8')
+#+end_src
+
+- Iš itsdangerous importuojame serializatorių
+- Jam paduodame mūsų programos SECRET_KEY ir laiką, kurį žetonas bus
+  aktyvus
+- Gražiname sugeneruotą kodą (žetoną), kuris bus įdedamas į laikiną
+  nuorodą pašte
+
+*** Kai vartotojas paspaudžia nuorodą laiške
+
+**** Slaptažodžio nunulinimo Flask metodas:
+
+#+begin_src python
+@app.route("/reset_password/<token>", methods=['GET', 'POST'])
+def reset_token(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    user = Vartotojas.verify_reset_token(token)
+    if user is None:
+        flash('Užklausa netinkama arba pasibaigusio galiojimo', 'warning')
+        return redirect(url_for('reset_request'))
+    form = forms.SlaptazodzioAtnaujinimoForma()
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.slaptazodis.data).decode('utf-8')
+        user.slaptazodis = hashed_password
+        db.session.commit()
+        flash('Tavo slaptažodis buvo atnaujintas! Gali prisijungti', 'success')
+        return redirect(url_for('prisijungti'))
+    return render_template('reset_token.html', title='Reset Password', form=form)
+#+end_src
+
+- Iš vartotojo klasės kviečiamas metodas verify_reset_token(token),
+  kuris patikrina, ar vartotojo nuorodos žetonas dar aktyvus ir
+  gražina susijusio vartotojo objektą.
+- Jei ši funkcija objekto negražina, rodoma klaida, kad nuoroda
+  pasibaigus arba negalioja ir vėl nukreipiama į slaptažodžio
+  atnaujinimo puslapį.
+- Inicijuojama slaptažodžio atnaujinimo forma ir vartotojas
+  nukreipiamas į reset_token.html puslapį, iš kurio pasiimamas naujas
+  slaptažodis.
+- Jei naujas slaptažodis patvirtinamas, jis vėl encryptinamas ir
+  pakeičiamas to vartotojo slaptažodis duomenų bazėje.
+
+**** Žetono patvirtinimo metodas Vartotojo klasėje:
+
+verify_reset_token(token):
+
+#+begin_src python
+class Vartotojas(db.Model, UserMixin):
+    __tablename__ = "vartotojas"
+    id = db.Column(db.Integer, primary_key=True)
+    vardas = db.Column("Vardas", db.String(20), unique=True, nullable=False)
+    el_pastas = db.Column("El. pašto adresas", db.String(120), unique=True, nullable=False)
+    nuotrauka = db.Column(db.String(20), nullable=False, default='default.jpg')
+    slaptazodis = db.Column("Slaptažodis", db.String(60), unique=True, nullable=False)
+
+    def get_reset_token(self, expires_sec=1800):
+        s = Serializer(app.config['SECRET_KEY'], expires_sec)
+        return s.dumps({'user_id': self.id}).decode('utf-8')
+
+    @staticmethod
+    def verify_reset_token(token):
+        s = Serializer(app.config['SECRET_KEY'])
+        try:
+            user_id = s.loads(token)['user_id']
+        except:
+            return None
+        return Vartotojas.query.get(user_id)
+#+end_src
+
+- Statinis metodas verify_reset_token(token) inicijuoja
+  serializatorių.
+- Iš jo bandomas gauti vartotojo ID
+- Jei pavyksta, gražinamas vartotojo objektas (rastas pagal ID), jei
+  ne (pvz. jei žetono galiojimas pasibaigęs) - gražinama None.
+
+**** Slaptažodžio nunulinimo forma:
+
+#+begin_src python
+class SlaptazodzioAtnaujinimoForma(FlaskForm):
+    slaptazodis = PasswordField('Slaptažodis', validators=[DataRequired()])
+    patvirtintas_slaptazodis = PasswordField('Pakartokite slaptažodį', validators=[DataRequired(), EqualTo('slaptazodis')])
+    submit = SubmitField('Atnaujinti Slaptažodį')
+#+end_src
+
+Joje reikia tik patvirtinto slaptažodžio
+
+**** Slaptažodžio nunulinimo puslapio html
+
+#+begin_src html
+{% extends "base.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Slaptažodžio pakeitimas</legend>
+                <div class="form-group">
+                    {{ form.slaptazodis.label(class="form-control-label") }}
+                    {% if form.slaptazodis.errors %}
+                        {{ form.slaptazodis(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.slaptazodis.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.slaptazodis(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.patvirtintas_slaptazodis.label(class="form-control-label") }}
+                    {% if form.patvirtintas_slaptazodis.errors %}
+                        {{ form.patvirtintas_slaptazodis(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.patvirtintas_slaptazodis.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.patvirtintas_slaptazodis(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}
+#+end_src
+** Klaidų (404, 403, 500) puslapių kūrimas
+*** Sukuriame klaidų sugaudymo Flask funkcijas
+
+#+begin_src python
+@app.errorhandler(404)
+def klaida_404(klaida):
+    return render_template("404.html"), 404
+
+@app.errorhandler(403)
+def klaida_403(klaida):
+    return render_template("403.html"), 403
+
+@app.errorhandler(500)
+def klaida_500(klaida):
+    return render_template("500.html"), 500
+#+end_src
+
+Ant funkcijų turi būti spec. dekoratorius su paduotu klaidos kodu.
+Gražinamas klaidos html puslapis ir klaidos kodas.
+
+*** Sukuriame html puslapius, kurie bus rodomi įvykus tam tikrai klaidai:
+
+**** 404:
+
+#+begin_src html
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="content-section">
+        <h1>Oops. Puslapis nerastas (404)</h1>
+        <p>Šis puslapis neegzistuoja. Pabandykite įvesti kitą adresą</p>.
+    </div>
+{% endblock %}
+#+end_src
+
+**** 403:
+
+#+begin_src html
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="content-section">
+        <h1>Jūs neturite teisių atlikti šio veiksmo (403)</h1>
+        <p>Patikrinkite savo paskyrą ir bandykite dar kartą</p>.
+    </div>
+{% endblock %}
+#+end_src
+
+**** 500:
+
+#+begin_src html
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="content-section">
+        <h1>Kažkas negerai (500)</h1>
+        <p>Serveris laikinai neveikia. Bandykite vėliau</p>.
+    </div>
+{% endblock %}
+#+end_src
+** Užduotis: Biudžeto programa su slaptažodžio keitimu ir klaidų puslapiais
+
+Į biudžeto programą įdėti šioje paskaitoje aptartas funkcijas:
+slaptažodžio atnaujinimą, klaidų puslapius Tuos pačius dalykus galima
+pritaikyti ir kitai kurtai Flask programai (pvz. prekių užsakymo,
+egzaminavimo).
+
+Atsakymas
+
+Biudžeto programa su slaptažodžio atnaujinimu, klaidų puslapiais -
+https://github.com/DonatasNoreika/biudzetas_treciadienis
+** Projekto struktūrizavimas naudojant paketus
+*** Kaip geriau struktūrizuoti projektą?
+
+Kad išvengtumėme netvarkos Flask projekte, galima kodą išskirstyti į
+atskirus failus pagal paskirtį. Taip pat panaudoti paketus, siekant
+sutvarkyti importavimo problemas.
+
+Paketas - tai katalogas, esantis projekte, turinti init.py failą. Jame
+dedame visus importus ir pagrindinius procesus, naudojamus visuose
+kituose failuose.
+
+Programoje rekomenduojama visus failą sudėti į vieną paketą su
+programos pavadinimu. Išorėje palikti tik paleidžiamąjį failą (ten
+dedamas Flask paleidimas) ir jį pervardinti, pavyzdžiui į run py.
+
+**** Projekto dalis rekomenduojama išskirstyti į tokias atskiras dalis (failus):
+
+init.py faile kviečiame visus importus, kurie bus bendrai
+naudojami projekte. Taip pat Flask programos inicijavimas. Atkreipkite
+dėmesį, kad kai kuriuos importus reikia dėti po app ar db inicijavimo,
+kad nevyktų konfliktų.
+
+forms.py - čia laikome viską, kas susiję su formomis (flask_wtf)
+
+models.py - šiame faile saugome modelius - sqlalchemy klases
+
+routes.py - čia keliauja visos Flask funkcijos (su @app.route
+rekoratoriais ir panašios).
+
+*** Užduotis: Biudžeto programos moduliarizavimas
+
+Sutvarkyti savo biudžeto projektą pagal šioje paskaitoje pateiktas
+rekomendacijas. Tą patį vertą padaryti ir su egzaminavimo programa.
+
+Sutvarkyto biudžeto projekto pavyzdys - https://github.com/DonatasNoreika/biudzetas_20200402
+* Diegimas į serverį
+** Virtualios aplinkos paruošimas
+
+Diegsime Flask programą biudzetas į Linux Ubuntu serverį per sukurtą
+vartotoją "vartotojas"
+
+*** Savo projekte sukuriame requirements.txt failą (žr. temą virtualios aplinkos)
+
+Per FTP programą įsirašome savo flask programos katalogą į
+/home/vartotojas/.
+
+Pvz.: Iš Desktop katalogą biudzetas per WINSCP nukopijuojame į
+/home/vartotojas/
+
+Jei reikia, serveryje įdiegiame openssh:
+
+#+begin_src bash
+vartotojas@ubuntu:~$ sudo apt install openssh-server
+#+end_src
+
+Prisijungiame prie mūsų serverio su cmd (jei sukurtas vartotojas - per
+jį, jei ne - per root):
+
+#+begin_src bash
+C:\Users\Donoras>ssh vartotojas@192.168.43.108
+#+end_src
+
+Serveryje atnaujiname programas:
+
+#+begin_src bash
+vartotojas@ubuntu:~$ sudo apt update && apt upgrade
+#+end_src
+
+
+*** Susikuriame virtualią aplinką:
+
+Įdiegiame pip:
+
+#+begin_src bash
+vartotojas@ubuntu:~$ sudo apt install python3-pip
+#+end_src
+
+Įdiegiame venv:
+
+#+begin_src bash
+vartotojas@ubuntu:~$ sudo apt install python3-venv
+#+end_src
+
+Sukuriame venv:
+
+#+begin_src bash
+vartotojas@ubuntu:~$ python3 -m venv biudzetas/venv
+#+end_src
+
+Aktyvuojame sukurtą aplinką:
+
+#+begin_src bash
+vartotojas@ubuntu:~$ cd biudzetas/
+vartotojas@ubuntu:~/biudzetas$ source venv/bin/activate
+#+end_src
+
+Įdiegiame programas iš requirements.txt failo:
+
+#+begin_src bash
+(venv) vartotojas@ubuntu:~/biudzetas$ pip install -r requirements.txt
+#+end_src
+
+Nustatome app kintamąjį ir išbandome programą:
+
+#+begin_src bash
+(venv) vartotojas@ubuntu:~/biudzetas$ export FLASK_APP=run.py
+(venv) vartotojas@ubuntu:~/biudzetas$ flask run --host=0.0.0.0
+#+end_src
+
+Galime kompiuterio naršyklėje užeiti į IP ir portą ir patikrinti, ar
+veikia programa, pvz.: http://192.168.43.108:5000/
+
+Matome užrašą: WARNING: This is a development server. Do not use it in
+a production deployment. Todėl toks paleidimas tinka tik kūrimo
+tikslams. Normaliam veikimui serveryje mums reikės programų nginx ir
+gunicorn.
+
+Sustabdome procesą cmd programoje paspaudę CTRL+C
+** nginx ir gunicorn konfigūracija
+
+#+begin_src bash
+(venv) vartotojas@ubuntu:~/biudzetas$ cd
+(venv) vartotojas@ubuntu:~$ sudo apt install nginx
+(venv) vartotojas@ubuntu:~$ pip install gunicorn
+#+end_src
+
+*** Konfiguruojame ngnix:
+
+#+begin_src bash
+(venv) vartotojas@ubuntu:~$ sudo rm /etc/nginx/sites-enabled/default
+(venv) vartotojas@ubuntu:~$ sudo nano /etc/nginx/sites-enabled/biudzetas
+#+end_src
+
+Šiame faile įdedame tokį kodą:
+
+Prie server_name įrašome savo serverio IP
+
+Į location /static - kelia iki programos static katalogo
+
+#+begin_src bash
+server {
+    listen 80;
+    server_name 192.168.43.108;
+
+    location /static {
+        alias /home/vartotojas/biudzetas/biudzetas/static;
+    }
+
+    location / {
+        proxy_pass http://localhost:8000;
+        include /etc/nginx/proxy_params;
+        proxy_redirect off;
+    }
+}
+#+end_src
+
+Perkrauname nginx:
+
+#+begin_src bash
+(venv) vartotojas@ubuntu:~$ sudo systemctl restart nginx
+#+end_src
+
+Jei naršyklėje atidarysime http://192.168.43.108/, pamatysime, kad
+programa vis dar neveikia (nginx klaida)
+
+*** Konfiguruojame ir paleidžiame gunicorn:
+
+Sužinome, kiek mūsų serveris turi branduolių:
+
+#+begin_src bash
+(venv) vartotojas@ubuntu:~$ nproc --all
+1
+#+end_src
+
+Reiškia, paleisdami gunicorn, prie -w turėsime įrašyti 3 ((2 x branduolių_kiekis) + 1)
+
+Paleidžiame gunicorn:
+
+#+begin_src bash
+(venv) vartotojas@ubuntu:~$ cd biudzetas/
+(venv) vartotojas@ubuntu:~/biudzetas$ gunicorn -w 3 run:app
+#+end_src
+
+Galime užeiti į naršyklę ir pažiūrėti, ar viskas veikia, pvz.: http://192.168.43.108/
+
+Bėda, kad nutraukę gunicorn procesą, vėl neprieisime prie programos per naršyklę. Tam reikia įsidiegti ir sukonfiguruoti supervisor
+
+*** Konfiguruojame ir paleidžiame supervisor:
+
+Įsidiegiame:
+
+#+begin_src bash
+(venv) vartotojas@ubuntu:~/biudzetas$ sudo apt install supervisor
+#+end_src
+
+Sukuriame konfiguracinį failą:
+
+#+begin_src bash
+(venv) vartotojas@ubuntu:~/biudzetas$ sudo nano /etc/supervisor/conf.d/biudzetas.conf
+#+end_src
+
+Į failą įrašome tokį kodą:
+
+#+begin_src bash
+[program:biudzetas]
+directory=/home/vartotojas/biudzetas
+command=/home/vartotojas/biudzetas/venv/bin/gunicorn -w 3 run:app
+user=vartotojas
+autostart=true
+autorestart=true
+stopasgroup=true
+killasgroup=true
+stderr_logfile=/var/log/biudzetas/biudzetas.err.log
+stdout_logfile=/var/log/biudzetas/biudzetas.out.log
+#+end_src
+
+Sukuriame aprašytus log failus:
+
+#+begin_src bash
+(venv) vartotojas@ubuntu:~/biudzetas$ sudo mkdir -p /var/log/biudzetas
+(venv) vartotojas@ubuntu:~/biudzetas$ sudo touch /var/log/biudzetas/biudzetas.err.log
+(venv) vartotojas@ubuntu:~/biudzetas$ sudo touch /var/log/biudzetas/biudzetas.out.log
+#+end_src
+
+Perkrauname supervisor:
+
+#+begin_src bash
+(venv) vartotojas@ubuntu:~/biudzetas$ sudo supervisorctl reload
+#+end_src
+
+Galime naršyklėje atsidaryti http://192.168.43.108/
+
+*** Padidiname atsiunčiamos nuotraukos dydžio limitą:
+
+Atsidarome nginx konfiguracinį failą:
+
+
+#+begin_src bash
+vartotojas@ubuntu:~$ sudo nano /etc/nginx/nginx.conf
+#+end_src
+
+Jame pridedame eilutę client_max_body_size 5M:
+
+#+begin_src bash
+http {
+
+        ##
+        # Basic Settings
+        ##
+
+        sendfile on;
+        tcp_nopush on;
+        tcp_nodelay on;
+        keepalive_timeout 65;
+        types_hash_max_size 2048;
+        client_max_body_size 5M;
+        # server_tokens off;
+#+end_src
+
+Perkrauname nginx:
+
+#+begin_src bash
+vartotojas@ubuntu:~$ sudo systemctl restart nginx
+#+end_src
+
+VISKAS!
