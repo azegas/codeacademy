@@ -7081,11 +7081,6 @@ Susikurti iš virtualios aplinkos requirements.txt failą
   input("Norėdami uždaryti spauskite ENTER")
 #+end_src
 
-
-#+begin_src python
-blet
-#+end_src
-
 **** Uzduotis-1.spec
 
 #+begin_src
