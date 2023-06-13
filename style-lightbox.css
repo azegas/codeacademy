@@ -57,3 +57,9 @@ a figure.lightbox figcaption {
   color: white;
   text-shadow: black 0 0 10px;
 }
+
+/* also some css to hide a black bar at the bottom */
+
+#postamble {
+  display: none;
+}
