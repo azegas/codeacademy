@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-06-13 Tue 14:33 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CodeAcademy Python</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="DESKTOP-AUDMJ7D" />
+<meta name="description" content="CodeAcademy Python notes"
+ />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<head> <meta charset="UTF-8"> <meta name="description" content="CodeAcademy Python notes"> <link rel="alternate" type="application/rss+xml" href="https://arvydasg.github.io/rss.xml" title="RSS feed for https://arvydasg.github.io/"> <title>CodeAcademy Python</title> <!-- Google Tag Manager --> <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-MC4ZQHP');</script> <!-- End Google Tag Manager --> <meta name="author" content="Arvydas Gasparavicius"> <meta name="referrer" content="no-referrer"> <meta name="viewport" content="initial-scale=1,width=device-width,minimum-scale=1"><link href= "../style-lightbox.css" rel="stylesheet" type="text/css" /> <link href= "../readtheorg.css" rel="stylesheet" type="text/css" /> <script src="../lightbox.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" /> <script src="static/lightbox.js"></script> <script src="static/auto-render.min.js"></script> <link rel="icon" href="static/ag.ico"></head>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<body>
+
+  <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MC4ZQHP"
+                        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+      <nav class="text-center navbar navbar-expand-lg navbar-light bg-light">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div style="justify-content:center" class="collapse navbar-collapse " id="navbarNav">
+                  <ul class="navbar-nav">
+                      <li class="nav-item">
+                          <a class="nav-link" href="https://arvydas.dev/codeacademy/">Home <span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="https://arvydas.dev/codeacademy/html_css/index.html">HTML/CSS</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="https://arvydas.dev/codeacademy/javascript/index.html">JavaScript</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link " href="https://arvydas.dev/codeacademy/python/index.html">Python</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link active " href="https://arvydas.dev/codeacademy/databases/index.html">Databases</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link " href="https://arvydas.dev/codeacademy/flask/index.html">Flask</a>
+                      </li>
+                  </ul>
+              </div>
+      </nav>
+</div>
+<div id="content">
+<h1 class="title">CodeAcademy Python</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgdc6592a">1. Heading</a>
+<ul>
+<li><a href="#orgdaa3322">1.1. hook explanation</a></li>
+<li><a href="#org982206e">1.2. hook explanation</a></li>
+<li><a href="#org01063ed">1.3. hook explanation</a></li>
+<li><a href="#org41cd2f3">1.4. hook explanation</a></li>
+<li><a href="#orgdef5db4">1.5. hook explanation</a></li>
+<li><a href="#org2178dcd">1.6. hook explanation</a></li>
+<li><a href="#org374700a">1.7. hook explanation</a></li>
+<li><a href="#org97ab86e">1.8. hook explanation</a></li>
+<li><a href="#org92df7e4">1.9. hook explanation</a></li>
+<li><a href="#org8a2f320">1.10. hook explanation</a></li>
+<li><a href="#org5ca9b9e">1.11. hook explanation</a></li>
+<li><a href="#orgfee256f">1.12. clocktables if you ever need them</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgdc6592a" class="outline-2">
+<h2 id="orgdc6592a"><span class="section-number-2">1</span> Heading</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgdaa3322" class="outline-3">
+<h3 id="orgdaa3322"><span class="section-number-3">1.1</span> hook explanation</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+tekstas
+</p>
+
+
+<div class="figure">
+<p><img src="./static/images/1.png" alt="1.png" width="600px" />
+</p>
+</div>
+
+<figure>
+  <img src="./static/images/1.png" alt="1.png" width="600px">
+</figure>
+</div>
+</div>
+
+<div id="outline-container-org982206e" class="outline-3">
+<h3 id="org982206e"><span class="section-number-3">1.2</span> hook explanation</h3>
+</div>
+<div id="outline-container-org01063ed" class="outline-3">
+<h3 id="org01063ed"><span class="section-number-3">1.3</span> hook explanation</h3>
+</div>
+<div id="outline-container-org41cd2f3" class="outline-3">
+<h3 id="org41cd2f3"><span class="section-number-3">1.4</span> hook explanation</h3>
+</div>
+<div id="outline-container-orgdef5db4" class="outline-3">
+<h3 id="orgdef5db4"><span class="section-number-3">1.5</span> hook explanation</h3>
+</div>
+<div id="outline-container-org2178dcd" class="outline-3">
+<h3 id="org2178dcd"><span class="section-number-3">1.6</span> hook explanation</h3>
+</div>
+<div id="outline-container-org374700a" class="outline-3">
+<h3 id="org374700a"><span class="section-number-3">1.7</span> hook explanation</h3>
+</div>
+<div id="outline-container-org97ab86e" class="outline-3">
+<h3 id="org97ab86e"><span class="section-number-3">1.8</span> hook explanation</h3>
+</div>
+<div id="outline-container-org92df7e4" class="outline-3">
+<h3 id="org92df7e4"><span class="section-number-3">1.9</span> hook explanation</h3>
+<div class="outline-text-3" id="text-1-9">
+<p>
+;; Amazing tutorial here at 1:13:40 -
+;; <a href="https://www.youtube.com/watch?v=gfZDwYeBlO4&amp;t=2637s">https://www.youtube.com/watch?v=gfZDwYeBlO4&amp;t=2637s</a> All of this is
+;; done in scratch buffer.
+</p>
+
+<p>
+;; First, lets find what kind of function we want to add our code to.
+;; Let's say "org-clock-in". When I do org-clock-in command, I want my
+;; piece of code to run. Okay. Let's find the "org-clock-in" source
+;; code. Press C-h k - this will ask us to input a command. We input
+;; the command we are curious about. It is "org-clock-in" command,
+;; which is C-c C-x C-i. As we write that command and press enter, we
+;; get the following result:
+</p>
+
+<p>
+;; C-c C-x TAB runs the command org-clock-in (found in org-mode-map),
+;; which is an interactive autoloaded compiled Lisp function in
+;; ‘org-clock.el’.
+</p>
+
+<p>
+;; Aha! Function in 'org-clock.el'. Okay, we click on that and it
+leads us to the source code of "org-clock-in". We look for a hook
+function in there. We do C-s to find work, find the
+"org-clock-in-hook" function and now we are ready to write our little
+piece of code, since we know a hook for it exists.
+</p>
+
+<p>
+;; And that would be the little piece of code. We are adding a hook,
+and after lambda inputting our function. Great.
+</p>
+
+<p>
+(add-hook 'org-clock-in-hook '(lambda () (message "this works")))
+</p>
+
+<p>
+;; We then evaluate that function by C-c C-e with our cursor at the
+   last ) and then we can go to an .org file and call "org-clock-in"
+   function and watch our message bar. The message will show up there.
+</p>
+</div>
+</div>
+<div id="outline-container-org8a2f320" class="outline-3">
+<h3 id="org8a2f320"><span class="section-number-3">1.10</span> hook explanation</h3>
+<div class="outline-text-3" id="text-1-10">
+<p>
+;; Amazing tutorial here at 1:13:40 -
+;; <a href="https://www.youtube.com/watch?v=gfZDwYeBlO4&amp;t=2637s">https://www.youtube.com/watch?v=gfZDwYeBlO4&amp;t=2637s</a> All of this is
+;; done in scratch buffer.
+</p>
+
+<p>
+;; First, lets find what kind of function we want to add our code to.
+;; Let's say "org-clock-in". When I do org-clock-in command, I want my
+;; piece of code to run. Okay. Let's find the "org-clock-in" source
+;; code. Press C-h k - this will ask us to input a command. We input
+;; the command we are curious about. It is "org-clock-in" command,
+;; which is C-c C-x C-i. As we write that command and press enter, we
+;; get the following result:
+</p>
+
+<p>
+;; C-c C-x TAB runs the command org-clock-in (found in org-mode-map),
+;; which is an interactive autoloaded compiled Lisp function in
+;; ‘org-clock.el’.
+</p>
+
+<p>
+;; Aha! Function in 'org-clock.el'. Okay, we click on that and it
+leads us to the source code of "org-clock-in". We look for a hook
+function in there. We do C-s to find work, find the
+"org-clock-in-hook" function and now we are ready to write our little
+piece of code, since we know a hook for it exists.
+</p>
+
+<p>
+;; And that would be the little piece of code. We are adding a hook,
+and after lambda inputting our function. Great.
+</p>
+
+<p>
+(add-hook 'org-clock-in-hook '(lambda () (message "this works")))
+</p>
+
+<p>
+;; We then evaluate that function by C-c C-e with our cursor at the
+   last ) and then we can go to an .org file and call "org-clock-in"
+   function and watch our message bar. The message will show up there.
+</p>
+</div>
+</div>
+<div id="outline-container-org5ca9b9e" class="outline-3">
+<h3 id="org5ca9b9e"><span class="section-number-3">1.11</span> hook explanation</h3>
+<div class="outline-text-3" id="text-1-11">
+<p>
+;; Amazing tutorial here at 1:13:40 -
+;; <a href="https://www.youtube.com/watch?v=gfZDwYeBlO4&amp;t=2637s">https://www.youtube.com/watch?v=gfZDwYeBlO4&amp;t=2637s</a> All of this is
+;; done in scratch buffer.
+</p>
+
+<p>
+;; First, lets find what kind of function we want to add our code to.
+;; Let's say "org-clock-in". When I do org-clock-in command, I want my
+;; piece of code to run. Okay. Let's find the "org-clock-in" source
+;; code. Press C-h k - this will ask us to input a command. We input
+;; the command we are curious about. It is "org-clock-in" command,
+;; which is C-c C-x C-i. As we write that command and press enter, we
+;; get the following result:
+</p>
+
+<p>
+;; C-c C-x TAB runs the command org-clock-in (found in org-mode-map),
+;; which is an interactive autoloaded compiled Lisp function in
+;; ‘org-clock.el’.
+</p>
+
+<p>
+;; Aha! Function in 'org-clock.el'. Okay, we click on that and it
+leads us to the source code of "org-clock-in". We look for a hook
+function in there. We do C-s to find work, find the
+"org-clock-in-hook" function and now we are ready to write our little
+piece of code, since we know a hook for it exists.
+</p>
+
+<p>
+;; And that would be the little piece of code. We are adding a hook,
+and after lambda inputting our function. Great.
+</p>
+
+<p>
+(add-hook 'org-clock-in-hook '(lambda () (message "this works")))
+</p>
+
+<p>
+;; We then evaluate that function by C-c C-e with our cursor at the
+   last ) and then we can go to an .org file and call "org-clock-in"
+   function and watch our message bar. The message will show up there.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfee256f" class="outline-3">
+<h3 id="orgfee256f"><span class="section-number-3">1.12</span> clocktables if you ever need them</h3>
+<div class="outline-text-3" id="text-1-12">
+<p>
+<a href="https://www.youtube.com/watch?v=o6rE18Mxu9U&amp;t=14s&amp;ab_channel=JakeB">https://www.youtube.com/watch?v=o6rE18Mxu9U&amp;t=14s&amp;ab_channel=JakeB</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<!-- bootstrap scripts -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<script src="../scripts.js"></script>
+</body>
+</html>
+</div>
+</body>
+</html>

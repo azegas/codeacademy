@@ -1,0 +1,125 @@
+#+title: CodeAcademy Python
+#+date: <2023-06-14 07:13>
+#+description: CodeAcademy Python notes
+#+filetags: python codeacademy
+#+OPTIONS: toc:2
+#+OPTIONS: num:t
+#+HTML_HEAD: <head> <meta charset="UTF-8"> <meta name="description" content="CodeAcademy Python notes"> <link rel="alternate" type="application/rss+xml" href="https://arvydasg.github.io/rss.xml" title="RSS feed for https://arvydasg.github.io/"> <title>CodeAcademy Python</title> <!-- Google Tag Manager --> <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-MC4ZQHP');</script> <!-- End Google Tag Manager --> <meta name="author" content="Arvydas Gasparavicius"> <meta name="referrer" content="no-referrer"> <meta name="viewport" content="initial-scale=1,width=device-width,minimum-scale=1"><link href= "../style-lightbox.css" rel="stylesheet" type="text/css" /> <link href= "../readtheorg.css" rel="stylesheet" type="text/css" /> <script src="../lightbox.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" /> <script src="static/lightbox.js"></script> <script src="static/auto-render.min.js"></script> <link rel="icon" href="static/ag.ico"></head>
+
+* Heading
+** hook explanation
+
+tekstas
+
+#+attr_html: :width 600px
+#+ATTR_ORG: :width 600
+[[./static/images/1.png]]
+
+#+BEGIN_EXPORT html
+<figure>
+  <img src="./static/images/1.png" alt="1.png" width="600px">
+</figure>
+#+END_EXPORT
+
+** hook explanation
+** hook explanation
+** hook explanation
+** hook explanation
+** hook explanation
+** hook explanation
+** hook explanation
+** hook explanation
+;; Amazing tutorial here at 1:13:40 -
+;; https://www.youtube.com/watch?v=gfZDwYeBlO4&t=2637s All of this is
+;; done in scratch buffer.
+
+;; First, lets find what kind of function we want to add our code to.
+;; Let's say "org-clock-in". When I do org-clock-in command, I want my
+;; piece of code to run. Okay. Let's find the "org-clock-in" source
+;; code. Press C-h k - this will ask us to input a command. We input
+;; the command we are curious about. It is "org-clock-in" command,
+;; which is C-c C-x C-i. As we write that command and press enter, we
+;; get the following result:
+
+;; C-c C-x TAB runs the command org-clock-in (found in org-mode-map),
+;; which is an interactive autoloaded compiled Lisp function in
+;; ‘org-clock.el’.
+
+;; Aha! Function in 'org-clock.el'. Okay, we click on that and it
+leads us to the source code of "org-clock-in". We look for a hook
+function in there. We do C-s to find work, find the
+"org-clock-in-hook" function and now we are ready to write our little
+piece of code, since we know a hook for it exists.
+
+;; And that would be the little piece of code. We are adding a hook,
+and after lambda inputting our function. Great.
+
+(add-hook 'org-clock-in-hook '(lambda () (message "this works")))
+
+;; We then evaluate that function by C-c C-e with our cursor at the
+   last ) and then we can go to an .org file and call "org-clock-in"
+   function and watch our message bar. The message will show up there.
+** hook explanation
+;; Amazing tutorial here at 1:13:40 -
+;; https://www.youtube.com/watch?v=gfZDwYeBlO4&t=2637s All of this is
+;; done in scratch buffer.
+
+;; First, lets find what kind of function we want to add our code to.
+;; Let's say "org-clock-in". When I do org-clock-in command, I want my
+;; piece of code to run. Okay. Let's find the "org-clock-in" source
+;; code. Press C-h k - this will ask us to input a command. We input
+;; the command we are curious about. It is "org-clock-in" command,
+;; which is C-c C-x C-i. As we write that command and press enter, we
+;; get the following result:
+
+;; C-c C-x TAB runs the command org-clock-in (found in org-mode-map),
+;; which is an interactive autoloaded compiled Lisp function in
+;; ‘org-clock.el’.
+
+;; Aha! Function in 'org-clock.el'. Okay, we click on that and it
+leads us to the source code of "org-clock-in". We look for a hook
+function in there. We do C-s to find work, find the
+"org-clock-in-hook" function and now we are ready to write our little
+piece of code, since we know a hook for it exists.
+
+;; And that would be the little piece of code. We are adding a hook,
+and after lambda inputting our function. Great.
+
+(add-hook 'org-clock-in-hook '(lambda () (message "this works")))
+
+;; We then evaluate that function by C-c C-e with our cursor at the
+   last ) and then we can go to an .org file and call "org-clock-in"
+   function and watch our message bar. The message will show up there.
+** hook explanation
+;; Amazing tutorial here at 1:13:40 -
+;; https://www.youtube.com/watch?v=gfZDwYeBlO4&t=2637s All of this is
+;; done in scratch buffer.
+
+;; First, lets find what kind of function we want to add our code to.
+;; Let's say "org-clock-in". When I do org-clock-in command, I want my
+;; piece of code to run. Okay. Let's find the "org-clock-in" source
+;; code. Press C-h k - this will ask us to input a command. We input
+;; the command we are curious about. It is "org-clock-in" command,
+;; which is C-c C-x C-i. As we write that command and press enter, we
+;; get the following result:
+
+;; C-c C-x TAB runs the command org-clock-in (found in org-mode-map),
+;; which is an interactive autoloaded compiled Lisp function in
+;; ‘org-clock.el’.
+
+;; Aha! Function in 'org-clock.el'. Okay, we click on that and it
+leads us to the source code of "org-clock-in". We look for a hook
+function in there. We do C-s to find work, find the
+"org-clock-in-hook" function and now we are ready to write our little
+piece of code, since we know a hook for it exists.
+
+;; And that would be the little piece of code. We are adding a hook,
+and after lambda inputting our function. Great.
+
+(add-hook 'org-clock-in-hook '(lambda () (message "this works")))
+
+;; We then evaluate that function by C-c C-e with our cursor at the
+   last ) and then we can go to an .org file and call "org-clock-in"
+   function and watch our message bar. The message will show up there.
+** clocktables if you ever need them
+https://www.youtube.com/watch?v=o6rE18Mxu9U&t=14s&ab_channel=JakeB
